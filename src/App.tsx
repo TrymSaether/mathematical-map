@@ -13,7 +13,6 @@ import { data } from "./data";
 export default function App() {
   useKeyboardNav();
   const kinds = useStore((s) => s.kinds);
-  const chapters = useStore((s) => s.chapters);
   const topics = useStore((s) => s.topics);
   const search = useStore((s) => s.search).toLowerCase().trim();
   const searchScope = useStore((s) => s.searchScope);
@@ -21,7 +20,6 @@ export default function App() {
   const visibleCount = useMemo(() => {
     return data.nodes.filter((n) => {
       if (!kinds.has(n.kind)) return false;
-      if (chapters.size && !chapters.has(n.chapter)) return false;
       if (topics.size && !topics.has(n.topicCluster)) return false;
       if (search) {
         const hay =
@@ -32,7 +30,7 @@ export default function App() {
       }
       return true;
     }).length;
-  }, [kinds, chapters, topics, search, searchScope]);
+  }, [kinds, topics, search, searchScope]);
 
   return (
     <div className="relative flex h-screen w-screen flex-col p-3">

@@ -30,7 +30,6 @@ function InnerGraph() {
   const search = useStore((s) => s.search).toLowerCase().trim();
   const searchScope = useStore((s) => s.searchScope);
   const kinds = useStore((s) => s.kinds);
-  const chapters = useStore((s) => s.chapters);
   const topics = useStore((s) => s.topics);
   const relations = useStore((s) => s.relations);
   const selectedId = useStore((s) => s.selectedId);
@@ -41,7 +40,6 @@ function InnerGraph() {
   const filteredNodes = useMemo(() => {
     return data.nodes.filter((n) => {
       if (!kinds.has(n.kind)) return false;
-      if (chapters.size && !chapters.has(n.chapter)) return false;
       if (topics.size && !topics.has(n.topicCluster)) return false;
       if (search) {
         const hay =
@@ -52,7 +50,7 @@ function InnerGraph() {
       }
       return true;
     });
-  }, [kinds, chapters, topics, search, searchScope]);
+  }, [kinds, topics, search, searchScope]);
 
   const visibleIds = useMemo(() => new Set(filteredNodes.map((n) => n.id)), [filteredNodes]);
   const filteredEdges = useMemo(
@@ -100,10 +98,10 @@ function InnerGraph() {
   const laneNodes: Node[] = useMemo(
     () =>
       lanes.map((l) => ({
-        id: `lane-${l.chapter}`,
+        id: `lane-${l.topic}`,
         type: "lane",
         position: { x: -160, y: l.y - 20 },
-        data: { chapter: l.chapter, title: l.title, width: l.width, height: l.height },
+        data: { topic: l.topic, subtitle: l.subtitle, width: l.width, height: l.height },
         draggable: false,
         selectable: false,
         focusable: false,
@@ -174,10 +172,26 @@ function InnerGraph() {
       />
       <MiniMap
         pannable zoomable
-        nodeColor={(n) => KIND_HEX[(n.data as any)?.node?.kind ?? "definition"] || "#888"}
-        nodeStrokeColor={(n) => (n.selected ? "#ffffff" : "transparent")}
-        nodeStrokeWidth={3}
-        maskColor="rgba(5,6,10,0.7)"
+        ariaLabel="Concept map overview"
+        nodeColor={(n) => {
+          if (n.type === "lane") return "transparent";
+          const k = (n.data as any)?.node?.kind;
+          return k ? KIND_HEX[k] ?? "#5ce1ff" : "#5ce1ff";
+        }}
+        nodeStrokeColor={(n) =>
+          n.type === "lane" ? "transparent" : n.selected ? "#ffffff" : "rgba(255,255,255,0.18)"
+        }
+        nodeBorderRadius={3}
+        nodeStrokeWidth={1}
+        maskColor="rgba(5,6,10,0.78)"
+        maskStrokeColor="rgba(92,225,255,0.45)"
+        maskStrokeWidth={1.5}
+        style={{
+          background: "rgba(10,12,20,0.85)",
+          border: "1px solid rgba(255,255,255,0.10)",
+          borderRadius: 12,
+          backdropFilter: "blur(8px)",
+        }}
       />
       <Controls position="bottom-right" showInteractive={false} />
     </ReactFlow>

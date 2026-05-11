@@ -81,9 +81,9 @@ export function CommandPalette() {
                         >
                           <span className={cn(`kind-${n.kind}`, "flex items-center gap-2 w-full")}>
                             <span className="h-1.5 w-1.5 rounded-full bg-[rgba(var(--c),1)]" />
-                            <span className="text-white/40 text-[11px] w-[110px]">{KIND_LABEL[n.kind]} {n.number}</span>
+                            <span className="text-white/40 text-[11px] w-[110px]">{KIND_LABEL[n.kind]}</span>
                             <span className="text-white/90 text-[13px] truncate">{n.title}</span>
-                            <span className="ml-auto text-[10px] text-white/30">Ch.{n.chapter}</span>
+                            <span className="ml-auto text-[10px] text-white/30 truncate max-w-[140px]">{n.topicCluster}</span>
                           </span>
                         </Item>
                       ))}
@@ -97,7 +97,7 @@ export function CommandPalette() {
                             value={`path ${n.number} ${n.title}`}
                             onSelect={() => { setPathTarget(n.id); setOpen(false); }}
                           >
-                            → Path to {KIND_LABEL[n.kind]} {n.number}: {n.title}
+                            → Path to {KIND_LABEL[n.kind]}: {n.title}
                           </Item>
                         ))}
                       </Command.Group>

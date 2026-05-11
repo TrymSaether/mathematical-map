@@ -36,14 +36,11 @@ export function NodePanel() {
                 <span className="rounded-sm bg-[rgba(var(--c),0.12)] px-1.5 py-0.5">
                   {KIND_LABEL[node.kind]}
                 </span>
-                <span>№ {node.number}</span>
-                <span className="text-white/30">·</span>
-                <span className="text-white/40">Ch. {node.chapter} — {node.sectionTitle}</span>
+                <span className="text-white/60">{node.topicCluster}</span>
               </div>
               <h2 className="mt-1.5 font-display text-xl font-semibold leading-tight">
                 <MathText text={node.title} />
               </h2>
-              <div className="mt-1 text-[11px] text-white/40">{node.topicCluster}</div>
             </div>
             <button
               onClick={() => select(null)}
@@ -89,13 +86,11 @@ export function NodePanel() {
               </div>
             </Section>
 
-            <Section title="Metadata">
-              <dl className="grid grid-cols-2 gap-y-1 text-[11px]">
-                <dt className="text-white/40">ID</dt><dd className="font-mono text-white/70">{node.id}</dd>
-                <dt className="text-white/40">Section</dt><dd className="text-white/70">{node.sectionTitle}</dd>
-                <dt className="text-white/40">Cluster</dt><dd className="text-white/70">{node.topicCluster}</dd>
-                <dt className="text-white/40">Statement deps</dt><dd className="text-white/70">{node.statementDependencies.length}</dd>
-                <dt className="text-white/40">Proof deps</dt><dd className="text-white/70">{node.proofDependencies.length}</dd>
+            <Section title="Reference">
+              <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[11px]">
+                <dt className="text-white/40">Theme</dt><dd className="text-white/70">{node.topicCluster}</dd>
+                <dt className="text-white/40">Textbook</dt><dd className="text-white/70">Ch. {node.chapter} §{node.section} — {node.sectionTitle} · № {node.number}</dd>
+                <dt className="text-white/40">ID</dt><dd className="font-mono text-white/55 truncate">{node.id}</dd>
               </dl>
             </Section>
           </div>

@@ -17,10 +17,6 @@ interface State {
   kinds: Set<NodeKind>;
   toggleKind: (k: NodeKind) => void;
 
-  chapters: Set<string>;
-  toggleChapter: (c: string) => void;
-  resetChapters: () => void;
-
   topics: Set<string>;
   toggleTopic: (t: string) => void;
   resetTopics: () => void;
@@ -67,10 +63,6 @@ export const useStore = create<State>((set) => ({
 
   kinds: new Set(ALL_KINDS),
   toggleKind: (k) => set((s) => ({ kinds: toggle(s.kinds, k) })),
-
-  chapters: new Set(),
-  toggleChapter: (c) => set((s) => ({ chapters: toggle(s.chapters, c) })),
-  resetChapters: () => set({ chapters: new Set() }),
 
   topics: new Set(),
   toggleTopic: (t) => set((s) => ({ topics: toggle(s.topics, t) })),

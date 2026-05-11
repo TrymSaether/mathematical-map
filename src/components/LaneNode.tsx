@@ -1,8 +1,8 @@
 import type { NodeProps } from "reactflow";
 
-interface Data { chapter: string; title: string; width: number; height: number }
+interface Data { topic: string; subtitle: string; width: number; height: number }
 
-/** Decorative full-width band behind a chapter's nodes. Non-interactive. */
+/** Decorative full-width band behind a topic-cluster's nodes. Non-interactive. */
 export function LaneNode({ data }: NodeProps<Data>) {
   return (
     <div
@@ -17,16 +17,16 @@ export function LaneNode({ data }: NodeProps<Data>) {
         }}
       />
       <div
-        className="absolute left-3 top-3 font-display text-[36px] font-semibold tracking-[0.18em]"
-        style={{ color: "rgba(120,140,255,0.32)" }}
+        className="absolute left-3 top-3 font-display text-[26px] font-semibold tracking-[0.06em] leading-tight"
+        style={{ color: "rgba(150,170,255,0.55)" }}
       >
-        CH·{data.chapter}
+        {data.topic}
       </div>
       <div
-        className="absolute left-3 top-14 font-display text-[12px] uppercase tracking-[0.22em]"
-        style={{ color: "rgba(120,140,255,0.45)" }}
+        className="absolute left-3 top-12 font-display text-[10px] uppercase tracking-[0.28em]"
+        style={{ color: "rgba(150,170,255,0.4)" }}
       >
-        {data.title}
+        {data.subtitle}
       </div>
     </div>
   );

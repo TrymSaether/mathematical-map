@@ -21,9 +21,6 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
   const setSearchScope = useStore((s) => s.setSearchScope);
   const kinds = useStore((s) => s.kinds);
   const toggleKind = useStore((s) => s.toggleKind);
-  const chapters = useStore((s) => s.chapters);
-  const toggleChapter = useStore((s) => s.toggleChapter);
-  const resetChapters = useStore((s) => s.resetChapters);
   const topics = useStore((s) => s.topics);
   const toggleTopic = useStore((s) => s.toggleTopic);
   const resetTopics = useStore((s) => s.resetTopics);
@@ -35,18 +32,20 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
   const showOrphans = useStore((s) => s.showOrphans);
   const setShowOrphans = useStore((s) => s.setShowOrphans);
 
-  const { allChapters, allTopics, counts } = useMemo(() => {
-    const cs = new Set<string>(), ts = new Set<string>();
+  const { allTopics, topicCounts, counts } = useMemo(() => {
+    const tc: Record<string, number> = {};
     const kc: Record<string, number> = {};
+    const firstNum: Record<string, [string, number[]]> = {};
     for (const n of data.nodes) {
-      cs.add(n.chapter); ts.add(n.topicCluster);
+      tc[n.topicCluster] = (tc[n.topicCluster] ?? 0) + 1;
       kc[n.kind] = (kc[n.kind] ?? 0) + 1;
+      const nums = n.number.split(".").map((p) => Number(p) || 0);
+      const key: [string, number[]] = [n.chapter, nums];
+      const cur = firstNum[n.topicCluster];
+      if (!cur || cmpKey(key, cur) < 0) firstNum[n.topicCluster] = key;
     }
-    return {
-      allChapters: [...cs].sort(),
-      allTopics: [...ts].sort(),
-      counts: kc,
-    };
+    const topicsOrdered = Object.keys(tc).sort((a, b) => cmpKey(firstNum[a], firstNum[b]));
+    return { allTopics: topicsOrdered, topicCounts: tc, counts: kc };
   }, []);
 
   return (
@@ -64,10 +63,10 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
           </div>
           <div>
             <div className="font-display text-sm font-semibold tracking-wide title-gradient">
-              TOPOLOGY · MAP
+              TOPOLOGY · ATLAS
             </div>
             <div className="text-[10px] uppercase tracking-[0.25em] text-white/40">
-              knowledge OS · v0.1
+              concepts · dependencies
             </div>
           </div>
         </div>
@@ -173,58 +172,47 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
           </div>
         </Section>
 
-        {/* Chapter */}
+        {/* Theme */}
         <Section
-          title="Chapter"
-          aside={
-            chapters.size > 0 ? (
-              <button onClick={resetChapters} className="text-[10px] text-accent-cyan hover:underline">All</button>
-            ) : null
-          }
-        >
-          <div className="flex flex-wrap gap-1.5">
-            {allChapters.map((c) => (
-              <Pill
-                key={c}
-                active={chapters.size === 0 || chapters.has(c)}
-                muted={chapters.size > 0 && !chapters.has(c)}
-                onClick={() => toggleChapter(c)}
-              >
-                Ch. {c}
-              </Pill>
-            ))}
-          </div>
-        </Section>
-
-        {/* Topic */}
-        <Section
-          title="Topic cluster"
+          title="Theme"
+          icon={<Layers className="h-3 w-3" />}
           aside={
             topics.size > 0 ? (
               <button onClick={resetTopics} className="text-[10px] text-accent-cyan hover:underline">All</button>
             ) : null
           }
         >
-          <div className="flex flex-wrap gap-1.5">
-            {allTopics.map((t) => (
-              <Pill
-                key={t}
-                active={topics.size === 0 || topics.has(t)}
-                muted={topics.size > 0 && !topics.has(t)}
-                onClick={() => toggleTopic(t)}
-              >
-                {t}
-              </Pill>
-            ))}
+          <div className="flex flex-col gap-1">
+            {allTopics.map((t) => {
+              const active = topics.size === 0 || topics.has(t);
+              const muted = topics.size > 0 && !topics.has(t);
+              return (
+                <button
+                  key={t}
+                  onClick={() => toggleTopic(t)}
+                  className={cn(
+                    "flex w-full items-center justify-between rounded-md border px-2 py-1 text-[12px] transition-colors",
+                    muted
+                      ? "border-white/5 bg-white/[0.01] text-white/30 hover:text-white/60"
+                      : active
+                        ? "border-accent-cyan/40 bg-accent-cyan/8 text-white/90 shadow-glow-cyan"
+                        : "border-white/10 bg-white/[0.02] text-white/55 hover:bg-white/5"
+                  )}
+                >
+                  <span className="truncate text-left">{t}</span>
+                  <span className="ml-2 shrink-0 text-[10px] text-white/40">{topicCounts[t]}</span>
+                </button>
+              );
+            })}
           </div>
         </Section>
       </div>
 
       <div className="border-t border-white/10 p-3 flex items-center justify-between">
         <span className="text-[10px] uppercase tracking-widest text-white/40">
-          {data.nodes.length} nodes · {data.edges.length} edges
+          {data.nodes.length} concepts · {data.edges.length} links
         </span>
-        <span className="text-[10px] text-white/30">TMA4190 · NTNU</span>
+        <span className="text-[10px] text-white/30">{allTopics.length} themes</span>
       </div>
     </motion.aside>
   );
@@ -275,6 +263,16 @@ function Pill({ active, onClick, children, muted }: { active?: boolean; onClick?
       {children}
     </button>
   );
+}
+
+function cmpKey(a: [string, number[]], b: [string, number[]]): number {
+  if (a[0] !== b[0]) return a[0] < b[0] ? -1 : 1;
+  const len = Math.max(a[1].length, b[1].length);
+  for (let i = 0; i < len; i++) {
+    const x = a[1][i] ?? 0, y = b[1][i] ?? 0;
+    if (x !== y) return x - y;
+  }
+  return 0;
 }
 
 function KindPill({ k, active, count, onClick }: { k: NodeKind; active: boolean; count: number; onClick: () => void }) {

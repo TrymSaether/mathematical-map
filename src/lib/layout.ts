@@ -12,15 +12,15 @@ export interface LayoutInput {
 const NODE_W = 240;
 const NODE_H = 92;
 const COL_W = 280;
-const ROW_H = 150;
-const LANE_GAP = 60;
+const SUBROW_H = 108;
+const LANE_GAP = 70;
 
 /**
- * Swimlane dependency layout: chapters become horizontal lanes, items
- * are spread along the X axis by their number within the chapter. Real
- * dependency edges curve between lanes. This gives an at-a-glance
- * "course timeline" that the dagre-only layout could not provide because
- * most nodes have no inferred edges and dagre collapsed them to rank 0.
+ * Swimlane dependency layout: each topic cluster becomes a horizontal
+ * lane, ordered by the mathematical progression (foundations → spaces →
+ * constructions → properties → algebraic topology). Items are spread
+ * along the X axis by their textbook number within the topic so the
+ * timeline reads left-to-right while the vertical axis groups by theme.
  *
  * When `showOrphans === false`, items with neither incoming nor outgoing
  * edges in the current edge set are dropped.
@@ -31,54 +31,96 @@ export function dependencyLayout({
   const hasEdge = new Set<string>();
   for (const e of edges) { hasEdge.add(e.from); hasEdge.add(e.to); }
   const filtered = showOrphans ? nodes : nodes.filter((n) => hasEdge.has(n.id));
+  const visible = new Set(filtered.map((n) => n.id));
+  const visibleEdges = edges.filter((e) => visible.has(e.from) && visible.has(e.to));
 
-  const byChapter = new Map<string, TopoNode[]>();
+  // Compute depth = longest predecessor path length in the visible DAG.
+  // Items with no incoming visible edge get depth 0; arrows flow left-to-right.
+  const depth = computeDepths(filtered, visibleEdges);
+
+  const byTopic = new Map<string, TopoNode[]>();
   for (const n of filtered) {
-    if (!byChapter.has(n.chapter)) byChapter.set(n.chapter, []);
-    byChapter.get(n.chapter)!.push(n);
+    if (!byTopic.has(n.topicCluster)) byTopic.set(n.topicCluster, []);
+    byTopic.get(n.topicCluster)!.push(n);
   }
-  const chapters = [...byChapter.keys()].sort();
+  const topics = [...byTopic.keys()].sort((a, b) => {
+    const ka = minKey(byTopic.get(a)!);
+    const kb = minKey(byTopic.get(b)!);
+    return cmpKey(ka, kb);
+  });
 
   const rfNodes: Node[] = [];
   const lanes: Lane[] = [];
   let y = 0;
-  let maxCols = 0;
-  for (const c of chapters) {
-    const items = byChapter.get(c)!.sort(cmpNum);
-    maxCols = Math.max(maxCols, items.length);
-    items.forEach((n, col) => {
-      rfNodes.push({
-        id: n.id,
-        type: "topo",
-        position: { x: col * COL_W, y },
-        data: { node: n },
+  let maxCol = 0;
+  for (const t of topics) {
+    const items = byTopic.get(t)!.sort(cmpNum);
+    // Bucket items by depth within this lane so ties stack vertically.
+    const byDepth = new Map<number, TopoNode[]>();
+    for (const n of items) {
+      const d = depth.get(n.id) ?? 0;
+      if (!byDepth.has(d)) byDepth.set(d, []);
+      byDepth.get(d)!.push(n);
+    }
+    let laneStacks = 1;
+    for (const [d, group] of byDepth) {
+      laneStacks = Math.max(laneStacks, group.length);
+      group.forEach((n, i) => {
+        rfNodes.push({
+          id: n.id,
+          type: "topo",
+          position: { x: d * COL_W, y: y + i * SUBROW_H },
+          data: { node: n },
+        });
       });
-    });
+      maxCol = Math.max(maxCol, d);
+    }
+    const laneH = laneStacks * SUBROW_H;
     lanes.push({
-      chapter: c,
-      title: items[0]?.sectionTitle ?? "",
+      topic: t,
+      subtitle: `${items.length} item${items.length === 1 ? "" : "s"}`,
       y,
-      height: NODE_H + LANE_GAP / 2,
-      width: items.length * COL_W,
+      height: laneH - (SUBROW_H - NODE_H) + 20,
+      width: (maxCol + 1) * COL_W,
     });
-    y += NODE_H + LANE_GAP;
+    y += laneH + LANE_GAP - SUBROW_H + NODE_H;
   }
-  // Fill all lane widths to the widest so the lane backgrounds align.
-  const fullW = maxCols * COL_W;
+  const fullW = (maxCol + 1) * COL_W;
   for (const l of lanes) l.width = fullW;
 
-  const visible = new Set(filtered.map((n) => n.id));
-  const rfEdges: Edge[] = edges
-    .filter((e) => visible.has(e.from) && visible.has(e.to))
-    .map((e) => ({
-      id: e.id,
-      source: e.from,
-      target: e.to,
-      type: "topo",
-      markerEnd: { type: "arrowclosed" as MarkerType, width: 14, height: 14, color: edgeColor(e) },
-      data: { edge: e },
-    }));
+  const rfEdges: Edge[] = visibleEdges.map((e) => ({
+    id: e.id,
+    source: e.from,
+    target: e.to,
+    type: "topo",
+    markerEnd: { type: "arrowclosed" as MarkerType, width: 14, height: 14, color: edgeColor(e) },
+    data: { edge: e },
+  }));
   return { nodes: rfNodes, edges: rfEdges, lanes };
+}
+
+function computeDepths(nodes: TopoNode[], edges: TopoEdge[]): Map<string, number> {
+  const inMap = new Map<string, string[]>();
+  for (const n of nodes) inMap.set(n.id, []);
+  for (const e of edges) {
+    if (inMap.has(e.to)) inMap.get(e.to)!.push(e.from);
+  }
+  const depth = new Map<string, number>();
+  const visiting = new Set<string>();
+  const compute = (id: string): number => {
+    const cached = depth.get(id);
+    if (cached !== undefined) return cached;
+    if (visiting.has(id)) return 0; // cycle guard
+    visiting.add(id);
+    const preds = inMap.get(id) ?? [];
+    let d = 0;
+    for (const p of preds) d = Math.max(d, compute(p) + 1);
+    visiting.delete(id);
+    depth.set(id, d);
+    return d;
+  };
+  for (const n of nodes) compute(n.id);
+  return depth;
 }
 
 /** Optional: classic dagre LR layout, kept for the cluster/path overlays. */
@@ -129,11 +171,35 @@ export function clusterLayout({ nodes, edges }: LayoutInput): { nodes: Node[]; e
 }
 
 export interface Lane {
-  chapter: string;
-  title: string;
+  topic: string;
+  subtitle: string;
   y: number;
   height: number;
   width: number;
+}
+
+function minKey(items: TopoNode[]): [string, number[]] {
+  let best: [string, number[]] | null = null;
+  for (const n of items) {
+    const k = parseKey(n.chapter, n.number);
+    if (!best || cmpKey(k, best) < 0) best = k;
+  }
+  return best ?? ["", [0]];
+}
+
+function parseKey(chapter: string, number: string): [string, number[]] {
+  const nums = number.split(".").map((p) => Number(p) || 0);
+  return [chapter, nums];
+}
+
+function cmpKey(a: [string, number[]], b: [string, number[]]): number {
+  if (a[0] !== b[0]) return a[0] < b[0] ? -1 : 1;
+  const len = Math.max(a[1].length, b[1].length);
+  for (let i = 0; i < len; i++) {
+    const x = a[1][i] ?? 0, y = b[1][i] ?? 0;
+    if (x !== y) return x - y;
+  }
+  return 0;
 }
 
 function edgeColor(e: TopoEdge): string {

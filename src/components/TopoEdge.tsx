@@ -13,8 +13,14 @@ export function TopoEdgeView(props: EdgeProps<Data>) {
   const [path] = getBezierPath({ sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition });
   const e = data?.edge;
   const color = e ? RELATION_COLOR[e.relation] : "#5ce1ff";
-  const opacity = data?.dim ? 0.08 : data?.highlight ? 0.95 : 0.35;
-  const width = data?.highlight ? 2.2 : 1.2;
+  // Statement edges are the spine of the dependency graph — keep them
+  // readable. Proof and illustration links are supporting context, so they
+  // fade into the background unless they're part of the selected path.
+  const baseOpacity =
+    e?.relation === "statement" ? 0.4 : e?.relation === "proof" ? 0.18 : 0.14;
+  const baseWidth = e?.relation === "statement" ? 1.1 : 0.85;
+  const opacity = data?.dim ? 0.05 : data?.highlight ? 0.95 : baseOpacity;
+  const width = data?.highlight ? 2.6 : baseWidth;
   const dash = e?.relation === "proof" ? "5 4" : e?.relation === "illustration" ? "1 4" : undefined;
 
   return (
