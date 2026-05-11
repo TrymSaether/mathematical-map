@@ -71,7 +71,7 @@ export const useStore = create<State>((set) => ({
   relations: new Set(ALL_RELATIONS),
   toggleRelation: (r) => set((s) => ({ relations: toggle(s.relations, r) })),
 
-  selectedId: null,
+  selectedId: "T12",
   select: (id) => set({ selectedId: id }),
 
   highlight: "immediate",

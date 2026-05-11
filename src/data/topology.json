@@ -4,18 +4,19 @@
       "id": "thm-1-1-brouwer-fixed-point-theorem",
       "kind": "theorem",
       "number": "1.1",
-      "title": "Brouwer fixed point theorem",
+      "title": "Brouwer Fixed Point Theorem",
       "chapter": "1",
       "section": "1",
       "sectionTitle": "Introduction",
       "topicCluster": "Overture",
       "originalText": "Let 𝑓 ∶ 𝐷𝑛 → 𝐷𝑛 be a continuous map from the (unit) disk in ℝ𝑛 to itself. Then 𝑓 has a fixed point, i.e., there is some point 𝑥 ∈ 𝐷𝑛 such that 𝑓 (𝑥) = 𝑥.\n\nFor 𝑛 = 1 this is a well-known result from calculus: The graph of any continuous map 𝑓 ∶ [0, 1] → [0, 1] must cross the diagonal 𝑦 = 𝑥 for some 𝑥∗ ∈ [0, 1]. Hence, 𝑓 (𝑥∗ ) = 𝑥∗ . See Figure 1.4. The second theorem is the fundamental theorem of algebra.",
-      "formalStatement": "",
-      "explanation": "",
+      "formalStatement": "Let $f : D^n \\to D^n$ be a continuous map from the unit disk in $\\mathbb{R}^n$ to itself. Then there exists $x \\in D^n$ such that $f(x)=x$.",
+      "explanation": "The theorem asserts that every continuous self-map of the closed unit disk has a fixed point. In the introduction it is used as a motivating example: in dimension one, the graph of a continuous map $[0,1]\\to[0,1]$ must cross the diagonal.",
       "statementDependencies": [],
       "proofDependencies": [],
       "tags": [
         "continuity",
+        "fixed-points",
         "maps"
       ]
     },
@@ -23,17 +24,20 @@
       "id": "thm-1-2-the-fundamental-theorem-of-algebra",
       "kind": "theorem",
       "number": "1.2",
-      "title": "The fundamental theorem of algebra",
+      "title": "Fundamental Theorem of Algebra",
       "chapter": "1",
       "section": "1",
       "sectionTitle": "Introduction",
       "topicCluster": "Overture",
       "originalText": "A polynomial equation\n\n𝑧𝑛 + 𝑎𝑛−1 𝑧𝑛−1 + ⋯ + 𝑎1 𝑧 + 𝑎0 = 0\n\nof degree 𝑛 > 0 with complex coefficients has at least one complex root.\n\nChapter 1. Introduction 7\n\n𝑦 (1, 1) ∙\n\n𝑦=𝑥 𝑦 = 𝑓 (𝑥) 𝑥\n\n𝑥∗ 𝑥\n\nFigure 1.4: The graph of any continuous map from [0, 1] to [0, 1] must cross the diagonal.\n\nTo prove it we will use the fact that the fundamental group of the circle is isomorphic to the group of integers. The fundamental theorem of algebra may be proved in many different ways, including using only algebraic techniques and analysis. However, the proof we will provide (based on [4, §56]) is a fairly simple corollary of the computation of the fundamental group of the circle.\n\n2. Continuous maps\n\n2.1 Metric spaces From calculus we know what to mean by a continuous map from ℝ𝑛 to ℝ𝑚 : a map 𝑓 ∶ ℝ𝑛 → ℝ𝑚 is continuous at 𝑝 ∈ ℝ𝑛 if for all 𝜖 > 0 there exists a 𝛿 > 0 such that if ‖𝑝 − 𝑞‖ℝ𝑛 < 𝛿, then ‖𝑓 (𝑝) − 𝑓 (𝑞)‖ℝ𝑚 < 𝜖. Here ‖ ⋅ ‖ℝ𝑛 denotes the Euclidean norm in ℝ𝑛 . Similarly, ‖ ⋅ ‖ℝ𝑚 denotes the Euclidean norm in ℝ𝑚 . Topological spaces provide the most general setting for which the concept of continuity makes sense. Before we get to the concept of a topological space, let us consider metric spaces. Metric spaces allow us to speak of distance between elements. Using the notion of distance between elements we can make sense of continuity of maps between metric spaces.",
-      "formalStatement": "",
-      "explanation": "",
+      "formalStatement": "Every nonconstant polynomial with complex coefficients has at least one complex root. Equivalently, every polynomial equation $z^n+a_{n-1}z^{n-1}+\\cdots+a_1z+a_0=0$ with $n>0$ has a solution in $\\mathbb{C}$.",
+      "explanation": "This introductory theorem is presented as a later application of topology: the text notes that it will be proved using the computation of the fundamental group of the circle.",
       "statementDependencies": [],
       "proofDependencies": [],
-      "tags": []
+      "tags": [
+        "fundamental-group",
+        "maps"
+      ]
     },
     {
       "id": "def-2-1-metric-spaces",
@@ -45,12 +49,11 @@
       "sectionTitle": "Continuous maps",
       "topicCluster": "Metric Foundations",
       "originalText": "A metric space (𝑋, 𝑑) is a non-empty set 𝑋 together with a map 𝑑 ∶ 𝑋 × 𝑋 → ℝ called a metric such that the following properties hold:\n\nM1 𝑑(𝑥, 𝑦) ⩾ 0 for all 𝑥, 𝑦 ∈ 𝑋, and 𝑑(𝑥, 𝑦) = 0 if and only if 𝑥 = 𝑦;\n\nM2 𝑑(𝑥, 𝑦) = 𝑑(𝑦, 𝑥) for all 𝑥, 𝑦 ∈ 𝑋;\n\nM3 𝑑(𝑥, 𝑧) ⩽ 𝑑(𝑥, 𝑦) + 𝑑(𝑦, 𝑧) for all 𝑥, 𝑦, 𝑧 ∈ 𝑋.\n\nThe first condition says that the distance between two elements is always positive, and equal to zero if and only if the two elements are the same. The second condition says that distance is symmetric. The third condition says that the triangle inequality holds. The metric 𝑑 is sometimes also referred to as a distance function.\n\n2.2 (ℝ𝑛 seen as a metric space) Let 𝑋 = ℝ and 𝑑 be the map defined by 𝑑(𝑥, 𝑦) = Example √ |𝑥 − 𝑦|(= (𝑥 − 𝑦)2 ). The first two requirements for 𝑑 are clearly satisfied, and the third follows from the usual triangle inequality for real numbers,\n\n𝑑(𝑥, 𝑧) = |𝑥 − 𝑧| = |(𝑥 − 𝑦) + (𝑦 − 𝑧)| ⩽ |𝑥 − 𝑦| + |𝑦 − 𝑧| = 𝑑(𝑥, 𝑦) + 𝑑(𝑦, 𝑧).\n\nFor 𝑋 = ℝ𝑛 with 𝑛 > 0 an integer, √ let 𝑑(𝑥, 𝑦) = ‖𝑥 − 𝑦‖ where ‖ ⋅ ‖ is the Euclidean norm, e.g., for 𝑛 = 2, 𝑑(𝑥, 𝑦) = ‖𝑥 − 𝑦‖ = (𝑥1 − 𝑦1 )2 + (𝑥2 − 𝑦2 )2 . Again, the first two requirements for 𝑑 are clearly satisfied. The third requirement follows from the triangle inequality for vectors in ℝ𝑛 .\n\nWe may equip ℝ𝑛 with other metrics than the one described in Example 2.2. For instance, for 𝑋 = ℝ2 , let 𝑑(𝑥, 𝑦) = |𝑥1 − 𝑦1 | + |𝑥2 − 𝑦2 |.\n\nThis is known as the taxi cab metric.\n\nChapter 2. Continuous maps 9\n\nWe say that two metrics 𝑑1 and 𝑑2 on the same set 𝑋 are equivalent if there are constants 𝐿 and 𝑀 such that 𝑑1 (𝑥, 𝑦) ⩽ 𝐿𝑑2 (𝑥, 𝑦) and 𝑑2 (𝑥, 𝑦) ⩽ 𝑀𝑑1 (𝑥, 𝑦)\n\nfor all 𝑥, 𝑦 ∈ 𝑋.",
-      "formalStatement": "",
-      "explanation": "",
+      "formalStatement": "A metric space is a pair $(X,d)$ where $X$ is a nonempty set and $d:X\\times X\\to\\mathbb{R}$ satisfies, for all $x,y,z\\in X$: $d(x,y)\\geq 0$ with equality if and only if $x=y$; $d(x,y)=d(y,x)$; and $d(x,z)\\leq d(x,y)+d(y,z)$.",
+      "explanation": "A metric space is a set equipped with a distance function. The three axioms give positivity, symmetry, and the triangle inequality, making metric spaces the starting point for continuity and open-set definitions.",
       "statementDependencies": [],
       "proofDependencies": [],
       "tags": [
-        "maps",
         "metric",
         "sets"
       ]
@@ -65,12 +68,13 @@
       "sectionTitle": "Continuous maps",
       "topicCluster": "Metric Foundations",
       "originalText": "For any set 𝑋, let 𝑑 ∶ 𝑋 × 𝑋 → ℝ be the map given by { 1 𝑥 ≠ 𝑦, 𝑑(𝑥, 𝑦) = 0 𝑥 = 𝑦. We call 𝑑 the discrete metric on 𝑋.",
-      "formalStatement": "",
-      "explanation": "",
-      "statementDependencies": [],
+      "formalStatement": "For any set $X$, define $d:X\\times X\\to\\mathbb{R}$ by $d(x,y)=0$ if $x=y$ and $d(x,y)=1$ if $x\\neq y$. This is the discrete metric on $X$.",
+      "explanation": "The discrete metric gives every distinct pair of points distance one. It is the simplest example of a metric space and later makes open balls especially easy to compute.",
+      "statementDependencies": [
+        "def-2-1-metric-spaces"
+      ],
       "proofDependencies": [],
       "tags": [
-        "maps",
         "metric",
         "sets"
       ]
@@ -79,41 +83,44 @@
       "id": "ex-2-4-c-a-b",
       "kind": "example",
       "number": "2.4",
-      "title": "𝐶[𝑎, 𝑏]",
+      "title": "C[a,b] with the Sup Metric",
       "chapter": "2",
       "section": "2",
       "sectionTitle": "Continuous maps",
       "topicCluster": "Metric Foundations",
       "originalText": "Let 𝑋 = 𝐶[𝑎, 𝑏], i.e., the set of continuous maps from the interval 𝐼 = [𝑎, 𝑏] ⊆ ℝ to ℝ, and let 𝑑(𝑥, 𝑦) = max |𝑥(𝑖) − 𝑦(𝑖)|. 𝑖∈𝐼",
-      "formalStatement": "",
-      "explanation": "",
-      "statementDependencies": [],
+      "formalStatement": "Let $X=C[a,b]$ be the set of continuous maps from $[a,b]\\subseteq\\mathbb{R}$ to $\\mathbb{R}$. The function $d(x,y)=\\max_{i\\in[a,b]} |x(i)-y(i)|$ defines a metric on $X$.",
+      "explanation": "This example puts a metric on a function space using maximum pointwise distance. It shows that metric spaces need not consist of points in Euclidean space.",
+      "statementDependencies": [
+        "def-2-1-metric-spaces"
+      ],
       "proofDependencies": [],
       "tags": [
         "continuity",
         "maps",
-        "sets"
+        "metric"
       ]
     },
     {
       "id": "ex-2-5-if-d-is-a-metric-on-a-set-x-and-a-x-is-any-subset-of-x-then-",
       "kind": "example",
       "number": "2.5",
-      "title": "Example 2.5",
+      "title": "Restricted Metric on a Subset",
       "chapter": "2",
       "section": "2",
       "sectionTitle": "Continuous maps",
       "topicCluster": "Metric Foundations",
       "originalText": "If 𝑑 is a metric on a set 𝑋, and 𝐴 ⊆ 𝑋 is any subset of 𝑋, then 𝑑 is also a metric on 𝐴.\n\n2.2 Continuous maps between metric spaces The definition of continuity of maps between metric spaces is completely analogous to the situation that we have from calculus.",
-      "formalStatement": "",
-      "explanation": "",
-      "statementDependencies": [],
+      "formalStatement": "If $d$ is a metric on a set $X$ and $A\\subseteq X$, then the restriction of $d$ to $A\\times A$ is a metric on $A$.",
+      "explanation": "A metric can be restricted to any subset of its space. This is the metric-space precursor to later subspace constructions.",
+      "statementDependencies": [
+        "def-2-1-metric-spaces"
+      ],
       "proofDependencies": [],
       "tags": [
-        "continuity",
-        "maps",
         "metric",
-        "sets"
+        "sets",
+        "subspace"
       ]
     },
     {
@@ -126,16 +133,16 @@
       "sectionTitle": "Continuous maps",
       "topicCluster": "Metric Foundations",
       "originalText": "Let (𝑋, 𝑑𝑋 ) and (𝑌 , 𝑑𝑌 ) be two metric spaces. A map 𝑓 ∶ 𝑋 → 𝑌 is continuous at 𝑝 ∈ 𝑋 if for all 𝜖 > 0 there is a 𝛿 > 0 such that if 𝑑𝑋 (𝑝, 𝑞) < 𝛿 then 𝑑𝑌 (𝑓 (𝑝), 𝑓 (𝑞)) < 𝜖. If 𝑓 is continuous at every 𝑝 ∈ 𝑋, we say that 𝑓 is continuous.\n\nTo get us to the setting of topological spaces we will need the concept of open and closed sets.",
-      "formalStatement": "",
-      "explanation": "",
-      "statementDependencies": [],
+      "formalStatement": "Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces. A map $f:X\\to Y$ is continuous at $p\\in X$ if for every $\\epsilon>0$ there exists $\\delta>0$ such that $d_X(p,q)<\\delta$ implies $d_Y(f(p),f(q))<\\epsilon$. The map $f$ is continuous if it is continuous at every point of $X$.",
+      "explanation": "Continuity between metric spaces is the epsilon-delta condition expressed using the two metrics. This definition is the metric version that will later be reformulated using open sets.",
+      "statementDependencies": [
+        "def-2-1-metric-spaces"
+      ],
       "proofDependencies": [],
       "tags": [
         "continuity",
         "maps",
-        "metric",
-        "sets",
-        "topology"
+        "metric"
       ]
     },
     {
@@ -148,17 +155,16 @@
       "sectionTitle": "Continuous maps",
       "topicCluster": "Metric Foundations",
       "originalText": "Let (𝑋, 𝑑) be a metric space, and let 𝑎 ∈ 𝑋 and 𝑟 > 0 be real number. The open ball centered at 𝑎 with radius 𝑟 is the subset\n\n𝖡(𝑎; 𝑟) = {𝑥 ∈ 𝑋 ∣ 𝑑(𝑥, 𝑎) < 𝑟}\n\nof 𝑋. The closed ball centered at 𝑎 with radius 𝑟 is the subset\n\n𝖡(𝑎; 𝑟) = {𝑥 ∈ 𝑋 ∣ 𝑑(𝑥, 𝑎) ⩽ 𝑟}\n\nof 𝑋.\n\nIn Euclidean space with the usual metric (induced from Euclidean norm), a ball (as defined above) is precisely what we think of as a ball in everyday language. Open balls are sometimes referred to as simply balls, and closed balls are sometimes referred to as discs, e.g. Theorem 1.1.\n\n10 2.2. Continuous maps between metric spaces",
-      "formalStatement": "",
-      "explanation": "",
+      "formalStatement": "Let $(X,d)$ be a metric space, let $a\\in X$, and let $r>0$. The open ball centered at $a$ with radius $r$ is $B(a;r)=\\{x\\in X\\mid d(x,a)<r\\}$, and the closed ball centered at $a$ with radius $r$ is $\\overline{B}(a;r)=\\{x\\in X\\mid d(x,a)\\leq r\\}$.",
+      "explanation": "Open and closed balls are the basic local neighborhoods determined by a metric. They are used to define open sets and to express continuity at a point.",
       "statementDependencies": [
-        "thm-1-1-brouwer-fixed-point-theorem"
+        "def-2-1-metric-spaces"
       ],
       "proofDependencies": [],
       "tags": [
         "closed-sets",
         "metric",
-        "open-sets",
-        "sets"
+        "open-sets"
       ]
     },
     {
@@ -171,9 +177,10 @@
       "sectionTitle": "Continuous maps",
       "topicCluster": "Metric Foundations",
       "originalText": "Let (𝑋, 𝑑) be the metric space defined in Example 2.3. Then 𝖡(𝑥; 𝑟1 ) = {𝑥} and 𝖡(𝑥; 𝑟2 ) = 𝑋 for all 0 < 𝑟1 ⩽ 1 and all 𝑟2 > 1.",
-      "formalStatement": "",
-      "explanation": "",
+      "formalStatement": "In a discrete metric space $(X,d)$, $B(x;r)=\\{x\\}$ for $0<r\\leq 1$, while $B(x;r)=X$ for $r>1$.",
+      "explanation": "This example computes metric balls in the discrete metric. It shows how the radius controls whether an open ball isolates one point or contains the whole space.",
       "statementDependencies": [
+        "def-2-7-open-and-closed-balls",
         "ex-2-3-discrete-metric-spaces"
       ],
       "proofDependencies": [],
@@ -192,31 +199,38 @@
       "sectionTitle": "Continuous maps",
       "topicCluster": "Metric Foundations",
       "originalText": "Let (𝑋, 𝑑) be a metric space. A subset 𝐴 ⊆ 𝑋 is open in 𝑋 if for every point 𝑎 ∈ 𝐴, there is an open ball 𝖡(𝑎; 𝑟) about 𝑎 contained in 𝐴. We say that 𝐴 is closed in 𝑋 if the complement 𝐴𝑐 = 𝑋 ⧵ 𝐴 = {𝑥 ∈ 𝑋 ∣ 𝑥 ∉ 𝐴} is open.\n\nMost subsets are neither open nor closed. Subsets that are both open and closed are sometimes referred to as clopen. In particular, both ∅ and 𝑋 are clopen in 𝑋.",
-      "formalStatement": "",
-      "explanation": "",
-      "statementDependencies": [],
+      "formalStatement": "Let $(X,d)$ be a metric space. A subset $A\\subseteq X$ is open in $X$ if for every $a\\in A$ there exists an open ball $B(a;r)$ with $B(a;r)\\subseteq A$. The subset $A$ is closed in $X$ if its complement $A^c=X\\setminus A$ is open.",
+      "explanation": "Open sets are subsets containing a metric ball around each of their points. Closed sets are defined by open complements, and this language prepares the transition from metric spaces to topological spaces.",
+      "statementDependencies": [
+        "def-2-1-metric-spaces",
+        "def-2-7-open-and-closed-balls"
+      ],
       "proofDependencies": [],
       "tags": [
         "closed-sets",
         "metric",
-        "open-sets",
-        "sets"
+        "open-sets"
       ]
     },
     {
       "id": "lem-2-10-let-x-d-be-a-metric-space-x-x-and-r-0-a-real-number-then-the",
       "kind": "lemma",
       "number": "2.10",
-      "title": "Lemma 2.10",
+      "title": "Metric Balls Are Open or Closed",
       "chapter": "2",
       "section": "2",
       "sectionTitle": "Continuous maps",
       "topicCluster": "Metric Foundations",
       "originalText": "Let (𝑋, 𝑑) be a metric space, 𝑥 ∈ 𝑋 and 𝑟 > 0 a real number. Then the open ball 𝖡(𝑥; 𝑟) ⊆ 𝑋 is open in 𝑋, and the closed ball 𝖡(𝑥; 𝑟) ⊆ 𝑋 is closed in 𝑋.\n\nProof. We prove the statement about open balls. The statement about closed balls follows from a similar argument. Assume that 𝑦 ∈ 𝖡(𝑥; 𝑟). We need to prove that there is an open ball 𝖡(𝑦; 𝜖) about 𝑦 that is contained in 𝖡(𝑥; 𝑟). Let 𝜖 = 𝑟 − 𝑑(𝑥, 𝑦). By the triangle inequality of the metric 𝑑, M3, we have that for 𝑧 ∈ 𝖡(𝑦; 𝜖),\n\n𝑑(𝑥, 𝑧) ⩽ 𝑑(𝑥, 𝑦) + 𝑑(𝑦, 𝑧) < 𝑑(𝑥, 𝑦) + 𝜖 = 𝑑(𝑥, 𝑦) + 𝑟 − 𝑑(𝑥, 𝑦) = 𝑟.\n\nHence, 𝖡(𝑦; 𝜖) ⊆ 𝖡(𝑥; 𝑟).\n\nFor a metric space (𝑋, 𝑑), a subset 𝐴 ⊆ 𝑋 and 𝑥 ∈ 𝑋, we say that: (i) 𝑥 is an interior point of 𝐴 if there is an open ball 𝖡(𝑥; 𝑟) about 𝑥 which is contained in 𝐴, (ii) 𝑥 is an exterior point of 𝐴 if there is an open ball 𝖡(𝑥; 𝑟) which is contained in 𝐴𝑐 and (iii) 𝑥 is a boundary point if all open balls about 𝑥 contains points in 𝐴 and in 𝐴𝑐 . Hence, 𝐴 is open in 𝑋 if and only if 𝐴 only consists of its interior points. An interior point will always belong to 𝐴. An exterior point will never belong to 𝐴. A boundary point will some times belong to 𝐴, and some times to 𝐴𝑐 .",
-      "formalStatement": "",
-      "explanation": "",
-      "statementDependencies": [],
-      "proofDependencies": [],
+      "formalStatement": "Let $(X,d)$ be a metric space, let $x\\in X$, and let $r>0$. Then the open ball $B(x;r)$ is open in $X$, and the closed ball $\\overline{B}(x;r)$ is closed in $X$.",
+      "explanation": "This lemma verifies that the basic metric balls behave as their names suggest. The proof for open balls uses the triangle inequality to fit a smaller ball around any chosen point.",
+      "statementDependencies": [
+        "def-2-7-open-and-closed-balls",
+        "def-2-9-open-and-closed-sets"
+      ],
+      "proofDependencies": [
+        "def-2-1-metric-spaces"
+      ],
       "tags": [
         "closed-sets",
         "metric",
@@ -233,14 +247,15 @@
       "sectionTitle": "Continuous maps",
       "topicCluster": "Metric Foundations",
       "originalText": "Let (𝑋, 𝑑) be a metric space, 𝐴 a subset of 𝑋 and 𝑥 ∈ 𝑋. We say that 𝐴 is a neighborhood of 𝑥 if there is an open ball about 𝑥 that is contained in 𝐴. We say that 𝐴 is an open neighborhood (of 𝑥) if 𝐴 itself is open.",
-      "formalStatement": "",
-      "explanation": "",
-      "statementDependencies": [],
+      "formalStatement": "Let $(X,d)$ be a metric space, let $A\\subseteq X$, and let $x\\in X$. The set $A$ is a neighborhood of $x$ if there is an open ball about $x$ contained in $A$. It is an open neighborhood of $x$ if $A$ itself is open.",
+      "explanation": "A neighborhood records the idea that a set contains some open ball around a point. This gives a pointwise way to discuss local behavior in metric spaces.",
+      "statementDependencies": [
+        "def-2-9-open-and-closed-sets"
+      ],
       "proofDependencies": [],
       "tags": [
         "metric",
-        "open-sets",
-        "sets"
+        "open-sets"
       ]
     },
     {
@@ -253,38 +268,47 @@
       "sectionTitle": "Continuous maps",
       "topicCluster": "Metric Foundations",
       "originalText": "Let (𝑋, 𝑑𝑋 ) and (𝑌 , 𝑑𝑌 ) be two metric spaces, and let 𝑝 ∈ 𝑋. A map 𝑓 ∶ 𝑋 → 𝑌 is continuous at 𝑝 if and only if for all neighborhoods 𝐵 of 𝑓 (𝑝), there is a neighborhood 𝐴 of 𝑝 such that 𝑓 (𝐴) ⊆ 𝐵.\n\nChapter 2. Continuous maps 11\n\nProof. Assume that 𝑓 is continuous at 𝑝. If 𝐵 is a neighborhood of 𝑓 (𝑝), then, by definition, there is an open ball 𝖡𝑌 (𝑓 (𝑝); 𝜖) about 𝑓 (𝑝) that is contained in 𝐵. Since 𝑓 is continuous at 𝑝, there is a 𝛿 > 0 such that if 𝑑𝑋 (𝑝, 𝑞) < 𝛿, then 𝑑𝑌 (𝑓 (𝑝), 𝑓 (𝑞)) < 𝜖. Hence, 𝑓 (𝖡𝑋 (𝑝; 𝛿)) ⊆ 𝖡𝑌 (𝑓 (𝑝); 𝜖) ⊆ 𝐵. That is, if we let 𝐴 = 𝖡𝑋 (𝑝, 𝛿), then for all neighborhoods 𝐵 of 𝑓 (𝑝), we have that 𝑓 (𝐴) ⊆ 𝐵 where 𝐴 is a neighborhood of 𝑝. Assume that for all neighborhoods 𝐵 of 𝑓 (𝑝), there is a neighborhood 𝐴 of 𝑝 such that 𝑓 (𝐴) ⊆ 𝐵. We need to prove that for all 𝜖 > 0, there is a 𝛿 > 0 such that if 𝑑𝑋 (𝑝, 𝑞) < 𝛿, then 𝑑𝑌 (𝑓 (𝑝), 𝑓 (𝑞)) < 𝜖. By utilizing the fact that 𝐵 = 𝖡𝑌 (𝑓 (𝑝); 𝜖) is a neighborhood of 𝑓 (𝑝), then, by assumption, there must be a neighborhood 𝐴 of 𝑝 such that 𝑓 (𝐴) ⊆ 𝐵. Since 𝐴 is a neighborhood of 𝑝, there is an open ball 𝖡𝑋 (𝑝; 𝛿) about 𝑝 that is contained in 𝐴. Now assume that 𝑑𝑋 (𝑝, 𝑝′ ) < 𝛿. Then 𝑝′ ∈ 𝖡𝑋 (𝑝; 𝛿) ⊆ 𝐴. Thus 𝑓 (𝑝′ ) ∈ 𝐵 = 𝖡𝑌 (𝑓 (𝑝); 𝜖), and hence, 𝑑𝑌 (𝑓 (𝑝), 𝑓 (𝑝′ )) < 𝜖. Thus 𝑓 is continuous at 𝑝.\n\nThe following theorem gives an alternative description of continuous maps between metric spaces.",
-      "formalStatement": "",
-      "explanation": "",
-      "statementDependencies": [],
-      "proofDependencies": [],
+      "formalStatement": "Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, let $p\\in X$, and let $f:X\\to Y$. Then $f$ is continuous at $p$ if and only if for every neighborhood $B$ of $f(p)$ there exists a neighborhood $A$ of $p$ such that $f(A)\\subseteq B$.",
+      "explanation": "This theorem recasts epsilon-delta continuity using neighborhoods. The proof translates neighborhoods into open balls and then applies the metric definition of continuity.",
+      "statementDependencies": [
+        "def-2-6-continuous-maps-between-metric-spaces",
+        "def-2-11-neighborhoods"
+      ],
+      "proofDependencies": [
+        "def-2-7-open-and-closed-balls"
+      ],
       "tags": [
         "continuity",
         "maps",
-        "metric"
+        "metric",
+        "open-sets"
       ]
     },
     {
       "id": "thm-2-13-continuous-maps-between-metric-spaces",
       "kind": "theorem",
       "number": "2.13",
-      "title": "Continuous maps between metric spaces",
+      "title": "Preimage Criterion for Metric Continuity",
       "chapter": "2",
       "section": "2",
       "sectionTitle": "Continuous maps",
       "topicCluster": "Metric Foundations",
       "originalText": "Let (𝑋, 𝑑𝑋 ) and (𝑌 , 𝑑𝑌 ) be two metric spaces. A map 𝑓 ∶ 𝑋 → 𝑌 is continuous if and only if for every subset 𝐵 ⊆ 𝑌 open in 𝑌 , the preimage of 𝐵 under 𝑓 ,\n\n𝑓 −1 (𝐵) = {𝑥 ∈ 𝑋 ∣ 𝑓 (𝑥) ∈ 𝐵} ⊆ 𝑋,\n\nis open in 𝑋.\n\nProof. Assume that 𝑓 is continuous. For 𝐵 ⊆ 𝑌 open in 𝑌 , we have to prove that 𝑓 −1 (𝐵) ⊆ 𝑋 is open in 𝑋. Let 𝑎 ∈ 𝑓 −1 (𝐵). We want to prove that there is an open ball about 𝑎 in 𝑋 that is contained in 𝑓 −1 (𝐵). By assumption, 𝐵 ⊆ 𝑌 is open in 𝑌 . Hence, there is an 𝜖 > 0 such that 𝖡𝑌 (𝑓 (𝑎); 𝜖) ⊆ 𝐵. From the assumption that 𝑓 is continuous there is a 𝛿 > 0 such that 𝖡𝑋 (𝑎; 𝛿) ⊆ 𝑓 −1 (𝖡𝑌 (𝑓 (𝑎); 𝜖)) ⊆ 𝑓 −1 (𝐵). We now prove the opposite implication. Assume that for every subset 𝐵 ⊆ 𝑌 open in 𝑌 , the preimage 𝑓 −1 (𝐵) of 𝐵 under 𝑓 is open in 𝑋. Let 𝑎 ∈ 𝑋 and 𝜖 > 0 be a real number. From the first assumption it follows that 𝑓 −1 (𝖡𝑌 (𝑓 (𝑎); 𝜖)) ⊆ 𝑋 is open in 𝑋. As 𝑓 −1 (𝖡𝑌 (𝑓 (𝑎); 𝜖)) is open and contains 𝑎, there is a 𝛿 > 0 such that 𝖡𝑋 (𝑎; 𝛿) ⊆ 𝑓 −1 (𝖡𝑌 (𝑓 (𝑎); 𝜖)). Thus 𝑥 ∈ 𝖡𝑋 (𝑎; 𝛿) implies that 𝑓 (𝑥) ∈ 𝖡𝑌 (𝑓 (𝑎); 𝜖). Hence, 𝑓 ∶ 𝑋 → 𝑌 is continuous.\n\nLet 𝐴 and 𝐵 be sets, and let 𝑓 ∶ 𝐴 → 𝐵. Then 𝑓 −1 (𝐵) will always exist even if there is no inverse map. In the cases where 𝑓 has an inverse there is no ambiguity. If 𝑈 and 𝑉 are both subsets of 𝐵 then\n\n𝑓 −1 (𝑈 ∪ 𝑉 ) = 𝑓 −1 (𝑈 ) ∪ 𝑓 −1 (𝑉 ) and 𝑓 −1 (𝑈 ∩ 𝑉 ) = 𝑓 −1 (𝑈 ) ∩ 𝑓 −1 (𝑉 ),\n\nand furthermore, if 𝑈 ⊆ 𝑉 then 𝑓 −1 (𝑈 ) ⊆ 𝑓 −1 (𝑉 ). Let 𝑈 ⊆ 𝐴 and 𝑉 ⊆ 𝐵, then ( ) 𝑈 ⊆ 𝑓 −1 (𝑓 (𝑈 )) and 𝑓 𝑓 −1 (𝑉 ) ⊆ 𝑉 .\n\nWe also note that if 𝑈 is a subset of 𝐵 then\n\n𝑓 −1 (𝐵 ⧵ 𝑈 ) = 𝑓 −1 (𝑈 𝑐 ) = (𝑓 −1 (𝑈 ))𝑐 = 𝐴 ⧵ 𝑓 −1 (𝑈 ).\n\n12 2.3. Exercises\n\n2.3 Exercises\n\nExercise 2.1 Does 𝑑(𝑥, 𝑦) = (𝑥 − 𝑦)2 define a metric on 𝑋 = ℝ?\n\nExercise 2.2 Show that ℝ2 equipped with the taxi cab metric is a metric space.\n\nExercise 2.3 Let (𝑋, 𝑑) be a metric space. Show that the map 𝑑 ′ ∶ 𝑋 × 𝑋 → ℝ given by\n\n𝑑(𝑥, 𝑦) 𝑑 ′ (𝑥, 𝑦) = 1 + 𝑑(𝑥, 𝑦) is also a metric on 𝑋.\n\nExercise 2.4 Draw a picture of the open ball 𝖡((0, 0); 1) in the metric space (ℝ2 , 𝑑) with\n\n(a) 𝑑(𝑥, 𝑦) = 𝑑1 (𝑥, 𝑦) = |𝑥1 − 𝑦1 | + |𝑥2 − 𝑦2 |; √ (b) 𝑑(𝑥, 𝑦) = 𝑑2 (𝑥, 𝑦) = (𝑥1 − 𝑦1 )2 + (𝑥2 − 𝑦2 )2 ;\n\n(c) 𝑑(𝑥, 𝑦) = 𝑑∞ (𝑥, 𝑦) = max{|𝑥1 − 𝑦1 |, |𝑥2 − 𝑦2 |}.\n\nExercise 2.5 Show that 𝑑1 , 𝑑2 and 𝑑∞ (as defined in Exercise 2.4) are equivalent on 𝑋 = ℝ2 .\n\nExercise 2.6 Show that in a discrete metric space (𝑋, 𝑑), cf. Example 2.3, every subset is both open and closed in 𝑋.\n\nExercise 2.7 Show that for equivalent metrics 𝑑 and 𝑑 ′ on the set 𝑋, the open sets are the same.\n\nExercise 2.8 Let (𝑋, 𝑑𝑋 ) and (𝑌 , 𝑑𝑌 ) be metric spaces, and let 𝑓 ∶ 𝑋 → 𝑌 be a map. Show that 𝑓 is continuous if and only if for every subset 𝐵 ⊆ 𝑌 closed in 𝑌 , the preimage 𝑓 −1 (𝐵) is closed in 𝑋.\n\n3. Topological spaces\n\n3.1 Definition and examples Topological spaces are spaces constructed to support continuous maps. The definition is as follows.",
-      "formalStatement": "",
-      "explanation": "",
-      "statementDependencies": [],
+      "formalStatement": "Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces. A map $f:X\\to Y$ is continuous if and only if for every subset $B\\subseteq Y$ that is open in $Y$, the preimage $f^{-1}(B)=\\{x\\in X\\mid f(x)\\in B\\}$ is open in $X$.",
+      "explanation": "This theorem identifies continuity with preservation of open sets under preimage. It is the bridge from metric continuity to the topological definition of continuity.",
+      "statementDependencies": [
+        "def-2-6-continuous-maps-between-metric-spaces",
+        "def-2-9-open-and-closed-sets"
+      ],
       "proofDependencies": [
-        "ex-2-3-discrete-metric-spaces"
+        "lem-2-10-let-x-d-be-a-metric-space-x-x-and-r-0-a-real-number-then-the",
+        "thm-2-12-continuity-at-a-point"
       ],
       "tags": [
         "continuity",
         "maps",
         "metric",
-        "open-sets",
-        "sets"
+        "open-sets"
       ]
     },
     {
@@ -297,8 +321,8 @@
       "sectionTitle": "Topological spaces",
       "topicCluster": "Topological Spaces",
       "originalText": "A topological space is a set 𝑋 together with a collection  of subsets of 𝑋 that are called open in 𝑋, such that the following properties hold.\n\nT1 The subsets ∅ and 𝑋 are in  .\n\nT2 The union of the elements of any subcollection of  is in  .\n\nT3 The intersection of the elements of any finite subcollection of  is in  .\n\nA topological space is strictly speaking an ordered pair (𝑋,  ). We refer to  as the topology on 𝑋. We will often omit specific mention of  if no confusion will arise.\n\nThe following theorem states that every metric space (𝑋, 𝑑) is a topological space with the metric topology 𝑑 on 𝑋.",
-      "formalStatement": "",
-      "explanation": "",
+      "formalStatement": "A topological space is a pair $(X,\\mathcal{T})$ where $X$ is a set and $\\mathcal{T}$ is a collection of subsets of $X$ such that $\\emptyset,X\\in\\mathcal{T}$, arbitrary unions of elements of $\\mathcal{T}$ lie in $\\mathcal{T}$, and finite intersections of elements of $\\mathcal{T}$ lie in $\\mathcal{T}$. The elements of $\\mathcal{T}$ are called open sets.",
+      "explanation": "A topology abstracts the open-set behavior seen in metric spaces. The three axioms make open sets stable under the union and finite-intersection operations used throughout the subject.",
       "statementDependencies": [],
       "proofDependencies": [],
       "tags": [
@@ -317,13 +341,19 @@
       "sectionTitle": "Topological spaces",
       "topicCluster": "Topological Spaces",
       "originalText": "Let (𝑋, 𝑑) be a metric space. Let 𝑑 be the collection of subsets 𝑈 ⊆ 𝑋 with the property that 𝑈 ∈ 𝑑 if and only if for each 𝑥 ∈ 𝑈 there is an 𝑟 > 0 such that 𝖡(𝑥; 𝑟) ⊆ 𝑈 . Then 𝑑 defines a topology on 𝑋.\n\nProof. Clearly, ∅ ∈ 𝑑 . To show that 𝑋 ∈ 𝑑 , note that for any 𝑥 ∈ 𝑋, 𝖡(𝑥; 1) ⊆ 𝑋. Hence, 𝑋 ∈ 𝑑 . Thus T1 is satisfied. ⋃ Let {𝑈𝜆 }𝜆∈Λ be any subcollection of 𝑑 . We need to prove that 𝑉 = 𝜆∈Λ 𝑈𝜆 ∈ 𝑑 . Let 𝑥 ∈ 𝑉 . ⋃ From 𝑉 = 𝜆∈Λ 𝑈𝜆 there is 𝜆 ∈ Λ such that 𝑥 ∈ 𝑈𝜆 . By the property of 𝑈𝜆 satisfied by the 𝑈𝜆 in 𝑑 there is an 𝑟 > 0 such that 𝖡(𝑥; 𝑟) ⊆ 𝑈𝜆 . Hence, 𝖡(𝑥; 𝑟) ⊆ 𝑉 . Thus 𝑉 ∈ 𝑑 , and T2 is satisfied. We prove that the intersection of the elements of any finite subcollection of 𝑑 is also an element of 𝑑 . Let 𝑈1 , 𝑈2 , … , 𝑈𝑛 ∈ 𝑑 . We need to prove that 𝑈1 ∩ 𝑈2 ∩ ⋯ ∩ 𝑈𝑛 ∈ 𝑑 . Let 𝑥 ∈ 𝑈1 ∩ 𝑈2 ∩ ⋯ ∩ 𝑈𝑛 . Since 𝑈1 ∩ 𝑈2 ∩ ⋯ ∩ 𝑈𝑛 ⊆ 𝑈𝑖 , we have that 𝑥 ∈ 𝑈𝑖 for 𝑖 = 1, 2, … , 𝑛. By the defining property of 𝑑 there is an 𝑟𝑖 > 0 such that 𝖡(𝑥; 𝑟𝑖 ) ⊆ 𝑈𝑖 for 𝑖 = 1, 2, … , 𝑛. Let 𝑟 = min{𝑟1 , 𝑟2 , … , 𝑟𝑛 }. Then 𝖡(𝑥; 𝑟) ⊆ 𝖡(𝑥; 𝑟𝑖 ) ⊆ 𝑈𝑖 for 𝑖 = 1, 2, … , 𝑛. Thus 𝖡(𝑥; 𝑟) ⊆ 𝑈1 ∩𝑈2 ∩⋯∩𝑈𝑛 , and so 𝑈1 ∩𝑈2 ∩⋯∩𝑈𝑛 ∈ 𝑑 . Hence, T3 is satisfied.\n\nThe following theorem relates the metric topologies for two equivalent metrics.",
-      "formalStatement": "",
-      "explanation": "",
-      "statementDependencies": [],
-      "proofDependencies": [],
+      "formalStatement": "Let $(X,d)$ be a metric space. Let $\\mathcal{T}_d$ be the collection of subsets $U\\subseteq X$ such that for each $x\\in U$ there exists $r>0$ with $B(x;r)\\subseteq U$. Then $\\mathcal{T}_d$ is a topology on $X$.",
+      "explanation": "Every metric determines a topology by declaring the metric-open subsets to be open. The proof checks the topology axioms using open balls and the metric definition of open sets.",
+      "statementDependencies": [
+        "def-2-1-metric-spaces",
+        "def-3-1-topological-spaces"
+      ],
+      "proofDependencies": [
+        "def-2-9-open-and-closed-sets",
+        "lem-2-10-let-x-d-be-a-metric-space-x-x-and-r-0-a-real-number-then-the"
+      ],
       "tags": [
         "metric",
-        "sets",
+        "open-sets",
         "topology"
       ]
     },
@@ -356,9 +386,11 @@
       "sectionTitle": "Topological spaces",
       "topicCluster": "Topological Spaces",
       "originalText": "Let 𝑋 be any set. The collection  of all subsets of 𝑋, i.e. the power set (𝑋) of 𝑋, is a topology on 𝑋. We refer to this topology as the discrete topology. A set 𝑋 equipped with the discrete topology is referred to as a discrete topological space.\n\nThe discrete topology is the unique topology where the singletons are open. We can think of a discrete topological space as a space of separate, isolated points, with no close interaction between different points. For any set 𝑋, the discrete topology is the largest topology we may equip 𝑋 with. The smallest topology is called the indiscrete topology.",
-      "formalStatement": "",
-      "explanation": "",
-      "statementDependencies": [],
+      "formalStatement": "For any set $X$, the power set $\\mathcal{P}(X)$ is a topology on $X$. This topology is called the discrete topology.",
+      "explanation": "The discrete topology makes every subset open. It is the largest topology on a fixed set and models spaces whose points are completely separated.",
+      "statementDependencies": [
+        "def-3-1-topological-spaces"
+      ],
       "proofDependencies": [],
       "tags": [
         "sets",
@@ -375,9 +407,11 @@
       "sectionTitle": "Topological spaces",
       "topicCluster": "Topological Spaces",
       "originalText": "Let 𝑋 be any set. The collection  consisting of ∅ and 𝑋 is a topology on 𝑋, referred to as the indiscrete topology on 𝑋. A set 𝑋 equipped with the indiscrete topology is referred to as an indiscrete topological space.",
-      "formalStatement": "",
-      "explanation": "",
-      "statementDependencies": [],
+      "formalStatement": "For any set $X$, the collection $\\{\\emptyset,X\\}$ is a topology on $X$. This topology is called the indiscrete topology.",
+      "explanation": "The indiscrete topology has only the two open sets required by the topology axioms. It is the smallest topology on a fixed set.",
+      "statementDependencies": [
+        "def-3-1-topological-spaces"
+      ],
       "proofDependencies": [],
       "tags": [
         "sets",
@@ -450,16 +484,14 @@
       "sectionTitle": "Topological spaces",
       "topicCluster": "Topological Spaces",
       "originalText": "Let 𝑋 be a topological space, 𝑈 a subset of 𝑋 and 𝑥 ∈ 𝑋. We say that 𝑈 is a neighborhood of 𝑥 if 𝑥 ∈ 𝑈 and 𝑈 is open in 𝑋.\n\nA neighborhood in the sense of the previous definition is sometimes referred to as an open neigh- borhood, cf. Definition 2.11.",
-      "formalStatement": "",
-      "explanation": "",
+      "formalStatement": "Let $X$ be a topological space, let $U\\subseteq X$, and let $x\\in X$. The set $U$ is a neighborhood of $x$ if $x\\in U$ and $U$ is open in $X$.",
+      "explanation": "In a topological space, a neighborhood is simply an open set containing the point. This is the topological analogue of metric neighborhoods.",
       "statementDependencies": [
-        "def-2-11-neighborhoods",
-        "def-3-7-comparable-topologies"
+        "def-3-1-topological-spaces"
       ],
       "proofDependencies": [],
       "tags": [
         "open-sets",
-        "sets",
         "topology"
       ]
     },
@@ -467,21 +499,22 @@
       "id": "thm-3-10-let-x-be-a-topological-space-a-subset-u-of-x-is-open-in-x-if",
       "kind": "theorem",
       "number": "3.10",
-      "title": "Theorem 3.10",
+      "title": "Open Sets via Neighborhoods",
       "chapter": "3",
       "section": "3",
       "sectionTitle": "Topological spaces",
       "topicCluster": "Topological Spaces",
       "originalText": "Let 𝑋 be a topological space. A subset 𝑈 of 𝑋 is open in 𝑋 if and only if for every 𝑥 ∈ 𝑈 there is a neighborhood 𝑈𝑥 of 𝑥 such that 𝑈𝑥 ⊆ 𝑈 .\n\nProof. Assume that 𝑈 is open in 𝑋. Then for every 𝑥 ∈ 𝑈 , 𝑈 is a neighborhood of 𝑥 that is contained in 𝑈 . We prove the other implication. Assume that for every 𝑥 ∈ 𝑈 there is a 𝑈𝑥 ∈  such that 𝑥 ∈ 𝑈𝑥 ⊆ 𝑈 , i.e., that 𝑈𝑥 is a neighborhood of 𝑥 such that 𝑈𝑥 ⊆ 𝑈 . To prove that 𝑈 ∈  , we will ⋃ ⋃ prove that 𝑈 = 𝑥∈𝑈 𝑈𝑥 . Assume that 𝑥′ ∈ 𝑈𝑥′ . Then 𝑥′ ∈ 𝑈𝑥′ ⊆ 𝑥∈𝑈 𝑈𝑥 . Furthermore, any ⋃ point in 𝑥∈𝑈 𝑈𝑥 is in 𝑈𝑥 for some 𝑥 ∈ 𝑈 so by assumption, 𝑈𝑥 ⊆ 𝑈 and 𝑥 ∈ 𝑈𝑥 ⊆ 𝑈 . Hence, ⋃ 𝑈 = 𝑥∈𝑈 𝑈𝑥 . As 𝑈 is the union of open sets it must be an open set as well by T2.\n\n3.2 Continuous maps We know from Theorem 2.13 that a map between metric spaces is continuous if and only if the preimage of an open set is open. This motivates the following definition.",
-      "formalStatement": "",
-      "explanation": "",
-      "statementDependencies": [],
+      "formalStatement": "Let $X$ be a topological space. A subset $U\\subseteq X$ is open in $X$ if and only if for every $x\\in U$ there exists a neighborhood $U_x$ of $x$ such that $U_x\\subseteq U$.",
+      "explanation": "This theorem characterizes open sets pointwise by neighborhoods. The proof uses the fact that an arbitrary union of open neighborhoods is open.",
+      "statementDependencies": [
+        "def-3-9-neighborhoods"
+      ],
       "proofDependencies": [
-        "thm-2-13-continuous-maps-between-metric-spaces"
+        "def-3-1-topological-spaces"
       ],
       "tags": [
         "open-sets",
-        "sets",
         "topology"
       ]
     },
@@ -495,16 +528,17 @@
       "sectionTitle": "Topological spaces",
       "topicCluster": "Topological Spaces",
       "originalText": "Let 𝑋 and 𝑌 be topological spaces. A map 𝑓 ∶ 𝑋 → 𝑌 is said to be continuous if preimages of open sets are open, i.e., if 𝑉 is an open set in 𝑌 then the preimage 𝑓 −1 (𝑉 ) of 𝑉 under 𝑓 is open in 𝑋.\n\nHence, all continuous maps between metric spaces (𝑋, 𝑑𝑋 ) and (𝑌 , 𝑑𝑌 ) are also continuous maps between the corresponding topological spaces 𝑋 and 𝑌 with the metric topologies 𝑑𝑋 and 𝑑𝑌 , re- spectively.",
-      "formalStatement": "",
-      "explanation": "",
-      "statementDependencies": [],
+      "formalStatement": "Let $X$ and $Y$ be topological spaces. A map $f:X\\to Y$ is continuous if for every open set $V\\subseteq Y$, the preimage $f^{-1}(V)$ is open in $X$.",
+      "explanation": "Topological continuity is defined by the preimage of open sets. This definition is motivated by the metric preimage criterion and no longer requires distances.",
+      "statementDependencies": [
+        "def-3-1-topological-spaces",
+        "thm-2-13-continuous-maps-between-metric-spaces"
+      ],
       "proofDependencies": [],
       "tags": [
         "continuity",
         "maps",
-        "metric",
         "open-sets",
-        "sets",
         "topology"
       ]
     },
@@ -601,16 +635,17 @@
       "sectionTitle": "Topological spaces",
       "topicCluster": "Topological Spaces",
       "originalText": "Let 𝑋, 𝑌 and 𝑍 be topological spaces. If 𝑓 ∶ 𝑋 → 𝑌 and 𝑔 ∶ 𝑌 → 𝑍 are continuous maps, then the composite 𝑔◦𝑓 ∶ 𝑋 → 𝑍 is continuous.\n\nProof. Let 𝑊 ⊆ 𝑍 be open in 𝑍. We need to prove that (𝑔◦𝑓 )−1 (𝑊 ) is open in 𝑋. Since\n\n(𝑔◦𝑓 )−1 (𝑊 ) = {𝑥 ∈ 𝑋 ∣ 𝑔(𝑓 (𝑥)) ∈ 𝑊 } = {𝑥 ∈ 𝑋 ∣ 𝑓 (𝑥) ∈ 𝑔 −1 (𝑊 )} = {𝑥 ∈ 𝑋 ∣ 𝑥 ∈ 𝑓 −1 (𝑔 −1 (𝑊 ))} = 𝑓 −1 (𝑔 −1 (𝑊 ))\n\nand that 𝑔 −1 (𝑊 ) is open in 𝑌 and 𝑓 −1 (𝑔 −1 (𝑊 )) is open in 𝑋 (by continuity of 𝑔 and 𝑓 ), it follows that (𝑔◦𝑓 )−1 (𝑊 ) is open in 𝑋. Hence, 𝑔◦𝑓 is continuous.\n\nWe can express continuity at a point for maps between topological spaces using neighborhoods. (See Theorem 2.12 for the case of metric spaces.)",
-      "formalStatement": "",
-      "explanation": "",
-      "statementDependencies": [],
+      "formalStatement": "Let $X$, $Y$, and $Z$ be topological spaces. If $f:X\\to Y$ and $g:Y\\to Z$ are continuous maps, then the composite $g\\circ f:X\\to Z$ is continuous.",
+      "explanation": "Continuous maps are closed under composition. The proof uses the identity $(g\\circ f)^{-1}(W)=f^{-1}(g^{-1}(W))$ for an open set $W\\subseteq Z$.",
+      "statementDependencies": [
+        "def-3-11-continuous-maps-between-topological-spaces"
+      ],
       "proofDependencies": [
-        "thm-2-12-continuity-at-a-point"
+        "def-3-11-continuous-maps-between-topological-spaces"
       ],
       "tags": [
         "continuity",
         "maps",
-        "open-sets",
         "topology"
       ]
     },

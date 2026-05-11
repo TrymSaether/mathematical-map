@@ -52,7 +52,7 @@ export const KIND_LABEL: Record<NodeKind, string> = {
 };
 
 export const RELATION_COLOR: Record<Relation, string> = {
-  statement: "#5ce1ff",
-  proof: "#a78bff",
-  illustration: "#ffd58a",
+  statement: "#0077B6",
+  proof: "#6D597A",
+  illustration: "#D99A2B",
 };

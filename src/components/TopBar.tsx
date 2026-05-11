@@ -1,26 +1,54 @@
-import { Sigma, Command as CommandIcon, Compass } from "lucide-react";
+import { BookOpen, CircleHelp, Compass, Search, Sun, UserCircle } from "lucide-react";
 import { useStore } from "../store";
 
+const navItems = ["Map", "Library", "Notes", "Paths", "Groups"];
+
 export function TopBar() {
-  const setPaletteOpen = useStore((s) => s.setPaletteOpen);
-  const view = useStore((s) => s.view);
+  const search = useStore((s) => s.search);
+  const setSearch = useStore((s) => s.setSearch);
 
   return (
-    <header className="glass scanlines mx-auto mb-3 flex h-12 w-full items-center justify-between rounded-2xl px-4">
-      <div className="flex items-center gap-3">
-        <Sigma className="h-4 w-4 text-accent-cyan" />
-        <div className="font-display text-[13px] tracking-widest text-white/80">
-          TOPOLOGY · ATLAS <span className="text-white/40">— a map of concepts & their dependencies</span>
-        </div>
+    <header className="topbar">
+      <div className="brand-mark" aria-hidden="true">
+        <Compass className="h-5 w-5" />
       </div>
-      <div className="flex items-center gap-2 text-[11px] text-white/50">
-        <Compass className="h-3.5 w-3.5" />
-        <span>Mode: <span className="text-white/90">{view}</span></span>
-        <button
-          onClick={() => setPaletteOpen(true)}
-          className="ml-3 inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-1 hover:bg-white/10"
-        >
-          <CommandIcon className="h-3 w-3" /> Search · <kbd className="font-mono">⌘K</kbd>
+
+      <div className="brand-copy">
+        <div className="brand-title">Topology Map</div>
+        <div className="brand-subtitle">Concepts &amp; Dependencies</div>
+      </div>
+
+      <label className="top-search">
+        <Search className="h-4 w-4" />
+        <input
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder="Search concepts, theorems, definitions..."
+          aria-label="Search concepts"
+        />
+        <kbd>⌘K</kbd>
+      </label>
+
+      <nav className="top-nav" aria-label="Primary">
+        {navItems.map((item) => (
+          <button key={item} className={item === "Map" ? "active" : ""}>
+            {item}
+          </button>
+        ))}
+      </nav>
+
+      <div className="top-actions" aria-label="Utilities">
+        <button title="Reference library" aria-label="Reference library">
+          <BookOpen className="h-4 w-4" />
+        </button>
+        <button title="Help" aria-label="Help">
+          <CircleHelp className="h-4 w-4" />
+        </button>
+        <button title="Light mode" aria-label="Light mode">
+          <Sun className="h-4 w-4" />
+        </button>
+        <button title="Account" aria-label="Account">
+          <UserCircle className="h-5 w-5" />
         </button>
       </div>
     </header>
