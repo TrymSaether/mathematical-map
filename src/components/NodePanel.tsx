@@ -11,6 +11,7 @@ export function NodePanel() {
   const select = useStore((s) => s.select);
   const setPathTarget = useStore((s) => s.setPathTarget);
   const node = id ? nodeById.get(id) ?? null : null;
+  const formalStatement = node?.formalStatement.trim() ?? "";
 
   return (
     <AnimatePresence>
@@ -51,11 +52,19 @@ export function NodePanel() {
           </header>
 
           <div className="flex-1 overflow-y-auto p-4 space-y-5">
-            <Section title="Statement" icon={<BookOpen className="h-3 w-3" />}>
+            <Section title={formalStatement ? "Formal statement" : "Statement"} icon={<BookOpen className="h-3 w-3" />}>
               <div className="rounded-lg border border-white/10 bg-black/20 p-3 text-[13px] leading-relaxed text-white/85 font-serif">
-                <MathText text={node.originalText} />
+                <MathText text={formalStatement || node.originalText} />
               </div>
             </Section>
+
+            {formalStatement && (
+              <Section title="Source text">
+                <div className="rounded-lg border border-white/10 bg-white/[0.03] p-3 text-[12px] leading-relaxed text-white/65 font-serif">
+                  <MathText text={node.originalText} />
+                </div>
+              </Section>
+            )}
 
             {node.explanation && (
               <Section title="Explanation">

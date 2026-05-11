@@ -45,7 +45,7 @@ function InnerGraph() {
         const hay =
           searchScope === "title"
             ? `${n.title} ${n.number} ${n.kind}`.toLowerCase()
-            : `${n.title} ${n.number} ${n.kind} ${n.tags.join(" ")} ${n.originalText}`.toLowerCase();
+            : `${n.title} ${n.number} ${n.kind} ${n.tags.join(" ")} ${n.formalStatement} ${n.originalText}`.toLowerCase();
         if (!hay.includes(search)) return false;
       }
       return true;

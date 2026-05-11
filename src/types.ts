@@ -18,6 +18,7 @@ export const TopoNode = z.object({
   sectionTitle: z.string(),
   topicCluster: z.string(),
   originalText: z.string(),
+  formalStatement: z.string().default(""),
   explanation: z.string().default(""),
   statementDependencies: z.array(z.string()).default([]),
   proofDependencies: z.array(z.string()).default([]),

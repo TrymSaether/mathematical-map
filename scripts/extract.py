@@ -96,6 +96,7 @@ def extract_blocks(text: str) -> list[dict]:
             "sectionTitle": SECTIONS.get(chap, ""),
             "topicCluster": TOPIC_CLUSTERS.get(chap, "Misc"),
             "originalText": clean_text(clean_matrix_artifacts(body)),
+            "formalStatement": "",
             "explanation": "",
             "statementDependencies": [],
             "proofDependencies": [],
