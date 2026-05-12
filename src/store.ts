@@ -13,6 +13,7 @@ import {
 export type ViewMode = "dependency" | "cluster";
 export type HighlightMode = "immediate" | "full";
 export type SearchScope = "all" | "title";
+export type MapStructureMode = "chapters" | "islands";
 
 interface State {
   view: ViewMode;
@@ -56,12 +57,17 @@ interface State {
   colorMode: ColorMode;
   setColorMode: (colorMode: ColorMode) => void;
   toggleColorMode: () => void;
+
+  mapStructureMode: MapStructureMode;
+  setMapStructureMode: (mode: MapStructureMode) => void;
+  toggleMapStructureMode: () => void;
 }
 
 const ALL_KINDS: NodeKind[] = ["definition", "theorem", "lemma", "example", "proposition", "corollary"];
 const ALL_RELATIONS: Relation[] = ["statement", "proof", "illustration"];
 const THEME_STORAGE_KEY = "topology-map.theme";
 const COLOR_MODE_STORAGE_KEY = "topology-map.color-mode";
+const MAP_STRUCTURE_STORAGE_KEY = "topology-map.map-structure";
 
 function toggle<T>(set: Set<T>, v: T) {
   const next = new Set(set);
@@ -81,12 +87,26 @@ function readStoredColorMode(): ColorMode {
   return isColorMode(value) ? value : DEFAULT_COLOR_MODE;
 }
 
+function isMapStructureMode(value: string | null): value is MapStructureMode {
+  return value === "chapters" || value === "islands";
+}
+
+function readStoredMapStructureMode(): MapStructureMode {
+  if (typeof window === "undefined") return "chapters";
+  const value = window.localStorage.getItem(MAP_STRUCTURE_STORAGE_KEY);
+  return isMapStructureMode(value) ? value : "chapters";
+}
+
 function persistTheme(themeId: ThemeId) {
   if (typeof window !== "undefined") window.localStorage.setItem(THEME_STORAGE_KEY, themeId);
 }
 
 function persistColorMode(colorMode: ColorMode) {
   if (typeof window !== "undefined") window.localStorage.setItem(COLOR_MODE_STORAGE_KEY, colorMode);
+}
+
+function persistMapStructureMode(mode: MapStructureMode) {
+  if (typeof window !== "undefined") window.localStorage.setItem(MAP_STRUCTURE_STORAGE_KEY, mode);
 }
 
 export const useStore = create<State>((set) => ({
@@ -141,5 +161,17 @@ export const useStore = create<State>((set) => ({
       const colorMode = s.colorMode === "light" ? "dark" : "light";
       persistColorMode(colorMode);
       return { colorMode };
+    }),
+
+  mapStructureMode: readStoredMapStructureMode(),
+  setMapStructureMode: (mapStructureMode) => {
+    persistMapStructureMode(mapStructureMode);
+    set({ mapStructureMode });
+  },
+  toggleMapStructureMode: () =>
+    set((s) => {
+      const mapStructureMode = s.mapStructureMode === "chapters" ? "islands" : "chapters";
+      persistMapStructureMode(mapStructureMode);
+      return { mapStructureMode };
     }),
 }));
