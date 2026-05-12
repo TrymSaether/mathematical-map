@@ -295,13 +295,30 @@ function LaneNodeView({ data: d }: NodeProps<LaneData>) {
       style={{
         width: d.width,
         height: d.height,
+        display: "grid",
+        alignItems: "start",
+        padding: "22px 34px",
+        border: `1px solid ${d.border}`,
         borderRadius: d.radius,
-        "--lane-fill": d.fill,
-        "--lane-border": d.border,
-        "--lane-label": d.label,
+        background: `radial-gradient(circle at 22% 18%, rgba(255,253,246,0.58), transparent 34%), ${d.fill}`,
+        boxShadow: "inset 0 0 42px rgba(104,95,80,0.04)",
+        color: d.label,
+        pointerEvents: "none",
       } as CSSProperties}
     >
-      <span>{d.topic}</span>
+      <span
+        style={{
+          maxWidth: 260,
+          fontFamily: 'Georgia, "Times New Roman", serif',
+          fontSize: 15,
+          fontWeight: 700,
+          letterSpacing: "0.08em",
+          lineHeight: 1.12,
+          textTransform: "uppercase",
+        }}
+      >
+        {d.topic}
+      </span>
     </div>
   );
 }
