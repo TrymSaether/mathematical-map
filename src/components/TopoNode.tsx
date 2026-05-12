@@ -1,7 +1,10 @@
 import { Handle, Position, type NodeProps } from "reactflow";
 import { motion } from "framer-motion";
+import type { CSSProperties } from "react";
 import { cn } from "../lib/utils";
+import { hexToRgbString } from "../lib/colors";
 import { useStore } from "../store";
+import { getThemePalette } from "../themes";
 import { KIND_LABEL, type NodeKind, type TopoNode as TopoNodeT } from "../types";
 
 interface Data {
@@ -30,9 +33,17 @@ const TIER_STYLE: Record<Tier, { w: number; titleClamp: number; titleSize: strin
 export function TopoNodeView({ data, selected }: NodeProps<Data>) {
   const { node, dim, highlight } = data;
   const select = useStore((s) => s.select);
+  const themeId = useStore((s) => s.themeId);
+  const colorMode = useStore((s) => s.colorMode);
+  const palette = getThemePalette(themeId, colorMode);
   const tier = KIND_TIER[node.kind];
   const tw = TIER_STYLE[tier];
   const isPrimary = tier === "primary";
+  const nodeColor = palette.kindColors[node.kind];
+  const style = {
+    width: tw.w,
+    "--c": hexToRgbString(nodeColor),
+  } as CSSProperties;
 
   return (
     <motion.div
@@ -41,7 +52,7 @@ export function TopoNodeView({ data, selected }: NodeProps<Data>) {
       animate={{ opacity: dim ? 0.28 : 1, y: 0 }}
       transition={{ duration: 0.25 }}
       onClick={() => select(node.id)}
-      style={{ width: tw.w }}
+      style={style}
       className={cn(
         `kind-${node.kind}`,
         "group relative cursor-pointer rounded-xl border font-display",
