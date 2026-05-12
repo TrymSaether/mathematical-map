@@ -13,11 +13,11 @@ const NODE_W = 240;
 const NODE_H = 92;
 const COL_W = 340;
 const SUBROW_H = 96;
-const LANE_GAP = 24;
+const LANE_GAP = 96;
 
 /**
  * Swimlane dependency layout: each topic cluster becomes a compact horizontal
- * blob, ordered by the mathematical progression (foundations → spaces →
+ * metro district, ordered by the mathematical progression (foundations → spaces →
  * constructions → properties → algebraic topology). Items are spread along
  * the X axis by route depth so the visible map reads prerequisite → dependent
  * while raw data edges remain dependent → prerequisite.
@@ -35,8 +35,6 @@ export function dependencyLayout({
   const visible = new Set(filtered.map((n) => n.id));
   const visibleEdges = routeEdges.filter((e) => visible.has(e.from) && visible.has(e.to));
 
-  // Compute depth = longest prerequisite path length in the visible DAG.
-  // Items with no incoming visible route edge get depth 0; arrows flow left-to-right.
   const depth = computeDepths(filtered, visibleEdges);
 
   const byTopic = new Map<string, TopoNode[]>();
@@ -56,7 +54,6 @@ export function dependencyLayout({
   let maxCol = 0;
   for (const t of topics) {
     const items = byTopic.get(t)!.sort(cmpNum);
-    // Bucket items by depth within this lane so ties stack vertically.
     const byDepth = new Map<number, TopoNode[]>();
     for (const n of items) {
       const d = depth.get(n.id) ?? 0;
@@ -111,7 +108,7 @@ function computeDepths(nodes: TopoNode[], edges: DirectedTopoEdge[]): Map<string
   const compute = (id: string): number => {
     const cached = depth.get(id);
     if (cached !== undefined) return cached;
-    if (visiting.has(id)) return 0; // cycle guard
+    if (visiting.has(id)) return 0;
     visiting.add(id);
     const preds = inMap.get(id) ?? [];
     let d = 0;
@@ -124,7 +121,6 @@ function computeDepths(nodes: TopoNode[], edges: DirectedTopoEdge[]): Map<string
   return depth;
 }
 
-/** Optional: classic dagre LR layout, kept for the cluster/path overlays. */
 export function dagreLayout({ nodes, edges }: LayoutInput) {
   const g = new dagre.graphlib.Graph();
   g.setGraph({ rankdir: "LR", nodesep: 36, ranksep: 90, marginx: 24, marginy: 24 });
