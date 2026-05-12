@@ -1,7 +1,13 @@
 import { z } from "zod";
+import { relationColors } from "./lib/colors";
 
 export const NodeKind = z.enum([
-  "definition", "theorem", "lemma", "example", "proposition", "corollary",
+  "definition",
+  "theorem",
+  "lemma",
+  "example",
+  "proposition",
+  "corollary",
 ]);
 export type NodeKind = z.infer<typeof NodeKind>;
 
@@ -51,8 +57,4 @@ export const KIND_LABEL: Record<NodeKind, string> = {
   corollary: "Corollary",
 };
 
-export const RELATION_COLOR: Record<Relation, string> = {
-  statement: "#5ce1ff",
-  proof: "#a78bff",
-  illustration: "#ffd58a",
-};
+export const RELATION_COLOR: Record<Relation, string> = relationColors;

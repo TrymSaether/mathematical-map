@@ -13,17 +13,13 @@ import { data } from "../data";
 import { useStore } from "../store";
 import { dependencyLayout, clusterLayout, type Lane } from "../lib/layout";
 import { buildAdjacency, ancestors, descendants } from "../lib/graph";
+import { nodeKindColors, canvas, stroke } from "../lib/colors";
 import { TopoNodeView } from "./TopoNode";
 import { TopoEdgeView } from "./TopoEdge";
 import { LaneNode } from "./LaneNode";
 
 const nodeTypes = { topo: TopoNodeView, lane: LaneNode };
 const edgeTypes = { topo: TopoEdgeView };
-
-const KIND_HEX: Record<string, string> = {
-  definition: "#5ce1ff", theorem: "#a78bff", lemma: "#7af3c4",
-  example: "#ffd58a", proposition: "#ff8fb1", corollary: "#ffb86c",
-};
 
 function InnerGraph() {
   const view = useStore((s) => s.view);
@@ -168,7 +164,7 @@ function InnerGraph() {
         variant={BackgroundVariant.Dots}
         gap={28}
         size={1}
-        color="rgba(120,140,255,0.22)"
+        color={canvas.gridBackground}
       />
       <MiniMap
         pannable zoomable
@@ -176,18 +172,18 @@ function InnerGraph() {
         nodeColor={(n) => {
           if (n.type === "lane") return "transparent";
           const k = (n.data as any)?.node?.kind;
-          return k ? KIND_HEX[k] ?? "#5ce1ff" : "#5ce1ff";
+          return k ? nodeKindColors[k as keyof typeof nodeKindColors] ?? nodeKindColors.definition : nodeKindColors.definition;
         }}
         nodeStrokeColor={(n) =>
-          n.type === "lane" ? "transparent" : n.selected ? "#ffffff" : "rgba(255,255,255,0.18)"
+          n.type === "lane" ? "transparent" : n.selected ? stroke.primaryHover : stroke.primary
         }
         nodeBorderRadius={3}
         nodeStrokeWidth={1}
-        maskColor="rgba(5,6,10,0.78)"
-        maskStrokeColor="rgba(92,225,255,0.45)"
+        maskColor={canvas.maskBackground}
+        maskStrokeColor={canvas.maskStroke}
         maskStrokeWidth={1.5}
         style={{
-          background: "rgba(10,12,20,0.85)",
+          background: canvas.background,
           border: "1px solid rgba(255,255,255,0.10)",
           borderRadius: 12,
           backdropFilter: "blur(8px)",
