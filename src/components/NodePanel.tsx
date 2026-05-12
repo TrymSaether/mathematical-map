@@ -10,10 +10,14 @@ import {
 } from "../atlas";
 import { MathText } from "../lib/katex";
 import { useStore } from "../store";
+import { getThemePalette } from "../themes";
 
 export function NodePanel() {
   const selectedId = useStore((s) => s.selectedId) ?? DEFAULT_SELECTED_ID;
   const select = useStore((s) => s.select);
+  const themeId = useStore((s) => s.themeId);
+  const colorMode = useStore((s) => s.colorMode);
+  const palette = getThemePalette(themeId, colorMode);
   const node = atlasNodesById.get(selectedId) ?? atlasNodesById.get(DEFAULT_SELECTED_ID);
   if (!node) return <aside className="right-panel" />;
   const meta = NODE_KIND_META[node.kind];
@@ -40,7 +44,7 @@ export function NodePanel() {
       <div className="detail-content">
         <div className="detail-actions">
           <div className="badge-row">
-            <span className="kind-badge" style={{ backgroundColor: meta.color }}>
+            <span className="kind-badge" style={{ backgroundColor: palette.kindColors[node.kind] }}>
               {meta.label.toUpperCase()}
             </span>
             <span className="id-badge">{node.shortLabel}</span>
@@ -107,6 +111,9 @@ function DetailSection({ title, children }: { title: string; children: ReactNode
 
 function LinkList({ links }: { links: AtlasLink[] }) {
   const select = useStore((s) => s.select);
+  const themeId = useStore((s) => s.themeId);
+  const colorMode = useStore((s) => s.colorMode);
+  const palette = getThemePalette(themeId, colorMode);
 
   if (links.length === 0) {
     return <p className="empty-state">No linked stations.</p>;
@@ -117,7 +124,7 @@ function LinkList({ links }: { links: AtlasLink[] }) {
       {links.map((link) => {
         const node = atlasNodesById.get(link.nodeId);
         if (!node) return null;
-        const meta = NODE_KIND_META[node.kind];
+        const color = palette.kindColors[node.kind];
         const routeMeta = ROUTE_META[link.relation];
         const label = (link.semanticRelation ?? link.label ?? routeMeta.label)
           .replaceAll("-", " ")
@@ -129,9 +136,9 @@ function LinkList({ links }: { links: AtlasLink[] }) {
             title={link.rationale}
             style={{
               alignItems: "flex-start",
-              borderColor: colorMix(meta.color, link.needsHumanReview ? 0.48 : 0.28),
-              color: meta.color,
-              backgroundColor: colorMix(meta.color, link.needsHumanReview ? 0.12 : 0.08),
+              borderColor: colorMix(color, link.needsHumanReview ? 0.48 : 0.28),
+              color,
+              backgroundColor: colorMix(color, link.needsHumanReview ? 0.12 : 0.08),
               display: "grid",
               gap: 3,
               height: "auto",
@@ -151,14 +158,14 @@ function LinkList({ links }: { links: AtlasLink[] }) {
                 display: "flex",
                 alignItems: "center",
                 gap: 6,
-                color: "#5d6670",
+                color: "var(--chip-text-muted)",
                 fontSize: 10,
                 fontWeight: 650,
                 letterSpacing: "0.02em",
                 textTransform: "uppercase",
               }}
             >
-              <span style={{ color: routeMeta.color }}>{label}</span>
+              <span style={{ color: palette.routeColors[link.relation] }}>{label}</span>
               {link.needsHumanReview ? <span>Review</span> : null}
             </span> */}
           </button>
