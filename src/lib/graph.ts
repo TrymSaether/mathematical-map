@@ -7,7 +7,7 @@ export interface DirectedTopoEdge extends Omit<TopoEdge, "from" | "to"> {
   from: string;
   /** Oriented endpoint for the requested graph layer. */
   to: string;
-  /** Original stored edge. Data edges are always dependent -> prerequisite. */
+  /** Original stored edge. */
   raw: TopoEdge;
 }
 
@@ -19,13 +19,13 @@ export interface Adjacency {
 /**
  * Edge direction layer.
  *
- * - raw: stored graph/data direction, dependent -> prerequisite.
- * - route: visible map/route direction, prerequisite -> dependent.
+ * The provenance-enriched dataset stores edges in mathematical reading order:
+ * source/prerequisite -> dependent concept, result, or example. The visible
+ * route layer uses the same orientation so graph layout, route rendering, and
+ * learning paths all agree with the data contract in `_meta.provenancePass`.
  */
-export function orientEdge(edge: TopoEdge, direction: GraphDirection = "raw"): DirectedTopoEdge {
-  const from = direction === "route" ? edge.to : edge.from;
-  const to = direction === "route" ? edge.from : edge.to;
-  return { ...edge, from, to, raw: edge };
+export function orientEdge(edge: TopoEdge, _direction: GraphDirection = "raw"): DirectedTopoEdge {
+  return { ...edge, from: edge.from, to: edge.to, raw: edge };
 }
 
 export function orientEdges(
@@ -93,7 +93,6 @@ export function topoSort(
   }
   const ready: string[] = [];
   for (const [id, d] of indeg) if (d === 0) ready.push(id);
-  // Stable order by chapter/number
   const byId = new Map(allNodes.map((n) => [n.id, n]));
   ready.sort((a, b) => cmpNum(byId.get(a)!, byId.get(b)!));
   const out: TopoNode[] = [];
@@ -106,7 +105,6 @@ export function topoSort(
       const d = (indeg.get(nxt) ?? 0) - 1;
       indeg.set(nxt, d);
       if (d === 0) {
-        // insert in sorted position
         let i = 0;
         while (i < ready.length && cmpNum(byId.get(ready[i])!, byId.get(nxt)!) < 0) i++;
         ready.splice(i, 0, nxt);
@@ -135,7 +133,7 @@ export function buildLearningPath(
   nodes: TopoNode[]
 ): TopoNode[] {
   const adj = buildAdjacency(edges, allowed, "raw");
-  const prerequisites = descendants(adj, targetId);
+  const prerequisites = ancestors(adj, targetId);
   prerequisites.add(targetId);
-  return topoSort(prerequisites, adj, nodes).reverse();
+  return topoSort(prerequisites, adj, nodes);
 }
