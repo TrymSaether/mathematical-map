@@ -1,0 +1,225 @@
+.topbar {
+  grid-template-columns: 44px minmax(190px, 246px) minmax(280px, 1fr) auto;
+  background: var(--topbar-bg);
+  border-bottom-color: var(--border);
+}
+
+.brand-mark {
+  border-color: var(--brand-mark-border);
+  background: var(--surface);
+  color: var(--brand-mark-color);
+}
+
+.brand-title,
+.title-gradient {
+  color: var(--ink);
+}
+
+.brand-subtitle {
+  color: var(--brand-subtitle);
+}
+
+.top-search {
+  background: var(--search-bg);
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+.top-search input {
+  color: var(--ink);
+}
+
+.top-search input::placeholder {
+  color: var(--search-placeholder);
+}
+
+.top-search kbd,
+.top-search-kbd {
+  background: var(--kbd-bg);
+  border-color: var(--kbd-border);
+  color: var(--kbd-text);
+}
+
+.top-search-kbd:hover {
+  background: var(--kbd-bg-hover);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.left-panel,
+.right-panel {
+  background: var(--panel-bg);
+}
+
+.panel-section,
+.left-panel,
+.right-panel,
+.detail-nav,
+.detail-divider,
+.atlas-workspace {
+  border-color: var(--border);
+}
+
+.legend-heading h2,
+.detail-nav div,
+.detail-content h1,
+.detail-section h2,
+.notes-section button,
+.section-label {
+  color: var(--heading);
+}
+
+.legend-heading p,
+.planner-caption,
+.detail-counter,
+.empty-state,
+.empty-state-small,
+.notes-section p {
+  color: var(--muted) !important;
+}
+
+.legend-row,
+.route-row,
+.detail-description,
+.detail-section p,
+.suggested-path button,
+.notes-section button,
+.detail-counter button,
+.icon-actions button {
+  color: var(--ink);
+}
+
+.legend-toggle.is-off {
+  opacity: 0.36;
+}
+
+.concept-field > span {
+  color: var(--muted);
+}
+
+.concept-field > div,
+.id-badge,
+.zoom-controls,
+.mini-map,
+.secondary-action {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+.concept-field strong,
+.suggested-path button:hover .step-title {
+  color: var(--link-accent);
+}
+
+.concept-field em,
+.node-title,
+.step-title {
+  color: var(--text-strong);
+}
+
+.primary-action {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-contrast);
+}
+
+.primary-action:hover {
+  background: var(--primary-hover);
+}
+
+.step-index,
+.notes-section strong,
+.topic-pill {
+  background: var(--surface-muted);
+  color: var(--muted);
+}
+
+.atlas-main {
+  background:
+    radial-gradient(circle at 48% 40%, var(--canvas-radial-inner), var(--canvas-radial-outer) 68%),
+    linear-gradient(90deg, var(--canvas-grid) 1px, transparent 1px) 0 0 / 72px 72px,
+    linear-gradient(0deg, var(--canvas-grid-2) 1px, transparent 1px) 0 0 / 72px 72px,
+    var(--canvas-bg);
+}
+
+.rf-topo-node {
+  background: var(--lane-node-bg) !important;
+  color: var(--ink);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--node-shadow) 60%, transparent),
+    0 8px 24px var(--node-shadow) !important;
+}
+
+.rf-topo-node:hover {
+  background: var(--lane-node-hover) !important;
+}
+
+.rf-topo-node.selected {
+  box-shadow:
+    0 0 0 2px var(--node-outline),
+    0 0 0 5px color-mix(in srgb, var(--node-color) 24%, transparent),
+    0 14px 32px var(--node-shadow-strong) !important;
+}
+
+.node-kicker b,
+.node-id,
+.kind-badge,
+.node-kind-badge {
+  color: var(--node-badge-text);
+}
+
+.node-title {
+  color: var(--node-title);
+}
+
+.rf-lane-node path {
+  transition: fill 160ms ease, stroke 160ms ease;
+}
+
+.react-flow__controls {
+  box-shadow: 0 8px 24px var(--node-shadow);
+}
+
+.react-flow__controls-button {
+  background: var(--control-bg);
+  border-color: var(--border);
+  color: var(--control-text);
+}
+
+.react-flow__controls-button:hover {
+  background: var(--surface-muted);
+}
+
+.dependency-chip:hover {
+  transform: translateY(-1px);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-color: var(--paper);
+}
+
+@media (max-width: 1180px) {
+  .topbar {
+    grid-template-columns: 44px minmax(180px, 210px) minmax(240px, 1fr) auto;
+  }
+
+  .theme-control span {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    grid-template-columns: 44px minmax(180px, 210px) minmax(220px, 1fr);
+  }
+
+  .theme-controls {
+    display: none;
+  }
+}
