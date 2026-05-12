@@ -2,12 +2,16 @@ import type { TopoEdge, TopoNode, Relation } from "../types";
 
 export type GraphDirection = "raw" | "route";
 
-export interface DirectedTopoEdge extends Omit<TopoEdge, "from" | "to"> {
+export interface DirectedTopoEdge {
+  id: string;
   /** Oriented endpoint for the requested graph layer. */
   from: string;
   /** Oriented endpoint for the requested graph layer. */
   to: string;
-  /** Original stored edge. */
+  relation: Relation;
+  source: TopoEdge["source"];
+  confidence: number;
+  /** Original stored edge, including any provenance metadata. */
   raw: TopoEdge;
 }
 
@@ -25,7 +29,15 @@ export interface Adjacency {
  * learning paths all agree with the data contract in `_meta.provenancePass`.
  */
 export function orientEdge(edge: TopoEdge, _direction: GraphDirection = "raw"): DirectedTopoEdge {
-  return { ...edge, from: edge.from, to: edge.to, raw: edge };
+  return {
+    id: edge.id,
+    from: edge.from,
+    to: edge.to,
+    relation: edge.relation,
+    source: edge.source,
+    confidence: edge.confidence,
+    raw: edge,
+  };
 }
 
 export function orientEdges(
