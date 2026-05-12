@@ -2,8 +2,10 @@ import katex from "katex";
 import { useMemo } from "react";
 
 /**
- * Render text with inline TeX delimited by $...$ and display TeX by $$...$$,
- * plus Unicode math passthrough. Robust against unbalanced dollar signs.
+ * Render text with LaTeX delimiters:
+ * - Display math: \[...\] or $$...$$
+ * - Inline math: \(...\) or $...$
+ * Robust against unbalanced delimiters.
  */
 export function MathText({ text, className }: { text: string; className?: string }) {
   const html = useMemo(() => renderMathInString(text), [text]);
@@ -37,44 +39,116 @@ function renderTeX(src: string, display: boolean): string {
 }
 
 export function renderMathInString(text: string): string {
-  // First pass: $$...$$
-  const parts: string[] = [];
+  // Process LaTeX and dollar delimiters
+  // Priority: \[...\] > $$...$$ > \(...\) > $...$
+  const parts: Array<{ type: "text" | "math"; content: string; display: boolean }> = [];
+
   let i = 0;
   while (i < text.length) {
-    const dd = text.indexOf("$$", i);
-    if (dd === -1) {
-      parts.push(processInline(text.slice(i)));
-      break;
-    }
-    parts.push(processInline(text.slice(i, dd)));
-    const end = text.indexOf("$$", dd + 2);
-    if (end === -1) {
-      parts.push(processInline(text.slice(dd)));
-      break;
-    }
-    parts.push(renderTeX(text.slice(dd + 2, end), true));
-    i = end + 2;
-  }
-  return parts.join("");
-}
+    // Find all potential delimiters
+    const squareBracket = text.indexOf("\\[", i);
+    const doubleDollar = text.indexOf("$$", i);
+    const parenDelim = text.indexOf("\\(", i);
+    const singleDollar = text.indexOf("$", i);
 
-function processInline(seg: string): string {
-  let out = "";
-  let i = 0;
-  while (i < seg.length) {
-    const d = seg.indexOf("$", i);
-    if (d === -1) {
-      out += escape(seg.slice(i));
+    // Find the nearest delimiter
+    const delimiters = [
+      squareBracket >= 0 ? { pos: squareBracket, type: "\\[" } : null,
+      doubleDollar >= 0 ? { pos: doubleDollar, type: "$$" } : null,
+      parenDelim >= 0 ? { pos: parenDelim, type: "\\(" } : null,
+      singleDollar >= 0 ? { pos: singleDollar, type: "$" } : null,
+    ].filter((d) => d !== null) as Array<{ pos: number; type: string }>;
+
+    if (delimiters.length === 0) {
+      // No more delimiters, add remaining text
+      parts.push({ type: "text", content: text.slice(i), display: false });
       break;
     }
-    out += escape(seg.slice(i, d));
-    const end = seg.indexOf("$", d + 1);
-    if (end === -1) {
-      out += escape(seg.slice(d));
-      break;
+
+    // Sort by position and take the nearest
+    delimiters.sort((a, b) => a.pos - b.pos);
+    const { pos, type: delim } = delimiters[0];
+
+    // Add text before delimiter
+    if (pos > i) {
+      parts.push({ type: "text", content: text.slice(i, pos), display: false });
     }
-    out += renderTeX(seg.slice(d + 1, end), false);
-    i = end + 1;
+
+    // Find closing delimiter
+    let closeDelim = "";
+    let endPos = -1;
+
+    if (delim === "\\[") {
+      closeDelim = "\\]";
+      endPos = text.indexOf(closeDelim, pos + 2);
+      if (endPos !== -1) {
+        parts.push({
+          type: "math",
+          content: text.slice(pos + 2, endPos),
+          display: true,
+        });
+        i = endPos + 2;
+      } else {
+        parts.push({ type: "text", content: delim, display: false });
+        i = pos + 2;
+      }
+    } else if (delim === "$$") {
+      endPos = text.indexOf("$$", pos + 2);
+      if (endPos !== -1) {
+        parts.push({
+          type: "math",
+          content: text.slice(pos + 2, endPos),
+          display: true,
+        });
+        i = endPos + 2;
+      } else {
+        parts.push({ type: "text", content: delim, display: false });
+        i = pos + 2;
+      }
+    } else if (delim === "\\(") {
+      closeDelim = "\\)";
+      endPos = text.indexOf(closeDelim, pos + 2);
+      if (endPos !== -1) {
+        parts.push({
+          type: "math",
+          content: text.slice(pos + 2, endPos),
+          display: false,
+        });
+        i = endPos + 2;
+      } else {
+        parts.push({ type: "text", content: delim, display: false });
+        i = pos + 2;
+      }
+    } else if (delim === "$") {
+      // Make sure it's not a double dollar (already handled)
+      if (pos + 1 < text.length && text[pos + 1] === "$") {
+        parts.push({ type: "text", content: "$", display: false });
+        i = pos + 1;
+      } else {
+        endPos = text.indexOf("$", pos + 1);
+        if (endPos !== -1 && (endPos + 1 >= text.length || text[endPos + 1] !== "$")) {
+          parts.push({
+            type: "math",
+            content: text.slice(pos + 1, endPos),
+            display: false,
+          });
+          i = endPos + 1;
+        } else {
+          parts.push({ type: "text", content: "$", display: false });
+          i = pos + 1;
+        }
+      }
+    }
   }
-  return out;
+
+  // Convert parts to HTML
+  return parts
+    .map((part) => {
+      if (part.type === "text") {
+        return escape(part.content);
+      } else {
+        return renderTeX(part.content, part.display);
+      }
+    })
+    .join("");
 }
