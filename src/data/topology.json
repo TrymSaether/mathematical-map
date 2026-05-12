@@ -3,7 +3,7 @@
   "metadata": {
     "title": "Topology Knowledge Graph Dataset",
     "description": "Topology content nodes with first-class directed dependency edges. Edges are derived from statementDependencies and proofDependencies.",
-    "source": "topology_mathjax.json",
+    "source": "topology.json",
     "nodeCount": 227,
     "edgeCount": 95,
     "kindCounts": {
