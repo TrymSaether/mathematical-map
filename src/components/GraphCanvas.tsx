@@ -59,13 +59,13 @@ const EDGE_TYPES = {
 };
 
 const LANE_PALETTE = [
-  { fill: "rgba(26, 115, 232, 0.10)", border: "rgba(26, 115, 232, 0.48)", label: "rgba(26, 70, 135, 0.52)" },
-  { fill: "rgba(15, 157, 88, 0.10)", border: "rgba(15, 157, 88, 0.48)", label: "rgba(23, 96, 62, 0.52)" },
-  { fill: "rgba(251, 140, 0, 0.11)", border: "rgba(251, 140, 0, 0.50)", label: "rgba(143, 83, 13, 0.54)" },
-  { fill: "rgba(126, 87, 194, 0.10)", border: "rgba(126, 87, 194, 0.48)", label: "rgba(83, 58, 136, 0.52)" },
-  { fill: "rgba(219, 68, 55, 0.10)", border: "rgba(219, 68, 55, 0.48)", label: "rgba(132, 54, 46, 0.52)" },
-  { fill: "rgba(0, 172, 193, 0.10)", border: "rgba(0, 172, 193, 0.48)", label: "rgba(18, 103, 115, 0.52)" },
-  { fill: "rgba(121, 85, 72, 0.10)", border: "rgba(121, 85, 72, 0.48)", label: "rgba(90, 65, 56, 0.52)" },
+  { fill: "rgba(26, 115, 232, 0.07)", border: "rgba(26, 115, 232, 0.44)", label: "rgba(26, 70, 135, 0.42)" },
+  { fill: "rgba(15, 157, 88, 0.07)", border: "rgba(15, 157, 88, 0.44)", label: "rgba(23, 96, 62, 0.42)" },
+  { fill: "rgba(251, 140, 0, 0.075)", border: "rgba(251, 140, 0, 0.46)", label: "rgba(143, 83, 13, 0.44)" },
+  { fill: "rgba(126, 87, 194, 0.07)", border: "rgba(126, 87, 194, 0.44)", label: "rgba(83, 58, 136, 0.42)" },
+  { fill: "rgba(219, 68, 55, 0.07)", border: "rgba(219, 68, 55, 0.44)", label: "rgba(132, 54, 46, 0.42)" },
+  { fill: "rgba(0, 172, 193, 0.07)", border: "rgba(0, 172, 193, 0.44)", label: "rgba(18, 103, 115, 0.42)" },
+  { fill: "rgba(121, 85, 72, 0.07)", border: "rgba(121, 85, 72, 0.44)", label: "rgba(90, 65, 56, 0.42)" },
 ];
 
 const ATLAS_NODE_BY_ID = new Map(atlasNodes.map((n) => [n.id, n]));
@@ -126,8 +126,8 @@ export function GraphCanvas() {
         position: { x: -72, y: lane.y - 34 },
         data: {
           topic: lane.topic,
-          width: lane.width + 144,
-          height: lane.height + 62,
+          width: lane.width + 120,
+          height: lane.height + 28,
           ...palette,
         } satisfies LaneData,
         draggable: false,
@@ -197,7 +197,7 @@ export function GraphCanvas() {
         edgeTypes={EDGE_TYPES}
         onNodeClick={onNodeClick}
         fitView
-        fitViewOptions={{ padding: 0.12, maxZoom: 1 }}
+        fitViewOptions={{ padding: 0.18, maxZoom: 1 }}
         minZoom={0.15}
         maxZoom={1.6}
         proOptions={{ hideAttribution: true }}
@@ -209,18 +209,18 @@ export function GraphCanvas() {
         zoomOnPinch
         defaultEdgeOptions={{ type: "topo" }}
       >
-        <RFBackground variant={BackgroundVariant.Dots} gap={28} size={0.8} color="rgba(120,105,80,0.12)" />
+        <RFBackground variant={BackgroundVariant.Dots} gap={44} size={0.45} color="rgba(120,105,80,0.05)" />
         <MiniMap
           pannable
           zoomable
           maskColor="rgba(255,253,246,0.55)"
           nodeColor={(n) => {
-            if (n.type === "lane") return "rgba(0,0,0,0.04)";
+            if (n.type === "lane") return "rgba(0,0,0,0.03)";
             const d = n.data as TopoNodeData;
             return NODE_KIND_META[d.node.kind].color;
           }}
           nodeStrokeWidth={0}
-          style={{ background: "rgba(255,253,246,0.85)", border: "1px solid rgba(74,62,45,0.18)" }}
+          style={{ background: "rgba(255,253,246,0.85)", border: "1px solid rgba(74,62,45,0.10)" }}
         />
         <Controls showInteractive={false} />
       </ReactFlow>
@@ -265,23 +265,21 @@ function LaneNodeView({ data: d }: NodeProps<LaneData>) {
   return (
     <div className="rf-lane-node" style={{ width: d.width, height: d.height, pointerEvents: "none" } as CSSProperties}>
       <svg width={d.width} height={d.height} viewBox={`0 0 ${d.width} ${d.height}`} aria-hidden="true">
-        <path d={path} fill={d.fill} stroke={d.border} strokeWidth="2.5" strokeLinejoin="round" />
-        <path d={path} fill="none" stroke="rgba(255,253,246,0.75)" strokeWidth="1" strokeLinejoin="round" transform="translate(3 3) scale(0.996 0.99)" />
+        <path d={path} fill={d.fill} stroke={d.border} strokeWidth="1.6" strokeLinejoin="round" />
       </svg>
       <span
         style={{
           position: "absolute",
-          left: 34,
-          top: 21,
+          left: 30,
+          top: 18,
           maxWidth: 340,
           fontFamily: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-          fontSize: 21,
+          fontSize: 18,
           fontWeight: 800,
-          letterSpacing: "0.16em",
+          letterSpacing: "0.18em",
           lineHeight: 1.05,
           textTransform: "uppercase",
           color: d.label,
-          textShadow: "0 1px 0 rgba(255,253,246,0.75)",
         }}
       >
         {d.topic}
@@ -306,13 +304,10 @@ function TopoEdgeView(props: EdgeProps<TopoEdgeData>) {
       style={{
         stroke: color,
         strokeWidth: active ? activeWidth : baseWidth,
-        strokeOpacity: dim ? 0.08 : active ? 0.98 : 0.24,
+        strokeOpacity: dim ? 0.04 : active ? 0.95 : 0.16,
         strokeLinecap: "round",
         strokeLinejoin: "round",
         fill: "none",
-        filter: active
-          ? "drop-shadow(0 1px 0 rgba(255,253,246,0.9)) drop-shadow(0 0 4px rgba(0,77,120,0.22))"
-          : undefined,
       }}
     />
   );
