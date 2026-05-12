@@ -10,6 +10,7 @@ import {
 } from "../atlas";
 import { useStore } from "../store";
 import { MathText } from "../lib/katex";
+import { getThemePalette } from "../themes";
 import type { NodeKind, Relation } from "../types";
 
 const KINDS_IN_DATA: NodeKind[] = Array.from(
@@ -27,6 +28,9 @@ export function Sidebar() {
   const setShowOrphans = useStore((s) => s.setShowOrphans);
   const pathTargetId = useStore((s) => s.pathTargetId);
   const setPathTarget = useStore((s) => s.setPathTarget);
+  const themeId = useStore((s) => s.themeId);
+  const colorMode = useStore((s) => s.colorMode);
+  const palette = getThemePalette(themeId, colorMode);
 
   const effectiveTarget = pathTargetId ?? selectedId ?? DEFAULT_SELECTED_ID;
   const targetNode = atlasNodesById.get(effectiveTarget);
@@ -61,7 +65,7 @@ export function Sidebar() {
                 onClick={() => toggleKind(kind)}
                 aria-pressed={enabled}
               >
-                <span className="legend-swatch" style={{ backgroundColor: meta.color }} />
+                <span className="legend-swatch" style={{ backgroundColor: palette.kindColors[kind] }} />
                 <span>{meta.label}</span>
               </button>
             );
@@ -87,7 +91,7 @@ export function Sidebar() {
                   <path
                     d="M2 6 H52"
                     className={`route-sample route-${rel}`}
-                    style={{ stroke: meta.color }}
+                    style={{ stroke: palette.routeColors[rel] }}
                   />
                 </svg>
                 <span>{meta.label}</span>
@@ -143,7 +147,6 @@ export function Sidebar() {
             {pathIds.map((id, index) => {
               const node = atlasNodesById.get(id);
               if (!node) return null;
-              const meta = NODE_KIND_META[node.kind];
               const isTarget = id === effectiveTarget;
               return (
                 <li key={id}>
@@ -152,7 +155,7 @@ export function Sidebar() {
                     className={isTarget ? "is-target" : ""}
                   >
                     <span className="step-index">{index + 1}</span>
-                    <span className="step-id" style={{ color: meta.color }}>
+                    <span className="step-id" style={{ color: palette.kindColors[node.kind] }}>
                       {node.shortLabel}
                     </span>
                     <span className="step-title">
