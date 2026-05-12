@@ -695,27 +695,50 @@ input:focus-visible {
 .node-kicker {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   color: var(--node-color);
   font-family: "SFMono-Regular", Consolas, ui-monospace, monospace;
   font-size: 11px;
   font-weight: 700;
 }
 
-.node-kicker b {
-  display: grid;
+.node-kicker b,
+.node-id {
+  display: inline-grid;
   place-items: center;
-  width: 13px;
-  height: 13px;
-  border-radius: 3px;
+  min-width: 34px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
   background: var(--node-color);
   color: #fffdf6;
-  font-size: 8px;
+  font-size: 11px;
+  font-weight: 800;
   line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.node-kind-badge {
+  display: inline-grid;
+  place-items: center;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 999px;
+  color: #fffdf6;
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .node-kicker em {
   font-style: normal;
+}
+
+.node-title {
+  color: #111418;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  line-height: 1.2;
 }
 
 .node-title {
@@ -1349,4 +1372,3 @@ input:focus-visible {
   justify-content: center;
   gap: 6px;
 }
-

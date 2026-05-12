@@ -119,7 +119,9 @@ function LinkList({ links }: { links: AtlasLink[] }) {
         if (!node) return null;
         const meta = NODE_KIND_META[node.kind];
         const routeMeta = ROUTE_META[link.relation];
-        const label = link.semanticRelation ?? link.label ?? routeMeta.label;
+        const label = (link.semanticRelation ?? link.label ?? routeMeta.label)
+          .replaceAll("-", " ")
+          .replace(/\b\w/g, (c) => c.toUpperCase());
         return (
           <button
             key={link.id}
@@ -144,7 +146,7 @@ function LinkList({ links }: { links: AtlasLink[] }) {
                 <MathText text={node.title} />
               </span>
             </span>
-            <span
+            {/* <span
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -157,9 +159,8 @@ function LinkList({ links }: { links: AtlasLink[] }) {
               }}
             >
               <span style={{ color: routeMeta.color }}>{label}</span>
-              <span>{Math.round(link.confidence * 100)}%</span>
               {link.needsHumanReview ? <span>Review</span> : null}
-            </span>
+            </span> */}
           </button>
         );
       })}
