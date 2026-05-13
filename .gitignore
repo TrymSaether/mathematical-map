@@ -231,8 +231,6 @@ tmbootpicker.efi
 
 # Source/extracted textbook or lecture-note content
 content/
-data/
-data/topology.json
 data/topology.raw.json
 data/topology.verified.json
 src/data/topology.json
