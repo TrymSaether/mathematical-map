@@ -5,10 +5,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Space Grotesk"', "system-ui", "sans-serif"],
+        display: ['"DM Serif Display"', "Georgia", "serif"],
         sans: ['"Inter"', "system-ui", "sans-serif"],
         mono: ['"JetBrains Mono"', "ui-monospace", "monospace"],
-        serif: ['"EB Garamond"', "Georgia", "serif"],
+        serif: ['"Cormorant Garamond"', "Georgia", "serif"],
       },
       colors: {
         ink: {

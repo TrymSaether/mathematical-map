@@ -35,7 +35,7 @@ export function Sidebar({
               <div className="font-display text-sm font-semibold text-[var(--text)]">Explore</div>
               <div className="mt-1 text-xs leading-relaxed text-[var(--muted)]">Search, filter, and change the graph view.</div>
             </div>
-            <Badge tone="cyan">{visibleCount}</Badge>
+            <Badge tone="primary">{visibleCount}</Badge>
           </div>
         </header>
 

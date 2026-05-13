@@ -10,68 +10,29 @@ export type RelationStyle = {
 };
 
 const relationGroups = [
-  {
-    match: ["define", "defined"],
-    color: palette.cyan,
-    width: 1.25,
-    opacity: 0.5,
-  },
-  {
-    match: ["proof", "prove", "logical", "implies", "requires", "prerequisite"],
-    color: palette.violet,
-    width: 1.15,
-    opacity: 0.42,
-  },
-  {
-    match: ["example", "counterexample", "instance"],
-    color: palette.gold,
-    width: 0.95,
-    opacity: 0.34,
-    dash: "2 5",
-  },
-  {
-    match: ["assume", "violates", "necessity"],
-    color: palette.rose,
-    width: 1.05,
-    opacity: 0.38,
-    dash: "6 4",
-  },
-  {
-    match: ["general", "special", "subtype", "inherits"],
-    color: palette.mint,
-    width: 1.05,
-    opacity: 0.4,
-  },
-  {
-    match: ["motivate", "pedagogical", "historical"],
-    color: palette.orange,
-    width: 0.9,
-    opacity: 0.28,
-    dash: "1 5",
-  },
+  { match: ["define", "defined", "notation"], color: palette.blue, width: 2.2, opacity: 0.58 },
+  { match: ["proof", "prove", "logical", "implies", "requires", "uses"], color: palette.violet, width: 2.1, opacity: 0.52 },
+  { match: ["example", "counterexample", "instance"], color: palette.gold, width: 1.9, opacity: 0.46, dash: "4 7" },
+  { match: ["assume", "violates", "necessity"], color: palette.red, width: 2.0, opacity: 0.48, dash: "8 6" },
+  { match: ["general", "special", "subtype", "inherits", "equivalent"], color: palette.mint, width: 2.0, opacity: 0.52 },
+  { match: ["construct", "induce", "property"], color: palette.teal, width: 2.0, opacity: 0.5 },
+  { match: ["motivate", "pedagogical", "historical", "prerequisite"], color: palette.orange, width: 1.9, opacity: 0.42, dash: "2 6" },
 ];
 
-export function getRelationStyle(
-  relation: string,
-  highlighted = false,
-  dimmed = false,
-): RelationStyle {
+function humanize(value: string): string {
+  return value.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+export function getRelationStyle(relation: string, highlighted = false, dimmed = false): RelationStyle {
   const normalized = relation.toLowerCase();
-  const group = relationGroups.find((entry) =>
-    entry.match.some((part) => normalized.includes(part)),
-  );
-  const style: {
-    color: string;
-    width: number;
-    opacity: number;
-    dash?: string;
-  } = group ?? { color: palette.cyan, width: 0.95, opacity: 0.3 };
+  const group = relationGroups.find((entry) => entry.match.some((part) => normalized.includes(part)));
+  const style: { color: string; width: number; opacity: number; dash?: string } = group ?? { color: palette.blue, width: 1.8, opacity: 0.38 };
 
   return {
     color: style.color,
-    opacity: dimmed ? 0.05 : highlighted ? 0.95 : style.opacity,
-    width: highlighted ? Math.max(style.width + 1.2, 2.4) : style.width,
+    opacity: dimmed ? 0.08 : highlighted ? 0.95 : style.opacity,
+    width: highlighted ? Math.max(style.width + 1.4, 3.6) : style.width,
     dash: style.dash,
-    label: RELATION_LABEL[relation],
+    label: (RELATION_LABEL as Record<string, string>)[relation] ?? humanize(relation),
   };
 }

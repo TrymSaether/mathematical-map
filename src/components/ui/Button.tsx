@@ -4,10 +4,10 @@ type ButtonVariant = "primary" | "secondary" | "ghost" | "quiet";
 type ButtonSize = "xs" | "sm" | "md";
 
 const variants: Record<ButtonVariant, string> = {
-  primary: "border-[rgba(var(--primary-rgb),0.35)] bg-[rgba(var(--primary-rgb),0.12)] text-[var(--primary)] hover:bg-[rgba(var(--primary-rgb),0.18)]",
-  secondary: "border-[var(--border)] bg-[var(--surface-soft)] text-[var(--text-soft)] hover:bg-[var(--surface-hover)] hover:text-[var(--text)]",
-  ghost: "border-transparent bg-transparent text-[var(--muted)] hover:bg-[var(--surface-hover)] hover:text-[var(--text)]",
-  quiet: "border-[var(--border-soft)] bg-transparent text-[var(--muted)] hover:border-[var(--border)] hover:bg-[var(--surface-soft)] hover:text-[var(--text-soft)]",
+  primary: "border-[rgba(var(--primary-rgb),0.35)] bg-[var(--primary)] text-[var(--on-primary)] shadow-[var(--shadow-primary)] hover:brightness-105",
+  secondary: "border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] hover:border-[rgba(var(--primary-rgb),0.32)] hover:bg-[var(--field-hover)] hover:text-[var(--text)]",
+  ghost: "border-transparent bg-transparent text-[var(--muted)] hover:bg-[var(--surface-muted)] hover:text-[var(--text)]",
+  quiet: "border-[var(--border-soft)] bg-[var(--field)] text-[var(--muted)] hover:border-[var(--border)] hover:bg-[var(--field-hover)] hover:text-[var(--text-soft)]",
 };
 
 const sizes: Record<ButtonSize, string> = {
@@ -30,7 +30,7 @@ export function Button({
     <button
       {...props}
       className={cn(
-        "inline-flex shrink-0 items-center justify-center border font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-[rgba(var(--primary-rgb),0.28)] disabled:pointer-events-none disabled:opacity-50",
+        "inline-flex shrink-0 items-center justify-center border font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-[rgba(var(--primary-rgb),0.25)] disabled:pointer-events-none disabled:opacity-50",
         variants[variant],
         sizes[size],
         className

@@ -53,7 +53,7 @@ export function NodePanel({ nodeById, incomingEdgesByNodeId, outgoingEdgesByNode
           className={cn(`kind-${node.kind}`, "absolute bottom-4 right-4 top-4 z-20 w-[420px] max-w-[44vw]")}
           aria-label={`${KIND_LABEL[node.kind]} details`}
         >
-          <Panel className="flex h-full flex-col overflow-hidden shadow-2xl">
+          <Panel className="flex h-full flex-col overflow-hidden">
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(var(--c),0.7)] to-transparent" />
             <header className="border-b border-[var(--border-soft)] p-4">
               <div className="flex items-start justify-between gap-3">

@@ -1,6 +1,15 @@
 import { useEffect, useRef } from "react";
 
-/** Theme-aware animated background. Kept subtle in light mode and atmospheric in dark mode. */
+function cssVar(name: string): string {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+function cssNumber(name: string, fallback: number): number {
+  const value = Number(cssVar(name));
+  return Number.isFinite(value) ? value : fallback;
+}
+
+/** Theme-aware atlas background: paper-like in light mode, quiet reading-room dark mode. */
 export function Background() {
   const ref = useRef<HTMLCanvasElement>(null);
 
@@ -8,83 +17,73 @@ export function Background() {
     const cnv = ref.current!;
     const ctx = cnv.getContext("2d")!;
     let raf = 0;
-    let w = 0, h = 0;
-    type P = { x: number; y: number; z: number; r: number };
-    let particles: P[] = [];
+    let w = 0;
+    let h = 0;
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = cnv.clientWidth; h = cnv.clientHeight;
-      cnv.width = w * dpr; cnv.height = h * dpr;
+      w = cnv.clientWidth;
+      h = cnv.clientHeight;
+      cnv.width = w * dpr;
+      cnv.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      particles = Array.from({ length: 110 }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        z: Math.random() * 0.8 + 0.2,
-        r: Math.random() * 1.1 + 0.25,
-      }));
     };
     resize();
     window.addEventListener("resize", resize);
 
     let t = 0;
     const draw = () => {
-      if (document.hidden) {
-        raf = requestAnimationFrame(draw);
-        return;
-      }
-      t += 0.0035;
-      const isDark = document.documentElement.classList.contains("dark");
+      t += 0.002;
       ctx.clearRect(0, 0, w, h);
 
-      const g = ctx.createRadialGradient(w * 0.6, h * 0.35, 60, w * 0.6, h * 0.35, Math.max(w, h));
-      g.addColorStop(0, isDark ? "rgba(60,90,180,0.18)" : "rgba(37,99,235,0.09)");
-      g.addColorStop(0.4, isDark ? "rgba(20,28,70,0.10)" : "rgba(124,58,237,0.05)");
-      g.addColorStop(1, "rgba(0,0,0,0)");
+      const primaryRgb = cssVar("--primary-rgb");
+      const accentRgb = cssVar("--accent-purple-rgb");
+      const transparentRgb = cssVar("--transparent-rgb");
+      const primaryGlow = cssNumber("--background-primary-glow", 0.06);
+      const accentGlow = cssNumber("--background-accent-glow", 0.03);
+      const orbitOpacity = cssNumber("--background-orbit-opacity", 0.024);
+
+      const g = ctx.createRadialGradient(w * 0.5, h * 0.4, 80, w * 0.5, h * 0.4, Math.max(w, h));
+      g.addColorStop(0, `rgba(${primaryRgb},${primaryGlow})`);
+      g.addColorStop(0.48, `rgba(${accentRgb},${accentGlow})`);
+      g.addColorStop(1, `rgba(${transparentRgb},0)`);
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
 
-      for (let i = 0; i < 4; i++) {
-        const cx = w * 0.5 + Math.cos(t * 0.6 + i) * 60;
-        const cy = h * 0.5 + Math.sin(t * 0.5 + i * 1.3) * 40;
-        const radius = 220 + i * 110 + Math.sin(t + i) * 18;
+      for (let i = 0; i < 5; i++) {
+        const cx = w * 0.48 + Math.cos(t + i) * 26;
+        const cy = h * 0.52 + Math.sin(t * 0.8 + i) * 18;
+        const radius = 260 + i * 130;
         ctx.beginPath();
         ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-        ctx.strokeStyle = isDark ? `rgba(120,160,255,${0.055 - i * 0.012})` : `rgba(37,99,235,${0.035 - i * 0.007})`;
+        ctx.strokeStyle = `rgba(${primaryRgb},${Math.max(orbitOpacity - i * 0.003, 0)})`;
         ctx.lineWidth = 1;
         ctx.stroke();
-      }
-
-      for (const p of particles) {
-        p.x += Math.cos(t + p.z * 4) * 0.15 * p.z;
-        p.y += 0.06 * p.z;
-        if (p.y > h + 4) { p.y = -4; p.x = Math.random() * w; }
-        if (p.x > w + 4) p.x = -4;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = isDark ? `rgba(200,220,255,${0.14 + p.z * 0.38})` : `rgba(37,99,235,${0.04 + p.z * 0.10})`;
-        ctx.fill();
       }
 
       raf = requestAnimationFrame(draw);
     };
     raf = requestAnimationFrame(draw);
 
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", resize); };
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", resize);
+    };
   }, []);
 
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       <div
-        className="absolute inset-0 opacity-[0.35] dark:opacity-100"
+        className="absolute inset-0"
         style={{
-          backgroundImage: "radial-gradient(rgba(var(--primary-rgb),0.16) 1px, transparent 1px)",
-          backgroundSize: "26px 26px",
-          maskImage: "radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%)",
+          opacity: "var(--background-grid-opacity)",
+          backgroundImage: "radial-gradient(rgba(var(--primary-rgb),0.13) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          maskImage: "radial-gradient(ellipse at center, rgba(var(--mask-rgb),1) 26%, rgba(var(--mask-rgb),0) 82%)",
         }}
       />
       <canvas ref={ref} className="absolute inset-0 h-full w-full" />
-      <div className="absolute inset-0 hidden bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(0,0,0,0.55)_100%)] dark:block" />
+      <div className="absolute inset-0 bg-[image:var(--background-vignette)]" />
     </div>
   );
 }

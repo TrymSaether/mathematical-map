@@ -26,10 +26,10 @@ export function PathPanel({ data, nodeById }: { data: GraphData; nodeById: Map<s
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 16 }}
           transition={{ duration: 0.3 }}
-          className="glass scanlines absolute bottom-4 left-1/2 z-30 w-[min(960px,92vw)] -translate-x-1/2 rounded-2xl"
+          className="atlas-panel absolute bottom-4 left-1/2 z-30 w-[min(960px,92vw)] -translate-x-1/2 rounded-2xl"
         >
           <header className="flex items-center justify-between border-b border-[var(--border)] px-4 py-2.5">
-            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-violet-600 dark:text-violet-300">
+            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[rgb(var(--accent-purple-rgb))]">
               <Route className="h-3.5 w-3.5" />
               Learning path → {KIND_LABEL[target.kind]} {target.number} · {target.title}
             </div>

@@ -171,7 +171,14 @@ export const RELATION_LABEL = new Proxy(relationLabelBase, {
 }) as Record<string, string>;
 
 const relationColorBase = relationColors as Record<string, string>;
-const fallbackRelationColors = ["#5ce1ff", "#a78bff", "#ffd58a", "#7af3c4", "#ff8fb1", "#ffb86c"];
+const fallbackRelationColors = [
+  "var(--primary)",
+  "rgb(var(--accent-purple-rgb))",
+  "var(--warning)",
+  "var(--success)",
+  "var(--danger)",
+  "var(--muted)",
+];
 
 export const RELATION_COLOR = new Proxy(relationColorBase, {
   get(target, prop) {

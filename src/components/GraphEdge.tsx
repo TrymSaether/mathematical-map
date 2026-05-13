@@ -23,8 +23,10 @@ export function GraphEdgeView(props: EdgeProps<Data>) {
           stroke: style.color,
           strokeWidth: style.width,
           strokeOpacity: style.opacity,
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
           strokeDasharray: style.dash,
-          filter: data?.highlight ? `drop-shadow(0 0 6px ${style.color})` : undefined,
+          filter: data?.highlight ? "var(--edge-highlight-shadow)" : undefined,
         }}
       />
       {data?.highlight && (
@@ -34,8 +36,9 @@ export function GraphEdgeView(props: EdgeProps<Data>) {
               position: "absolute",
               transform: `translate(-50%, -50%) translate(${(sourceX + targetX) / 2}px, ${(sourceY + targetY) / 2}px)`,
               pointerEvents: "none",
+              color: style.color,
             }}
-            className="rounded-full border border-[var(--border)] bg-[var(--surface-strong)] px-2 py-0.5 text-[9px] font-medium uppercase tracking-widest text-[var(--text-soft)] backdrop-blur"
+            className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-2 py-0.5 text-[9px] font-semibold uppercase tracking-widest shadow-[var(--shadow-soft)]"
           >
             {style.label}
           </div>

@@ -1,78 +1,102 @@
-/**
- * Centralized color system for the mathematical map
- * All colors are defined here for consistency and maintainability
- */
-
-// Base color palette
-export const palette = {
-  // Accent colors by relation type
-  cyan: "#2563eb",
-  violet: "#7c3aed",
-  gold: "#eab308",
-  rose: "#db2777",
-  mint: "#16a34a",
-  orange: "#f97316",
+/** Centralized Math Atlas color tokens. Light mode is canonical; dark mode keeps the same semantic palette. */
+export const atlasColors = {
+  primary: "#2563eb",
+  primaryDark: "#60a5fa",
+  foundations: "#2563eb",
+  continuity: "#16a34a",
+  connectedness: "#7c3aed",
+  fundamentalGroup: "#dc2626",
+  coveringSpaces: "#0d9488",
+  compactness: "#f97316",
+  homotopy: "#db2777",
+  examples: "#eab308",
+  slate: "#64748b",
 } as const;
 
-// RGB values for CSS custom properties (used with rgba(var(--c), opacity))
-// These must match the hex values above
+export const palette = {
+  cyan: atlasColors.foundations,
+  blue: atlasColors.foundations,
+  violet: atlasColors.connectedness,
+  gold: atlasColors.examples,
+  rose: atlasColors.homotopy,
+  red: atlasColors.fundamentalGroup,
+  mint: atlasColors.continuity,
+  teal: atlasColors.coveringSpaces,
+  orange: atlasColors.compactness,
+  slate: atlasColors.slate,
+} as const;
+
 export const paletteRGB = {
   cyan: "37, 99, 235",
+  blue: "37, 99, 235",
   violet: "124, 58, 237",
   gold: "234, 179, 8",
   rose: "219, 39, 119",
+  red: "220, 38, 38",
   mint: "22, 163, 74",
+  teal: "13, 148, 136",
   orange: "249, 115, 22",
+  slate: "100, 116, 139",
 } as const;
 
-// Semantic colors for node kinds
 export const nodeKindColors = {
-  definition: palette.cyan,
+  definition: palette.blue,
   theorem: palette.violet,
   lemma: palette.mint,
   example: palette.gold,
   proposition: palette.rose,
   corollary: palette.orange,
+  structure: palette.blue,
+  object: palette.violet,
+  property: palette.mint,
+  construction: palette.teal,
+  notation: palette.gold,
+  counterexample: palette.red,
+  non_example: palette.red,
+  assumption: palette.rose,
+  proof: palette.orange,
+  proof_step: palette.orange,
+  proof_method: palette.orange,
+  axiom: palette.blue,
+  application: palette.teal,
 } as const;
 
-// RGB values for node kinds (matching CSS custom properties)
-export const nodeKindColorsRGB = {
-  definition: paletteRGB.cyan,
-  theorem: paletteRGB.violet,
-  lemma: paletteRGB.mint,
-  example: paletteRGB.gold,
-  proposition: paletteRGB.rose,
-  corollary: paletteRGB.orange,
-} as const;
-
-// Semantic colors for relation types
 export const relationColors = {
-  statement: palette.cyan,
+  statement: palette.blue,
   proof: palette.violet,
   illustration: palette.gold,
+  defines: palette.blue,
+  defined_by: palette.blue,
+  requires: palette.violet,
+  uses: palette.violet,
+  proves: palette.violet,
+  implies: palette.violet,
+  has_example: palette.gold,
+  has_counterexample: palette.red,
+  equivalent_to: palette.teal,
+  generalizes: palette.mint,
+  specializes: palette.mint,
+  prerequisite_for: palette.orange,
 } as const;
 
-// UI background colors
 export const bg = {
-  base: "var(--app-bg)",
+  base: "var(--background)",
   surface: "var(--surface)",
-  surface2: "var(--surface-strong)",
-  surface3: "var(--surface-soft)",
-  surface4: "var(--surface-hover)",
+  surface2: "var(--surface-raised)",
+  surface3: "var(--surface-muted)",
+  surface4: "var(--field-hover)",
   surface5: "var(--field)",
 } as const;
 
-// UI border/grid colors
 export const ui = {
   grid: "var(--canvas-grid)",
   ring: "rgba(var(--primary-rgb), 0.12)",
   gridAlpha: 0.06,
   ringAlpha: 0.12,
   primaryAlpha: 0.06,
-  primaryRGB: [120, 140, 255],
+  primaryRGB: [37, 99, 235],
 } as const;
 
-// Stroke/border colors
 export const stroke = {
   primary: "var(--border)",
   primaryHover: "var(--text)",
@@ -80,67 +104,30 @@ export const stroke = {
   tertiary: "rgba(var(--primary-rgb), 0.15)",
 } as const;
 
-// Canvas/graph specific colors
 export const canvas = {
   background: "var(--minimap-bg)",
   maskBackground: "var(--minimap-mask)",
   maskStroke: "var(--minimap-stroke)",
   gridBackground: "var(--canvas-grid)",
-  scrollbarThumb: "rgba(120, 140, 255, 0.25)",
+  scrollbarThumb: "rgba(var(--primary-rgb), 0.25)",
 } as const;
 
-// Text colors
-export const text = {
-  primary: "#cbd5ff",
-  secondary: "#0a0d18", // for light mode
-  light: "#f5f6fb",
-} as const;
-
-// Glow effects (shadows with color)
-export const glows = {
-  primary: "0 0 40px -10px rgba(124,160,255,0.55)",
-  cyan: "0 0 30px -6px rgba(92,225,255,0.6)",
-  violet: "0 0 30px -6px rgba(167,139,255,0.6)",
-} as const;
-
-/**
- * Convert hex color to RGB values for use in rgba() CSS function
- * @example hexToRgb("#5ce1ff") => [92, 225, 255]
- */
 export function hexToRgb(hex: string): [number, number, number] {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   if (!result) throw new Error(`Invalid hex color: ${hex}`);
-  return [
-    parseInt(result[1], 16),
-    parseInt(result[2], 16),
-    parseInt(result[3], 16),
-  ];
+  return [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)];
 }
 
-/**
- * Convert hex color to RGB string for use in CSS custom properties
- * @example hexToRgbString("#5ce1ff") => "92, 225, 255"
- */
 export function hexToRgbString(hex: string): string {
   const [r, g, b] = hexToRgb(hex);
   return `${r}, ${g}, ${b}`;
 }
 
-/**
- * Generate an rgba color string from hex and opacity
- * @example rgbaFromHex("#5ce1ff", 0.5) => "rgba(92, 225, 255, 0.5)"
- */
 export function rgbaFromHex(hex: string, opacity: number): string {
   const [r, g, b] = hexToRgb(hex);
   return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 }
 
-/**
- * Get CSS custom property for a color using CSS custom property syntax
- * Used in inline styles to reference Tailwind-managed colors
- * @example getCSSVar("c") => "rgba(var(--c),1)"
- * @example getCSSVar("c", 0.5) => "rgba(var(--c),0.5)"
- */
-export function getCSSVar(varName: string, opacity: number = 1): string {
+export function getCSSVar(varName: string, opacity = 1): string {
   return `rgba(var(--${varName}),${opacity})`;
 }

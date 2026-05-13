@@ -245,5 +245,5 @@ function cmpKey(a: [string, number[]], b: [string, number[]]): number {
 }
 
 function edgeColor(e: TopoEdge): string {
-  return RELATION_COLOR[e.relation] ?? "#5ce1ff";
+  return RELATION_COLOR[e.relation] ?? "var(--primary)";
 }

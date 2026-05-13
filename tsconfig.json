@@ -16,6 +16,13 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "mathematical-map-multifield-files/src"],
+  "include": [
+    "src",
+    "mathematical-map-multifield-files/src",
+    "mathematical-map-theme-token-refactor-files/src/components/ui/Badge.tsx",
+    "mathematical-map-theme-token-refactor-files/src/components/ui/Button.tsx",
+    "mathematical-map-theme-token-refactor-files/src/components/ui/Input.tsx",
+    "mathematical-map-theme-token-refactor-files/src/components/ui/Select.tsx"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
