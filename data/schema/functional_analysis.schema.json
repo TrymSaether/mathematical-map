@@ -5,13 +5,7 @@
   "description": "Schema for a directed typed multigraph of mathematical items and typed mathematical relations.",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "schema",
-    "graph",
-    "views",
-    "query_model",
-    "example_queries"
-  ],
+  "required": ["schema", "graph", "views", "query_model", "example_queries"],
   "properties": {
     "schema": {
       "type": "object",
@@ -185,10 +179,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -296,10 +287,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -407,10 +395,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -518,10 +503,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -629,10 +611,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -740,10 +719,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -851,10 +827,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -962,10 +935,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -1073,10 +1043,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -1184,10 +1151,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -1295,10 +1259,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -1406,10 +1367,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -1517,10 +1475,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -1628,10 +1583,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -1739,10 +1691,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -1850,10 +1799,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -1961,10 +1907,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -2072,10 +2015,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -2183,10 +2123,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -2294,10 +2231,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -2405,10 +2339,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -2516,10 +2447,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -2627,10 +2555,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -2738,10 +2663,7 @@
                   }
                 },
                 "inverse_edge_type": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
+                  "type": ["string", "null"],
                   "enum": [
                     "defines",
                     "defined_by",
@@ -2936,9 +2858,7 @@
     "query_model": {
       "type": "object",
       "additionalProperties": true,
-      "required": [
-        "description"
-      ],
+      "required": ["description"],
       "properties": {
         "description": {
           "type": "string"
@@ -2990,10 +2910,7 @@
           "edge_filter": {
             "type": "object",
             "additionalProperties": false,
-            "required": [
-              "edge_types",
-              "dependency_classes"
-            ],
+            "required": ["edge_types", "dependency_classes"],
             "properties": {
               "edge_types": {
                 "type": "array",
@@ -3046,17 +2963,10 @@
           },
           "traversal_direction": {
             "type": "string",
-            "enum": [
-              "outgoing",
-              "incoming",
-              "both"
-            ]
+            "enum": ["outgoing", "incoming", "both"]
           },
           "expected_output": {
-            "type": [
-              "string",
-              "array"
-            ],
+            "type": ["string", "array"],
             "items": {
               "type": "string"
             }
@@ -3120,28 +3030,16 @@
           ]
         },
         "statement": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "formal_statement": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "definition": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "intuition": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "notation": {
           "oneOf": [
@@ -3231,11 +3129,7 @@
         "metadata": {
           "type": "object",
           "additionalProperties": false,
-          "required": [
-            "tags",
-            "syllabus_priority",
-            "source"
-          ],
+          "required": ["tags", "syllabus_priority", "source"],
           "properties": {
             "tags": {
               "type": "array",
@@ -3245,18 +3139,10 @@
             },
             "syllabus_priority": {
               "type": "string",
-              "enum": [
-                "low",
-                "medium",
-                "high",
-                "core"
-              ]
+              "enum": ["low", "medium", "high", "core"]
             },
             "source": {
-              "type": [
-                "string",
-                "null"
-              ]
+              "type": ["string", "null"]
             }
           }
         },
@@ -3298,12 +3184,7 @@
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": [
-              "id",
-              "label",
-              "hypotheses",
-              "conclusion"
-            ],
+            "required": ["id", "label", "hypotheses", "conclusion"],
             "properties": {
               "id": {
                 "type": "string",
@@ -3424,9 +3305,7 @@
                 "const": "theorem"
               }
             },
-            "required": [
-              "kind"
-            ]
+            "required": ["kind"]
           },
           "then": {
             "required": [
@@ -3447,9 +3326,7 @@
                 "const": "definition"
               }
             },
-            "required": [
-              "kind"
-            ]
+            "required": ["kind"]
           },
           "then": {
             "required": [
@@ -3469,9 +3346,7 @@
                 "const": "proof"
               }
             },
-            "required": [
-              "kind"
-            ]
+            "required": ["kind"]
           },
           "then": {
             "required": [
@@ -3491,9 +3366,7 @@
                 "const": "proof_step"
               }
             },
-            "required": [
-              "kind"
-            ]
+            "required": ["kind"]
           },
           "then": {
             "required": [
@@ -3509,16 +3382,10 @@
           "if": {
             "properties": {
               "kind": {
-                "enum": [
-                  "example",
-                  "non_example",
-                  "counterexample"
-                ]
+                "enum": ["example", "non_example", "counterexample"]
               }
             },
-            "required": [
-              "kind"
-            ]
+            "required": ["kind"]
           },
           "then": {
             "required": [
@@ -3588,10 +3455,7 @@
           ]
         },
         "dependency_class": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": ["string", "null"],
           "enum": [
             "definitional_dependency",
             "logical_dependency",
@@ -3612,17 +3476,10 @@
         },
         "confidence": {
           "type": "string",
-          "enum": [
-            "high",
-            "medium",
-            "low"
-          ]
+          "enum": ["high", "medium", "low"]
         },
         "notes": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         }
       }
     }

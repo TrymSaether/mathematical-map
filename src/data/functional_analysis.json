@@ -866,7 +866,9 @@
     "design_notes": [
       "Trees are extracted views; the stored object is a directed typed multigraph.",
       "Definitions, assumptions, proofs, proof steps, examples, and counterexamples are first-class nodes.",
-      "Theorem assumptions, statement definitions, and proof dependencies use different dependency classes."
+      "Theorem assumptions, statement definitions, and proof dependencies use different dependency classes.",
+      "Notation nodes are used when the notation itself carries conceptual load, e.g. X^*, M<=X, and F|_M=f. Ordinary symbols remain in item.notation.",
+      "The strict provenance for Hahn-Banach branches: vector_space -> normed_vector_space -> linear_subspace/subspace_norm and linear_functional -> bounded_linear_functional -> dual_space; restriction notation is a notation dependency, not a logical prerequisite."
     ],
     "items": [
       {
@@ -1145,21 +1147,22 @@
         "label": "Dual space",
         "kind": "structure",
         "statement": null,
-        "formal_statement": "X^* = L(X, K).",
-        "definition": "The Banach space of continuous linear functionals on a normed vector space.",
-        "intuition": "The space of all continuous scalar probes on X.",
-        "notation": "X*",
+        "formal_statement": "X^* = L(X,K) = {f:X->K : f is linear and bounded}.",
+        "definition": "The Banach space of bounded linear functionals on a normed vector space.",
+        "intuition": "The space of all continuous scalar-valued probes on X.",
+        "notation": ["X^*", "X'", "L(X,K)", "\\mathcal L(X,K)"],
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [
             "normed_vector_space",
             "linear_functional",
-            "bounded_linear_operator"
+            "bounded_linear_operator",
+            "bounded_linear_functional"
           ],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
-          "notation_dependency": [],
+          "notation_dependency": ["dual_space_notation"],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
@@ -1170,10 +1173,11 @@
           "e056",
           "e065",
           "e066",
-          "e256"
+          "e256",
+          "e314"
         ],
         "metadata": {
-          "tags": ["duality", "space"],
+          "tags": ["duality", "space", "functional"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -2291,10 +2295,17 @@
         "label": "Hahn-Banach theorem",
         "kind": "theorem",
         "statement": "A dominated linear functional on a subspace extends to the whole space without increasing its bound.",
-        "formal_statement": "If f<=p on V subset E, p sublinear, then f extends to F:E->R with F<=p; normed-space versions preserve norm.",
+        "formal_statement": "Sublinear form: if V<=E, p:E->R is sublinear, and f:V->R is linear with f<=p on V, then exists F:E->R linear with F|_V=f and F<=p on E. Normed form: if X is normed, M<=X, and f in M^*, then exists F in X^* with F|_M=f and ||F||_{X^*}=||f||_{M^*}.",
         "definition": null,
         "intuition": "Scalar probes defined on a subspace can be extended globally.",
-        "notation": null,
+        "notation": [
+          "V<=E",
+          "M<=X",
+          "f in M^*",
+          "F in X^*",
+          "F|_M=f",
+          "||F||=||f||"
+        ],
         "assumptions": ["scalar_field_real_or_complex"],
         "dependencies": {
           "definitional_dependency": [
@@ -2302,12 +2313,18 @@
             "normed_vector_space",
             "linear_functional",
             "sublinear_functional",
-            "dual_space"
+            "dual_space",
+            "linear_subspace",
+            "bounded_linear_functional"
           ],
           "logical_dependency": ["zorns_lemma"],
           "assumption_dependency": ["scalar_field_real_or_complex"],
           "construction_dependency": [],
-          "notation_dependency": [],
+          "notation_dependency": [
+            "restriction_notation",
+            "dual_space_notation",
+            "subspace_notation"
+          ],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
@@ -2319,7 +2336,8 @@
           "e086",
           "e087",
           "e088",
-          "e139"
+          "e139",
+          "e318"
         ],
         "metadata": {
           "tags": ["hahn-banach", "duality"],
@@ -2341,17 +2359,29 @@
         "applications": ["separation_of_points", "weak_topology"],
         "variants": [
           {
+            "id": "hahn_banach_sublinear_variant",
+            "label": "Sublinear Hahn-Banach",
+            "hypotheses": [
+              "E real vector space",
+              "V subspace of E",
+              "p:E->R sublinear",
+              "f:V->R linear",
+              "f<=p on V"
+            ],
+            "conclusion": "There exists F:E->R linear with F|_V=f and F<=p on E."
+          },
+          {
             "id": "hahn_banach_norm_preserving_variant",
             "label": "Norm-preserving Hahn-Banach",
-            "hypotheses": ["X normed", "V subspace", "f in V*"],
-            "conclusion": "There is F in X* extending f with ||F||=||f||."
+            "hypotheses": ["X normed", "M subspace of X", "f in M^*"],
+            "conclusion": "There exists F in X^* extending f with ||F||=||f||."
           },
           {
             "id": "hahn_banach_geometric_variant",
             "label": "Geometric separation form",
             "hypotheses": [
               "locally convex space",
-              "disjoint convex sets under separation assumptions"
+              "separation assumptions on convex sets"
             ],
             "conclusion": "A continuous linear functional separates the sets."
           }
@@ -3632,6 +3662,267 @@
           "tags": ["application", "spectral"],
           "syllabus_priority": "high",
           "source": null
+        }
+      },
+      {
+        "id": "linear_subspace",
+        "label": "Linear subspace",
+        "kind": "definition",
+        "statement": "A subset M of a vector space X that is itself a vector space under the inherited operations.",
+        "formal_statement": "M <= X iff M subset X, x,y in M imply x+y in M, and alpha x in M for all scalars alpha.",
+        "definition": "A subset of a vector space closed under addition and scalar multiplication.",
+        "intuition": "A smaller vector space sitting inside a larger vector space.",
+        "notation": ["M <= X", "M \\le X", "M subset X"],
+        "assumptions": ["scalar_field_real_or_complex"],
+        "dependencies": {
+          "definitional_dependency": ["vector_space"],
+          "logical_dependency": [],
+          "assumption_dependency": ["scalar_field_real_or_complex"],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": [],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e309"],
+        "metadata": {
+          "tags": ["subspace", "linear algebra", "notation"],
+          "syllabus_priority": "core",
+          "source": "chat_2026_05_13"
+        },
+        "introduced_object": "linear_subspace",
+        "genus": "subset of a vector space",
+        "differentia": [
+          "closed under vector addition",
+          "closed under scalar multiplication"
+        ],
+        "examples": [],
+        "non_examples": [],
+        "equivalent_definitions": []
+      },
+      {
+        "id": "subspace_norm",
+        "label": "Subspace norm",
+        "kind": "construction",
+        "statement": "A linear subspace of a normed space inherits the ambient norm.",
+        "formal_statement": "If M <= X and X is normed, then ||x||_M := ||x||_X for x in M.",
+        "definition": "The norm on a subspace obtained by restricting the ambient norm.",
+        "intuition": "Vectors in M are measured with the same ruler as vectors in X.",
+        "notation": ["||x||_M = ||x||_X"],
+        "assumptions": [],
+        "dependencies": {
+          "definitional_dependency": [
+            "linear_subspace",
+            "normed_vector_space",
+            "norm"
+          ],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": ["norm"],
+          "notation_dependency": [],
+          "pedagogical_dependency": [],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e310", "e311"],
+        "metadata": {
+          "tags": ["subspace", "norm"],
+          "syllabus_priority": "core",
+          "source": "chat_2026_05_13"
+        }
+      },
+      {
+        "id": "bounded_linear_functional",
+        "label": "Bounded linear functional",
+        "kind": "definition",
+        "statement": "A bounded linear functional is a bounded linear scalar-valued map on a normed space.",
+        "formal_statement": "f in X^* iff f:X->K is linear and ||f|| := sup_{||x||_X<=1}|f(x)| < infinity.",
+        "definition": "A bounded linear operator from a normed vector space to its scalar field.",
+        "intuition": "A continuous scalar-valued measurement on vectors.",
+        "notation": ["f in X^*", "x^* in X^*", "f:X->K"],
+        "assumptions": ["scalar_field_real_or_complex"],
+        "dependencies": {
+          "definitional_dependency": [
+            "linear_functional",
+            "bounded_linear_operator",
+            "operator_norm",
+            "normed_vector_space"
+          ],
+          "logical_dependency": [],
+          "assumption_dependency": ["scalar_field_real_or_complex"],
+          "construction_dependency": [],
+          "notation_dependency": ["dual_space_notation"],
+          "pedagogical_dependency": [],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e312", "e313"],
+        "metadata": {
+          "tags": ["duality", "functional", "bounded", "continuous"],
+          "syllabus_priority": "core",
+          "source": "chat_2026_05_13"
+        },
+        "introduced_object": "bounded_linear_functional",
+        "genus": "bounded linear operator",
+        "differentia": ["codomain is the scalar field"],
+        "examples": ["coordinate_functional_on_ell2"],
+        "non_examples": [],
+        "equivalent_definitions": ["continuous_linear_functional"]
+      },
+      {
+        "id": "dual_space_notation",
+        "label": "Dual space notation",
+        "kind": "notation",
+        "statement": "X^* denotes the dual space of X.",
+        "formal_statement": "X^* = L(X,K) = {f:X->K : f is linear and bounded}.",
+        "definition": "Notation for the space of bounded linear scalar-valued functionals on X.",
+        "intuition": "The star means: pass from vectors to continuous scalar probes.",
+        "notation": ["X^*", "X'", "L(X,K)", "\\mathcal L(X,K)"],
+        "assumptions": ["scalar_field_real_or_complex"],
+        "dependencies": {
+          "definitional_dependency": [
+            "dual_space",
+            "bounded_linear_functional"
+          ],
+          "logical_dependency": [],
+          "assumption_dependency": ["scalar_field_real_or_complex"],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": [],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e315"],
+        "metadata": {
+          "tags": ["notation", "duality"],
+          "syllabus_priority": "core",
+          "source": "chat_2026_05_13"
+        }
+      },
+      {
+        "id": "restriction_notation",
+        "label": "Restriction notation",
+        "kind": "notation",
+        "statement": "F|_M=f means F restricted to M equals f.",
+        "formal_statement": "F|_M=f iff forall x in M, F(x)=f(x).",
+        "definition": "Notation saying that a map on a larger domain agrees with a map on a smaller domain.",
+        "intuition": "The big-domain map agrees with the small-domain map wherever the small map is defined.",
+        "notation": ["F|_M=f", "F restricted to M"],
+        "assumptions": [],
+        "dependencies": {
+          "definitional_dependency": ["linear_functional", "linear_subspace"],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": [],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e316"],
+        "metadata": {
+          "tags": ["notation", "restriction", "hahn-banach"],
+          "syllabus_priority": "core",
+          "source": "chat_2026_05_13"
+        }
+      },
+      {
+        "id": "subspace_notation",
+        "label": "Subspace notation",
+        "kind": "notation",
+        "statement": "M <= X means M is a linear subspace of X.",
+        "formal_statement": "M <= X iff M is a linear subspace of X.",
+        "definition": "Notation for the linear subspace relation.",
+        "intuition": "M is not just contained in X; it is closed under the vector space operations inherited from X.",
+        "notation": ["M <= X", "M \\le X"],
+        "assumptions": [],
+        "dependencies": {
+          "definitional_dependency": ["linear_subspace"],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": [],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e317"],
+        "metadata": {
+          "tags": ["notation", "subspace"],
+          "syllabus_priority": "core",
+          "source": "chat_2026_05_13"
+        }
+      },
+      {
+        "id": "hahn_banach_norm_preserving_theorem",
+        "label": "Norm-preserving Hahn-Banach theorem",
+        "kind": "theorem",
+        "statement": "A bounded linear functional on a subspace extends to the whole normed space without increasing its norm.",
+        "formal_statement": "If X is normed, M<=X, and f in M^*, then exists F in X^* such that F|_M=f and ||F||_{X^*}=||f||_{M^*}.",
+        "definition": null,
+        "intuition": "A continuous scalar probe on a subspace can be extended to the whole space with the same size.",
+        "notation": ["M<=X", "f in M^*", "F in X^*", "F|_M=f", "||F||=||f||"],
+        "assumptions": ["scalar_field_real_or_complex"],
+        "dependencies": {
+          "definitional_dependency": [
+            "normed_vector_space",
+            "linear_subspace",
+            "subspace_norm",
+            "dual_space",
+            "bounded_linear_functional"
+          ],
+          "logical_dependency": ["hahn_banach_theorem"],
+          "assumption_dependency": ["scalar_field_real_or_complex"],
+          "construction_dependency": [],
+          "notation_dependency": [
+            "dual_space_notation",
+            "restriction_notation",
+            "subspace_notation"
+          ],
+          "pedagogical_dependency": [],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e319", "e320", "e321", "e322"],
+        "metadata": {
+          "tags": ["hahn-banach", "duality", "extension"],
+          "syllabus_priority": "core",
+          "source": "chat_2026_05_13"
+        },
+        "hypotheses": [
+          "X is a normed vector space over K",
+          "M is a linear subspace of X",
+          "M has the inherited norm from X",
+          "f is a bounded linear functional on M"
+        ],
+        "conclusion": "There exists F in X^* with F|_M=f and ||F||_{X^*}=||f||_{M^*}.",
+        "proof_methods": ["duality_argument"],
+        "related_theorems": ["hahn_banach_theorem"],
+        "examples": [],
+        "applications": ["separation_of_points"],
+        "variants": []
+      },
+      {
+        "id": "norming_functional_application",
+        "label": "Norming functional from Hahn-Banach",
+        "kind": "application",
+        "statement": "For every nonzero x in X, Hahn-Banach gives x^* in X^* with ||x^*||=1 and x^*(x)=||x||.",
+        "formal_statement": "For x in X, x != 0, exists x^* in X^* such that ||x^*||=1 and x^*(x)=||x||.",
+        "definition": null,
+        "intuition": "Every vector has a continuous scalar probe that detects its full norm.",
+        "notation": ["x^*", "x^*(x)", "||x^*||=1"],
+        "assumptions": ["scalar_field_real_or_complex"],
+        "dependencies": {
+          "definitional_dependency": [
+            "normed_vector_space",
+            "dual_space",
+            "bounded_linear_functional"
+          ],
+          "logical_dependency": ["hahn_banach_norm_preserving_theorem"],
+          "assumption_dependency": ["scalar_field_real_or_complex"],
+          "construction_dependency": [],
+          "notation_dependency": ["dual_space_notation"],
+          "pedagogical_dependency": [],
+          "historical_dependency": []
+        },
+        "outgoing_relations": [],
+        "metadata": {
+          "tags": ["hahn-banach", "duality", "norming functional"],
+          "syllabus_priority": "core",
+          "source": "chat_2026_05_13"
         }
       }
     ],
@@ -7020,6 +7311,160 @@
         "type": "requires",
         "dependency_class": "definitional_dependency",
         "label": "incomplete_normed_spaces_as_non_examples_of_banach_spaces requires banach_space",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e309",
+        "source": "linear_subspace",
+        "target": "vector_space",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "linear_subspace requires vector_space",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e310",
+        "source": "subspace_norm",
+        "target": "linear_subspace",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "subspace_norm requires linear_subspace",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e311",
+        "source": "subspace_norm",
+        "target": "normed_vector_space",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "subspace_norm requires normed_vector_space",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e312",
+        "source": "bounded_linear_functional",
+        "target": "linear_functional",
+        "type": "subtype_of",
+        "dependency_class": "definitional_dependency",
+        "label": "bounded_linear_functional is a subtype of linear_functional",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e313",
+        "source": "bounded_linear_functional",
+        "target": "bounded_linear_operator",
+        "type": "subtype_of",
+        "dependency_class": "definitional_dependency",
+        "label": "bounded_linear_functional is a bounded_linear_operator with scalar codomain",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e314",
+        "source": "dual_space",
+        "target": "bounded_linear_functional",
+        "type": "constructed_from",
+        "dependency_class": "definitional_dependency",
+        "label": "dual_space is constructed from bounded_linear_functionals",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e315",
+        "source": "dual_space_notation",
+        "target": "dual_space",
+        "type": "defined_by",
+        "dependency_class": "notation_dependency",
+        "label": "X^* notation is defined by dual_space",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e316",
+        "source": "restriction_notation",
+        "target": "linear_functional",
+        "type": "requires",
+        "dependency_class": "notation_dependency",
+        "label": "restriction_notation requires maps such as linear functionals",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "Restriction notation is general, but in this graph it is mainly used for linear functionals."
+      },
+      {
+        "id": "e317",
+        "source": "subspace_notation",
+        "target": "linear_subspace",
+        "type": "defined_by",
+        "dependency_class": "notation_dependency",
+        "label": "M<=X notation is defined by linear_subspace",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e318",
+        "source": "hahn_banach_theorem",
+        "target": "hahn_banach_norm_preserving_theorem",
+        "type": "implies",
+        "dependency_class": "logical_dependency",
+        "label": "Hahn-Banach implies its norm-preserving normed-space form",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e319",
+        "source": "hahn_banach_norm_preserving_theorem",
+        "target": "restriction_notation",
+        "type": "requires",
+        "dependency_class": "notation_dependency",
+        "label": "Norm-preserving Hahn-Banach uses F|_M=f",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e320",
+        "source": "hahn_banach_norm_preserving_theorem",
+        "target": "dual_space_notation",
+        "type": "requires",
+        "dependency_class": "notation_dependency",
+        "label": "Norm-preserving Hahn-Banach uses X^* and M^* notation",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e321",
+        "source": "hahn_banach_norm_preserving_theorem",
+        "target": "subspace_norm",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "Norm-preserving Hahn-Banach requires the inherited norm on M",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e322",
+        "source": "hahn_banach_norm_preserving_theorem",
+        "target": "norming_functional_application",
+        "type": "implies",
+        "dependency_class": "logical_dependency",
+        "label": "Norm-preserving Hahn-Banach gives norming functionals",
         "direction": "source_to_target",
         "confidence": "high",
         "notes": null
