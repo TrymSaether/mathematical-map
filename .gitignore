@@ -233,7 +233,6 @@ tmbootpicker.efi
 content/
 data/topology.raw.json
 data/topology.verified.json
-src/data/topology.json
 *.pdf
 *.epub
 *.djvu
