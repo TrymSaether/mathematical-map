@@ -1,5 +1,5 @@
 /**
- * Centralized color system for the topology map
+ * Centralized color system for the mathematical map
  * All colors are defined here for consistency and maintainability
  */
 

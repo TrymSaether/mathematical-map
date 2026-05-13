@@ -63,7 +63,7 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
           </div>
           <div>
             <div className="font-display text-sm font-semibold tracking-wide title-gradient">
-              TOPOLOGY · ATLAS
+              MATHEMATICAL · MAP
             </div>
             <div className="text-[10px] uppercase tracking-[0.25em] text-white/40">
               concepts · dependencies

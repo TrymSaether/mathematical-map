@@ -10,7 +10,7 @@ export function TopBar() {
       <div className="flex items-center gap-3">
         <Sigma className="h-4 w-4 text-accent-cyan" />
         <div className="font-display text-[13px] tracking-widest text-white/80">
-          TOPOLOGY · ATLAS <span className="text-white/40">— a map of concepts & their dependencies</span>
+          MATHEMATICAL · MAP <span className="text-white/40">— a map of concepts & their dependencies</span>
         </div>
       </div>
       <div className="flex items-center gap-2 text-[11px] text-white/50">
