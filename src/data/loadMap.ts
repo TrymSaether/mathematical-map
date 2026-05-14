@@ -44,6 +44,6 @@ export function loadMap(mapId: MapId = DEFAULT_MAP_ID): LoadedMap {
     outgoingEdgesByNodeId: groupEdges(data.edges, "from"),
     kinds: [...new Set(data.nodes.map((node) => node.kind))].sort(),
     relations: [...new Set(data.edges.map((edge) => edge.relation))].sort(),
-    topics: [...new Set(data.nodes.map((node) => node.topicCluster))].sort(),
+    topics: data.domains.map((domain) => domain.id),
   };
 }

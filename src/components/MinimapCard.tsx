@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { Maximize2 } from "lucide-react";
 import { useReactFlow, useViewport, useStore as useRFStore, type Node } from "reactflow";
 import { getKindColor } from "../lib/kindStyle";
+import type { DomainRegion } from "../lib/layout";
 import type { GraphNode } from "../types";
 
 const W = 200;
@@ -13,10 +14,12 @@ const NODE_H = 84;
 /** Floating "Overview" minimap — translucent card matching the Atlas design kit. */
 export function MinimapCard({
   nodes,
+  regions,
   routeSet,
   selectedId,
 }: {
   nodes: Node[];
+  regions: DomainRegion[];
   routeSet: Set<string>;
   selectedId: string | null;
 }) {
@@ -28,7 +31,7 @@ export function MinimapCard({
   const points = useMemo(
     () =>
       nodes
-        .filter((n) => n.type !== "lane")
+        .filter((n) => n.type === "topo")
         .map((n) => ({
           id: n.id,
           cx: n.position.x + NODE_W / 2,
@@ -50,6 +53,12 @@ export function MinimapCard({
       maxX = Math.max(maxX, p.cx);
       maxY = Math.max(maxY, p.cy);
     }
+    for (const region of regions) {
+      minX = Math.min(minX, region.x);
+      minY = Math.min(minY, region.y);
+      maxX = Math.max(maxX, region.x + region.width);
+      maxY = Math.max(maxY, region.y + region.height);
+    }
     const spanX = Math.max(maxX - minX, 1);
     const spanY = Math.max(maxY - minY, 1);
     const scale = Math.min((W - PAD * 2) / spanX, (H - PAD * 2) / spanY);
@@ -64,7 +73,7 @@ export function MinimapCard({
       y: (my - offY) / scale + minY,
     });
     return { toMini, toFlow };
-  }, [points]);
+  }, [points, regions]);
 
   if (!layout) return null;
 
@@ -85,12 +94,6 @@ export function MinimapCard({
       className="absolute right-4 top-4 z-30 rounded-[12px] border border-[var(--border)] p-2 shadow-[var(--shadow-2)] backdrop-blur-[8px]"
       style={{ width: W + 16, background: "var(--minimap-bg)" }}
     >
-      <div className="flex items-center justify-between px-1 pb-1.5">
-        <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-[var(--muted)]">
-          Overview
-        </span>
-        <Maximize2 className="h-3 w-3 text-[var(--faint)]" />
-      </div>
       <svg
         viewBox={`0 0 ${W} ${H}`}
         width={W}
@@ -98,6 +101,25 @@ export function MinimapCard({
         onClick={handleClick}
         className="block cursor-pointer rounded-[6px] bg-[var(--neutral-50)]"
       >
+        {regions.map((region) => {
+          const topLeft = layout.toMini(region.x, region.y);
+          const bottomRight = layout.toMini(region.x + region.width, region.y + region.height);
+          return (
+            <rect
+              key={region.id}
+              x={topLeft.x}
+              y={topLeft.y}
+              width={bottomRight.x - topLeft.x}
+              height={bottomRight.y - topLeft.y}
+              rx={3}
+              fill={region.tint}
+              stroke={region.border}
+              strokeWidth={1}
+              strokeDasharray="2 2"
+              opacity={0.78}
+            />
+          );
+        })}
         {points.map((p) => {
           const { x, y } = layout.toMini(p.cx, p.cy);
           const sel = p.id === selectedId;

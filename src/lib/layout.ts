@@ -1,12 +1,13 @@
 import dagre from "dagre";
 import type { Node, Edge, MarkerType } from "reactflow";
-import type { TopoEdge, TopoNode } from "../types";
+import type { GraphDomain, TopoEdge, TopoNode } from "../types";
 import { RELATION_COLOR } from "../types";
 import { cmpNum } from "./graph";
 
 export interface LayoutInput {
   nodes: TopoNode[];
   edges: TopoEdge[];
+  domains?: GraphDomain[];
   showOrphans?: boolean;
 }
 
@@ -28,8 +29,9 @@ const LANE_GAP = 100; // Vertical gap between lanes/topics
 export function dependencyLayout({
   nodes,
   edges,
+  domains = [],
   showOrphans = true,
-}: LayoutInput): { nodes: Node[]; edges: Edge[]; lanes: Lane[] } {
+}: LayoutInput): { nodes: Node[]; edges: Edge[]; regions: DomainRegion[] } {
   const hasEdge = new Set<string>();
   for (const e of edges) {
     hasEdge.add(e.from);
@@ -45,23 +47,29 @@ export function dependencyLayout({
   // Items with no incoming visible edge get depth 0; arrows flow left-to-right.
   const depth = computeDepths(filtered, visibleEdges);
 
-  const byTopic = new Map<string, TopoNode[]>();
+  const domainById = new Map(domains.map((domain) => [domain.id, domain]));
+  const byDomain = new Map<string, TopoNode[]>();
   for (const n of filtered) {
-    if (!byTopic.has(n.topicCluster)) byTopic.set(n.topicCluster, []);
-    byTopic.get(n.topicCluster)!.push(n);
+    if (!byDomain.has(n.domainId)) byDomain.set(n.domainId, []);
+    byDomain.get(n.domainId)!.push(n);
   }
-  const topics = [...byTopic.keys()].sort((a, b) => {
-    const ka = minKey(byTopic.get(a)!);
-    const kb = minKey(byTopic.get(b)!);
+  const domainIds = [...byDomain.keys()].sort((a, b) => {
+    const da = domainById.get(a);
+    const db = domainById.get(b);
+    if (da && db && da.order !== db.order) return da.order - db.order;
+    if (da && !db) return -1;
+    if (!da && db) return 1;
+    const ka = minKey(byDomain.get(a)!);
+    const kb = minKey(byDomain.get(b)!);
     return cmpKey(ka, kb);
   });
 
   const rfNodes: Node[] = [];
-  const lanes: Lane[] = [];
+  const regions: DomainRegion[] = [];
   let y = 0;
-  let maxCol = 0;
-  for (const t of topics) {
-    const items = byTopic.get(t)!.sort(cmpNum);
+  for (const domainId of domainIds) {
+    const domain = domainById.get(domainId);
+    const items = byDomain.get(domainId)!.sort(cmpNum);
     // Bucket items by depth within this lane so ties stack vertically.
     const byDepth = new Map<number, TopoNode[]>();
     for (const n of items) {
@@ -70,30 +78,43 @@ export function dependencyLayout({
       byDepth.get(d)!.push(n);
     }
     let laneStacks = 1;
-    for (const [d, group] of byDepth) {
+    let minX = Infinity;
+    let minY = Infinity;
+    let maxX = -Infinity;
+    let maxY = -Infinity;
+    for (const d of [...byDepth.keys()].sort((a, b) => a - b)) {
+      const group = byDepth.get(d)!;
       laneStacks = Math.max(laneStacks, group.length);
       group.forEach((n, i) => {
+        const x = d * COL_W;
+        const nodeY = y + i * SUBROW_H;
+        minX = Math.min(minX, x);
+        minY = Math.min(minY, nodeY);
+        maxX = Math.max(maxX, x + NODE_W);
+        maxY = Math.max(maxY, nodeY + NODE_H);
         rfNodes.push({
           id: n.id,
           type: "topo",
-          position: { x: d * COL_W, y: y + i * SUBROW_H },
+          position: { x, y: nodeY },
           data: { node: n },
         });
       });
-      maxCol = Math.max(maxCol, d);
     }
     const laneH = laneStacks * SUBROW_H;
-    lanes.push({
-      topic: t,
-      subtitle: `${items.length} item${items.length === 1 ? "" : "s"}`,
-      y,
-      height: laneH - (SUBROW_H - NODE_H) + 20,
-      width: (maxCol + 1) * COL_W,
+    regions.push({
+      id: domainId,
+      label: domain?.label ?? items[0]?.topicCluster ?? domainId,
+      count: items.length,
+      x: minX - 44,
+      y: minY - 44,
+      width: Math.max(maxX - minX + 88, 320),
+      height: Math.max(maxY - minY + 76, 156),
+      color: domain?.color ?? "var(--primary)",
+      tint: domain?.tint ?? "rgba(var(--primary-rgb),0.05)",
+      border: domain?.border ?? "rgba(var(--primary-rgb),0.35)",
     });
     y += laneH + LANE_GAP - SUBROW_H + NODE_H;
   }
-  const fullW = (maxCol + 1) * COL_W;
-  for (const l of lanes) l.width = fullW;
 
   const rfEdges: Edge[] = visibleEdges.map((e) => ({
     id: e.id,
@@ -108,7 +129,7 @@ export function dependencyLayout({
     },
     data: { edge: e },
   }));
-  return { nodes: rfNodes, edges: rfEdges, lanes };
+  return { nodes: rfNodes, edges: rfEdges, regions };
 }
 
 function computeDepths(
@@ -211,12 +232,17 @@ export function clusterLayout({ nodes, edges }: LayoutInput): {
   return { nodes: rfNodes, edges: rfEdges };
 }
 
-export interface Lane {
-  topic: string;
-  subtitle: string;
+export interface DomainRegion {
+  id: string;
+  label: string;
+  count: number;
+  x: number;
   y: number;
-  height: number;
   width: number;
+  height: number;
+  color: string;
+  tint: string;
+  border: string;
 }
 
 function minKey(items: TopoNode[]): [string, number[]] {

@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import { Bookmark, X } from "lucide-react";
 import { Section } from "../ui";
 import { useStore } from "../../store";
-import { topicColor } from "../../lib/topicColors";
 import type { GraphData } from "../../types";
 
 /** Saved learning routes with per-path progress (share of stops marked learned). */
@@ -15,12 +14,12 @@ export function SavedPathsPanel({ data }: { data: GraphData }) {
   const planRoute = useStore((s) => s.planRoute);
   const select = useStore((s) => s.select);
 
-  const { topics, nodeById } = useMemo(
+  const { domainById, nodeById } = useMemo(
     () => ({
-      topics: [...new Set(data.nodes.map((n) => n.topicCluster))].sort(),
+      domainById: new Map(data.domains.map((domain) => [domain.id, domain])),
       nodeById: new Map(data.nodes.map((n) => [n.id, n])),
     }),
-    [data.nodes]
+    [data.domains, data.nodes]
   );
 
   const openPath = (fromId: string, toId: string) => {
@@ -41,7 +40,8 @@ export function SavedPathsPanel({ data }: { data: GraphData }) {
           {savedPaths.map((p) => {
             const learned = p.nodeIds.filter((id) => learningStates[id] === "learned").length;
             const pct = p.nodeIds.length ? Math.round((learned / p.nodeIds.length) * 100) : 0;
-            const accent = topicColor(topics, nodeById.get(p.fromId)?.topicCluster ?? "");
+            const fromNode = nodeById.get(p.fromId);
+            const accent = fromNode ? domainById.get(fromNode.domainId)?.color ?? "var(--primary)" : "var(--primary)";
             return (
               <div key={p.id} className="group flex items-stretch gap-2.5 rounded-[10px] px-1.5 py-2 transition hover:bg-[var(--surface-muted)]">
                 <span className="w-1.5 shrink-0 rounded-full" style={{ background: accent }} />

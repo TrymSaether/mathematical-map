@@ -26,13 +26,13 @@ export default function App() {
   const visibleCount = useMemo(() => {
     return data.nodes.filter((n) => {
       if (kinds.size > 0 && !kinds.has(n.kind)) return false;
-      if (topics.size > 0 && !topics.has(n.topicCluster)) return false;
-      if (hiddenTopics.has(n.topicCluster)) return false;
+      if (topics.size > 0 && !topics.has(n.domainId)) return false;
+      if (hiddenTopics.has(n.domainId)) return false;
       if (search) {
         const hay =
           searchScope === "title"
             ? `${n.title} ${n.number} ${n.kind}`.toLowerCase()
-            : `${n.title} ${n.number} ${n.kind} ${n.tags.join(" ")} ${n.formalStatement} ${n.originalText} ${n.explanation}`.toLowerCase();
+            : `${n.title} ${n.number} ${n.kind} ${n.topicCluster} ${n.tags.join(" ")} ${n.formalStatement} ${n.originalText} ${n.explanation}`.toLowerCase();
         if (!hay.includes(search)) return false;
       }
       return true;

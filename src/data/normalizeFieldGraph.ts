@@ -18,11 +18,6 @@ function formalText(item: FieldItem): string {
   return item.formal_statement ?? "";
 }
 
-function topicFor(item: FieldItem): string {
-  const tags = item.metadata?.tags ?? [];
-  return tags[0] ?? item.metadata?.syllabus_priority ?? item.kind;
-}
-
 function formulaFromNotation(item: FieldItem): string {
   const notation = item.notation;
   if (!notation) return "";
@@ -31,20 +26,25 @@ function formulaFromNotation(item: FieldItem): string {
 
 export function normalizeFieldGraph(input: FieldJson): GraphData {
   const nodeIds = new Set(input.graph.items.map((item) => item.id));
+  const domains = [...input.graph.domains].sort((a, b) => a.order - b.order || a.label.localeCompare(b.label));
+  const domainById = new Map(domains.map((domain) => [domain.id, domain]));
 
   const nodes: GraphNode[] = input.graph.items.map((item, index) => {
     const deps = flattenDependencies(item.dependencies ?? {}).filter((id) => nodeIds.has(id));
     const source = item.metadata?.source ?? "";
+    const domain = domainById.get(item.domain);
+    if (!domain) throw new Error(`Item ${item.id} references missing domain ${item.domain}`);
 
     return {
       id: item.id,
       kind: item.kind,
+      domainId: item.domain,
       number: String(index + 1),
       title: item.label,
       chapter: input.graph.label,
       section: item.metadata?.syllabus_priority ?? "",
       sectionTitle: source || input.graph.label,
-      topicCluster: topicFor(item),
+      topicCluster: domain.label,
       originalText: sourceText(item),
       formalStatement: formalText(item),
       mathematicalFormula: formulaFromNotation(item),
@@ -74,6 +74,7 @@ export function normalizeFieldGraph(input: FieldJson): GraphData {
     id: input.graph.id,
     label: input.graph.label,
     field: input.graph.field,
+    domains,
     nodes,
     edges,
   };

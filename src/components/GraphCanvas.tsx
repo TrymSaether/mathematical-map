@@ -9,19 +9,19 @@ import ReactFlow, {
   type Edge,
 } from "reactflow";
 import { useStore } from "../store";
-import { dependencyLayout, clusterLayout, type Lane } from "../lib/layout";
+import { dependencyLayout, clusterLayout, type DomainRegion } from "../lib/layout";
 import { buildAdjacency, ancestors, descendants } from "../lib/graph";
 import { findRoute } from "../lib/route";
 import { canvas } from "../lib/colors";
 import type { GraphData } from "../types";
 import { TopoNodeView } from "./TopoNode";
 import { TopoEdgeView } from "./TopoEdge";
-import { LaneNode } from "./LaneNode";
+import { DomainRegionNode } from "./DomainRegionNode";
 import { Dock } from "./Dock";
 import { MinimapCard } from "./MinimapCard";
 import type { RouteRole } from "./GraphNodeCard";
 
-const nodeTypes = { topo: TopoNodeView, lane: LaneNode };
+const nodeTypes = { topo: TopoNodeView, domainRegion: DomainRegionNode };
 const edgeTypes = { topo: TopoEdgeView };
 
 function InnerGraph({ data }: { data: GraphData }) {
@@ -47,13 +47,13 @@ function InnerGraph({ data }: { data: GraphData }) {
   const filteredNodes = useMemo(() => {
     return data.nodes.filter((n) => {
       if (kinds.size > 0 && !kinds.has(n.kind)) return false;
-      if (topics.size && !topics.has(n.topicCluster)) return false;
-      if (hiddenTopics.has(n.topicCluster)) return false;
+      if (topics.size && !topics.has(n.domainId)) return false;
+      if (hiddenTopics.has(n.domainId)) return false;
       if (search) {
         const hay =
           searchScope === "title"
             ? `${n.title} ${n.number} ${n.kind}`.toLowerCase()
-            : `${n.title} ${n.number} ${n.kind} ${n.tags.join(" ")} ${n.formalStatement} ${n.originalText}`.toLowerCase();
+            : `${n.title} ${n.number} ${n.kind} ${n.topicCluster} ${n.tags.join(" ")} ${n.formalStatement} ${n.originalText}`.toLowerCase();
         if (!hay.includes(search)) return false;
       }
       return true;
@@ -69,14 +69,14 @@ function InnerGraph({ data }: { data: GraphData }) {
     [relations, visibleIds]
   );
 
-  const { rawNodes, rawEdges, lanes } = useMemo(() => {
+  const { rawNodes, rawEdges, regions } = useMemo(() => {
     if (view === "dependency") {
-      const r = dependencyLayout({ nodes: filteredNodes, edges: filteredEdges, showOrphans });
-      return { rawNodes: r.nodes, rawEdges: r.edges, lanes: r.lanes };
+      const r = dependencyLayout({ nodes: filteredNodes, edges: filteredEdges, domains: data.domains, showOrphans });
+      return { rawNodes: r.nodes, rawEdges: r.edges, regions: r.regions };
     }
     const r = clusterLayout({ nodes: filteredNodes, edges: filteredEdges });
-    return { rawNodes: r.nodes, rawEdges: r.edges, lanes: [] as Lane[] };
-  }, [view, filteredNodes, filteredEdges, showOrphans]);
+    return { rawNodes: r.nodes, rawEdges: r.edges, regions: [] as DomainRegion[] };
+  }, [view, filteredNodes, filteredEdges, data.domains, showOrphans]);
 
   const adj = useMemo(() => buildAdjacency(filteredEdges, relations), [filteredEdges, relations]);
 
@@ -150,20 +150,28 @@ function InnerGraph({ data }: { data: GraphData }) {
     return { ancSet: a, descSet: d, edgeHi: eHi };
   }, [selectedId, adj, filteredEdges, highlight, visibleIds]);
 
-  const laneNodes: Node[] = useMemo(
+  const regionNodes: Node[] = useMemo(
     () =>
-      lanes.map((l) => ({
-        id: `lane-${l.topic}`,
-        type: "lane",
-        position: { x: -160, y: l.y - 20 },
-        data: { topic: l.topic, subtitle: l.subtitle, width: l.width, height: l.height },
+      regions.map((region) => ({
+        id: `domain-region-${region.id}`,
+        type: "domainRegion",
+        position: { x: region.x, y: region.y },
+        data: {
+          label: region.label,
+          count: region.count,
+          width: region.width,
+          height: region.height,
+          color: region.color,
+          tint: region.tint,
+          border: region.border,
+        },
         draggable: false,
         selectable: false,
         focusable: false,
-        zIndex: -1,
-        style: { zIndex: -1 },
+        zIndex: -10,
+        style: { zIndex: -10 },
       })),
-    [lanes]
+    [regions]
   );
 
   const nodes: Node[] = useMemo(
@@ -244,13 +252,13 @@ function InnerGraph({ data }: { data: GraphData }) {
   return (
     <>
       <ReactFlow
-        nodes={[...laneNodes, ...nodes]}
+        nodes={[...regionNodes, ...nodes]}
         edges={edges}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         onPaneClick={() => useStore.getState().select(null)}
         onNodeContextMenu={(event, node) => {
-          if (node.type === "lane") return;
+          if (node.type === "domainRegion") return;
           event.preventDefault();
           useStore.getState().setRouteTo(node.id);
         }}
@@ -263,7 +271,7 @@ function InnerGraph({ data }: { data: GraphData }) {
         <RFBackground variant={BackgroundVariant.Dots} gap={28} size={1} color={canvas.gridBackground} />
         <Controls position="bottom-right" showInteractive={false} />
       </ReactFlow>
-      <MinimapCard nodes={[...laneNodes, ...nodes]} routeSet={routeSet} selectedId={selectedId} />
+      <MinimapCard nodes={nodes} regions={regions} routeSet={routeSet} selectedId={selectedId} />
       <Dock />
     </>
   );

@@ -10,9 +10,21 @@ const OptionalTextSchema = z.string().trim().default("");
 const RequiredTextSchema = z.string().trim().min(1);
 const StringArraySchema = z.array(z.string().trim().min(1)).default([]);
 
+export const GraphDomainSchema = z.object({
+  id: IdSchema,
+  label: RequiredTextSchema,
+  order: z.number().int().nonnegative(),
+  color: RequiredTextSchema,
+  tint: RequiredTextSchema,
+  border: RequiredTextSchema,
+});
+
+export type GraphDomain = z.infer<typeof GraphDomainSchema>;
+
 export const TopoNodeSchema = z.object({
   id: IdSchema,
   kind: z.string().trim().min(1),
+  domainId: IdSchema,
   number: RequiredTextSchema,
   title: RequiredTextSchema,
   chapter: OptionalTextSchema,
@@ -52,16 +64,28 @@ export const TopoDataSchema = z
     id: OptionalTextSchema,
     label: OptionalTextSchema,
     field: OptionalTextSchema,
+    domains: z.array(GraphDomainSchema).default([]),
     nodes: z.array(TopoNodeSchema).default([]),
     edges: z.array(TopoEdgeSchema).default([]),
   })
   .superRefine((data, ctx) => {
+    const domainIds = new Set<string>();
+    for (const domain of data.domains) {
+      if (domainIds.has(domain.id)) {
+        ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["domains"], message: `Duplicate domain id: ${domain.id}` });
+      }
+      domainIds.add(domain.id);
+    }
+
     const nodeIds = new Set<string>();
     for (const node of data.nodes) {
       if (nodeIds.has(node.id)) {
         ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["nodes"], message: `Duplicate node id: ${node.id}` });
       }
       nodeIds.add(node.id);
+      if (domainIds.size > 0 && !domainIds.has(node.domainId)) {
+        ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["nodes", node.id, "domainId"], message: `Node ${node.id} references missing domain: ${node.domainId}` });
+      }
     }
 
     const edgeIds = new Set<string>();
@@ -86,6 +110,7 @@ export const FieldItemSchema = z.object({
   id: IdSchema,
   label: RequiredTextSchema,
   kind: z.string().trim().min(1),
+  domain: IdSchema,
   statement: z.string().nullable().optional(),
   formal_statement: z.string().nullable().optional(),
   definition: z.string().nullable().optional(),
@@ -113,21 +138,40 @@ export const FieldEdgeSchema = z.object({
   notes: z.string().nullable().optional(),
 }).passthrough();
 
-export const FieldJsonSchema = z.object({
-  schema: z.unknown().optional(),
-  graph: z.object({
-    id: z.string(),
-    label: z.string(),
-    field: z.string(),
-    model: z.string().optional(),
-    design_notes: z.array(z.string()).default([]),
-    items: z.array(FieldItemSchema),
-    edges: z.array(FieldEdgeSchema).default([]),
-  }).passthrough(),
-  views: z.unknown().optional(),
-  query_model: z.unknown().optional(),
-  example_queries: z.unknown().optional(),
-}).passthrough();
+export const FieldJsonSchema = z
+  .object({
+    schema: z.unknown().optional(),
+    graph: z
+      .object({
+        id: z.string(),
+        label: z.string(),
+        field: z.string(),
+        model: z.string().optional(),
+        design_notes: z.array(z.string()).default([]),
+        domains: z.array(GraphDomainSchema),
+        items: z.array(FieldItemSchema),
+        edges: z.array(FieldEdgeSchema).default([]),
+      })
+      .passthrough(),
+    views: z.unknown().optional(),
+    query_model: z.unknown().optional(),
+    example_queries: z.unknown().optional(),
+  })
+  .passthrough()
+  .superRefine((data, ctx) => {
+    const domainIds = new Set<string>();
+    for (const domain of data.graph.domains) {
+      if (domainIds.has(domain.id)) {
+        ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["graph", "domains"], message: `Duplicate domain id: ${domain.id}` });
+      }
+      domainIds.add(domain.id);
+    }
+    for (const item of data.graph.items) {
+      if (!domainIds.has(item.domain)) {
+        ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["graph", "items", item.id, "domain"], message: `Item ${item.id} references missing domain: ${item.domain}` });
+      }
+    }
+  });
 
 export type FieldJson = z.infer<typeof FieldJsonSchema>;
 export type FieldItem = z.infer<typeof FieldItemSchema>;
