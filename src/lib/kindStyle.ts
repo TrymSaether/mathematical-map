@@ -21,6 +21,34 @@ export function getKindColor(kind: string): string {
   );
 }
 
+const KIND_ABBREV: Record<string, string> = {
+  definition: "Def",
+  theorem: "Thm",
+  lemma: "Lem",
+  proposition: "Prop",
+  corollary: "Cor",
+  example: "Ex",
+  non_example: "Ex",
+  counterexample: "C-Ex",
+  proof: "Pf",
+  proof_step: "Pf",
+  proof_method: "Pf",
+  axiom: "Ax",
+  assumption: "Asm",
+  structure: "Str",
+  object: "Obj",
+  property: "Prop",
+  construction: "Con",
+  notation: "Not",
+  conjecture: "Conj",
+  application: "App",
+};
+
+/** Short tag shown in a concept node's kind chip. */
+export function getKindAbbrev(kind: string): string {
+  return KIND_ABBREV[kind] ?? kind.slice(0, 3).replace(/^\w/, (c) => c.toUpperCase());
+}
+
 export function getKindTier(kind: string): "primary" | "secondary" | "compact" {
   if (["definition", "theorem", "structure", "object"].includes(kind))
     return "primary";

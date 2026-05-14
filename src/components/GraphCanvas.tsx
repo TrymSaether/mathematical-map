@@ -1,9 +1,8 @@
-import { useMemo, useEffect, useCallback } from "react";
+import { useMemo, useEffect } from "react";
 import ReactFlow, {
   Background as RFBackground,
   BackgroundVariant,
   Controls,
-  MiniMap,
   ReactFlowProvider,
   useReactFlow,
   type Node,
@@ -13,12 +12,13 @@ import { useStore } from "../store";
 import { dependencyLayout, clusterLayout, type Lane } from "../lib/layout";
 import { buildAdjacency, ancestors, descendants } from "../lib/graph";
 import { findRoute } from "../lib/route";
-import { nodeKindColors, canvas, stroke } from "../lib/colors";
+import { canvas } from "../lib/colors";
 import type { GraphData } from "../types";
 import { TopoNodeView } from "./TopoNode";
 import { TopoEdgeView } from "./TopoEdge";
 import { LaneNode } from "./LaneNode";
 import { Dock } from "./Dock";
+import { MinimapCard } from "./MinimapCard";
 import type { RouteRole } from "./GraphNodeCard";
 
 const nodeTypes = { topo: TopoNodeView, lane: LaneNode };
@@ -241,16 +241,6 @@ function InnerGraph({ data }: { data: GraphData }) {
     return () => clearTimeout(t);
   }, [routeNonce]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const miniMapNodeColor = useCallback((n: Node) => {
-    if (n.type === "lane") return "transparent";
-    const k = (n.data as any)?.node?.kind;
-    return k ? nodeKindColors[k as keyof typeof nodeKindColors] ?? nodeKindColors.definition : nodeKindColors.definition;
-  }, []);
-
-  const miniMapNodeStrokeColor = useCallback((n: Node) => {
-    return n.type === "lane" ? "transparent" : n.selected ? stroke.primaryHover : stroke.primary;
-  }, []);
-
   return (
     <>
       <ReactFlow
@@ -271,26 +261,9 @@ function InnerGraph({ data }: { data: GraphData }) {
         defaultEdgeOptions={{ type: "topo" }}
       >
         <RFBackground variant={BackgroundVariant.Dots} gap={28} size={1} color={canvas.gridBackground} />
-        <MiniMap
-          pannable
-          zoomable
-          ariaLabel="Concept map overview"
-          nodeColor={miniMapNodeColor}
-          nodeStrokeColor={miniMapNodeStrokeColor}
-          nodeBorderRadius={3}
-          nodeStrokeWidth={1}
-          maskColor={canvas.maskBackground}
-          maskStrokeColor={canvas.maskStroke}
-          maskStrokeWidth={1.5}
-          style={{
-            background: canvas.background,
-            border: "1px solid var(--border)",
-            borderRadius: 10,
-          }}
-          position="top-right"
-        />
         <Controls position="bottom-right" showInteractive={false} />
       </ReactFlow>
+      <MinimapCard nodes={[...laneNodes, ...nodes]} routeSet={routeSet} selectedId={selectedId} />
       <Dock />
     </>
   );

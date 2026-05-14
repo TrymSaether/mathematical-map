@@ -42,7 +42,7 @@ export default function App() {
   return (
     <div className="relative flex h-screen w-screen flex-col overflow-hidden p-4">
       <Background />
-      <TopBar map={data} />
+      <TopBar />
       <div className="flex min-h-0 flex-1 gap-4">
         <Sidebar data={data} visibleCount={visibleCount} availableKinds={loadedMap.kinds} availableRelations={loadedMap.relations} />
         <main className="relative min-h-0 flex-1 overflow-hidden rounded-[14px] border border-[var(--border)] bg-[var(--canvas-bg)] shadow-[var(--shadow-1)]">

@@ -1,20 +1,40 @@
-import type { GraphData } from "../types";
-import { Panel, Badge } from "./ui";
+import { HelpCircle, Settings } from "lucide-react";
+import { Panel } from "./ui";
 import { BrandMark } from "./topbar/BrandMark";
 import { MapSwitcher } from "./topbar/MapSwitcher";
-import { CommandButton } from "./topbar/CommandButton";
+import { TopBarNav } from "./topbar/TopBarNav";
+import { TopBarSearch } from "./topbar/TopBarSearch";
 
-export function TopBar({ map }: { map: GraphData }) {
+function IconButton({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <Panel as="header" className="mb-4 flex h-16 w-full items-center justify-between px-4">
+    <button
+      type="button"
+      aria-label={label}
+      title={label}
+      className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-transparent text-[var(--text-soft)] transition hover:bg-[var(--surface-muted)] hover:text-[var(--text)]"
+    >
+      {children}
+    </button>
+  );
+}
+
+export function TopBar() {
+  return (
+    <Panel as="header" className="mb-4 flex h-16 w-full items-center gap-4 px-4">
       <BrandMark />
-      <div className="flex items-center gap-3">
-        <div className="hidden items-center gap-2 md:flex">
-          <Badge tone="muted">{map.nodes.length} concepts</Badge>
-          <Badge tone="muted">{map.edges.length} links</Badge>
-        </div>
+      <TopBarNav />
+      <TopBarSearch />
+      <div className="ml-auto flex items-center gap-1.5">
         <MapSwitcher />
-        <CommandButton />
+        <IconButton label="Help">
+          <HelpCircle className="h-[18px] w-[18px]" />
+        </IconButton>
+        <IconButton label="Settings">
+          <Settings className="h-[18px] w-[18px]" />
+        </IconButton>
+        <div className="ml-1 flex h-8 w-8 items-center justify-center rounded-full border border-[var(--purple-200)] bg-[var(--purple-50)] text-[13px] font-semibold text-[var(--purple)]">
+          MA
+        </div>
       </div>
     </Panel>
   );

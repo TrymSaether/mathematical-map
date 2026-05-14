@@ -1,4 +1,4 @@
-import { BaseEdge, EdgeLabelRenderer, getBezierPath, type EdgeProps } from "reactflow";
+import { BaseEdge, EdgeLabelRenderer, getSmoothStepPath, type EdgeProps } from "reactflow";
 import { memo } from "react";
 import type { GraphEdge as GraphEdgeT } from "../types";
 import { getRelationStyle } from "../lib/relationStyle";
@@ -11,26 +11,47 @@ interface Data {
   routeNonce?: number;
 }
 
+/** Metro-map style edge: rounded orthogonal path with a white halo at crossings. */
 function GraphEdgeViewComponent(props: EdgeProps<Data>) {
   const { sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition, data } = props;
-  const [path] = getBezierPath({ sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition });
+  const [path, labelX, labelY] = getSmoothStepPath({
+    sourceX,
+    sourceY,
+    targetX,
+    targetY,
+    sourcePosition,
+    targetPosition,
+    borderRadius: 14,
+  });
   const e = data?.edge;
   const isRoute = Boolean(data?.route);
   const style = getRelationStyle(e?.relation ?? "relation", Boolean(data?.highlight) || isRoute, Boolean(data?.dim));
+  const strokeWidth = isRoute ? 3 : style.width;
+  const dim = Boolean(data?.dim) && !isRoute;
 
   return (
     <>
+      {/* White halo so crossings read cleanly, metro-map convention. */}
+      {!dim && (
+        <path
+          d={path}
+          fill="none"
+          stroke="var(--surface)"
+          strokeWidth={strokeWidth + 2.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      )}
       <BaseEdge
         id={props.id}
         path={path}
         style={{
           stroke: isRoute ? "var(--primary)" : style.color,
-          strokeWidth: isRoute ? 3 : style.width,
+          strokeWidth,
           strokeOpacity: isRoute ? 0.28 : style.opacity,
           strokeLinecap: "round",
           strokeLinejoin: "round",
           strokeDasharray: isRoute ? undefined : style.dash,
-          filter: data?.highlight || isRoute ? "var(--edge-highlight-shadow)" : undefined,
         }}
       />
       {isRoute && (
@@ -42,6 +63,7 @@ function GraphEdgeViewComponent(props: EdgeProps<Data>) {
           stroke="var(--primary)"
           strokeWidth={3.2}
           strokeLinecap="round"
+          strokeLinejoin="round"
           pathLength={1}
           style={{ ["--route-len" as string]: 1 }}
         />
@@ -51,7 +73,7 @@ function GraphEdgeViewComponent(props: EdgeProps<Data>) {
           <div
             style={{
               position: "absolute",
-              transform: `translate(-50%, -50%) translate(${(sourceX + targetX) / 2}px, ${(sourceY + targetY) / 2}px)`,
+              transform: `translate(-50%, -50%) translate(${labelX}px, ${labelY}px)`,
               pointerEvents: "none",
               color: style.color,
             }}

@@ -1,8 +1,13 @@
 import type { NodeProps } from "reactflow";
 
-interface Data { topic: string; subtitle: string; width: number; height: number }
+interface Data {
+  topic: string;
+  subtitle: string;
+  width: number;
+  height: number;
+}
 
-/** Decorative full-width band behind a topic-cluster's nodes. Non-interactive. */
+/** Metro-map domain region: pastel tint, dashed domain-color border, eyebrow label. */
 export function LaneNode({ data }: NodeProps<Data>) {
   return (
     <div
@@ -10,23 +15,27 @@ export function LaneNode({ data }: NodeProps<Data>) {
       style={{ width: data.width + 320, height: data.height + 40 }}
     >
       <div
-        className="absolute inset-0 rounded-2xl border border-dashed"
+        className="absolute inset-0 rounded-[20px] border-[1.5px] border-dashed"
         style={{
-          background: "rgba(var(--primary-rgb),0.035)",
-          borderColor: "rgba(var(--primary-rgb),0.14)",
+          background: "rgba(var(--primary-rgb),0.05)",
+          borderColor: "rgba(var(--primary-rgb),0.35)",
         }}
       />
       <div
-        className="absolute left-3 top-3 font-display text-[26px] font-semibold leading-tight tracking-[0.06em]"
-        style={{ color: "rgba(var(--primary-rgb),0.58)" }}
+        className="absolute left-4 top-3 inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.08em]"
+        style={{ color: "rgba(var(--primary-rgb),0.85)" }}
       >
+        <span
+          className="inline-block h-2 w-2 rounded-full"
+          style={{ background: "rgb(var(--primary-rgb))" }}
+        />
         {data.topic}
-      </div>
-      <div
-        className="absolute left-3 top-12 font-display text-[10px] uppercase tracking-[0.28em]"
-        style={{ color: "rgba(var(--primary-rgb),0.42)" }}
-      >
-        {data.subtitle}
+        <span
+          className="font-sans text-[10px] font-medium tracking-[0.04em] text-[var(--faint)]"
+          style={{ textTransform: "none" }}
+        >
+          {data.subtitle}
+        </span>
       </div>
     </div>
   );
