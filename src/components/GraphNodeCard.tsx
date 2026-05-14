@@ -3,15 +3,21 @@ import { memo } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { cn } from "../lib/utils";
-import { useStore } from "../store";
+import { useStore, type LearningState } from "../store";
 import { KIND_LABEL, type GraphNode } from "../types";
 import { Badge } from "./ui";
 import { getKindTier } from "../lib/kindStyle";
+import { StateGlyph } from "./StateGlyph";
+
+export type RouteRole = "from" | "to" | "waypoint" | null;
 
 interface Data {
   node: GraphNode;
   dim?: boolean;
   highlight?: "primary" | "anc" | "desc" | null;
+  learningState?: LearningState;
+  routeRole?: RouteRole;
+  routeNonce?: number;
 }
 
 const TIER_STYLE = {
@@ -21,21 +27,16 @@ const TIER_STYLE = {
 } as const;
 
 function GraphNodeCardComponent({ data, selected }: NodeProps<Data>) {
-  const { node, dim, highlight } = data;
+  const { node, dim, highlight, learningState, routeRole } = data;
   const select = useStore((s) => s.select);
   const tier = getKindTier(node.kind);
   const tw = TIER_STYLE[tier];
   const isPrimary = tier === "primary";
-
-  // Disable animations for better performance with large graphs
-  const shouldAnimate = false;
+  const onRoute = routeRole != null;
 
   return (
     <motion.div
-      layout={shouldAnimate}
-      initial={shouldAnimate ? { opacity: 0, y: 5 } : false}
-      animate={shouldAnimate ? { opacity: dim ? 0.28 : 1, y: 0 } : { opacity: dim ? 0.28 : 1 }}
-      transition={shouldAnimate ? { duration: 0.2 } : undefined}
+      animate={{ opacity: dim ? 0.28 : 1 }}
       onClick={() => select(node.id)}
       style={{ width: tw.w }}
       className={cn(
@@ -45,12 +46,18 @@ function GraphNodeCardComponent({ data, selected }: NodeProps<Data>) {
         "border-[rgba(var(--c),0.4)] text-[var(--text)]",
         "transition-all hover:border-[rgba(var(--c),0.95)] hover:bg-[var(--node-hover)] hover:shadow-[var(--node-hover-shadow)]",
         selected && "border-[rgba(var(--c),0.95)] ring-4 ring-[rgba(var(--c),0.12)]",
-        highlight === "primary" && "ring-4 ring-[rgba(var(--c),0.12)]",
+        highlight === "primary" && !selected && "ring-4 ring-[rgba(var(--c),0.12)]",
         highlight === "anc" && "ring-2 ring-[rgba(var(--c),0.4)]",
-        highlight === "desc" && "ring-2 ring-[rgba(var(--c),0.4)]"
+        highlight === "desc" && "ring-2 ring-[rgba(var(--c),0.4)]",
+        onRoute && "border-[var(--primary)] ring-4 ring-[rgba(var(--primary-rgb),0.16)]"
       )}
     >
       <div className="absolute inset-x-0 top-0 h-[3px] bg-[rgba(var(--c),0.95)]" />
+      {onRoute && (
+        <span className="absolute right-1.5 top-1.5 rounded-[4px] bg-[var(--primary)] px-1 py-0.5 text-[8px] font-semibold uppercase tracking-[0.1em] text-white">
+          {routeRole === "from" ? "From" : routeRole === "to" ? "To" : "Route"}
+        </span>
+      )}
       <Handle type="target" position={Position.Left} className="!h-3 !w-3 !border-2 !border-[var(--surface)] !bg-[rgba(var(--c),0.9)]" />
 
       <div className="flex items-start justify-between gap-3">
@@ -69,7 +76,9 @@ function GraphNodeCardComponent({ data, selected }: NodeProps<Data>) {
         {selected ? (
           <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[var(--primary)]" />
         ) : (
-          <span className="mt-1 h-4 w-4 shrink-0 rounded-full border border-[rgba(var(--c),0.42)] bg-[var(--surface)]" />
+          <span className="mt-0.5 shrink-0">
+            <StateGlyph state={learningState ?? "not-started"} size={16} color="rgb(var(--c))" />
+          </span>
         )}
       </div>
 
@@ -87,5 +96,4 @@ function GraphNodeCardComponent({ data, selected }: NodeProps<Data>) {
   );
 }
 
-// Memoize to prevent unnecessary re-renders when props don't change
 export const GraphNodeCard = memo(GraphNodeCardComponent);

@@ -7,13 +7,16 @@ interface Data {
   edge: GraphEdgeT;
   dim?: boolean;
   highlight?: boolean;
+  route?: boolean;
+  routeNonce?: number;
 }
 
 function GraphEdgeViewComponent(props: EdgeProps<Data>) {
   const { sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition, data } = props;
   const [path] = getBezierPath({ sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition });
   const e = data?.edge;
-  const style = getRelationStyle(e?.relation ?? "relation", Boolean(data?.highlight), Boolean(data?.dim));
+  const isRoute = Boolean(data?.route);
+  const style = getRelationStyle(e?.relation ?? "relation", Boolean(data?.highlight) || isRoute, Boolean(data?.dim));
 
   return (
     <>
@@ -21,16 +24,29 @@ function GraphEdgeViewComponent(props: EdgeProps<Data>) {
         id={props.id}
         path={path}
         style={{
-          stroke: style.color,
-          strokeWidth: style.width,
-          strokeOpacity: style.opacity,
+          stroke: isRoute ? "var(--primary)" : style.color,
+          strokeWidth: isRoute ? 3 : style.width,
+          strokeOpacity: isRoute ? 0.28 : style.opacity,
           strokeLinecap: "round",
           strokeLinejoin: "round",
-          strokeDasharray: style.dash,
-          filter: data?.highlight ? "var(--edge-highlight-shadow)" : undefined,
+          strokeDasharray: isRoute ? undefined : style.dash,
+          filter: data?.highlight || isRoute ? "var(--edge-highlight-shadow)" : undefined,
         }}
       />
-      {data?.highlight && (
+      {isRoute && (
+        <path
+          key={`route-${props.id}-${data?.routeNonce ?? 0}`}
+          className="ma-route-edge"
+          d={path}
+          fill="none"
+          stroke="var(--primary)"
+          strokeWidth={3.2}
+          strokeLinecap="round"
+          pathLength={1}
+          style={{ ["--route-len" as string]: 1 }}
+        />
+      )}
+      {data?.highlight && !isRoute && (
         <EdgeLabelRenderer>
           <div
             style={{
@@ -49,5 +65,4 @@ function GraphEdgeViewComponent(props: EdgeProps<Data>) {
   );
 }
 
-// Memoize to prevent unnecessary re-renders
 export const GraphEdgeView = memo(GraphEdgeViewComponent);

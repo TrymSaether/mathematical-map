@@ -2,9 +2,16 @@ import { motion } from "framer-motion";
 import { Panel, Badge } from "./ui";
 import { type GraphData } from "../types";
 import { SearchPanel } from "./sidebar/SearchPanel";
-import { ViewModePanel } from "./sidebar/ViewModePanel";
+import { RoutePlannerPanel } from "./sidebar/RoutePlannerPanel";
 import { HighlightPanel } from "./sidebar/HighlightPanel";
-import { KindFilterPanel, RelationFilterPanel, TopicFilterPanel } from "./sidebar/FilterPanels";
+import { LegendPanel } from "./sidebar/LegendPanel";
+import { KindFilterPanel, RelationFilterPanel } from "./sidebar/FilterPanels";
+import { SavedPathsPanel } from "./sidebar/SavedPathsPanel";
+import { LearningStatePanel } from "./sidebar/LearningStatePanel";
+
+function Divider() {
+  return <div className="border-t border-[var(--border-soft)]" />;
+}
 
 export function Sidebar({
   data,
@@ -17,8 +24,6 @@ export function Sidebar({
   availableKinds: string[];
   availableRelations: string[];
 }) {
-  const topics = Array.from(new Set(data.nodes.map((n) => n.topicCluster).filter(Boolean))).sort();
-  const topicCounts = Object.fromEntries(topics.map((t) => [t, data.nodes.filter((n) => n.topicCluster === t).length]));
   const kindCounts = Object.fromEntries(availableKinds.map((k) => [k, data.nodes.filter((n) => n.kind === k).length]));
 
   return (
@@ -32,20 +37,29 @@ export function Sidebar({
         <header className="border-b border-[var(--border-soft)] px-4 py-4">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <div className="font-display text-sm font-semibold text-[var(--text)]">Explore</div>
-              <div className="mt-1 text-xs leading-relaxed text-[var(--muted)]">Search, filter, and change the graph view.</div>
+              <div className="font-display text-[15px] leading-none text-[var(--text)]">Explore</div>
+              <div className="mt-1.5 text-xs leading-relaxed text-[var(--muted)]">
+                Plan routes, filter the graph, and track progress.
+              </div>
             </div>
             <Badge tone="primary">{visibleCount}</Badge>
           </div>
         </header>
 
-        <div className="flex-1 space-y-6 overflow-y-auto p-4">
+        <div className="flex-1 space-y-5 overflow-y-auto p-4">
           <SearchPanel visibleCount={visibleCount} totalCount={data.nodes.length} />
-          <ViewModePanel />
+          <Divider />
+          <RoutePlannerPanel data={data} />
+          <Divider />
+          <LegendPanel data={data} />
+          <Divider />
           <HighlightPanel />
           <KindFilterPanel availableKinds={availableKinds} counts={kindCounts} />
           <RelationFilterPanel availableRelations={availableRelations} />
-          <TopicFilterPanel data={data} topics={topics} topicCounts={topicCounts} />
+          <Divider />
+          <SavedPathsPanel data={data} />
+          <Divider />
+          <LearningStatePanel data={data} />
         </div>
 
         <footer className="flex items-center justify-between border-t border-[var(--border-soft)] px-4 py-3 text-[10px] uppercase tracking-[0.16em] text-[var(--faint)]">

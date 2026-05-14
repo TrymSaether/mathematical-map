@@ -569,6 +569,40 @@ button,
   background-clip: padding-box;
 }
 
+/* =========================================================
+   Route traversal — the signature animation. A stroked path
+   draws From -> To; waypoint nodes pulse once as the head passes.
+   ========================================================= */
+@keyframes ma-route-draw {
+  from {
+    stroke-dashoffset: var(--route-len, 1000);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.ma-route-edge {
+  stroke-dasharray: var(--route-len, 1000);
+  animation: ma-route-draw var(--dur-route) var(--ease-standard) forwards;
+}
+
+@keyframes ma-node-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.ma-node-pulse {
+  animation: ma-node-pulse 240ms var(--ease-out);
+}
+
 /* Math */
 .katex {
   font-size: 1em;

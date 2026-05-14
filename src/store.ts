@@ -1,9 +1,22 @@
 import { create } from "zustand";
 import { DEFAULT_MAP_ID, isMapId, type MapId } from "./data/mapRegistry";
+import { loadPerMap, savePerMap } from "./lib/persist";
 
 export type ViewMode = "dependency" | "cluster";
 export type HighlightMode = "immediate" | "full";
 export type SearchScope = "all" | "title";
+export type LearningState = "learned" | "in-progress" | "not-started" | "locked";
+
+const LEARNING_CYCLE: LearningState[] = ["not-started", "in-progress", "learned", "locked"];
+
+export interface SavedPath {
+  id: string;
+  title: string;
+  fromId: string;
+  toId: string;
+  nodeIds: string[];
+  createdAt: number;
+}
 
 function currentParams() {
   return new URLSearchParams(window.location.search);
@@ -25,6 +38,22 @@ function setUrlParam(key: string, value: string | null) {
   const query = params.toString();
   const next = `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`;
   window.history.replaceState(null, "", next);
+}
+
+interface PerMapState {
+  learningStates: Record<string, LearningState>;
+  notes: Record<string, string>;
+  savedPaths: SavedPath[];
+  hiddenTopics: string[];
+}
+
+function readPerMap(mapId: MapId): PerMapState {
+  return {
+    learningStates: loadPerMap<Record<string, LearningState>>(mapId, "learningStates", {}),
+    notes: loadPerMap<Record<string, string>>(mapId, "notes", {}),
+    savedPaths: loadPerMap<SavedPath[]>(mapId, "savedPaths", []),
+    hiddenTopics: loadPerMap<string[]>(mapId, "hiddenTopics", []),
+  };
 }
 
 interface State {
@@ -66,8 +95,40 @@ interface State {
   pathTargetId: string | null;
   setPathTarget: (id: string | null) => void;
 
-  panelCollapsed: boolean;
-  setPanelCollapsed: (v: boolean) => void;
+  /* -------- Focus mode -------- */
+  focusMode: boolean;
+  toggleFocusMode: () => void;
+  focusDepth: number;
+  setFocusDepth: (d: number) => void;
+
+  /* -------- Route planner -------- */
+  routeFrom: string | null;
+  routeTo: string | null;
+  setRouteFrom: (id: string | null) => void;
+  setRouteTo: (id: string | null) => void;
+  routePlanned: boolean;
+  routeNonce: number;
+  planRoute: () => void;
+  resetRoute: () => void;
+
+  /* -------- Legend (topic visibility) -------- */
+  hiddenTopics: Set<string>;
+  toggleTopicVisibility: (t: string) => void;
+  showAllTopics: () => void;
+
+  /* -------- Learning state (persisted per map) -------- */
+  learningStates: Record<string, LearningState>;
+  setLearningState: (id: string, state: LearningState) => void;
+  cycleLearningState: (id: string) => void;
+
+  /* -------- Notes (persisted per map) -------- */
+  notes: Record<string, string>;
+  setNote: (id: string, text: string) => void;
+
+  /* -------- Saved paths (persisted per map) -------- */
+  savedPaths: SavedPath[];
+  addSavedPath: (path: Omit<SavedPath, "id" | "createdAt">) => void;
+  removeSavedPath: (id: string) => void;
 }
 
 function toggle<T>(set: Set<T>, v: T) {
@@ -77,11 +138,15 @@ function toggle<T>(set: Set<T>, v: T) {
   return next;
 }
 
-export const useStore = create<State>((set) => ({
-  mapId: readInitialMapId(),
+const initialMapId = readInitialMapId();
+const initialPerMap = readPerMap(initialMapId);
+
+export const useStore = create<State>((set, get) => ({
+  mapId: initialMapId,
   setMapId: (mapId) => {
     setUrlParam("map", mapId);
     setUrlParam("node", null);
+    const perMap = readPerMap(mapId);
     set({
       mapId,
       selectedId: null,
@@ -90,6 +155,14 @@ export const useStore = create<State>((set) => ({
       kinds: new Set(),
       topics: new Set(),
       relations: new Set(),
+      routeFrom: null,
+      routeTo: null,
+      routePlanned: false,
+      focusMode: false,
+      learningStates: perMap.learningStates,
+      notes: perMap.notes,
+      savedPaths: perMap.savedPaths,
+      hiddenTopics: new Set(perMap.hiddenTopics),
     });
   },
 
@@ -131,6 +204,68 @@ export const useStore = create<State>((set) => ({
   pathTargetId: null,
   setPathTarget: (id) => set({ pathTargetId: id }),
 
-  panelCollapsed: false,
-  setPanelCollapsed: (v) => set({ panelCollapsed: v }),
+  focusMode: false,
+  toggleFocusMode: () => set((s) => ({ focusMode: !s.focusMode })),
+  focusDepth: 1,
+  setFocusDepth: (d) => set({ focusDepth: d }),
+
+  routeFrom: null,
+  routeTo: null,
+  setRouteFrom: (id) => set({ routeFrom: id, routePlanned: false }),
+  setRouteTo: (id) => set({ routeTo: id, routePlanned: false }),
+  routePlanned: false,
+  routeNonce: 0,
+  planRoute: () => set((s) => ({ routePlanned: true, routeNonce: s.routeNonce + 1 })),
+  resetRoute: () => set({ routePlanned: false }),
+
+  hiddenTopics: new Set(initialPerMap.hiddenTopics),
+  toggleTopicVisibility: (t) =>
+    set((s) => {
+      const next = toggle(s.hiddenTopics, t);
+      savePerMap(s.mapId, "hiddenTopics", [...next]);
+      return { hiddenTopics: next };
+    }),
+  showAllTopics: () =>
+    set((s) => {
+      savePerMap(s.mapId, "hiddenTopics", []);
+      return { hiddenTopics: new Set<string>() };
+    }),
+
+  learningStates: initialPerMap.learningStates,
+  setLearningState: (id, state) =>
+    set((s) => {
+      const next = { ...s.learningStates, [id]: state };
+      savePerMap(s.mapId, "learningStates", next);
+      return { learningStates: next };
+    }),
+  cycleLearningState: (id) => {
+    const cur = get().learningStates[id] ?? "not-started";
+    const idx = LEARNING_CYCLE.indexOf(cur);
+    get().setLearningState(id, LEARNING_CYCLE[(idx + 1) % LEARNING_CYCLE.length]);
+  },
+
+  notes: initialPerMap.notes,
+  setNote: (id, text) =>
+    set((s) => {
+      const next = { ...s.notes };
+      if (text.trim()) next[id] = text;
+      else delete next[id];
+      savePerMap(s.mapId, "notes", next);
+      return { notes: next };
+    }),
+
+  savedPaths: initialPerMap.savedPaths,
+  addSavedPath: (path) =>
+    set((s) => {
+      const entry: SavedPath = { ...path, id: `path-${Date.now()}`, createdAt: Date.now() };
+      const next = [entry, ...s.savedPaths];
+      savePerMap(s.mapId, "savedPaths", next);
+      return { savedPaths: next };
+    }),
+  removeSavedPath: (id) =>
+    set((s) => {
+      const next = s.savedPaths.filter((p) => p.id !== id);
+      savePerMap(s.mapId, "savedPaths", next);
+      return { savedPaths: next };
+    }),
 }));

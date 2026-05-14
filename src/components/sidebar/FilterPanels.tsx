@@ -1,7 +1,7 @@
-import { Filter, Layers } from "lucide-react";
-import { Badge, Section } from "../ui";
+import { Filter } from "lucide-react";
+import { Section } from "../ui";
 import { useStore } from "../../store";
-import { KIND_LABEL, RELATION_LABEL, type GraphData } from "../../types";
+import { KIND_LABEL, RELATION_LABEL } from "../../types";
 import { cn } from "../../lib/utils";
 import { getRelationStyle } from "../../lib/relationStyle";
 
@@ -49,29 +49,6 @@ export function RelationFilterPanel({ availableRelations }: { availableRelations
           );
         })}
       </div>
-    </Section>
-  );
-}
-
-export function TopicFilterPanel({ data, topics, topicCounts }: { data: GraphData; topics: string[]; topicCounts: Record<string, number> }) {
-  const selectedTopics = useStore((s) => s.topics);
-  const toggleTopic = useStore((s) => s.toggleTopic);
-  const resetTopics = useStore((s) => s.resetTopics);
-
-  return (
-    <Section title="Groups" icon={<Layers className="h-3 w-3" />} aside={selectedTopics.size ? <button onClick={resetTopics} className="text-[10px] text-[var(--primary)] hover:underline">All</button> : null}>
-      <div className="space-y-1.5">
-        {topics.map((t) => {
-          const active = selectedTopics.size === 0 || selectedTopics.has(t);
-          return (
-            <button key={t} onClick={() => toggleTopic(t)} className={cn("flex w-full items-center justify-between rounded-xl border px-2.5 py-2 text-[12px] transition", active ? "border-[var(--border)] bg-[var(--surface-soft)] text-[var(--text-soft)]" : "border-[var(--border-soft)] bg-transparent text-[var(--faint)] hover:text-[var(--text-soft)]")}>
-              <span className="truncate text-left">{t}</span>
-              <Badge tone="muted">{topicCounts[t]}</Badge>
-            </button>
-          );
-        })}
-      </div>
-      <div className="pt-1 text-[10px] text-[var(--faint)]">{data.nodes.length} concepts across {topics.length} groups</div>
     </Section>
   );
 }

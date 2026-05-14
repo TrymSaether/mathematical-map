@@ -19,6 +19,7 @@ export default function App() {
 
   const kinds = useStore((s) => s.kinds);
   const topics = useStore((s) => s.topics);
+  const hiddenTopics = useStore((s) => s.hiddenTopics);
   const search = useStore((s) => s.search).toLowerCase().trim();
   const searchScope = useStore((s) => s.searchScope);
 
@@ -26,6 +27,7 @@ export default function App() {
     return data.nodes.filter((n) => {
       if (kinds.size > 0 && !kinds.has(n.kind)) return false;
       if (topics.size > 0 && !topics.has(n.topicCluster)) return false;
+      if (hiddenTopics.has(n.topicCluster)) return false;
       if (search) {
         const hay =
           searchScope === "title"
@@ -35,7 +37,7 @@ export default function App() {
       }
       return true;
     }).length;
-  }, [data.nodes, kinds, topics, search, searchScope]);
+  }, [data.nodes, kinds, topics, hiddenTopics, search, searchScope]);
 
   return (
     <div className="relative flex h-screen w-screen flex-col overflow-hidden p-4">
