@@ -1,5 +1,5 @@
 import { Handle, Position, type NodeProps } from "reactflow";
-import { memo } from "react";
+import { memo, type CSSProperties } from "react";
 import { motion } from "framer-motion";
 import { cn } from "../lib/utils";
 import { useStore, type LearningState } from "../store";
@@ -17,6 +17,8 @@ interface Data {
   routeNonce?: number;
   hasIncoming?: boolean;
   hasOutgoing?: boolean;
+  incomingHandleColor?: string;
+  outgoingHandleColor?: string;
 }
 
 const TIER_WIDTH = { primary: 208, secondary: 184, compact: 160 } as const;
@@ -64,8 +66,22 @@ function StateBadge({ state, selected }: { state: LearningState; selected: boole
   return null;
 }
 
+function handleColorStyle(color?: string): CSSProperties | undefined {
+  return color ? ({ "--handle-color": color } as CSSProperties) : undefined;
+}
+
 function GraphNodeCardComponent({ data, selected }: NodeProps<Data>) {
-  const { node, dim, highlight, learningState, routeRole, hasIncoming, hasOutgoing } = data;
+  const {
+    node,
+    dim,
+    highlight,
+    learningState,
+    routeRole,
+    hasIncoming,
+    hasOutgoing,
+    incomingHandleColor,
+    outgoingHandleColor,
+  } = data;
   const select = useStore((s) => s.select);
   const tier = getKindTier(node.kind);
   const width = TIER_WIDTH[tier];
@@ -98,7 +114,12 @@ function GraphNodeCardComponent({ data, selected }: NodeProps<Data>) {
       )}
 
       {hasIncoming && (
-        <Handle type="target" position={Position.Left} className="graph-node-handle graph-node-handle-left" />
+        <Handle
+          type="target"
+          position={Position.Left}
+          className="graph-node-handle graph-node-handle-left"
+          style={handleColorStyle(incomingHandleColor)}
+        />
       )}
 
       <div className="flex items-center gap-1.5">
@@ -129,7 +150,12 @@ function GraphNodeCardComponent({ data, selected }: NodeProps<Data>) {
       </div>
 
       {hasOutgoing && (
-        <Handle type="source" position={Position.Right} className="graph-node-handle graph-node-handle-right" />
+        <Handle
+          type="source"
+          position={Position.Right}
+          className="graph-node-handle graph-node-handle-right"
+          style={handleColorStyle(outgoingHandleColor)}
+        />
       )}
     </motion.div>
   );
