@@ -867,7 +867,8 @@
     "design_notes": [
       "Trees are extracted views; the stored object is a directed typed multigraph.",
       "Definitions, assumptions, proofs, proof steps, examples, and counterexamples are first-class nodes.",
-      "Theorem assumptions, statement definitions, and proof dependencies use different dependency classes."
+      "Theorem assumptions, statement definitions, and proof dependencies use different dependency classes.",
+      "Terminology nodes distinguish raw functions/maps from operators: every operator is a function, but operator carries structured-space context in functional analysis."
     ],
     "items": [
       {
@@ -899,7 +900,9 @@
           "e007",
           "e008",
           "e009",
-          "e010"
+          "e010",
+          "e334",
+          "e335"
         ],
         "metadata": {
           "tags": ["field"],
@@ -963,6 +966,59 @@
         "domain": "spaces_norms"
       },
       {
+        "id": "cauchy_sequence",
+        "label": "Cauchy sequence",
+        "kind": "definition",
+        "domain": "spaces_norms",
+        "statement": "A sequence in a metric space is Cauchy if its tail terms become arbitrarily close to one another.",
+        "formal_statement": "Let $(M,d)$ be a metric space and let $(x_n)_{n\\in\\mathbb{N}}$ be a sequence in $M$. The sequence, $(x_n)$ is Cauchy iff, $$\\forall \\varepsilon>0\\,\\exists N\\in\\mathbb{N}\\,\\forall m,n\\ge N:\\ d(x_m,x_n)<\\varepsilon$$",
+        "definition": "A Cauchy sequence is a sequence in a metric space whose sufficiently late terms are pairwise arbitrarily close.",
+        "intuition": "The sequence stabilizes internally: far enough along the sequence, its terms cluster together, whether or not the space actually contains a limiting point.",
+        "notation": [
+          "$$\\begin{aligned} &(x_n)\\text{ is Cauchy}\\\\ &\\iff \\forall \\varepsilon>0\\,\\exists N\\in\\mathbb{N}\\,\\forall m,n\\ge N:\\ d(x_m,x_n)<\\varepsilon \\\\ &\\iff d(x_m,x_n)\\to 0\\text{ as }m,n\\to\\infty \\end{aligned}$$"
+        ],
+        "assumptions": [
+          "A metric space $(M,d)$ is given.",
+          "The sequence $(x_n)_{n\\in\\mathbb{N}}$ takes values in $M$."
+        ],
+        "dependencies": {
+          "definitional_dependency": ["metric_space"],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": ["metric_space"],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e309", "e311"],
+        "metadata": {
+          "tags": [
+            "definition",
+            "metric",
+            "sequence",
+            "convergence",
+            "completeness"
+          ],
+          "syllabus_priority": "core",
+          "source": null
+        },
+        "introduced_object": "cauchy_sequence",
+        "genus": "sequence in a metric space",
+        "differentia": [
+          "Sufficiently late terms are pairwise arbitrarily close.",
+          "The condition compares tail terms to each other rather than to a specified limit."
+        ],
+        "examples": ["ell_p_spaces", "c_0"],
+        "non_examples": [
+          "incomplete_normed_spaces_as_non_examples_of_banach_spaces"
+        ],
+        "equivalent_definitions": [
+          "For every $\\varepsilon>0$, some tail of the sequence has diameter less than $\\varepsilon$.",
+          "$d(x_m,x_n)\\to 0$ as $m,n\\to\\infty$.",
+          "In a normed vector space, $(x_n)$ is Cauchy iff $\\|x_m-x_n\\|\\to 0$ as $m,n\\to\\infty$."
+        ]
+      },
+      {
         "id": "topological_vector_space",
         "label": "Topological vector space",
         "kind": "structure",
@@ -993,19 +1049,24 @@
         "id": "normed_vector_space",
         "label": "Normed vector space",
         "kind": "structure",
-        "statement": null,
-        "formal_statement": "(X,\\|\\cdot\\|) where X is a vector space and \\|\\cdot\\| is a norm.",
-        "definition": "A vector space equipped with a norm.",
-        "intuition": "A vector space where vectors have lengths.",
-        "notation": "(X, ||·||)",
-        "assumptions": [],
+        "domain": "spaces_norms",
+        "statement": "A normed vector space is a vector space equipped with a norm.",
+        "formal_statement": "A normed vector space is a pair $(X,\\|\\cdot\\|)$ where $X$ is a vector space over $\\mathbb{K}\\in\\{\\mathbb{R},\\mathbb{C}\\}$ and $\\|\\cdot\\|:X\\to[0,\\infty)$ satisfies $\\|x\\|=0\\iff x=0$, $\\|\\lambda x\\|=|\\lambda|\\|x\\|$, and $\\|x+y\\|\\le \\|x\\|+\\|y\\|$ for all $x,y\\in X$ and $\\lambda\\in\\mathbb{K}$.",
+        "definition": "A normed vector space is a vector space together with a norm, giving each vector a length and inducing a metric by $d(x,y)=\\|x-y\\|$.",
+        "intuition": "A normed space is linear algebra with a compatible notion of size. Once vectors have lengths, one can measure distances, define limits, study continuity, and ask whether Cauchy sequences converge.",
+        "notation": "$$\\begin{aligned}\n(X,\\|\\cdot\\|),\\qquad\n&\\|x\\|\\ge 0,\\\\\n&\\|x\\|=0 \\iff x=0,\\\\\n&\\|\\lambda x\\|=|\\lambda|\\,\\|x\\|,\\\\\n&\\|x+y\\|\\le \\|x\\|+\\|y\\|,\\\\\n&d(x,y)=\\|x-y\\|\n\\end{aligned}$$",
+        "assumptions": [
+          "The scalar field is $\\mathbb{R}$ or $\\mathbb{C}$.",
+          "$X$ is a vector space.",
+          "$\\|\\cdot\\|$ is a norm on $X$."
+        ],
         "dependencies": {
           "definitional_dependency": ["vector_space", "norm"],
           "logical_dependency": [],
-          "assumption_dependency": [],
+          "assumption_dependency": ["scalar_field_real_or_complex"],
           "construction_dependency": [],
-          "notation_dependency": [],
-          "pedagogical_dependency": [],
+          "notation_dependency": ["norm"],
+          "pedagogical_dependency": ["vector_space", "norm"],
           "historical_dependency": []
         },
         "outgoing_relations": [
@@ -1015,14 +1076,21 @@
           "e026",
           "e246",
           "e247",
-          "e266"
+          "e266",
+          "e313",
+          "e314"
         ],
         "metadata": {
-          "tags": ["space", "norm"],
+          "tags": [
+            "space",
+            "norm",
+            "metric",
+            "convergence",
+            "functional_analysis"
+          ],
           "syllabus_priority": "core",
           "source": null
-        },
-        "domain": "spaces_norms"
+        }
       },
       {
         "id": "banach_space",
@@ -1056,7 +1124,8 @@
           "e268",
           "e269",
           "e270",
-          "e271"
+          "e271",
+          "e314"
         ],
         "metadata": {
           "tags": ["space", "complete"],
@@ -1194,10 +1263,10 @@
         "label": "Norm",
         "kind": "definition",
         "statement": null,
-        "formal_statement": "\\|x\\|\\ge0, \\|x\\|=0\\Leftrightarrow x=0, \\|\\lambda x\\|=|\\lambda|\\|x\\|, \\|x+y\\|\\le\\|x\\|+\\|y\\|.",
+        "formal_statement": "$$\\|x\\|\\ge0, \\|x\\|=0\\Leftrightarrow x=0, \\|\\lambda x\\|=|\\lambda|\\|x\\|, \\|x+y\\|\\le\\|x\\|+\\|y\\|.$$",
         "definition": "A function assigning lengths to vectors, satisfying positivity, homogeneity, and the triangle inequality.",
         "intuition": "Length compatible with linear structure.",
-        "notation": "||·||",
+        "notation": "$$\\|\\cdot\\|_{\\circ}$$",
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
@@ -1245,7 +1314,7 @@
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
-        "outgoing_relations": ["e031", "e032", "e062"],
+        "outgoing_relations": ["e031", "e032", "e062", "e312"],
         "metadata": {
           "tags": ["construction", "metric"],
           "syllabus_priority": "core",
@@ -1299,7 +1368,7 @@
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
-        "outgoing_relations": ["e034"],
+        "outgoing_relations": ["e034", "e310"],
         "metadata": {
           "tags": ["property", "metric"],
           "syllabus_priority": "core",
@@ -1451,21 +1520,21 @@
         "label": "Linear operator",
         "kind": "object",
         "statement": null,
-        "formal_statement": "T(\\alpha x+\\beta y)=\\alpha Tx+\\beta Ty.",
-        "definition": "A linear map between vector spaces.",
-        "intuition": "A structure-preserving transformation of vector spaces.",
+        "formal_statement": "Let $X,Y$ be vector spaces over $\\mathbb K$. A map $T:X\\to Y$ is a linear operator iff $T(\\alpha x+\\beta y)=\\alpha Tx+\\beta Ty$ for all $x,y\\in X$ and $\\alpha,\\beta\\in\\mathbb K$.",
+        "definition": "A linear operator is an operator between vector spaces that preserves addition and scalar multiplication.",
+        "intuition": "An operator that respects superposition: transform after combining equals combine after transforming.",
         "notation": "T:X->Y",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": ["vector_space"],
+          "definitional_dependency": ["vector_space", "operator", "function"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [],
+          "pedagogical_dependency": ["function", "operator"],
           "historical_dependency": []
         },
-        "outgoing_relations": ["e036"],
+        "outgoing_relations": ["e036", "e336"],
         "metadata": {
           "tags": ["operator"],
           "syllabus_priority": "core",
@@ -1510,23 +1579,37 @@
         "id": "bounded_linear_operator",
         "label": "Bounded linear operator",
         "kind": "definition",
-        "statement": null,
-        "formal_statement": "T in L(X,Y) iff sup_{||x||<=1} ||Tx|| < infinity.",
-        "definition": "A linear operator T between normed spaces such that ||Tx|| <= C||x|| for some C.",
-        "intuition": "A linear map that cannot amplify unit vectors without bound.",
-        "notation": "L(X,Y)",
-        "assumptions": [],
+        "domain": "operators",
+        "statement": "A bounded linear operator is a linear map between normed vector spaces whose output norm is controlled by a constant multiple of the input norm.",
+        "formal_statement": "Let $(X,\\|\\cdot\\|_X)$ and $(Y,\\|\\cdot\\|_Y)$ be normed vector spaces. A linear map $T:X\\to Y$ is bounded iff $\\exists C>0\\,\\forall x\\in X:\\ \\|Tx\\|_Y\\le C\\|x\\|_X$.",
+        "definition": "A bounded linear operator is a linear operator $T:X\\to Y$ such that $\\|Tx\\|_Y\\le C\\|x\\|_X$ for all $x\\in X$ and some constant $C>0$.",
+        "intuition": "The operator may stretch vectors, but only by a uniform linear factor. It cannot amplify small inputs into disproportionately large outputs, because apparently analysis wanted the word bounded to mean something subtler than bounded.",
+        "notation": "$$\\begin{aligned}\nT\\in L(X,Y)\n&\\iff T:X\\to Y\\text{ is linear and }\\exists C>0\\ \\forall x\\in X:\\ \\|Tx\\|_Y\\le C\\|x\\|_X,\\\\\n\\|T\\|\n&:=\\sup_{\\|x\\|_X\\le 1}\\|Tx\\|_Y<\\infty.\n\\end{aligned}$$",
+        "assumptions": [
+          "$(X,\\|\\cdot\\|_X)$ and $(Y,\\|\\cdot\\|_Y)$ are normed vector spaces.",
+          "$T:X\\to Y$ is linear."
+        ],
         "dependencies": {
           "definitional_dependency": [
             "linear_operator",
             "normed_vector_space",
-            "boundedness"
+            "boundedness",
+            "operator_norm",
+            "function",
+            "operator"
           ],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
-          "notation_dependency": [],
-          "pedagogical_dependency": [],
+          "notation_dependency": ["operator_norm"],
+          "pedagogical_dependency": [
+            "linear_operator",
+            "normed_vector_space",
+            "bounded_function_on_domain",
+            "function",
+            "operator",
+            "semantic_strength_function_operator"
+          ],
           "historical_dependency": []
         },
         "outgoing_relations": [
@@ -1536,23 +1619,88 @@
           "e040",
           "e242",
           "e243",
-          "e250"
+          "e250",
+          "e315",
+          "e316",
+          "e341"
         ],
         "metadata": {
-          "tags": ["operator", "bounded"],
+          "tags": [
+            "operator",
+            "bounded",
+            "linear",
+            "continuous",
+            "normed_space"
+          ],
           "syllabus_priority": "core",
           "source": null
         },
         "introduced_object": "bounded_linear_operator",
         "genus": "linear operator",
         "differentia": [
-          "finite operator norm",
-          "equivalently continuous for normed spaces"
+          "There exists a constant $C>0$ such that $\\|Tx\\|_Y\\le C\\|x\\|_X$ for all $x\\in X$.",
+          "Equivalently, the operator norm $\\|T\\|$ is finite.",
+          "Equivalently, $T$ maps bounded subsets of $X$ to bounded subsets of $Y$."
         ],
-        "examples": ["adjoint_operator"],
+        "examples": [
+          "continuous_linear_operator",
+          "operator_norm",
+          "dual_space"
+        ],
         "non_examples": [],
-        "equivalent_definitions": ["continuous_linear_operator"],
-        "domain": "operators"
+        "equivalent_definitions": [
+          "$T$ is continuous.",
+          "$T$ is continuous at $0$.",
+          "$T$ maps bounded sets in $X$ to bounded sets in $Y$.",
+          "$\\sup_{\\|x\\|_X\\le 1}\\|Tx\\|_Y<\\infty$."
+        ]
+      },
+      {
+        "id": "bounded_function_on_domain",
+        "label": "Bounded function on a domain",
+        "kind": "definition",
+        "domain": "foundations",
+        "statement": "A function is bounded on its domain if its entire image lies inside one ball of the codomain.",
+        "formal_statement": "Let $X$ be a set and let $(Y,\\|\\cdot\\|_Y)$ be a normed vector space. A function $f:X\\to Y$ is bounded on $X$ iff $\\exists M>0\\,\\forall x\\in X:\\ \\|f(x)\\|_Y\\le M$.",
+        "definition": "A function $f:X\\to Y$ is bounded on $X$ if all values of $f$ have norm bounded above by a single constant.",
+        "intuition": "The whole image $f(X)$ fits inside one ball centered at $0$ in $Y$.",
+        "notation": "$$\\begin{aligned}\nf:X\\to Y\\text{ bounded on }X\n&\\iff \\exists M>0\\ \\forall x\\in X:\\ \\|f(x)\\|_Y\\le M,\\\\\nf(X)&\\subseteq B_Y(0,M).\n\\end{aligned}$$",
+        "assumptions": [
+          "$X$ is a set.",
+          "$(Y,\\|\\cdot\\|_Y)$ is a normed vector space.",
+          "$f:X\\to Y$ is a function."
+        ],
+        "dependencies": {
+          "definitional_dependency": [
+            "boundedness",
+            "normed_vector_space",
+            "function"
+          ],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": ["bounded_linear_operator"],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e317", "e318", "e337", "e351"],
+        "metadata": {
+          "tags": ["function", "bounded", "image", "normed_space"],
+          "syllabus_priority": "core",
+          "source": null
+        },
+        "introduced_object": "bounded_function_on_domain",
+        "genus": "function into a normed vector space",
+        "differentia": [
+          "There exists $M>0$ such that $\\|f(x)\\|_Y\\le M$ for every $x\\in X$.",
+          "The image $f(X)$ is contained in a ball of finite radius in $Y$."
+        ],
+        "examples": [],
+        "non_examples": ["nonzero_linear_map_on_unbounded_normed_space"],
+        "equivalent_definitions": [
+          "$f(X)$ is a bounded subset of $Y$.",
+          "$f(X)\\subseteq B_Y(0,M)$ for some $M>0$."
+        ]
       },
       {
         "id": "continuous_linear_operator",
@@ -2563,7 +2711,8 @@
           "e107",
           "e108",
           "e109",
-          "e110"
+          "e110",
+          "e343"
         ],
         "metadata": {
           "tags": ["closed graph", "open mapping"],
@@ -2663,7 +2812,7 @@
       },
       {
         "id": "riesz_representation_theorem",
-        "label": "Riesz Representation Theorem",
+        "label": "Hilbert-space Riesz Representation Theorem",
         "kind": "theorem",
         "statement": "Every continuous linear functional on a Hilbert space is inner product with a unique vector.",
         "formal_statement": "For every f in H*, there exists unique y in H such that f(x)=<x,y> for all x in H and ||f||=||y||.",
@@ -2696,7 +2845,7 @@
           "e255"
         ],
         "metadata": {
-          "tags": ["hilbert", "duality"],
+          "tags": ["hilbert", "duality", "hilbert-space version"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -3719,6 +3868,615 @@
           "source": null
         },
         "domain": "examples_applications"
+      },
+      {
+        "id": "function",
+        "label": "Function / map",
+        "kind": "definition",
+        "domain": "foundations",
+        "statement": "A function is a rule assigning to each element of a domain exactly one element of a codomain.",
+        "formal_statement": "A function $f:X\\to Y$ is a relation such that $\\forall x\\in X\\,\\exists! y\\in Y:\\ y=f(x)$.",
+        "definition": "A function, also called a map or mapping, is an assignment from a domain $X$ to a codomain $Y$ with exactly one output value in $Y$ for each input value in $X$.",
+        "intuition": "The bare mathematical arrow: inputs in one set are assigned outputs in another set, with no algebraic or topological structure assumed.",
+        "notation": [
+          "$f:X\\to Y$",
+          "$x\\mapsto f(x)$",
+          "$\\operatorname{dom}(f)=X$",
+          "$\\operatorname{codom}(f)=Y$"
+        ],
+        "assumptions": [
+          "$X$ is a set.",
+          "$Y$ is a set.",
+          "Each $x\\in X$ has exactly one assigned value $f(x)\\in Y$."
+        ],
+        "dependencies": {
+          "definitional_dependency": [],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": [],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e319", "e320", "e321", "e322"],
+        "metadata": {
+          "tags": ["definition", "function", "map", "foundations"],
+          "syllabus_priority": "core",
+          "source": "standard mathematical terminology; compatible with the existing functional_analysis graph"
+        },
+        "introduced_object": "function",
+        "genus": "relation between sets",
+        "differentia": [
+          "Every input in the domain has an output.",
+          "The output is unique.",
+          "No linearity, continuity, boundedness, or topology is assumed by the word function alone."
+        ],
+        "examples": ["bounded_function_on_domain"],
+        "non_examples": [],
+        "equivalent_definitions": [
+          "A map $f:X\\to Y$.",
+          "A mapping from $X$ into $Y$.",
+          "A single-valued total relation from $X$ to $Y$."
+        ]
+      },
+      {
+        "id": "operator",
+        "label": "Operator",
+        "kind": "definition",
+        "domain": "operators",
+        "statement": "In functional analysis, an operator is a map between structured spaces, usually vector, normed, Banach, or Hilbert spaces.",
+        "formal_statement": "An operator is typically a map $T:X\\to Y$ where $X,Y$ carry mathematical structure; in functional analysis $X,Y$ are usually vector or normed spaces. If additionally $T(\\alpha x+\\beta y)=\\alpha Tx+\\beta Ty$, then $T$ is a linear operator.",
+        "definition": "An operator is a function or map acting between structured spaces. In functional analysis, the term usually signals that the domain and codomain are vector spaces or topological vector spaces, and often that the map is linear unless explicitly stated otherwise.",
+        "intuition": "A function wearing structure: it is still an assignment, but the word operator tells the reader to care about vector-space, norm, topology, or Hilbert-space structure.",
+        "notation": ["$T:X\\to Y$", "$Tx$", "$T(x)$"],
+        "assumptions": [
+          "$T$ is a function/map.",
+          "The domain and codomain usually carry additional structure.",
+          "In functional analysis, linearity is common but should not be assumed unless stated or conventional in the surrounding text."
+        ],
+        "dependencies": {
+          "definitional_dependency": ["function"],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": ["function"],
+          "pedagogical_dependency": [
+            "function",
+            "vector_space",
+            "normed_vector_space"
+          ],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e323", "e324", "e325", "e326", "e327"],
+        "metadata": {
+          "tags": ["definition", "operator", "function", "map", "terminology"],
+          "syllabus_priority": "core",
+          "source": "standard functional-analysis convention; compatible with Bowers-Kalton notation L(X,Y)"
+        },
+        "introduced_object": "operator",
+        "genus": "function/map",
+        "differentia": [
+          "Acts between structured mathematical spaces.",
+          "In functional analysis, the relevant structure is usually vector-space, normed-space, Banach-space, or Hilbert-space structure.",
+          "Often linear in functional-analysis contexts, but the term operator alone is not universally synonymous with linear operator."
+        ],
+        "examples": [
+          "linear_operator",
+          "bounded_linear_operator",
+          "compact_operator",
+          "projection_operator",
+          "adjoint_operator"
+        ],
+        "non_examples": [],
+        "equivalent_definitions": [
+          "A structured map between mathematical spaces.",
+          "In many functional-analysis texts: a map, often linear, between vector spaces or normed spaces."
+        ]
+      },
+      {
+        "id": "nonlinear_operator",
+        "label": "Nonlinear operator",
+        "kind": "object",
+        "domain": "operators",
+        "statement": "A nonlinear operator is an operator that is not linear.",
+        "formal_statement": "A map $F:X\\to Y$ is nonlinear if there exist $x,y\\in X$ or $\\lambda\\in\\mathbb K$ such that $F(x+y)\\ne F(x)+F(y)$ or $F(\\lambda x)\\ne \\lambda F(x)$.",
+        "definition": "A nonlinear operator is a map between structured spaces that fails linearity.",
+        "intuition": "Still an operator because it acts on structured spaces; not a linear operator because it refuses to respect superposition.",
+        "notation": "$F:X\\to Y$",
+        "assumptions": [
+          "$X$ and $Y$ are structured spaces, usually vector or normed spaces.",
+          "$F:X\\to Y$ is a function.",
+          "$F$ fails additivity or homogeneity."
+        ],
+        "dependencies": {
+          "definitional_dependency": [
+            "operator",
+            "function",
+            "vector_space",
+            "linear_operator"
+          ],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": ["operator", "linear_operator"],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e328", "e329", "e330"],
+        "metadata": {
+          "tags": ["operator", "nonlinear", "terminology"],
+          "syllabus_priority": "medium",
+          "source": "standard mathematical terminology"
+        }
+      },
+      {
+        "id": "semantic_strength_function_operator",
+        "label": "Semantic strength: function versus operator",
+        "kind": "property",
+        "domain": "foundations",
+        "statement": "The term function is more general/weaker than operator; operator is more specific/stronger in functional-analysis usage.",
+        "formal_statement": "$\\{\\text{operators}\\}\\subseteq \\{\\text{functions/maps}\\}$ as terminology classes, while every operator is still a function as set-theoretic data.",
+        "definition": "A semantic relation saying that 'function/map' imposes fewer assumptions, while 'operator' adds contextual structure such as vector-space, normed-space, or linear structure.",
+        "intuition": "Function is the raw arrow. Operator is the arrow with structure attached. Same underlying species, different amount of mathematical baggage.",
+        "notation": "$\\text{operator}\\Rightarrow \\text{function}$, but generally $\\text{function}\\nRightarrow \\text{operator}$",
+        "assumptions": [],
+        "dependencies": {
+          "definitional_dependency": ["function", "operator"],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": ["function", "operator", "linear_operator"],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e331", "e332", "e333"],
+        "metadata": {
+          "tags": ["terminology", "semantic hierarchy", "function", "operator"],
+          "syllabus_priority": "core",
+          "source": "derived semantic clarification from standard functional-analysis convention",
+          "exam_priority": "supporting",
+          "exercise_refs": [],
+          "proof_required": false
+        }
+      },
+      {
+        "id": "closed_subspace",
+        "label": "Closed subspace",
+        "kind": "structure",
+        "domain": "spaces_norms",
+        "statement": "A closed subspace is a linear subspace that is closed in the ambient topology.",
+        "formal_statement": "M\\le X,\\quad M=\\overline{M}.",
+        "definition": "A linear subspace containing all limits of convergent sequences from itself, in the ambient norm/topology.",
+        "intuition": "A subspace with no missing limit points, so quotient constructions behave instead of collapsing into nonsense.",
+        "notation": "M\\subseteq X",
+        "assumptions": [
+          "X is a normed or topological vector space.",
+          "M is a linear subspace of X."
+        ],
+        "dependencies": {
+          "definitional_dependency": [
+            "vector_space",
+            "topology_induced_by_metric"
+          ],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": ["normed_vector_space"],
+          "historical_dependency": []
+        },
+        "outgoing_relations": [],
+        "metadata": {
+          "tags": ["subspace", "closed", "banach_space"],
+          "syllabus_priority": "core",
+          "source": null,
+          "exam_priority": "supporting",
+          "exercise_refs": [],
+          "proof_required": false
+        }
+      },
+      {
+        "id": "quotient_space",
+        "label": "Quotient space",
+        "kind": "construction",
+        "domain": "spaces_norms",
+        "statement": "Given a normed/Banach space X and a closed subspace Y, the quotient X/Y is the space of cosets x+Y.",
+        "formal_statement": "X/Y=\\{x+Y:x\\in X\\},\\qquad \\|x+Y\\|=\\inf_{y\\in Y}\\|x+y\\|.",
+        "definition": "The quotient space collapses a closed subspace to zero and measures distance to that subspace using the quotient norm.",
+        "intuition": "You identify points that differ by an element of Y; geometry modulo a subspace, because apparently ordinary geometry was not abstract enough.",
+        "notation": "X/Y",
+        "assumptions": [
+          "X is a normed or Banach space.",
+          "Y is a closed linear subspace of X."
+        ],
+        "dependencies": {
+          "definitional_dependency": [
+            "banach_space",
+            "closed_subspace",
+            "norm"
+          ],
+          "logical_dependency": [],
+          "assumption_dependency": ["domain_is_banach_space"],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": ["closed_subspace", "normed_vector_space"],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e338", "e339"],
+        "metadata": {
+          "tags": ["quotient", "banach_space", "construction"],
+          "syllabus_priority": "core",
+          "source": "Bowers-Kalton Section 3.7",
+          "exam_priority": "supporting",
+          "exercise_refs": [],
+          "proof_required": false
+        }
+      },
+      {
+        "id": "quotient_map",
+        "label": "Quotient map",
+        "kind": "construction",
+        "domain": "spaces_norms",
+        "statement": "The quotient map sends a vector to its coset.",
+        "formal_statement": "Q:X\\to X/Y,\\qquad Qx=x+Y.",
+        "definition": "The canonical surjective linear map from a space onto its quotient by a subspace.",
+        "intuition": "Forget the component lying in Y.",
+        "notation": "Q:X\\to X/Y",
+        "assumptions": ["Y is a closed subspace of X."],
+        "dependencies": {
+          "definitional_dependency": ["quotient_space", "linear_operator"],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": ["quotient_space"],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e340"],
+        "metadata": {
+          "tags": ["quotient", "map", "operator"],
+          "syllabus_priority": "core",
+          "source": "Bowers-Kalton Section 3.7",
+          "exam_priority": "supporting",
+          "exercise_refs": [],
+          "proof_required": false
+        }
+      },
+      {
+        "id": "kernel",
+        "label": "Kernel",
+        "kind": "construction",
+        "domain": "operators",
+        "statement": "The kernel of a linear operator is the set of vectors mapped to zero.",
+        "formal_statement": "\\ker T=\\{x\\in X:Tx=0\\}.",
+        "definition": "The null space of a linear operator.",
+        "intuition": "Everything the operator kills.",
+        "notation": "\\ker T",
+        "assumptions": ["T:X\\to Y is linear."],
+        "dependencies": {
+          "definitional_dependency": ["linear_operator", "vector_space"],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": ["linear_operator"],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e342"],
+        "metadata": {
+          "tags": ["operator", "kernel", "quotient"],
+          "syllabus_priority": "core",
+          "source": null,
+          "exam_priority": "supporting",
+          "exercise_refs": [],
+          "proof_required": false
+        }
+      },
+      {
+        "id": "weak_convergence",
+        "label": "Weak convergence",
+        "kind": "definition",
+        "domain": "duality_weak_topologies",
+        "statement": "A sequence converges weakly if every continuous linear functional converges on it.",
+        "formal_statement": "x_n\\rightharpoonup x \\iff \\forall x^*\\in X^*:\\ x^*(x_n)\\to x^*(x).",
+        "definition": "Weak convergence is convergence in the weak topology \\sigma(X,X^*).",
+        "intuition": "Vectors converge when every scalar probe in the dual agrees that they converge.",
+        "notation": "x_n\\rightharpoonup x",
+        "assumptions": ["X is a normed space."],
+        "dependencies": {
+          "definitional_dependency": [
+            "weak_topology",
+            "dual_space",
+            "linear_functional"
+          ],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": ["weak_topology"],
+          "notation_dependency": ["dual_space"],
+          "pedagogical_dependency": ["dual_space", "weak_topology"],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e344"],
+        "metadata": {
+          "tags": ["weak topology", "convergence", "duality"],
+          "syllabus_priority": "core",
+          "source": null,
+          "exam_priority": "supporting",
+          "exercise_refs": [],
+          "proof_required": false
+        },
+        "introduced_object": "weak_convergence",
+        "genus": "topological convergence",
+        "differentia": ["tested by all functionals in X*"],
+        "examples": [],
+        "non_examples": [],
+        "equivalent_definitions": ["Convergence in \\sigma(X,X^*)"]
+      },
+      {
+        "id": "weak_star_convergence",
+        "label": "Weak-star convergence",
+        "kind": "definition",
+        "domain": "duality_weak_topologies",
+        "statement": "A sequence of functionals converges weak-star if it converges pointwise on X.",
+        "formal_statement": "x_n^*\\overset{w^*}{\\to}x^* \\iff \\forall x\\in X:\\ x_n^*(x)\\to x^*(x).",
+        "definition": "Weak-star convergence is convergence in \\sigma(X^*,X).",
+        "intuition": "Functionals converge by agreeing pointwise on every vector.",
+        "notation": "x_n^*\\overset{w^*}{\\to}x^*",
+        "assumptions": ["X is a normed space."],
+        "dependencies": {
+          "definitional_dependency": ["weak_star_topology", "dual_space"],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": ["weak_star_topology"],
+          "notation_dependency": ["dual_space"],
+          "pedagogical_dependency": ["weak_star_topology", "dual_space"],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e345"],
+        "metadata": {
+          "tags": ["weak-star", "convergence", "duality"],
+          "syllabus_priority": "core",
+          "source": null,
+          "exam_priority": "supporting",
+          "exercise_refs": [],
+          "proof_required": false
+        },
+        "introduced_object": "weak_star_convergence",
+        "genus": "topological convergence",
+        "differentia": ["tested pointwise on X"],
+        "examples": [],
+        "non_examples": [],
+        "equivalent_definitions": ["Convergence in \\sigma(X^*,X)"]
+      },
+      {
+        "id": "weakly_bounded_set",
+        "label": "Weakly bounded set",
+        "kind": "definition",
+        "domain": "duality_weak_topologies",
+        "statement": "A set is weakly bounded if every continuous linear functional is bounded on it.",
+        "formal_statement": "A\\subseteq X \\text{ weakly bounded } \\iff \\forall x^*\\in X^*:\\ \\sup_{a\\in A}|x^*(a)|<\\infty.",
+        "definition": "Weak boundedness means boundedness after testing by every element of the dual space.",
+        "intuition": "The set may look large in X, but every scalar probe sees only bounded values.",
+        "notation": null,
+        "assumptions": ["X is a normed space."],
+        "dependencies": {
+          "definitional_dependency": ["dual_space", "boundedness"],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": ["dual_space", "weak_topology"],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e346"],
+        "metadata": {
+          "tags": ["weak topology", "boundedness", "exam"],
+          "syllabus_priority": "core",
+          "source": "2025 exam Question 5",
+          "exam_priority": "main_theorem",
+          "exercise_refs": [],
+          "proof_required": true
+        },
+        "introduced_object": "weakly_bounded_set",
+        "genus": "subset of a normed space",
+        "differentia": ["all continuous linear functionals are bounded on it"],
+        "examples": [],
+        "non_examples": [],
+        "equivalent_definitions": []
+      },
+      {
+        "id": "weakly_bounded_implies_norm_bounded",
+        "label": "Weak boundedness equals norm boundedness in Banach spaces",
+        "kind": "theorem",
+        "domain": "duality_weak_topologies",
+        "statement": "In a Banach space, every weakly bounded set is norm bounded.",
+        "formal_statement": "X\\text{ Banach},\\ A\\subseteq X,\\ \\forall x^*\\in X^*:\\sup_{a\\in A}|x^*(a)|<\\infty \\implies \\sup_{a\\in A}\\|a\\|<\\infty.",
+        "definition": null,
+        "intuition": "If every scalar probe sees boundedness, completeness upgrades this to actual norm boundedness.",
+        "notation": null,
+        "assumptions": ["X is Banach.", "A is weakly bounded."],
+        "dependencies": {
+          "definitional_dependency": [
+            "banach_space",
+            "weakly_bounded_set",
+            "dual_space"
+          ],
+          "logical_dependency": ["uniform_boundedness_principle"],
+          "assumption_dependency": ["domain_is_banach_space"],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": [
+            "uniform_boundedness_principle",
+            "dual_space"
+          ],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e347"],
+        "metadata": {
+          "tags": ["weak boundedness", "uniform boundedness", "exam"],
+          "syllabus_priority": "core",
+          "source": "2025 exam Question 5",
+          "exam_priority": "main_theorem",
+          "exercise_refs": [],
+          "proof_required": true
+        },
+        "hypotheses": ["X is Banach", "A is weakly bounded"],
+        "conclusion": "A is norm bounded.",
+        "proof_methods": ["duality_argument"],
+        "related_theorems": ["uniform_boundedness_principle"],
+        "examples": [],
+        "applications": [],
+        "variants": []
+      },
+      {
+        "id": "norm_as_sublinear_functional",
+        "label": "Norm as a sublinear functional",
+        "kind": "example",
+        "domain": "hahn_banach",
+        "statement": "Every norm is a sublinear functional.",
+        "formal_statement": "p(x)=\\|x\\|.",
+        "definition": "The norm on a normed vector space is positively homogeneous and subadditive.",
+        "intuition": "The norm is the basic domination function in Hahn-Banach.",
+        "notation": "p(x)=\\|x\\|",
+        "assumptions": ["X is a normed vector space."],
+        "dependencies": {
+          "definitional_dependency": ["norm", "sublinear_functional"],
+          "logical_dependency": [],
+          "assumption_dependency": ["normed_vector_space"],
+          "construction_dependency": [],
+          "notation_dependency": ["norm"],
+          "pedagogical_dependency": ["norm", "sublinear_functional"],
+          "historical_dependency": []
+        },
+        "outgoing_relations": [],
+        "metadata": {
+          "tags": ["example", "hahn-banach", "norm"],
+          "syllabus_priority": "core",
+          "source": "Bowers-Kalton Chapter 3",
+          "exam_priority": "supporting",
+          "exercise_refs": [],
+          "proof_required": false
+        },
+        "satisfies": ["sublinear_functional"],
+        "violates": [],
+        "demonstrates": ["hahn_banach_theorem"],
+        "related_theorems": ["hahn_banach_theorem"]
+      },
+      {
+        "id": "nonlinearity",
+        "label": "Nonlinearity",
+        "kind": "property",
+        "domain": "operators",
+        "statement": "A map is nonlinear if it fails additivity or homogeneity.",
+        "formal_statement": "F(x+y)\\ne F(x)+F(y) \\text{ or } F(\\lambda x)\\ne \\lambda F(x).",
+        "definition": "Failure of linearity.",
+        "intuition": "The map does not respect superposition.",
+        "notation": null,
+        "assumptions": [],
+        "dependencies": {
+          "definitional_dependency": ["linear_operator"],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": ["linear_operator"],
+          "historical_dependency": []
+        },
+        "outgoing_relations": [],
+        "metadata": {
+          "tags": ["operator", "nonlinear"],
+          "syllabus_priority": "medium",
+          "source": null,
+          "exam_priority": "peripheral",
+          "exercise_refs": [],
+          "proof_required": false
+        }
+      },
+      {
+        "id": "nonzero_linear_map_on_unbounded_normed_space",
+        "label": "Nonzero linear map on a normed space is not bounded as a function on the whole domain",
+        "kind": "counterexample",
+        "domain": "operators",
+        "statement": "A nonzero bounded linear operator need not be bounded as a function on all of X.",
+        "formal_statement": "T\\ne0,\\ T\\in\\mathcal L(X,Y) \\implies \\sup_{x\\in X}\\|Tx\\|_Y=\\infty.",
+        "definition": "This distinguishes bounded linear operator from bounded function on its whole domain.",
+        "intuition": "Linear maps scale. If one vector has nonzero image, scaling that vector makes the image arbitrarily large.",
+        "notation": null,
+        "assumptions": [
+          "T:X\\to Y is linear.",
+          "T\\ne 0.",
+          "X is a normed vector space over an unbounded scalar field."
+        ],
+        "dependencies": {
+          "definitional_dependency": [
+            "bounded_linear_operator",
+            "bounded_function_on_domain",
+            "linear_operator"
+          ],
+          "logical_dependency": [],
+          "assumption_dependency": ["normed_vector_space"],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": [
+            "bounded_function_on_domain",
+            "bounded_linear_operator"
+          ],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e352"],
+        "metadata": {
+          "tags": ["counterexample", "boundedness", "operator"],
+          "syllabus_priority": "core",
+          "source": "Bowers-Kalton Exercise 1.4",
+          "exam_priority": "supporting",
+          "exercise_refs": ["1.4"],
+          "proof_required": true
+        },
+        "satisfies": ["bounded_linear_operator", "linear_operator"],
+        "violates": ["bounded_function_on_domain"],
+        "demonstrates": ["semantic_strength_function_operator"],
+        "related_theorems": []
+      },
+      {
+        "id": "riesz_representation_c_k",
+        "label": "Riesz Representation Theorem for C(K)",
+        "kind": "theorem",
+        "domain": "duality_weak_topologies",
+        "statement": "The dual of C(K) is the space of finite Borel measures on K.",
+        "formal_statement": "C(K)^*\\cong M(K),\\qquad \\varphi(f)=\\int_K f\\,d\\mu,\\qquad \\|\\varphi\\|=|\\mu|(K).",
+        "definition": null,
+        "intuition": "Every continuous scalar probe on C(K) is integration against a measure.",
+        "notation": "C(K)^*=M(K)",
+        "assumptions": ["K is compact metric, in the Bowers-Kalton version."],
+        "dependencies": {
+          "definitional_dependency": [
+            "c_k",
+            "dual_space",
+            "bounded_linear_operator"
+          ],
+          "logical_dependency": [],
+          "assumption_dependency": ["compactness"],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": ["dual_space", "c_k"],
+          "historical_dependency": []
+        },
+        "outgoing_relations": ["e348", "e349", "e350"],
+        "metadata": {
+          "tags": ["riesz representation", "C(K)", "measures", "duality"],
+          "syllabus_priority": "high",
+          "source": "Bowers-Kalton Theorem 2.20",
+          "exam_priority": "supporting",
+          "exercise_refs": [],
+          "proof_required": false
+        },
+        "hypotheses": ["K is compact metric", "\\varphi\\in C(K)^*"],
+        "conclusion": "There exists a finite Borel measure \\mu such that \\varphi(f)=\\int_K f\\,d\\mu.",
+        "proof_methods": ["duality_argument"],
+        "related_theorems": ["hahn_banach_theorem"],
+        "examples": ["c_k"],
+        "applications": [],
+        "variants": []
       }
     ],
     "edges": [
@@ -6377,12 +7135,12 @@
         "id": "e242",
         "source": "bounded_linear_operator",
         "target": "adjoint_operator",
-        "type": "has_example",
+        "type": "uses",
         "dependency_class": "pedagogical_dependency",
-        "label": "bounded_linear_operator has example adjoint_operator",
+        "label": "bounded_linear_operator uses adjoint_operator as a construction context",
         "direction": "source_to_target",
         "confidence": "high",
-        "notes": null
+        "notes": "Changed from has_example because adjoint_operator is a construction, not an example/object target under the schema."
       },
       {
         "id": "e243",
@@ -6398,13 +7156,13 @@
       {
         "id": "e244",
         "source": "sublinear_functional",
-        "target": "norm",
+        "target": "norm_as_sublinear_functional",
         "type": "has_example",
         "dependency_class": "pedagogical_dependency",
-        "label": "sublinear_functional has example norm",
+        "label": "sublinear_functional has example norm_as_sublinear_functional",
         "direction": "source_to_target",
         "confidence": "high",
-        "notes": null
+        "notes": "Changed target from norm to a proper example node."
       },
       {
         "id": "e245",
@@ -7109,6 +7867,490 @@
         "direction": "source_to_target",
         "confidence": "high",
         "notes": null
+      },
+      {
+        "id": "e309",
+        "source": "cauchy_sequence",
+        "target": "metric_space",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "cauchy_sequence requires metric_space",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e310",
+        "source": "completeness",
+        "target": "cauchy_sequence",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "completeness requires cauchy_sequence",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "Completeness is stated by requiring every Cauchy sequence to converge."
+      },
+      {
+        "id": "e311",
+        "source": "cauchy_sequence",
+        "target": "completeness",
+        "type": "prerequisite_for",
+        "dependency_class": "pedagogical_dependency",
+        "label": "cauchy_sequence is prerequisite for completeness",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e312",
+        "source": "metric_induced_by_norm",
+        "target": "cauchy_sequence",
+        "type": "induces",
+        "dependency_class": "construction_dependency",
+        "label": "metric_induced_by_norm induces norm-Cauchy sequences",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "In a normed vector space, the induced metric turns the metric Cauchy condition into $\\|x_m-x_n\\|\\to 0$."
+      },
+      {
+        "id": "e313",
+        "source": "normed_vector_space",
+        "target": "metric_induced_by_norm",
+        "type": "induces",
+        "dependency_class": "construction_dependency",
+        "label": "normed_vector_space induces metric_induced_by_norm",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "A normed vector space has the canonical metric $d(x,y)=\\|x-y\\|$."
+      },
+      {
+        "id": "e314",
+        "source": "banach_space",
+        "target": "normed_vector_space",
+        "type": "subtype_of",
+        "dependency_class": "definitional_dependency",
+        "label": "banach_space is a subtype of normed_vector_space",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "A Banach space is a complete normed vector space."
+      },
+      {
+        "id": "e315",
+        "source": "bounded_linear_operator",
+        "target": "operator_norm",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "bounded_linear_operator requires operator_norm",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "The operator norm characterizes bounded linear operators by finiteness."
+      },
+      {
+        "id": "e316",
+        "source": "bounded_linear_operator",
+        "target": "continuous_linear_operator",
+        "type": "equivalent_to",
+        "dependency_class": "logical_dependency",
+        "label": "bounded_linear_operator equivalent to continuous_linear_operator",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "For linear maps between normed vector spaces, boundedness and continuity are equivalent."
+      },
+      {
+        "id": "e317",
+        "source": "bounded_function_on_domain",
+        "target": "boundedness",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "bounded_function_on_domain requires boundedness",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e318",
+        "source": "bounded_function_on_domain",
+        "target": "bounded_linear_operator",
+        "type": "motivates",
+        "dependency_class": "pedagogical_dependency",
+        "label": "bounded functions motivate comparison with bounded linear operators",
+        "direction": "source_to_target",
+        "confidence": "medium",
+        "notes": "The two notions use similar language but differ: bounded functions have bounded image, while bounded linear operators are controlled by input norm."
+      },
+      {
+        "id": "e319",
+        "source": "function",
+        "target": "bounded_function_on_domain",
+        "type": "prerequisite_for",
+        "dependency_class": "definitional_dependency",
+        "label": "function is prerequisite for bounded_function_on_domain",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "Boundedness on a domain is a property of a function into a normed space."
+      },
+      {
+        "id": "e320",
+        "source": "function",
+        "target": "operator",
+        "type": "prerequisite_for",
+        "dependency_class": "pedagogical_dependency",
+        "label": "function is prerequisite for operator",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "An operator is, at base, a function/map."
+      },
+      {
+        "id": "e321",
+        "source": "function",
+        "target": "bounded_function_on_domain",
+        "type": "prerequisite_for",
+        "dependency_class": "definitional_dependency",
+        "label": "function is prerequisite for bounded_function_on_domain as a definition",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "The bounded-function definition presupposes the general notion of function."
+      },
+      {
+        "id": "e322",
+        "source": "function",
+        "target": "linear_operator",
+        "type": "prerequisite_for",
+        "dependency_class": "pedagogical_dependency",
+        "label": "function is prerequisite for linear_operator",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "A linear operator is a function satisfying linearity."
+      },
+      {
+        "id": "e323",
+        "source": "operator",
+        "target": "function",
+        "type": "subtype_of",
+        "dependency_class": "definitional_dependency",
+        "label": "operator is a subtype of function/map",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "Semantic hierarchy: operator is more specific than function."
+      },
+      {
+        "id": "e324",
+        "source": "operator",
+        "target": "linear_operator",
+        "type": "prerequisite_for",
+        "dependency_class": "definitional_dependency",
+        "label": "operator is prerequisite for linear_operator",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "Linearity is an additional condition imposed on an operator."
+      },
+      {
+        "id": "e325",
+        "source": "operator",
+        "target": "bounded_linear_operator",
+        "type": "prerequisite_for",
+        "dependency_class": "definitional_dependency",
+        "label": "operator is prerequisite for bounded_linear_operator",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "A bounded linear operator is an operator with linearity and boundedness."
+      },
+      {
+        "id": "e326",
+        "source": "operator",
+        "target": "compact_operator",
+        "type": "prerequisite_for",
+        "dependency_class": "definitional_dependency",
+        "label": "operator is prerequisite for compact_operator",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e327",
+        "source": "operator",
+        "target": "projection_operator",
+        "type": "prerequisite_for",
+        "dependency_class": "definitional_dependency",
+        "label": "operator is prerequisite for projection_operator",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e328",
+        "source": "nonlinear_operator",
+        "target": "operator",
+        "type": "subtype_of",
+        "dependency_class": "definitional_dependency",
+        "label": "nonlinear_operator is a subtype of operator",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "Shows that operator is not universally synonymous with linear operator."
+      },
+      {
+        "id": "e329",
+        "source": "nonlinear_operator",
+        "target": "nonlinearity",
+        "type": "has_property",
+        "dependency_class": "definitional_dependency",
+        "label": "nonlinear_operator has property nonlinearity",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "Changed from violates_assumption because nonlinear_operator is an object, not an allowed source for violates_assumption."
+      },
+      {
+        "id": "e330",
+        "source": "nonlinear_operator",
+        "target": "semantic_strength_function_operator",
+        "type": "motivates",
+        "dependency_class": "pedagogical_dependency",
+        "label": "nonlinear_operator motivates distinction between operator and linear_operator",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e331",
+        "source": "semantic_strength_function_operator",
+        "target": "function",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "semantic_strength_function_operator requires function",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e332",
+        "source": "semantic_strength_function_operator",
+        "target": "operator",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "semantic_strength_function_operator requires operator",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e333",
+        "source": "semantic_strength_function_operator",
+        "target": "linear_operator",
+        "type": "motivates",
+        "dependency_class": "pedagogical_dependency",
+        "label": "semantic_strength_function_operator clarifies function/operator/linear_operator hierarchy",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e334",
+        "source": "functional_analysis",
+        "target": "function",
+        "type": "introduces",
+        "dependency_class": "pedagogical_dependency",
+        "label": "Functional analysis uses the foundational notion of function/map",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e335",
+        "source": "functional_analysis",
+        "target": "operator",
+        "type": "introduces",
+        "dependency_class": "pedagogical_dependency",
+        "label": "Functional analysis studies operators between structured spaces",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e336",
+        "source": "linear_operator",
+        "target": "operator",
+        "type": "subtype_of",
+        "dependency_class": "definitional_dependency",
+        "label": "linear_operator is a subtype of operator",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "Linear operator adds preservation of linear combinations."
+      },
+      {
+        "id": "e337",
+        "source": "bounded_function_on_domain",
+        "target": "function",
+        "type": "subtype_of",
+        "dependency_class": "definitional_dependency",
+        "label": "bounded_function_on_domain is a subtype of function",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "A bounded function on a domain is a function with bounded image."
+      },
+      {
+        "id": "e338",
+        "source": "quotient_space",
+        "target": "closed_subspace",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "quotient_space requires closed_subspace",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e339",
+        "source": "quotient_space",
+        "target": "norm",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "quotient_space requires norm",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e340",
+        "source": "quotient_map",
+        "target": "quotient_space",
+        "type": "constructed_from",
+        "dependency_class": "construction_dependency",
+        "label": "quotient_map constructed from quotient_space",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e341",
+        "source": "bounded_linear_operator",
+        "target": "kernel",
+        "type": "induces",
+        "dependency_class": "construction_dependency",
+        "label": "bounded_linear_operator induces kernel",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e342",
+        "source": "kernel",
+        "target": "closed_subspace",
+        "type": "has_property",
+        "dependency_class": "logical_dependency",
+        "label": "kernel of bounded linear operator is a closed subspace",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e343",
+        "source": "closed_graph_theorem",
+        "target": "open_mapping_theorem",
+        "type": "implies",
+        "dependency_class": "logical_dependency",
+        "label": "closed_graph_theorem implies open_mapping_theorem",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e344",
+        "source": "weak_convergence",
+        "target": "weak_topology",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "weak_convergence requires weak_topology",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e345",
+        "source": "weak_star_convergence",
+        "target": "weak_star_topology",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "weak_star_convergence requires weak_star_topology",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e346",
+        "source": "weakly_bounded_set",
+        "target": "dual_space",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "weakly_bounded_set requires dual_space",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e347",
+        "source": "weakly_bounded_implies_norm_bounded",
+        "target": "uniform_boundedness_principle",
+        "type": "uses",
+        "dependency_class": "logical_dependency",
+        "label": "weak boundedness theorem uses uniform boundedness",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e348",
+        "source": "riesz_representation_c_k",
+        "target": "c_k",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "Riesz C(K) theorem requires C(K)",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e349",
+        "source": "riesz_representation_c_k",
+        "target": "dual_space",
+        "type": "requires",
+        "dependency_class": "definitional_dependency",
+        "label": "Riesz C(K) theorem requires dual_space",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e350",
+        "source": "riesz_representation_c_k",
+        "target": "c_k",
+        "type": "has_example",
+        "dependency_class": "pedagogical_dependency",
+        "label": "Riesz representation for C(K) has C(K) as its central example/context",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "Changed from applied_to because c_k is an example node, not a theorem/proof method source."
+      },
+      {
+        "id": "e351",
+        "source": "bounded_function_on_domain",
+        "target": "nonzero_linear_map_on_unbounded_normed_space",
+        "type": "has_counterexample",
+        "dependency_class": "pedagogical_dependency",
+        "label": "bounded_function_on_domain has counterexample nonzero_linear_map_on_unbounded_normed_space",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "Shows that bounded linear operator is not the same as bounded function on the whole domain."
+      },
+      {
+        "id": "e352",
+        "source": "nonzero_linear_map_on_unbounded_normed_space",
+        "target": "bounded_linear_operator",
+        "type": "instance_of",
+        "dependency_class": "logical_dependency",
+        "label": "nonzero_linear_map_on_unbounded_normed_space is an instance involving bounded_linear_operator",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "Counterexample instance used to distinguish operator boundedness from bounded image."
       }
     ],
     "domains": [
