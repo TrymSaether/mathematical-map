@@ -31,9 +31,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "field"
-          ],
+          "tags": ["field"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -59,10 +57,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "space",
-            "algebra"
-          ],
+          "tags": ["space", "algebra"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -88,10 +83,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "space",
-            "topology"
-          ],
+          "tags": ["space", "topology"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -114,16 +106,12 @@
           "The sequence $(x_n)_{n\\in\\mathbb{N}}$ takes values in $M$."
         ],
         "dependencies": {
-          "definitional_dependency": [
-            "metric_space"
-          ],
+          "definitional_dependency": ["metric_space"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "metric_space"
-          ],
+          "pedagogical_dependency": ["metric_space"],
           "historical_dependency": []
         },
         "metadata": {
@@ -143,10 +131,7 @@
           "Sufficiently late terms are pairwise arbitrarily close.",
           "The condition compares tail terms to each other rather than to a specified limit."
         ],
-        "examples": [
-          "ell_p_spaces",
-          "c_0"
-        ],
+        "examples": ["ell_p_spaces", "c_0"],
         "non_examples": [
           "incomplete_normed_spaces_as_non_examples_of_banach_spaces"
         ],
@@ -167,9 +152,7 @@
         "notation": "TVS",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "vector_space"
-          ],
+          "definitional_dependency": ["vector_space"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -178,10 +161,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "space",
-            "topology"
-          ],
+          "tags": ["space", "topology"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -203,22 +183,12 @@
           "$\\|\\cdot\\|$ is a norm on $X$."
         ],
         "dependencies": {
-          "definitional_dependency": [
-            "vector_space",
-            "norm"
-          ],
+          "definitional_dependency": ["vector_space", "norm"],
           "logical_dependency": [],
-          "assumption_dependency": [
-            "scalar_field_real_or_complex"
-          ],
+          "assumption_dependency": ["scalar_field_real_or_complex"],
           "construction_dependency": [],
-          "notation_dependency": [
-            "norm"
-          ],
-          "pedagogical_dependency": [
-            "vector_space",
-            "norm"
-          ],
+          "notation_dependency": ["norm"],
+          "pedagogical_dependency": ["vector_space", "norm"],
           "historical_dependency": []
         },
         "metadata": {
@@ -257,10 +227,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "space",
-            "complete"
-          ],
+          "tags": ["space", "complete"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -277,10 +244,7 @@
         "notation": "(H, <·,·>)",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "vector_space",
-            "norm"
-          ],
+          "definitional_dependency": ["vector_space", "norm"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -289,10 +253,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "space",
-            "hilbert"
-          ],
+          "tags": ["space", "hilbert"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -322,11 +283,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "space",
-            "hilbert",
-            "complete"
-          ],
+          "tags": ["space", "hilbert", "complete"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -343,9 +300,7 @@
         "notation": "LCS",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "topological_vector_space"
-          ],
+          "definitional_dependency": ["topological_vector_space"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -354,10 +309,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "space",
-            "convexity"
-          ],
+          "tags": ["space", "convexity"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -387,10 +339,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "duality",
-            "space"
-          ],
+          "tags": ["duality", "space"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -416,10 +365,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "definition",
-            "norm"
-          ],
+          "tags": ["definition", "norm"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -430,11 +376,7 @@
           "absolutely homogeneous",
           "subadditive"
         ],
-        "examples": [
-          "ell_p_spaces",
-          "l_p_spaces",
-          "c_k"
-        ],
+        "examples": ["ell_p_spaces", "l_p_spaces", "c_k"],
         "non_examples": [],
         "equivalent_definitions": [],
         "domain": "spaces_norms"
@@ -450,10 +392,7 @@
         "notation": "d(x,y)=||x-y||",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "norm",
-            "normed_vector_space"
-          ],
+          "definitional_dependency": ["norm", "normed_vector_space"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -462,10 +401,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "construction",
-            "metric"
-          ],
+          "tags": ["construction", "metric"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -482,9 +418,7 @@
         "notation": "tau_d",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "metric_space"
-          ],
+          "definitional_dependency": ["metric_space"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -493,10 +427,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "construction",
-            "topology"
-          ],
+          "tags": ["construction", "topology"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -513,9 +444,7 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "metric_space"
-          ],
+          "definitional_dependency": ["metric_space"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -524,10 +453,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "property",
-            "metric"
-          ],
+          "tags": ["property", "metric"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -553,10 +479,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "property",
-            "topology"
-          ],
+          "tags": ["property", "topology"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -586,10 +509,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "weak topology",
-            "duality"
-          ],
+          "tags": ["weak topology", "duality"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -606,10 +526,7 @@
         "notation": "sigma(X*,X)",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "dual_space",
-            "weak_topology"
-          ],
+          "definitional_dependency": ["dual_space", "weak_topology"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -618,10 +535,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "weak-star",
-            "duality"
-          ],
+          "tags": ["weak-star", "duality"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -647,10 +561,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "property",
-            "operators"
-          ],
+          "tags": ["property", "operators"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -667,9 +578,7 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "topology_induced_by_metric"
-          ],
+          "definitional_dependency": ["topology_induced_by_metric"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -678,10 +587,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "property",
-            "topology"
-          ],
+          "tags": ["property", "topology"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -698,25 +604,16 @@
         "notation": "T:X->Y",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "vector_space",
-            "operator",
-            "function"
-          ],
+          "definitional_dependency": ["vector_space", "operator", "function"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "function",
-            "operator"
-          ],
+          "pedagogical_dependency": ["function", "operator"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "operator"
-          ],
+          "tags": ["operator"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -733,10 +630,7 @@
         "notation": "f, x*",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "linear_operator",
-            "vector_space"
-          ],
+          "definitional_dependency": ["linear_operator", "vector_space"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -745,18 +639,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "duality",
-            "functional"
-          ],
+          "tags": ["duality", "functional"],
           "syllabus_priority": "core",
           "source": null
         },
         "introduced_object": "linear_functional",
         "genus": "linear operator",
-        "differentia": [
-          "codomain is scalar field"
-        ],
+        "differentia": ["codomain is scalar field"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": [],
@@ -788,9 +677,7 @@
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
-          "notation_dependency": [
-            "operator_norm"
-          ],
+          "notation_dependency": ["operator_norm"],
           "pedagogical_dependency": [
             "linear_operator",
             "normed_vector_space",
@@ -857,18 +744,11 @@
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "bounded_linear_operator"
-          ],
+          "pedagogical_dependency": ["bounded_linear_operator"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "function",
-            "bounded",
-            "image",
-            "normed_space"
-          ],
+          "tags": ["function", "bounded", "image", "normed_space"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -879,9 +759,7 @@
           "The image $f(X)$ is contained in a ball of finite radius in $Y$."
         ],
         "examples": [],
-        "non_examples": [
-          "nonzero_linear_map_on_unbounded_normed_space"
-        ],
+        "non_examples": ["nonzero_linear_map_on_unbounded_normed_space"],
         "equivalent_definitions": [
           "$f(X)$ is a bounded subset of $Y$.",
           "$f(X)\\subseteq B_Y(0,M)$ for some $M>0$."
@@ -898,10 +776,7 @@
         "notation": "T in L(X,Y)",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "linear_operator",
-            "continuity"
-          ],
+          "definitional_dependency": ["linear_operator", "continuity"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -910,10 +785,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "operator",
-            "continuous"
-          ],
+          "tags": ["operator", "continuous"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -942,18 +814,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "operator",
-            "norm"
-          ],
+          "tags": ["operator", "norm"],
           "syllabus_priority": "core",
           "source": null
         },
         "introduced_object": "operator_norm",
         "genus": "norm",
-        "differentia": [
-          "defined on bounded linear operators"
-        ],
+        "differentia": ["defined on bounded linear operators"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": [],
@@ -970,10 +837,7 @@
         "notation": "K(X,Y)",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "bounded_linear_operator",
-            "compactness"
-          ],
+          "definitional_dependency": ["bounded_linear_operator", "compactness"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -982,18 +846,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "operator",
-            "compact"
-          ],
+          "tags": ["operator", "compact"],
           "syllabus_priority": "high",
           "source": null
         },
         "introduced_object": "compact_operator",
         "genus": "bounded linear operator",
-        "differentia": [
-          "image of bounded sets is relatively compact"
-        ],
+        "differentia": ["image of bounded sets is relatively compact"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": [],
@@ -1010,10 +869,7 @@
         "notation": "T*",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "bounded_linear_operator",
-            "dual_space"
-          ],
+          "definitional_dependency": ["bounded_linear_operator", "dual_space"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -1022,10 +878,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "operator",
-            "duality"
-          ],
+          "tags": ["operator", "duality"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -1055,18 +908,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "operator",
-            "spectral"
-          ],
+          "tags": ["operator", "spectral"],
           "syllabus_priority": "high",
           "source": null
         },
         "introduced_object": "self_adjoint_operator",
         "genus": "bounded operator on Hilbert space",
-        "differentia": [
-          "equals its adjoint"
-        ],
+        "differentia": ["equals its adjoint"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": [],
@@ -1083,9 +931,7 @@
         "notation": "p",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "vector_space"
-          ],
+          "definitional_dependency": ["vector_space"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -1094,21 +940,14 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "hahn-banach"
-          ],
+          "tags": ["hahn-banach"],
           "syllabus_priority": "high",
           "source": null
         },
         "introduced_object": "sublinear_functional",
         "genus": "function on real vector space",
-        "differentia": [
-          "positive homogeneous",
-          "subadditive"
-        ],
-        "examples": [
-          "norm"
-        ],
+        "differentia": ["positive homogeneous", "subadditive"],
+        "examples": ["norm"],
         "non_examples": [],
         "equivalent_definitions": [],
         "domain": "hahn_banach"
@@ -1136,10 +975,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "operator",
-            "closed graph"
-          ],
+          "tags": ["operator", "closed graph"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -1156,10 +992,7 @@
         "notation": "B_X",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "normed_vector_space",
-            "norm"
-          ],
+          "definitional_dependency": ["normed_vector_space", "norm"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -1168,10 +1001,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "norm",
-            "geometry"
-          ],
+          "tags": ["norm", "geometry"],
           "syllabus_priority": "medium",
           "source": null
         },
@@ -1188,9 +1018,7 @@
         "notation": "sigma(T)",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "bounded_linear_operator"
-          ],
+          "definitional_dependency": ["bounded_linear_operator"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -1199,9 +1027,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "spectral"
-          ],
+          "tags": ["spectral"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -1218,9 +1044,7 @@
         "notation": "(e_n)",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "hilbert_space"
-          ],
+          "definitional_dependency": ["hilbert_space"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -1229,10 +1053,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "hilbert",
-            "basis"
-          ],
+          "tags": ["hilbert", "basis"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -1249,9 +1070,7 @@
         "notation": "P",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "linear_operator"
-          ],
+          "definitional_dependency": ["linear_operator"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -1260,10 +1079,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "operator",
-            "hilbert"
-          ],
+          "tags": ["operator", "hilbert"],
           "syllabus_priority": "medium",
           "source": null
         },
@@ -1289,9 +1105,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "foundations"
-          ],
+          "tags": ["foundations"],
           "syllabus_priority": "medium",
           "source": null
         },
@@ -1309,9 +1123,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "axiom_of_choice"
-          ],
+          "logical_dependency": ["axiom_of_choice"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -1319,10 +1131,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "foundations",
-            "hahn-banach"
-          ],
+          "tags": ["foundations", "hahn-banach"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -1337,34 +1146,22 @@
         "definition": null,
         "intuition": "Completeness prevents a space from being too thin.",
         "notation": null,
-        "assumptions": [
-          "completeness"
-        ],
+        "assumptions": ["completeness"],
         "dependencies": {
-          "definitional_dependency": [
-            "metric_space",
-            "completeness"
-          ],
+          "definitional_dependency": ["metric_space", "completeness"],
           "logical_dependency": [],
-          "assumption_dependency": [
-            "completeness"
-          ],
+          "assumption_dependency": ["completeness"],
           "construction_dependency": [],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "category",
-            "completeness"
-          ],
+          "tags": ["category", "completeness"],
           "syllabus_priority": "core",
           "source": null
         },
-        "hypotheses": [
-          "X is a complete metric space"
-        ],
+        "hypotheses": ["X is a complete metric space"],
         "conclusion": "Some closed set in a countable closed cover has nonempty interior.",
         "proof_methods": [],
         "related_theorems": [
@@ -1397,9 +1194,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof method"
-          ],
+          "tags": ["proof method"],
           "syllabus_priority": "medium",
           "source": null
         },
@@ -1425,9 +1220,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof method"
-          ],
+          "tags": ["proof method"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -1453,9 +1246,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof method"
-          ],
+          "tags": ["proof method"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -1481,10 +1272,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof method",
-            "duality"
-          ],
+          "tags": ["proof method", "duality"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -1510,9 +1298,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof method"
-          ],
+          "tags": ["proof method"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -1538,9 +1324,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "assumption"
-          ],
+          "tags": ["assumption"],
           "syllabus_priority": "medium",
           "source": null
         },
@@ -1559,19 +1343,14 @@
         "dependencies": {
           "definitional_dependency": [],
           "logical_dependency": [],
-          "assumption_dependency": [
-            "banach_space"
-          ],
+          "assumption_dependency": ["banach_space"],
           "construction_dependency": [],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "assumption",
-            "completeness"
-          ],
+          "tags": ["assumption", "completeness"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -1590,19 +1369,14 @@
         "dependencies": {
           "definitional_dependency": [],
           "logical_dependency": [],
-          "assumption_dependency": [
-            "banach_space"
-          ],
+          "assumption_dependency": ["banach_space"],
           "construction_dependency": [],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "assumption",
-            "completeness"
-          ],
+          "tags": ["assumption", "completeness"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -1619,9 +1393,7 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "boundedness"
-          ],
+          "definitional_dependency": ["boundedness"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -1630,10 +1402,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "assumption",
-            "ubp"
-          ],
+          "tags": ["assumption", "ubp"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -1650,9 +1419,7 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "linear_operator"
-          ],
+          "definitional_dependency": ["linear_operator"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -1661,10 +1428,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "assumption",
-            "open mapping"
-          ],
+          "tags": ["assumption", "open mapping"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -1681,9 +1445,7 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "closed_graph"
-          ],
+          "definitional_dependency": ["closed_graph"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -1692,10 +1454,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "assumption",
-            "closed graph"
-          ],
+          "tags": ["assumption", "closed graph"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -1725,10 +1484,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "assumption",
-            "weak-star"
-          ],
+          "tags": ["assumption", "weak-star"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -1758,10 +1514,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "assumption",
-            "spectral"
-          ],
+          "tags": ["assumption", "spectral"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -1776,9 +1529,7 @@
         "definition": null,
         "intuition": "Scalar probes defined on a subspace can be extended globally.",
         "notation": null,
-        "assumptions": [
-          "scalar_field_real_or_complex"
-        ],
+        "assumptions": ["scalar_field_real_or_complex"],
         "dependencies": {
           "definitional_dependency": [
             "vector_space",
@@ -1787,22 +1538,15 @@
             "sublinear_functional",
             "dual_space"
           ],
-          "logical_dependency": [
-            "zorns_lemma"
-          ],
-          "assumption_dependency": [
-            "scalar_field_real_or_complex"
-          ],
+          "logical_dependency": ["zorns_lemma"],
+          "assumption_dependency": ["scalar_field_real_or_complex"],
           "construction_dependency": [],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "hahn-banach",
-            "duality"
-          ],
+          "tags": ["hahn-banach", "duality"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -1812,30 +1556,18 @@
           "f is linear and dominated by p on V"
         ],
         "conclusion": "There exists a linear extension to E dominated by p; in normed spaces the extension can preserve norm.",
-        "proof_methods": [
-          "duality_argument"
-        ],
+        "proof_methods": ["duality_argument"],
         "related_theorems": [
           "banach_alaoglu_theorem",
           "riesz_representation_theorem"
         ],
-        "examples": [
-          "c_0",
-          "ell_p_spaces"
-        ],
-        "applications": [
-          "separation_of_points",
-          "weak_topology"
-        ],
+        "examples": ["c_0", "ell_p_spaces"],
+        "applications": ["separation_of_points", "weak_topology"],
         "variants": [
           {
             "id": "hahn_banach_norm_preserving_variant",
             "label": "Norm-preserving Hahn-Banach",
-            "hypotheses": [
-              "X normed",
-              "V subspace",
-              "f in V*"
-            ],
+            "hypotheses": ["X normed", "V subspace", "f in V*"],
             "conclusion": "There is F in X* extending f with ||F||=||f||."
           },
           {
@@ -1870,9 +1602,7 @@
             "operator_norm",
             "boundedness"
           ],
-          "logical_dependency": [
-            "baire_category_theorem"
-          ],
+          "logical_dependency": ["baire_category_theorem"],
           "assumption_dependency": [
             "domain_is_banach_space",
             "pointwise_bounded_family_assumption"
@@ -1883,10 +1613,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "ubp",
-            "baire"
-          ],
+          "tags": ["ubp", "baire"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -1897,17 +1624,10 @@
           "{T_i x} is bounded for every x in X"
         ],
         "conclusion": "sup_i ||T_i|| < infinity.",
-        "proof_methods": [
-          "compactness_argument"
-        ],
-        "related_theorems": [
-          "baire_category_theorem",
-          "open_mapping_theorem"
-        ],
+        "proof_methods": ["compactness_argument"],
+        "related_theorems": ["baire_category_theorem", "open_mapping_theorem"],
         "examples": [],
-        "applications": [
-          "pointwise_limits_of_operators"
-        ],
+        "applications": ["pointwise_limits_of_operators"],
         "variants": [],
         "domain": "baire_mapping_theorems"
       },
@@ -1931,9 +1651,7 @@
             "bounded_linear_operator",
             "continuity"
           ],
-          "logical_dependency": [
-            "baire_category_theorem"
-          ],
+          "logical_dependency": ["baire_category_theorem"],
           "assumption_dependency": [
             "domain_is_banach_space",
             "codomain_is_banach_space",
@@ -1945,30 +1663,16 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "open mapping",
-            "baire"
-          ],
+          "tags": ["open mapping", "baire"],
           "syllabus_priority": "core",
           "source": null
         },
-        "hypotheses": [
-          "X and Y are Banach",
-          "T in L(X,Y)",
-          "T is surjective"
-        ],
+        "hypotheses": ["X and Y are Banach", "T in L(X,Y)", "T is surjective"],
         "conclusion": "T is an open map.",
-        "proof_methods": [
-          "compactness_argument",
-          "approximation_argument"
-        ],
-        "related_theorems": [
-          "closed_graph_theorem"
-        ],
+        "proof_methods": ["compactness_argument", "approximation_argument"],
+        "related_theorems": ["closed_graph_theorem"],
         "examples": [],
-        "applications": [
-          "bounded_inverse_theorem"
-        ],
+        "applications": ["bounded_inverse_theorem"],
         "variants": [],
         "domain": "baire_mapping_theorems"
       },
@@ -1993,9 +1697,7 @@
             "closed_graph",
             "bounded_linear_operator"
           ],
-          "logical_dependency": [
-            "open_mapping_theorem"
-          ],
+          "logical_dependency": ["open_mapping_theorem"],
           "assumption_dependency": [
             "domain_is_banach_space",
             "codomain_is_banach_space",
@@ -2007,25 +1709,14 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "closed graph",
-            "open mapping"
-          ],
+          "tags": ["closed graph", "open mapping"],
           "syllabus_priority": "core",
           "source": null
         },
-        "hypotheses": [
-          "X,Y Banach",
-          "T:X->Y linear",
-          "graph(T) closed"
-        ],
+        "hypotheses": ["X,Y Banach", "T:X->Y linear", "graph(T) closed"],
         "conclusion": "T is bounded/continuous.",
-        "proof_methods": [
-          "duality_argument"
-        ],
-        "related_theorems": [
-          "open_mapping_theorem"
-        ],
+        "proof_methods": ["duality_argument"],
+        "related_theorems": ["open_mapping_theorem"],
         "examples": [],
         "applications": [],
         "variants": [],
@@ -2040,9 +1731,7 @@
         "definition": null,
         "intuition": "Pointwise bounded scalar probes have compactness in the weakest natural topology.",
         "notation": null,
-        "assumptions": [
-          "unit_ball_weak_star_assumption"
-        ],
+        "assumptions": ["unit_ball_weak_star_assumption"],
         "dependencies": {
           "definitional_dependency": [
             "dual_space",
@@ -2050,24 +1739,15 @@
             "weak_star_topology",
             "compactness"
           ],
-          "logical_dependency": [
-            "axiom_of_choice"
-          ],
-          "assumption_dependency": [
-            "unit_ball_weak_star_assumption"
-          ],
-          "construction_dependency": [
-            "weak_star_topology"
-          ],
+          "logical_dependency": ["axiom_of_choice"],
+          "assumption_dependency": ["unit_ball_weak_star_assumption"],
+          "construction_dependency": ["weak_star_topology"],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "weak-star",
-            "compactness"
-          ],
+          "tags": ["weak-star", "compactness"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -2076,16 +1756,10 @@
           "B_{X*} has the weak-star topology"
         ],
         "conclusion": "B_{X*} is weak-star compact.",
-        "proof_methods": [
-          "compactness_argument"
-        ],
-        "related_theorems": [
-          "hahn_banach_theorem"
-        ],
+        "proof_methods": ["compactness_argument"],
+        "related_theorems": ["hahn_banach_theorem"],
         "examples": [],
-        "applications": [
-          "weak_compactness_results"
-        ],
+        "applications": ["weak_compactness_results"],
         "variants": [],
         "domain": "duality_weak_topologies"
       },
@@ -2113,10 +1787,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "hilbert",
-            "projection"
-          ],
+          "tags": ["hilbert", "projection"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -2131,9 +1802,7 @@
         "definition": null,
         "intuition": "The dual of a Hilbert space is the Hilbert space itself, anti-linearly or linearly depending on convention.",
         "notation": null,
-        "assumptions": [
-          "domain_is_banach_space"
-        ],
+        "assumptions": ["domain_is_banach_space"],
         "dependencies": {
           "definitional_dependency": [
             "hilbert_space",
@@ -2141,45 +1810,24 @@
             "linear_functional",
             "inner_product_space"
           ],
-          "logical_dependency": [
-            "projection_theorem"
-          ],
-          "assumption_dependency": [
-            "domain_is_banach_space"
-          ],
+          "logical_dependency": ["projection_theorem"],
+          "assumption_dependency": ["domain_is_banach_space"],
           "construction_dependency": [],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "hilbert",
-            "duality",
-            "hilbert-space version"
-          ],
+          "tags": ["hilbert", "duality", "hilbert-space version"],
           "syllabus_priority": "core",
           "source": null
         },
-        "hypotheses": [
-          "H is a Hilbert space",
-          "f in H*"
-        ],
+        "hypotheses": ["H is a Hilbert space", "f in H*"],
         "conclusion": "There exists unique y in H representing f by the inner product.",
-        "proof_methods": [
-          "duality_argument",
-          "projection_theorem"
-        ],
-        "related_theorems": [
-          "hahn_banach_theorem",
-          "spectral_theorem"
-        ],
-        "examples": [
-          "ell_2_as_hilbert_space"
-        ],
-        "applications": [
-          "adjoint_operator"
-        ],
+        "proof_methods": ["duality_argument", "projection_theorem"],
+        "related_theorems": ["hahn_banach_theorem", "spectral_theorem"],
+        "examples": ["ell_2_as_hilbert_space"],
+        "applications": ["adjoint_operator"],
         "variants": [],
         "domain": "hilbert_spectral"
       },
@@ -2192,9 +1840,7 @@
         "definition": null,
         "intuition": "Compact self-adjoint operators behave like diagonal Hermitian matrices.",
         "notation": null,
-        "assumptions": [
-          "compact_self_adjoint_operator_assumption"
-        ],
+        "assumptions": ["compact_self_adjoint_operator_assumption"],
         "dependencies": {
           "definitional_dependency": [
             "hilbert_space",
@@ -2208,20 +1854,14 @@
             "compactness_argument",
             "approximation_argument"
           ],
-          "assumption_dependency": [
-            "compact_self_adjoint_operator_assumption"
-          ],
+          "assumption_dependency": ["compact_self_adjoint_operator_assumption"],
           "construction_dependency": [],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "spectral",
-            "hilbert",
-            "compact operators"
-          ],
+          "tags": ["spectral", "hilbert", "compact operators"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -2236,22 +1876,14 @@
           "approximation_argument",
           "duality_argument"
         ],
-        "related_theorems": [
-          "riesz_representation_theorem"
-        ],
-        "examples": [
-          "ell_2_as_hilbert_space"
-        ],
-        "applications": [
-          "operator_spectrum_analysis"
-        ],
+        "related_theorems": ["riesz_representation_theorem"],
+        "examples": ["ell_2_as_hilbert_space"],
+        "applications": ["operator_spectrum_analysis"],
         "variants": [
           {
             "id": "spectral_theorem_bounded_self_adjoint_variant",
             "label": "Bounded self-adjoint spectral theorem",
-            "hypotheses": [
-              "T bounded self-adjoint on Hilbert space"
-            ],
+            "hypotheses": ["T bounded self-adjoint on Hilbert space"],
             "conclusion": "T admits a projection-valued spectral measure."
           }
         ],
@@ -2272,9 +1904,7 @@
             "banach_space",
             "bounded_linear_operator"
           ],
-          "logical_dependency": [
-            "open_mapping_theorem"
-          ],
+          "logical_dependency": ["open_mapping_theorem"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -2282,9 +1912,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "open mapping"
-          ],
+          "tags": ["open mapping"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -2302,23 +1930,15 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "zorns_lemma",
-            "duality_argument"
-          ],
-          "assumption_dependency": [
-            "scalar_field_real_or_complex"
-          ],
+          "logical_dependency": ["zorns_lemma", "duality_argument"],
+          "assumption_dependency": ["scalar_field_real_or_complex"],
           "construction_dependency": [],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof",
-            "hahn-banach"
-          ],
+          "tags": ["proof", "hahn-banach"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -2330,15 +1950,9 @@
           "step_hb_zorn_maximal_extension",
           "step_hb_one_dimensional_extension"
         ],
-        "uses_methods": [
-          "duality_argument"
-        ],
-        "uses_results": [
-          "zorns_lemma"
-        ],
-        "critical_assumptions": [
-          "scalar_field_real_or_complex"
-        ],
+        "uses_methods": ["duality_argument"],
+        "uses_results": ["zorns_lemma"],
+        "critical_assumptions": ["scalar_field_real_or_complex"],
         "domain": "hahn_banach"
       },
       {
@@ -2353,9 +1967,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "hahn_banach_theorem"
-          ],
+          "logical_dependency": ["hahn_banach_theorem"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -2363,9 +1975,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof step"
-          ],
+          "tags": ["proof step"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -2373,10 +1983,7 @@
         "step_number": 1,
         "claim": "Dominated extensions form a partially ordered set under extension.",
         "justification": "Restriction compatibility defines the order; domination is preserved by inclusion.",
-        "uses": [
-          "linear_functional",
-          "sublinear_functional"
-        ],
+        "uses": ["linear_functional", "sublinear_functional"],
         "domain": "hahn_banach"
       },
       {
@@ -2391,9 +1998,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "zorns_lemma"
-          ],
+          "logical_dependency": ["zorns_lemma"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -2401,9 +2006,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof step"
-          ],
+          "tags": ["proof step"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -2411,9 +2014,7 @@
         "step_number": 2,
         "claim": "Every chain has an upper bound given by the union functional.",
         "justification": "Total ordering makes the union single-valued and linear.",
-        "uses": [
-          "zorns_lemma"
-        ],
+        "uses": ["zorns_lemma"],
         "domain": "hahn_banach"
       },
       {
@@ -2428,9 +2029,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "zorns_lemma"
-          ],
+          "logical_dependency": ["zorns_lemma"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -2438,9 +2037,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof step"
-          ],
+          "tags": ["proof step"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -2448,10 +2045,7 @@
         "step_number": 3,
         "claim": "A maximal dominated extension exists.",
         "justification": "Zorn applies because every chain has an upper bound.",
-        "uses": [
-          "zorns_lemma",
-          "step_hb_chain_upper_bound"
-        ],
+        "uses": ["zorns_lemma", "step_hb_chain_upper_bound"],
         "domain": "hahn_banach"
       },
       {
@@ -2477,9 +2071,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof step"
-          ],
+          "tags": ["proof step"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -2487,10 +2079,7 @@
         "step_number": 4,
         "claim": "Maximality forces the extension domain to be E.",
         "justification": "The sublinear inequalities give a nonempty interval for the new scalar value.",
-        "uses": [
-          "sublinear_functional",
-          "step_hb_zorn_maximal_extension"
-        ],
+        "uses": ["sublinear_functional", "step_hb_zorn_maximal_extension"],
         "domain": "hahn_banach"
       },
       {
@@ -2519,10 +2108,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof",
-            "ubp"
-          ],
+          "tags": ["proof", "ubp"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -2533,12 +2119,8 @@
           "step_ubp_baire_nonempty_interior",
           "step_ubp_uniform_bound"
         ],
-        "uses_methods": [
-          "compactness_argument"
-        ],
-        "uses_results": [
-          "baire_category_theorem"
-        ],
+        "uses_methods": ["compactness_argument"],
+        "uses_results": ["baire_category_theorem"],
         "critical_assumptions": [
           "domain_is_banach_space",
           "pointwise_bounded_family_assumption"
@@ -2557,9 +2139,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "bounded_linear_operator"
-          ],
+          "logical_dependency": ["bounded_linear_operator"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -2567,9 +2147,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof step"
-          ],
+          "tags": ["proof step"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -2595,9 +2173,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "baire_category_theorem"
-          ],
+          "logical_dependency": ["baire_category_theorem"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -2605,9 +2181,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof step"
-          ],
+          "tags": ["proof step"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -2615,10 +2189,7 @@
         "step_number": 2,
         "claim": "Some E_N contains a nonempty open ball.",
         "justification": "X is Banach, hence complete metric.",
-        "uses": [
-          "baire_category_theorem",
-          "domain_is_banach_space"
-        ],
+        "uses": ["baire_category_theorem", "domain_is_banach_space"],
         "domain": "baire_mapping_theorems"
       },
       {
@@ -2644,9 +2215,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof step"
-          ],
+          "tags": ["proof step"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -2688,23 +2257,15 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof",
-            "open mapping"
-          ],
+          "tags": ["proof", "open mapping"],
           "syllabus_priority": "core",
           "source": null
         },
         "proves": "open_mapping_theorem",
         "strategy": "Cover Y by scaled closures of T(B_X), use Baire to get interior, then use an approximation series to remove closure.",
         "steps": [],
-        "uses_methods": [
-          "compactness_argument",
-          "approximation_argument"
-        ],
-        "uses_results": [
-          "baire_category_theorem"
-        ],
+        "uses_methods": ["compactness_argument", "approximation_argument"],
+        "uses_results": ["baire_category_theorem"],
         "critical_assumptions": [
           "domain_is_banach_space",
           "codomain_is_banach_space",
@@ -2724,9 +2285,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "open_mapping_theorem"
-          ],
+          "logical_dependency": ["open_mapping_theorem"],
           "assumption_dependency": [
             "closed_graph_assumption",
             "domain_is_banach_space",
@@ -2738,25 +2297,16 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof",
-            "closed graph"
-          ],
+          "tags": ["proof", "closed graph"],
           "syllabus_priority": "core",
           "source": null
         },
         "proves": "closed_graph_theorem",
         "strategy": "Equip graph(T) with product norm; projection to X is bijective and bounded, so inverse is bounded; T follows bounded.",
         "steps": [],
-        "uses_methods": [
-          "duality_argument"
-        ],
-        "uses_results": [
-          "open_mapping_theorem"
-        ],
-        "critical_assumptions": [
-          "closed_graph_assumption"
-        ],
+        "uses_methods": ["duality_argument"],
+        "uses_results": ["open_mapping_theorem"],
+        "critical_assumptions": ["closed_graph_assumption"],
         "domain": "baire_mapping_theorems"
       },
       {
@@ -2771,40 +2321,24 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "axiom_of_choice",
-            "compactness_argument"
-          ],
-          "assumption_dependency": [
-            "unit_ball_weak_star_assumption"
-          ],
-          "construction_dependency": [
-            "weak_star_topology"
-          ],
+          "logical_dependency": ["axiom_of_choice", "compactness_argument"],
+          "assumption_dependency": ["unit_ball_weak_star_assumption"],
+          "construction_dependency": ["weak_star_topology"],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof",
-            "banach-alaoglu"
-          ],
+          "tags": ["proof", "banach-alaoglu"],
           "syllabus_priority": "core",
           "source": null
         },
         "proves": "banach_alaoglu_theorem",
         "strategy": "Use Tychonoff/product compactness for pointwise bounded scalar values and show the weak-star unit ball is closed.",
         "steps": [],
-        "uses_methods": [
-          "compactness_argument"
-        ],
-        "uses_results": [
-          "axiom_of_choice"
-        ],
-        "critical_assumptions": [
-          "unit_ball_weak_star_assumption"
-        ],
+        "uses_methods": ["compactness_argument"],
+        "uses_results": ["axiom_of_choice"],
+        "critical_assumptions": ["unit_ball_weak_star_assumption"],
         "domain": "duality_weak_topologies"
       },
       {
@@ -2819,38 +2353,24 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "projection_theorem",
-            "duality_argument"
-          ],
-          "assumption_dependency": [
-            "domain_is_banach_space"
-          ],
+          "logical_dependency": ["projection_theorem", "duality_argument"],
+          "assumption_dependency": ["domain_is_banach_space"],
           "construction_dependency": [],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof",
-            "riesz"
-          ],
+          "tags": ["proof", "riesz"],
           "syllabus_priority": "core",
           "source": null
         },
         "proves": "riesz_representation_theorem",
         "strategy": "For nonzero f, decompose H into ker(f) and its orthogonal complement, then identify the representing vector.",
         "steps": [],
-        "uses_methods": [
-          "duality_argument"
-        ],
-        "uses_results": [
-          "projection_theorem"
-        ],
-        "critical_assumptions": [
-          "domain_is_banach_space"
-        ],
+        "uses_methods": ["duality_argument"],
+        "uses_results": ["projection_theorem"],
+        "critical_assumptions": ["domain_is_banach_space"],
         "domain": "hilbert_spectral"
       },
       {
@@ -2870,19 +2390,14 @@
             "compactness_argument",
             "approximation_argument"
           ],
-          "assumption_dependency": [
-            "compact_self_adjoint_operator_assumption"
-          ],
+          "assumption_dependency": ["compact_self_adjoint_operator_assumption"],
           "construction_dependency": [],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof",
-            "spectral"
-          ],
+          "tags": ["proof", "spectral"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -2894,12 +2409,8 @@
           "approximation_argument",
           "duality_argument"
         ],
-        "uses_results": [
-          "riesz_representation_theorem"
-        ],
-        "critical_assumptions": [
-          "compact_self_adjoint_operator_assumption"
-        ],
+        "uses_results": ["riesz_representation_theorem"],
+        "critical_assumptions": ["compact_self_adjoint_operator_assumption"],
         "domain": "hilbert_spectral"
       },
       {
@@ -2913,10 +2424,7 @@
         "notation": "ell^p",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "banach_space",
-            "norm"
-          ],
+          "definitional_dependency": ["banach_space", "norm"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -2925,22 +2433,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "example",
-            "sequence spaces"
-          ],
+          "tags": ["example", "sequence spaces"],
           "syllabus_priority": "core",
           "source": null
         },
-        "satisfies": [
-          "banach_space",
-          "normed_vector_space"
-        ],
+        "satisfies": ["banach_space", "normed_vector_space"],
         "violates": [],
-        "demonstrates": [
-          "dual_space",
-          "completeness"
-        ],
+        "demonstrates": ["dual_space", "completeness"],
         "related_theorems": [
           "hahn_banach_theorem",
           "riesz_representation_theorem"
@@ -2958,10 +2457,7 @@
         "notation": "L^p",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "banach_space",
-            "norm"
-          ],
+          "definitional_dependency": ["banach_space", "norm"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -2970,25 +2466,14 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "example",
-            "function spaces"
-          ],
+          "tags": ["example", "function spaces"],
           "syllabus_priority": "core",
           "source": null
         },
-        "satisfies": [
-          "banach_space",
-          "normed_vector_space"
-        ],
+        "satisfies": ["banach_space", "normed_vector_space"],
         "violates": [],
-        "demonstrates": [
-          "dual_space",
-          "completeness"
-        ],
-        "related_theorems": [
-          "uniform_boundedness_principle"
-        ],
+        "demonstrates": ["dual_space", "completeness"],
+        "related_theorems": ["uniform_boundedness_principle"],
         "domain": "examples_applications"
       },
       {
@@ -3002,11 +2487,7 @@
         "notation": "C(K)",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "banach_space",
-            "norm",
-            "compactness"
-          ],
+          "definitional_dependency": ["banach_space", "norm", "compactness"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -3015,24 +2496,14 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "example",
-            "function spaces"
-          ],
+          "tags": ["example", "function spaces"],
           "syllabus_priority": "core",
           "source": null
         },
-        "satisfies": [
-          "banach_space",
-          "normed_vector_space"
-        ],
+        "satisfies": ["banach_space", "normed_vector_space"],
         "violates": [],
-        "demonstrates": [
-          "dual_space"
-        ],
-        "related_theorems": [
-          "hahn_banach_theorem"
-        ],
+        "demonstrates": ["dual_space"],
+        "related_theorems": ["hahn_banach_theorem"],
         "domain": "examples_applications"
       },
       {
@@ -3046,11 +2517,7 @@
         "notation": "c_0",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "banach_space",
-            "norm",
-            "completeness"
-          ],
+          "definitional_dependency": ["banach_space", "norm", "completeness"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -3059,25 +2526,14 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "example",
-            "sequence spaces",
-            "nonreflexive"
-          ],
+          "tags": ["example", "sequence spaces", "nonreflexive"],
           "syllabus_priority": "high",
           "source": null
         },
-        "satisfies": [
-          "banach_space",
-          "normed_vector_space"
-        ],
+        "satisfies": ["banach_space", "normed_vector_space"],
         "violates": [],
-        "demonstrates": [
-          "dual_space"
-        ],
-        "related_theorems": [
-          "hahn_banach_theorem"
-        ],
+        "demonstrates": ["dual_space"],
+        "related_theorems": ["hahn_banach_theorem"],
         "domain": "examples_applications"
       },
       {
@@ -3104,23 +2560,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "example",
-            "hilbert"
-          ],
+          "tags": ["example", "hilbert"],
           "syllabus_priority": "core",
           "source": null
         },
-        "satisfies": [
-          "hilbert_space",
-          "banach_space",
-          "inner_product_space"
-        ],
+        "satisfies": ["hilbert_space", "banach_space", "inner_product_space"],
         "violates": [],
-        "demonstrates": [
-          "riesz_representation_theorem",
-          "spectral_theorem"
-        ],
+        "demonstrates": ["riesz_representation_theorem", "spectral_theorem"],
         "related_theorems": [
           "riesz_representation_theorem",
           "spectral_theorem"
@@ -3151,20 +2597,12 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "counterexample",
-            "completeness"
-          ],
+          "tags": ["counterexample", "completeness"],
           "syllabus_priority": "core",
           "source": null
         },
-        "satisfies": [
-          "normed_vector_space"
-        ],
-        "violates": [
-          "completeness",
-          "banach_space"
-        ],
+        "satisfies": ["normed_vector_space"],
+        "violates": ["completeness", "banach_space"],
         "demonstrates": [
           "banach_space",
           "open_mapping_theorem",
@@ -3189,10 +2627,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "hahn_banach_theorem",
-            "dual_space"
-          ],
+          "logical_dependency": ["hahn_banach_theorem", "dual_space"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -3200,10 +2635,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "application",
-            "duality"
-          ],
+          "tags": ["application", "duality"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -3221,9 +2653,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "uniform_boundedness_principle"
-          ],
+          "logical_dependency": ["uniform_boundedness_principle"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -3231,10 +2661,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "application",
-            "operators"
-          ],
+          "tags": ["application", "operators"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -3252,9 +2679,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "banach_alaoglu_theorem"
-          ],
+          "logical_dependency": ["banach_alaoglu_theorem"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -3262,10 +2687,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "application",
-            "weak topology"
-          ],
+          "tags": ["application", "weak topology"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -3283,10 +2705,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "spectral_theorem",
-            "spectrum"
-          ],
+          "logical_dependency": ["spectral_theorem", "spectrum"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -3294,10 +2713,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "application",
-            "spectral"
-          ],
+          "tags": ["application", "spectral"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -3333,12 +2749,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "definition",
-            "function",
-            "map",
-            "foundations"
-          ],
+          "tags": ["definition", "function", "map", "foundations"],
           "syllabus_priority": "core",
           "source": "standard mathematical terminology; compatible with the existing functional_analysis graph"
         },
@@ -3349,9 +2760,7 @@
           "The output is unique.",
           "No linearity, continuity, boundedness, or topology is assumed by the word function alone."
         ],
-        "examples": [
-          "bounded_function_on_domain"
-        ],
+        "examples": ["bounded_function_on_domain"],
         "non_examples": [],
         "equivalent_definitions": [
           "A map $f:X\\to Y$.",
@@ -3368,26 +2777,18 @@
         "formal_statement": "An operator is typically a map $T:X\\to Y$ where $X,Y$ carry mathematical structure; in functional analysis $X,Y$ are usually vector or normed spaces. If additionally $T(\\alpha x+\\beta y)=\\alpha Tx+\\beta Ty$, then $T$ is a linear operator.",
         "definition": "An operator is a function or map acting between structured spaces. In functional analysis, the term usually signals that the domain and codomain are vector spaces or topological vector spaces, and often that the map is linear unless explicitly stated otherwise.",
         "intuition": "A function wearing structure: it is still an assignment, but the word operator tells the reader to care about vector-space, norm, topology, or Hilbert-space structure.",
-        "notation": [
-          "$T:X\\to Y$",
-          "$Tx$",
-          "$T(x)$"
-        ],
+        "notation": ["$T:X\\to Y$", "$Tx$", "$T(x)$"],
         "assumptions": [
           "$T$ is a function/map.",
           "The domain and codomain usually carry additional structure.",
           "In functional analysis, linearity is common but should not be assumed unless stated or conventional in the surrounding text."
         ],
         "dependencies": {
-          "definitional_dependency": [
-            "function"
-          ],
+          "definitional_dependency": ["function"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
-          "notation_dependency": [
-            "function"
-          ],
+          "notation_dependency": ["function"],
           "pedagogical_dependency": [
             "function",
             "vector_space",
@@ -3396,13 +2797,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "definition",
-            "operator",
-            "function",
-            "map",
-            "terminology"
-          ],
+          "tags": ["definition", "operator", "function", "map", "terminology"],
           "syllabus_priority": "core",
           "source": "standard functional-analysis convention; compatible with Bowers-Kalton notation L(X,Y)"
         },
@@ -3452,18 +2847,11 @@
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "operator",
-            "linear_operator"
-          ],
+          "pedagogical_dependency": ["operator", "linear_operator"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "operator",
-            "nonlinear",
-            "terminology"
-          ],
+          "tags": ["operator", "nonlinear", "terminology"],
           "syllabus_priority": "medium",
           "source": "standard mathematical terminology"
         }
@@ -3480,28 +2868,16 @@
         "notation": "$\\text{operator}\\Rightarrow \\text{function}$, but generally $\\text{function}\\nRightarrow \\text{operator}$",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "function",
-            "operator"
-          ],
+          "definitional_dependency": ["function", "operator"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "function",
-            "operator",
-            "linear_operator"
-          ],
+          "pedagogical_dependency": ["function", "operator", "linear_operator"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "terminology",
-            "semantic hierarchy",
-            "function",
-            "operator"
-          ],
+          "tags": ["terminology", "semantic hierarchy", "function", "operator"],
           "syllabus_priority": "core",
           "source": "derived semantic clarification from standard functional-analysis convention",
           "exam_priority": "supporting",
@@ -3532,17 +2908,11 @@
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "normed_vector_space"
-          ],
+          "pedagogical_dependency": ["normed_vector_space"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "subspace",
-            "closed",
-            "banach_space"
-          ],
+          "tags": ["subspace", "closed", "banach_space"],
           "syllabus_priority": "core",
           "source": null,
           "exam_priority": "supporting",
@@ -3571,23 +2941,14 @@
             "norm"
           ],
           "logical_dependency": [],
-          "assumption_dependency": [
-            "domain_is_banach_space"
-          ],
+          "assumption_dependency": ["domain_is_banach_space"],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "closed_subspace",
-            "normed_vector_space"
-          ],
+          "pedagogical_dependency": ["closed_subspace", "normed_vector_space"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "quotient",
-            "banach_space",
-            "construction"
-          ],
+          "tags": ["quotient", "banach_space", "construction"],
           "syllabus_priority": "core",
           "source": "Bowers-Kalton Section 3.7",
           "exam_priority": "supporting",
@@ -3605,29 +2966,18 @@
         "definition": "The canonical surjective linear map from a space onto its quotient by a subspace.",
         "intuition": "Forget the component lying in Y.",
         "notation": "Q:X\\to X/Y",
-        "assumptions": [
-          "Y is a closed subspace of X."
-        ],
+        "assumptions": ["Y is a closed subspace of X."],
         "dependencies": {
-          "definitional_dependency": [
-            "quotient_space",
-            "linear_operator"
-          ],
+          "definitional_dependency": ["quotient_space", "linear_operator"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "quotient_space"
-          ],
+          "pedagogical_dependency": ["quotient_space"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "quotient",
-            "map",
-            "operator"
-          ],
+          "tags": ["quotient", "map", "operator"],
           "syllabus_priority": "core",
           "source": "Bowers-Kalton Section 3.7",
           "exam_priority": "supporting",
@@ -3645,29 +2995,18 @@
         "definition": "The null space of a linear operator.",
         "intuition": "Everything the operator kills.",
         "notation": "\\ker T",
-        "assumptions": [
-          "T:X\\to Y is linear."
-        ],
+        "assumptions": ["T:X\\to Y is linear."],
         "dependencies": {
-          "definitional_dependency": [
-            "linear_operator",
-            "vector_space"
-          ],
+          "definitional_dependency": ["linear_operator", "vector_space"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "linear_operator"
-          ],
+          "pedagogical_dependency": ["linear_operator"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "operator",
-            "kernel",
-            "quotient"
-          ],
+          "tags": ["operator", "kernel", "quotient"],
           "syllabus_priority": "core",
           "source": null,
           "exam_priority": "supporting",
@@ -3685,9 +3024,7 @@
         "definition": "Weak convergence is convergence in the weak topology \\sigma(X,X^*).",
         "intuition": "Vectors converge when every scalar probe in the dual agrees that they converge.",
         "notation": "x_n\\rightharpoonup x",
-        "assumptions": [
-          "X is a normed space."
-        ],
+        "assumptions": ["X is a normed space."],
         "dependencies": {
           "definitional_dependency": [
             "weak_topology",
@@ -3696,24 +3033,13 @@
           ],
           "logical_dependency": [],
           "assumption_dependency": [],
-          "construction_dependency": [
-            "weak_topology"
-          ],
-          "notation_dependency": [
-            "dual_space"
-          ],
-          "pedagogical_dependency": [
-            "dual_space",
-            "weak_topology"
-          ],
+          "construction_dependency": ["weak_topology"],
+          "notation_dependency": ["dual_space"],
+          "pedagogical_dependency": ["dual_space", "weak_topology"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "weak topology",
-            "convergence",
-            "duality"
-          ],
+          "tags": ["weak topology", "convergence", "duality"],
           "syllabus_priority": "core",
           "source": null,
           "exam_priority": "supporting",
@@ -3722,14 +3048,10 @@
         },
         "introduced_object": "weak_convergence",
         "genus": "topological convergence",
-        "differentia": [
-          "tested by all functionals in X*"
-        ],
+        "differentia": ["tested by all functionals in X*"],
         "examples": [],
         "non_examples": [],
-        "equivalent_definitions": [
-          "Convergence in \\sigma(X,X^*)"
-        ]
+        "equivalent_definitions": ["Convergence in \\sigma(X,X^*)"]
       },
       {
         "id": "weak_star_convergence",
@@ -3741,34 +3063,18 @@
         "definition": "Weak-star convergence is convergence in \\sigma(X^*,X).",
         "intuition": "Functionals converge by agreeing pointwise on every vector.",
         "notation": "x_n^*\\overset{w^*}{\\to}x^*",
-        "assumptions": [
-          "X is a normed space."
-        ],
+        "assumptions": ["X is a normed space."],
         "dependencies": {
-          "definitional_dependency": [
-            "weak_star_topology",
-            "dual_space"
-          ],
+          "definitional_dependency": ["weak_star_topology", "dual_space"],
           "logical_dependency": [],
           "assumption_dependency": [],
-          "construction_dependency": [
-            "weak_star_topology"
-          ],
-          "notation_dependency": [
-            "dual_space"
-          ],
-          "pedagogical_dependency": [
-            "weak_star_topology",
-            "dual_space"
-          ],
+          "construction_dependency": ["weak_star_topology"],
+          "notation_dependency": ["dual_space"],
+          "pedagogical_dependency": ["weak_star_topology", "dual_space"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "weak-star",
-            "convergence",
-            "duality"
-          ],
+          "tags": ["weak-star", "convergence", "duality"],
           "syllabus_priority": "core",
           "source": null,
           "exam_priority": "supporting",
@@ -3777,14 +3083,10 @@
         },
         "introduced_object": "weak_star_convergence",
         "genus": "topological convergence",
-        "differentia": [
-          "tested pointwise on X"
-        ],
+        "differentia": ["tested pointwise on X"],
         "examples": [],
         "non_examples": [],
-        "equivalent_definitions": [
-          "Convergence in \\sigma(X^*,X)"
-        ]
+        "equivalent_definitions": ["Convergence in \\sigma(X^*,X)"]
       },
       {
         "id": "weakly_bounded_set",
@@ -3796,30 +3098,18 @@
         "definition": "Weak boundedness means boundedness after testing by every element of the dual space.",
         "intuition": "The set may look large in X, but every scalar probe sees only bounded values.",
         "notation": null,
-        "assumptions": [
-          "X is a normed space."
-        ],
+        "assumptions": ["X is a normed space."],
         "dependencies": {
-          "definitional_dependency": [
-            "dual_space",
-            "boundedness"
-          ],
+          "definitional_dependency": ["dual_space", "boundedness"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "dual_space",
-            "weak_topology"
-          ],
+          "pedagogical_dependency": ["dual_space", "weak_topology"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "weak topology",
-            "boundedness",
-            "exam"
-          ],
+          "tags": ["weak topology", "boundedness", "exam"],
           "syllabus_priority": "core",
           "source": "2025 exam Question 5",
           "exam_priority": "main_theorem",
@@ -3828,9 +3118,7 @@
         },
         "introduced_object": "weakly_bounded_set",
         "genus": "subset of a normed space",
-        "differentia": [
-          "all continuous linear functionals are bounded on it"
-        ],
+        "differentia": ["all continuous linear functionals are bounded on it"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -3845,22 +3133,15 @@
         "definition": null,
         "intuition": "If every scalar probe sees boundedness, completeness upgrades this to actual norm boundedness.",
         "notation": null,
-        "assumptions": [
-          "X is Banach.",
-          "A is weakly bounded."
-        ],
+        "assumptions": ["X is Banach.", "A is weakly bounded."],
         "dependencies": {
           "definitional_dependency": [
             "banach_space",
             "weakly_bounded_set",
             "dual_space"
           ],
-          "logical_dependency": [
-            "uniform_boundedness_principle"
-          ],
-          "assumption_dependency": [
-            "domain_is_banach_space"
-          ],
+          "logical_dependency": ["uniform_boundedness_principle"],
+          "assumption_dependency": ["domain_is_banach_space"],
           "construction_dependency": [],
           "notation_dependency": [],
           "pedagogical_dependency": [
@@ -3870,28 +3151,17 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "weak boundedness",
-            "uniform boundedness",
-            "exam"
-          ],
+          "tags": ["weak boundedness", "uniform boundedness", "exam"],
           "syllabus_priority": "core",
           "source": "2025 exam Question 5",
           "exam_priority": "main_theorem",
           "exercise_refs": [],
           "proof_required": true
         },
-        "hypotheses": [
-          "X is Banach",
-          "A is weakly bounded"
-        ],
+        "hypotheses": ["X is Banach", "A is weakly bounded"],
         "conclusion": "A is norm bounded.",
-        "proof_methods": [
-          "duality_argument"
-        ],
-        "related_theorems": [
-          "uniform_boundedness_principle"
-        ],
+        "proof_methods": ["duality_argument"],
+        "related_theorems": ["uniform_boundedness_principle"],
         "examples": [],
         "applications": [],
         "variants": []
@@ -3906,50 +3176,28 @@
         "definition": "The norm on a normed vector space is positively homogeneous and subadditive.",
         "intuition": "The norm is the basic domination function in Hahn-Banach.",
         "notation": "p(x)=\\|x\\|",
-        "assumptions": [
-          "X is a normed vector space."
-        ],
+        "assumptions": ["X is a normed vector space."],
         "dependencies": {
-          "definitional_dependency": [
-            "norm",
-            "sublinear_functional"
-          ],
+          "definitional_dependency": ["norm", "sublinear_functional"],
           "logical_dependency": [],
-          "assumption_dependency": [
-            "normed_vector_space"
-          ],
+          "assumption_dependency": ["normed_vector_space"],
           "construction_dependency": [],
-          "notation_dependency": [
-            "norm"
-          ],
-          "pedagogical_dependency": [
-            "norm",
-            "sublinear_functional"
-          ],
+          "notation_dependency": ["norm"],
+          "pedagogical_dependency": ["norm", "sublinear_functional"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "example",
-            "hahn-banach",
-            "norm"
-          ],
+          "tags": ["example", "hahn-banach", "norm"],
           "syllabus_priority": "core",
           "source": "Bowers-Kalton Chapter 3",
           "exam_priority": "supporting",
           "exercise_refs": [],
           "proof_required": false
         },
-        "satisfies": [
-          "sublinear_functional"
-        ],
+        "satisfies": ["sublinear_functional"],
         "violates": [],
-        "demonstrates": [
-          "hahn_banach_theorem"
-        ],
-        "related_theorems": [
-          "hahn_banach_theorem"
-        ]
+        "demonstrates": ["hahn_banach_theorem"],
+        "related_theorems": ["hahn_banach_theorem"]
       },
       {
         "id": "nonlinearity",
@@ -3963,23 +3211,16 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "linear_operator"
-          ],
+          "definitional_dependency": ["linear_operator"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "linear_operator"
-          ],
+          "pedagogical_dependency": ["linear_operator"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "operator",
-            "nonlinear"
-          ],
+          "tags": ["operator", "nonlinear"],
           "syllabus_priority": "medium",
           "source": null,
           "exam_priority": "peripheral",
@@ -4009,9 +3250,7 @@
             "linear_operator"
           ],
           "logical_dependency": [],
-          "assumption_dependency": [
-            "normed_vector_space"
-          ],
+          "assumption_dependency": ["normed_vector_space"],
           "construction_dependency": [],
           "notation_dependency": [],
           "pedagogical_dependency": [
@@ -4021,29 +3260,16 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "counterexample",
-            "boundedness",
-            "operator"
-          ],
+          "tags": ["counterexample", "boundedness", "operator"],
           "syllabus_priority": "core",
           "source": "Bowers-Kalton Exercise 1.4",
           "exam_priority": "supporting",
-          "exercise_refs": [
-            "1.4"
-          ],
+          "exercise_refs": ["1.4"],
           "proof_required": true
         },
-        "satisfies": [
-          "bounded_linear_operator",
-          "linear_operator"
-        ],
-        "violates": [
-          "bounded_function_on_domain"
-        ],
-        "demonstrates": [
-          "semantic_strength_function_operator"
-        ],
+        "satisfies": ["bounded_linear_operator", "linear_operator"],
+        "violates": ["bounded_function_on_domain"],
+        "demonstrates": ["semantic_strength_function_operator"],
         "related_theorems": []
       },
       {
@@ -4056,9 +3282,7 @@
         "definition": null,
         "intuition": "Every continuous scalar probe on C(K) is integration against a measure.",
         "notation": "C(K)^*=M(K)",
-        "assumptions": [
-          "K is compact metric, in the Bowers-Kalton version."
-        ],
+        "assumptions": ["K is compact metric, in the Bowers-Kalton version."],
         "dependencies": {
           "definitional_dependency": [
             "c_k",
@@ -4066,44 +3290,25 @@
             "bounded_linear_operator"
           ],
           "logical_dependency": [],
-          "assumption_dependency": [
-            "compactness"
-          ],
+          "assumption_dependency": ["compactness"],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "dual_space",
-            "c_k"
-          ],
+          "pedagogical_dependency": ["dual_space", "c_k"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "riesz representation",
-            "C(K)",
-            "measures",
-            "duality"
-          ],
+          "tags": ["riesz representation", "C(K)", "measures", "duality"],
           "syllabus_priority": "high",
           "source": "Bowers-Kalton Theorem 2.20",
           "exam_priority": "supporting",
           "exercise_refs": [],
           "proof_required": false
         },
-        "hypotheses": [
-          "K is compact metric",
-          "\\varphi\\in C(K)^*"
-        ],
+        "hypotheses": ["K is compact metric", "\\varphi\\in C(K)^*"],
         "conclusion": "There exists a finite Borel measure \\mu such that \\varphi(f)=\\int_K f\\,d\\mu.",
-        "proof_methods": [
-          "duality_argument"
-        ],
-        "related_theorems": [
-          "hahn_banach_theorem"
-        ],
-        "examples": [
-          "c_k"
-        ],
+        "proof_methods": ["duality_argument"],
+        "related_theorems": ["hahn_banach_theorem"],
+        "examples": ["c_k"],
         "applications": [],
         "variants": []
       }
@@ -8087,9 +7292,7 @@
         "logical_dependency",
         "historical_dependency"
       ],
-      "root_items": [
-        "functional_analysis"
-      ],
+      "root_items": ["functional_analysis"],
       "example_traversal": "functional_analysis --introduces--> banach_space --has_example--> ell_p_spaces"
     },
     "definition_dependency_graph": {
@@ -8114,10 +7317,7 @@
         "construction_dependency",
         "notation_dependency"
       ],
-      "root_items": [
-        "banach_space",
-        "spectral_theorem"
-      ],
+      "root_items": ["banach_space", "spectral_theorem"],
       "example_traversal": "spectral_theorem --requires--> self_adjoint_operator --requires--> adjoint_operator --requires--> dual_space"
     },
     "theorem_dependency_graph": {
@@ -8130,19 +7330,9 @@
         "corollary",
         "proof_method"
       ],
-      "included_edge_types": [
-        "uses",
-        "implies",
-        "equivalent_to",
-        "requires"
-      ],
-      "included_dependency_classes": [
-        "logical_dependency"
-      ],
-      "root_items": [
-        "spectral_theorem",
-        "open_mapping_theorem"
-      ],
+      "included_edge_types": ["uses", "implies", "equivalent_to", "requires"],
+      "included_dependency_classes": ["logical_dependency"],
+      "root_items": ["spectral_theorem", "open_mapping_theorem"],
       "example_traversal": "spectral_theorem --uses--> riesz_representation_theorem --uses--> projection_theorem"
     },
     "proof_graph": {
@@ -8155,12 +7345,7 @@
         "lemma",
         "assumption"
       ],
-      "included_edge_types": [
-        "proves",
-        "uses",
-        "requires",
-        "assumes"
-      ],
+      "included_edge_types": ["proves", "uses", "requires", "assumes"],
       "included_dependency_classes": [
         "logical_dependency",
         "assumption_dependency"
@@ -8173,21 +7358,10 @@
     },
     "inheritance_tree": {
       "description": "Tree-like view extracted from subtype and inheritance edges; the graph itself still permits multiple inheritance.",
-      "included_item_kinds": [
-        "structure",
-        "object",
-        "definition"
-      ],
-      "included_edge_types": [
-        "subtype_of",
-        "inherits_from"
-      ],
-      "included_dependency_classes": [
-        "definitional_dependency"
-      ],
-      "root_items": [
-        "vector_space"
-      ],
+      "included_item_kinds": ["structure", "object", "definition"],
+      "included_edge_types": ["subtype_of", "inherits_from"],
+      "included_dependency_classes": ["definitional_dependency"],
+      "root_items": ["vector_space"],
       "example_traversal": "hilbert_space --subtype_of--> inner_product_space and hilbert_space --subtype_of--> banach_space"
     },
     "construction_graph": {
@@ -8199,20 +7373,12 @@
         "object",
         "property"
       ],
-      "included_edge_types": [
-        "constructed_from",
-        "induces",
-        "requires"
-      ],
+      "included_edge_types": ["constructed_from", "induces", "requires"],
       "included_dependency_classes": [
         "construction_dependency",
         "definitional_dependency"
       ],
-      "root_items": [
-        "norm",
-        "dual_space",
-        "bounded_linear_operator"
-      ],
+      "root_items": ["norm", "dual_space", "bounded_linear_operator"],
       "example_traversal": "norm --induces--> metric_induced_by_norm --induces--> topology_induced_by_metric"
     },
     "prerequisite_map": {
@@ -8239,16 +7405,9 @@
         "proof_method",
         "application"
       ],
-      "included_edge_types": [
-        "prerequisite_for",
-        "motivates"
-      ],
-      "included_dependency_classes": [
-        "pedagogical_dependency"
-      ],
-      "root_items": [
-        "vector_space"
-      ],
+      "included_edge_types": ["prerequisite_for", "motivates"],
+      "included_dependency_classes": ["pedagogical_dependency"],
+      "root_items": ["vector_space"],
       "example_traversal": "vector_space --prerequisite_for--> normed_vector_space --prerequisite_for--> banach_space --prerequisite_for--> bounded_linear_operator"
     },
     "application_map": {
@@ -8262,19 +7421,12 @@
         "construction",
         "object"
       ],
-      "included_edge_types": [
-        "applied_to",
-        "uses",
-        "implies"
-      ],
+      "included_edge_types": ["applied_to", "uses", "implies"],
       "included_dependency_classes": [
         "logical_dependency",
         "pedagogical_dependency"
       ],
-      "root_items": [
-        "hahn_banach_theorem",
-        "spectral_theorem"
-      ],
+      "root_items": ["hahn_banach_theorem", "spectral_theorem"],
       "example_traversal": "spectral_theorem --applied_to--> operator_spectrum_analysis"
     }
   },
@@ -8289,11 +7441,7 @@
       "query_name": "theorem_dependencies",
       "start_node_kind": "theorem",
       "edge_filter": {
-        "edge_types": [
-          "requires",
-          "uses",
-          "assumes"
-        ],
+        "edge_types": ["requires", "uses", "assumes"],
         "dependency_classes": [
           "definitional_dependency",
           "logical_dependency",
@@ -8308,9 +7456,7 @@
       "query_name": "definitions_required_to_state_theorem",
       "start_node_kind": "theorem",
       "edge_filter": {
-        "edge_types": [
-          "requires"
-        ],
+        "edge_types": ["requires"],
         "dependency_classes": [
           "definitional_dependency",
           "construction_dependency",
@@ -8325,13 +7471,8 @@
       "query_name": "proof_methods_used_by_theorem",
       "start_node_kind": "theorem",
       "edge_filter": {
-        "edge_types": [
-          "proves",
-          "uses"
-        ],
-        "dependency_classes": [
-          "logical_dependency"
-        ]
+        "edge_types": ["proves", "uses"],
+        "dependency_classes": ["logical_dependency"]
       },
       "traversal_direction": "both",
       "expected_output": "list[item]",
@@ -8341,12 +7482,8 @@
       "query_name": "necessary_assumptions",
       "start_node_kind": "theorem",
       "edge_filter": {
-        "edge_types": [
-          "assumes"
-        ],
-        "dependency_classes": [
-          "assumption_dependency"
-        ]
+        "edge_types": ["assumes"],
+        "dependency_classes": ["assumption_dependency"]
       },
       "traversal_direction": "outgoing",
       "expected_output": "list[item]",
@@ -8356,13 +7493,8 @@
       "query_name": "examples_satisfying_definition",
       "start_node_kind": "definition",
       "edge_filter": {
-        "edge_types": [
-          "instance_of",
-          "has_example"
-        ],
-        "dependency_classes": [
-          "pedagogical_dependency"
-        ]
+        "edge_types": ["instance_of", "has_example"],
+        "dependency_classes": ["pedagogical_dependency"]
       },
       "traversal_direction": "both",
       "expected_output": "list[item]",
@@ -8390,13 +7522,8 @@
       "query_name": "inheritance_tree_of_spaces",
       "start_node_kind": "structure",
       "edge_filter": {
-        "edge_types": [
-          "subtype_of",
-          "inherits_from"
-        ],
-        "dependency_classes": [
-          "definitional_dependency"
-        ]
+        "edge_types": ["subtype_of", "inherits_from"],
+        "dependency_classes": ["definitional_dependency"]
       },
       "traversal_direction": "both",
       "expected_output": "list[item]",
@@ -8406,11 +7533,7 @@
       "query_name": "dependency_path_vector_space_to_spectral_theorem",
       "start_node_kind": "structure",
       "edge_filter": {
-        "edge_types": [
-          "prerequisite_for",
-          "requires",
-          "subtype_of"
-        ],
+        "edge_types": ["prerequisite_for", "requires", "subtype_of"],
         "dependency_classes": [
           "pedagogical_dependency",
           "definitional_dependency"

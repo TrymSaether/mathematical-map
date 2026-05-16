@@ -112,10 +112,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "field",
-            "overview"
-          ],
+          "tags": ["field", "overview"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -129,10 +126,7 @@
         "formal_statement": null,
         "definition": "A parameter indexing oscillation rate; on the circle frequencies are integers, while on R^d frequencies are continuous vectors.",
         "intuition": "Frequency tells how many waves fit into space or time.",
-        "notation": [
-          "n\\in\\mathbb Z",
-          "\\xi\\in\\mathbb R^d"
-        ],
+        "notation": ["n\\in\\mathbb Z", "\\xi\\in\\mathbb R^d"],
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
@@ -144,10 +138,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "wave",
-            "parameter"
-          ],
+          "tags": ["wave", "parameter"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -169,16 +160,11 @@
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "integer_frequency_character"
-          ],
+          "pedagogical_dependency": ["integer_frequency_character"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "Euler",
-            "oscillation"
-          ],
+          "tags": ["Euler", "oscillation"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -204,10 +190,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "group",
-            "frequency"
-          ],
+          "tags": ["group", "frequency"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -217,10 +200,7 @@
           "maps into the unit circle",
           "respects the group operation"
         ],
-        "examples": [
-          "integer_frequency_character",
-          "finite_group_character"
-        ],
+        "examples": ["integer_frequency_character", "finite_group_character"],
         "non_examples": [],
         "equivalent_definitions": []
       },
@@ -241,26 +221,17 @@
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "fourier_coefficient_circle"
-          ],
+          "pedagogical_dependency": ["fourier_coefficient_circle"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "circle",
-            "character"
-          ],
+          "tags": ["circle", "character"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "satisfies": [
-          "character"
-        ],
+        "satisfies": ["character"],
         "violates": [],
-        "demonstrates": [
-          "fourier_series"
-        ],
+        "demonstrates": ["fourier_series"],
         "related_theorems": []
       },
       {
@@ -280,15 +251,11 @@
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "mean_square_convergence_fourier_series"
-          ],
+          "pedagogical_dependency": ["mean_square_convergence_fourier_series"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "geometry"
-          ],
+          "tags": ["geometry"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -314,10 +281,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "linearity",
-            "PDE"
-          ],
+          "tags": ["linearity", "PDE"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -343,10 +307,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "PDE",
-            "method"
-          ],
+          "tags": ["PDE", "method"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -372,10 +333,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "Hilbert",
-            "proof"
-          ],
+          "tags": ["Hilbert", "proof"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -401,10 +359,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "distribution",
-            "functional analysis"
-          ],
+          "tags": ["distribution", "functional analysis"],
           "syllabus_priority": "high",
           "source": null
         }
@@ -430,10 +385,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "domain",
-            "periodic"
-          ],
+          "tags": ["domain", "periodic"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -459,17 +411,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "periodic"
-          ],
+          "tags": ["periodic"],
           "syllabus_priority": "core",
           "source": null
         },
         "introduced_object": "periodic_function",
         "genus": "function",
-        "differentia": [
-          "invariant under translation by the period"
-        ],
+        "differentia": ["invariant under translation by the period"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -494,15 +442,11 @@
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "fourier_series"
-          ],
+          "pedagogical_dependency": ["fourier_series"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "coefficient"
-          ],
+          "tags": ["coefficient"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -512,9 +456,7 @@
           "computed by integration against a conjugate character",
           "indexed by integer frequency"
         ],
-        "examples": [
-          "sawtooth_function"
-        ],
+        "examples": ["sawtooth_function"],
         "non_examples": [],
         "equivalent_definitions": []
       },
@@ -538,15 +480,11 @@
             "integer_frequency_character"
           ],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "partial_sum_fourier_series"
-          ],
+          "pedagogical_dependency": ["partial_sum_fourier_series"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "series"
-          ],
+          "tags": ["series"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -575,25 +513,19 @@
           "definitional_dependency": [],
           "logical_dependency": [],
           "assumption_dependency": [],
-          "construction_dependency": [
-            "integer_frequency_character"
-          ],
+          "construction_dependency": ["integer_frequency_character"],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "finite approximation"
-          ],
+          "tags": ["finite approximation"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
         "introduced_object": "trigonometric_polynomial",
         "genus": "function",
-        "differentia": [
-          "finite frequency support"
-        ],
+        "differentia": ["finite frequency support"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -611,24 +543,15 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "dirichlet_kernel",
-            "convolution_circle"
-          ],
+          "logical_dependency": ["dirichlet_kernel", "convolution_circle"],
           "assumption_dependency": [],
-          "construction_dependency": [
-            "fourier_series"
-          ],
+          "construction_dependency": ["fourier_series"],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "dirichlet_kernel"
-          ],
+          "pedagogical_dependency": ["dirichlet_kernel"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "approximation"
-          ],
+          "tags": ["approximation"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -654,9 +577,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "real Fourier series"
-          ],
+          "tags": ["real Fourier series"],
           "syllabus_priority": "high",
           "source": null
         }
@@ -682,9 +603,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "boundary conditions"
-          ],
+          "tags": ["boundary conditions"],
           "syllabus_priority": "high",
           "source": null
         }
@@ -701,12 +620,8 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "fourier_coefficient_circle"
-          ],
-          "logical_dependency": [
-            "fejer_theorem"
-          ],
+          "definitional_dependency": ["fourier_coefficient_circle"],
+          "logical_dependency": ["fejer_theorem"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -714,9 +629,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "uniqueness"
-          ],
+          "tags": ["uniqueness"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -725,14 +638,10 @@
           "all Fourier coefficients agree"
         ],
         "conclusion": "f=g",
-        "proof_methods": [
-          "good_kernel_method"
-        ],
+        "proof_methods": ["good_kernel_method"],
         "related_theorems": [],
         "examples": [],
-        "applications": [
-          "weierstrass_approximation_trigonometric"
-        ],
+        "applications": ["weierstrass_approximation_trigonometric"],
         "variants": []
       },
       {
@@ -747,23 +656,16 @@
         "notation": "f*g",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "periodic_function"
-          ],
+          "definitional_dependency": ["periodic_function"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "good_kernel"
-          ],
+          "pedagogical_dependency": ["good_kernel"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "averaging",
-            "kernel"
-          ],
+          "tags": ["averaging", "kernel"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -792,18 +694,13 @@
           "definitional_dependency": [],
           "logical_dependency": [],
           "assumption_dependency": [],
-          "construction_dependency": [
-            "integer_frequency_character"
-          ],
+          "construction_dependency": ["integer_frequency_character"],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "kernel",
-            "oscillation"
-          ],
+          "tags": ["kernel", "oscillation"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -825,15 +722,11 @@
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "fejer_theorem"
-          ],
+          "pedagogical_dependency": ["fejer_theorem"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "approximate identity"
-          ],
+          "tags": ["approximate identity"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -869,10 +762,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "limit",
-            "kernel"
-          ],
+          "tags": ["limit", "kernel"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -892,18 +782,13 @@
           "definitional_dependency": [],
           "logical_dependency": [],
           "assumption_dependency": [],
-          "construction_dependency": [
-            "dirichlet_kernel"
-          ],
+          "construction_dependency": ["dirichlet_kernel"],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "positive kernel",
-            "Cesaro"
-          ],
+          "tags": ["positive kernel", "Cesaro"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -921,21 +806,15 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "fejer_kernel"
-          ],
+          "logical_dependency": ["fejer_kernel"],
           "assumption_dependency": [],
-          "construction_dependency": [
-            "partial_sum_fourier_series"
-          ],
+          "construction_dependency": ["partial_sum_fourier_series"],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "summability"
-          ],
+          "tags": ["summability"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -952,12 +831,8 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "cesaro_mean_fourier"
-          ],
-          "logical_dependency": [
-            "good_kernel_method"
-          ],
+          "definitional_dependency": ["cesaro_mean_fourier"],
+          "logical_dependency": ["good_kernel_method"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -965,20 +840,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "uniform convergence",
-            "summability"
-          ],
+          "tags": ["uniform convergence", "summability"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "hypotheses": [
-          "f is continuous on the circle"
-        ],
+        "hypotheses": ["f is continuous on the circle"],
         "conclusion": "Cesaro means converge uniformly to f",
-        "proof_methods": [
-          "good_kernel_method"
-        ],
+        "proof_methods": ["good_kernel_method"],
         "related_theorems": [],
         "examples": [],
         "applications": [
@@ -1000,9 +868,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "poisson_kernel_circle"
-          ],
+          "logical_dependency": ["poisson_kernel_circle"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -1010,10 +876,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "Abel",
-            "Poisson"
-          ],
+          "tags": ["Abel", "Poisson"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -1039,10 +902,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "Poisson",
-            "harmonic"
-          ],
+          "tags": ["Poisson", "harmonic"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -1068,22 +928,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "counterexample",
-            "kernel"
-          ],
+          "tags": ["counterexample", "kernel"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "satisfies": [
-          "dirichlet_kernel"
-        ],
-        "violates": [
-          "good_kernel"
-        ],
-        "demonstrates": [
-          "subtle_fourier_convergence"
-        ],
+        "satisfies": ["dirichlet_kernel"],
+        "violates": ["good_kernel"],
+        "demonstrates": ["subtle_fourier_convergence"],
         "related_theorems": []
       },
       {
@@ -1099,10 +950,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "convolution_circle",
-            "uniform_convergence"
-          ],
+          "logical_dependency": ["convolution_circle", "uniform_convergence"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -1110,10 +958,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof",
-            "approximation"
-          ],
+          "tags": ["proof", "approximation"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -1139,17 +984,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "convergence"
-          ],
+          "tags": ["convergence"],
           "syllabus_priority": "core",
           "source": null
         },
         "introduced_object": "mode_of_convergence",
         "genus": "convergence specification",
-        "differentia": [
-          "specifies what it means to approach"
-        ],
+        "differentia": ["specifies what it means to approach"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -1175,17 +1016,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "convergence"
-          ],
+          "tags": ["convergence"],
           "syllabus_priority": "core",
           "source": null
         },
         "introduced_object": "pointwise_convergence",
         "genus": "mode of convergence",
-        "differentia": [
-          "fixed point x before taking limit"
-        ],
+        "differentia": ["fixed point x before taking limit"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -1211,17 +1048,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "convergence"
-          ],
+          "tags": ["convergence"],
           "syllabus_priority": "core",
           "source": null
         },
         "introduced_object": "uniform_convergence",
         "genus": "mode of convergence",
-        "differentia": [
-          "supremum norm tends to zero"
-        ],
+        "differentia": ["supremum norm tends to zero"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -1247,17 +1080,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "Hilbert"
-          ],
+          "tags": ["Hilbert"],
           "syllabus_priority": "core",
           "source": null
         },
         "introduced_object": "L2_convergence",
         "genus": "mode of convergence",
-        "differentia": [
-          "uses square-integral norm"
-        ],
+        "differentia": ["uses square-integral norm"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -1283,17 +1112,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "measure theory"
-          ],
+          "tags": ["measure theory"],
           "syllabus_priority": "high",
           "source": null
         },
         "introduced_object": "almost_everywhere_convergence",
         "genus": "mode of convergence",
-        "differentia": [
-          "exception set has measure zero"
-        ],
+        "differentia": ["exception set has measure zero"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -1319,18 +1144,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "weak",
-            "distribution"
-          ],
+          "tags": ["weak", "distribution"],
           "syllabus_priority": "high",
           "source": null
         },
         "introduced_object": "distributional_convergence",
         "genus": "mode of convergence",
-        "differentia": [
-          "tested against all test functions"
-        ],
+        "differentia": ["tested against all test functions"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -1347,26 +1167,16 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "l2_convergence"
-          ],
-          "logical_dependency": [
-            "orthogonality",
-            "projection_method"
-          ],
+          "definitional_dependency": ["l2_convergence"],
+          "logical_dependency": ["orthogonality", "projection_method"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "parseval_identity_circle"
-          ],
+          "pedagogical_dependency": ["parseval_identity_circle"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "L2",
-            "projection"
-          ],
+          "tags": ["L2", "projection"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -1374,16 +1184,10 @@
           "f belongs to L2(T) or an appropriate integrable pre-Hilbert setting completed in L2"
         ],
         "conclusion": "S_N(f) converges to f in L2",
-        "proof_methods": [
-          "projection_method",
-          "density_argument"
-        ],
+        "proof_methods": ["projection_method", "density_argument"],
         "related_theorems": [],
         "examples": [],
-        "applications": [
-          "parseval_identity",
-          "riesz_fischer_theorem"
-        ],
+        "applications": ["parseval_identity", "riesz_fischer_theorem"],
         "variants": []
       },
       {
@@ -1410,27 +1214,16 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "energy",
-            "Hilbert"
-          ],
+          "tags": ["energy", "Hilbert"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "hypotheses": [
-          "f in L2(T)"
-        ],
+        "hypotheses": ["f in L2(T)"],
         "conclusion": "Fourier coefficient map preserves norm",
-        "proof_methods": [
-          "orthogonality",
-          "mean_square_convergence"
-        ],
+        "proof_methods": ["orthogonality", "mean_square_convergence"],
         "related_theorems": [],
         "examples": [],
-        "applications": [
-          "signal_energy",
-          "riesz_fischer_theorem"
-        ],
+        "applications": ["signal_energy", "riesz_fischer_theorem"],
         "variants": []
       },
       {
@@ -1446,9 +1239,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "orthogonality"
-          ],
+          "logical_dependency": ["orthogonality"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -1456,9 +1247,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "Hilbert"
-          ],
+          "tags": ["Hilbert"],
           "syllabus_priority": "high",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -1467,9 +1256,7 @@
           "f lies in a Hilbert space"
         ],
         "conclusion": "sum of squared coefficients is bounded by norm squared",
-        "proof_methods": [
-          "projection_method"
-        ],
+        "proof_methods": ["projection_method"],
         "related_theorems": [],
         "examples": [],
         "applications": [],
@@ -1487,12 +1274,8 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "pointwise_convergence"
-          ],
-          "logical_dependency": [
-            "oscillatory_cancellation"
-          ],
+          "definitional_dependency": ["pointwise_convergence"],
+          "logical_dependency": ["oscillatory_cancellation"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -1500,20 +1283,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "pointwise",
-            "local"
-          ],
+          "tags": ["pointwise", "local"],
           "syllabus_priority": "high",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "hypotheses": [
-          "local hypotheses near the point"
-        ],
+        "hypotheses": ["local hypotheses near the point"],
         "conclusion": "local agreement implies same pointwise convergence behavior",
-        "proof_methods": [
-          "oscillatory_cancellation"
-        ],
+        "proof_methods": ["oscillatory_cancellation"],
         "related_theorems": [],
         "examples": [],
         "applications": [],
@@ -1543,10 +1319,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "pointwise",
-            "jump"
-          ],
+          "tags": ["pointwise", "jump"],
           "syllabus_priority": "high",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -1555,10 +1328,7 @@
           "sufficient local regularity such as bounded variation or piecewise smoothness"
         ],
         "conclusion": "convergence to midpoint of one-sided limits",
-        "proof_methods": [
-          "dirichlet_kernel_estimates",
-          "localization"
-        ],
+        "proof_methods": ["dirichlet_kernel_estimates", "localization"],
         "related_theorems": [],
         "examples": [],
         "applications": [],
@@ -1576,12 +1346,8 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "a_e_convergence"
-          ],
-          "logical_dependency": [
-            "time_frequency_analysis"
-          ],
+          "definitional_dependency": ["a_e_convergence"],
+          "logical_dependency": ["time_frequency_analysis"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -1589,21 +1355,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "almost everywhere",
-            "advanced"
-          ],
+          "tags": ["almost everywhere", "advanced"],
           "syllabus_priority": "medium",
           "source": "standard harmonic analysis"
         },
-        "hypotheses": [
-          "f in Lp(T)",
-          "p>1"
-        ],
+        "hypotheses": ["f in Lp(T)", "p>1"],
         "conclusion": "S_N(f)(x) converges to f(x) for almost every x",
-        "proof_methods": [
-          "time_frequency_analysis"
-        ],
+        "proof_methods": ["time_frequency_analysis"],
         "related_theorems": [],
         "examples": [],
         "applications": [],
@@ -1630,22 +1388,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "counterexample",
-            "L1"
-          ],
+          "tags": ["counterexample", "L1"],
           "syllabus_priority": "medium",
           "source": "standard Fourier series theory"
         },
-        "satisfies": [
-          "L1_space"
-        ],
-        "violates": [
-          "a_e_convergence"
-        ],
-        "demonstrates": [
-          "sharpness_of_carleson_hunt"
-        ],
+        "satisfies": ["L1_space"],
+        "violates": ["a_e_convergence"],
+        "demonstrates": ["sharpness_of_carleson_hunt"],
         "related_theorems": []
       },
       {
@@ -1669,22 +1418,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "counterexample",
-            "continuous"
-          ],
+          "tags": ["counterexample", "continuous"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "satisfies": [
-          "continuous_periodic_function"
-        ],
-        "violates": [
-          "pointwise_convergence"
-        ],
-        "demonstrates": [
-          "dirichlet_kernel_not_good_counterexample"
-        ],
+        "satisfies": ["continuous_periodic_function"],
+        "violates": ["pointwise_convergence"],
+        "demonstrates": ["dirichlet_kernel_not_good_counterexample"],
         "related_theorems": []
       },
       {
@@ -1708,11 +1448,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "jump",
-            "overshoot",
-            "signal"
-          ],
+          "tags": ["jump", "overshoot", "signal"],
           "syllabus_priority": "high",
           "source": null
         }
@@ -1738,9 +1474,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "geometry"
-          ],
+          "tags": ["geometry"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -1766,9 +1500,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "functional analysis"
-          ],
+          "tags": ["functional analysis"],
           "syllabus_priority": "core",
           "source": "Bowers-Kalton, An Introductory Course in Functional Analysis (2014)"
         }
@@ -1794,9 +1526,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "Hilbert"
-          ],
+          "tags": ["Hilbert"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -1822,9 +1552,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "Banach"
-          ],
+          "tags": ["Banach"],
           "syllabus_priority": "core",
           "source": "Bowers-Kalton, An Introductory Course in Functional Analysis (2014)"
         }
@@ -1850,9 +1578,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "Banach"
-          ],
+          "tags": ["Banach"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -1869,9 +1595,7 @@
         "notation": "(e_n)",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "orthogonality"
-          ],
+          "definitional_dependency": ["orthogonality"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -1880,17 +1604,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "basis"
-          ],
+          "tags": ["basis"],
           "syllabus_priority": "core",
           "source": null
         },
         "introduced_object": "orthonormal_basis",
         "genus": "orthonormal family",
-        "differentia": [
-          "spans densely or every vector has expansion"
-        ],
+        "differentia": ["spans densely or every vector has expansion"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -1907,12 +1627,8 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "l2_space"
-          ],
-          "logical_dependency": [
-            "parseval_identity_circle"
-          ],
+          "definitional_dependency": ["l2_space"],
+          "logical_dependency": ["parseval_identity_circle"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -1920,21 +1636,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "isometry",
-            "Hilbert"
-          ],
+          "tags": ["isometry", "Hilbert"],
           "syllabus_priority": "core",
           "source": "Bowers-Kalton, An Introductory Course in Functional Analysis (2014)"
         },
-        "hypotheses": [
-          "f in L2(T)"
-        ],
+        "hypotheses": ["f in L2(T)"],
         "conclusion": "L2(T) and l2(Z) are isometrically isomorphic via Fourier coefficients",
-        "proof_methods": [
-          "parseval_identity_circle",
-          "completeness"
-        ],
+        "proof_methods": ["parseval_identity_circle", "completeness"],
         "related_theorems": [],
         "examples": [],
         "applications": [],
@@ -1952,9 +1660,7 @@
         "notation": "T\\in\\mathcal L(X,Y)",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "lp_space"
-          ],
+          "definitional_dependency": ["lp_space"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -1963,18 +1669,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "operator"
-          ],
+          "tags": ["operator"],
           "syllabus_priority": "high",
           "source": "Bowers-Kalton, An Introductory Course in Functional Analysis (2014)"
         },
         "introduced_object": "bounded_linear_operator",
         "genus": "linear map",
-        "differentia": [
-          "bounded on the unit ball",
-          "equivalently continuous"
-        ],
+        "differentia": ["bounded on the unit ball", "equivalently continuous"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -1996,16 +1697,11 @@
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "bounded_linear_operator"
-          ],
+          "pedagogical_dependency": ["bounded_linear_operator"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "operator",
-            "spectrum"
-          ],
+          "tags": ["operator", "spectrum"],
           "syllabus_priority": "high",
           "source": null
         }
@@ -2031,10 +1727,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "operator",
-            "symmetry"
-          ],
+          "tags": ["operator", "symmetry"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -2060,9 +1753,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "operator"
-          ],
+          "tags": ["operator"],
           "syllabus_priority": "high",
           "source": null
         }
@@ -2088,9 +1779,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "domain"
-          ],
+          "tags": ["domain"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -2116,9 +1805,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "domain"
-          ],
+          "tags": ["domain"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -2140,15 +1827,11 @@
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "fourier_transform_Rd"
-          ],
+          "pedagogical_dependency": ["fourier_transform_Rd"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "test functions"
-          ],
+          "tags": ["test functions"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -2174,18 +1857,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "decay"
-          ],
+          "tags": ["decay"],
           "syllabus_priority": "medium",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
         "introduced_object": "function_moderate_decrease",
         "genus": "function",
-        "differentia": [
-          "continuous",
-          "decays at infinity sufficiently fast"
-        ],
+        "differentia": ["continuous", "decays at infinity sufficiently fast"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -2217,9 +1895,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "transform"
-          ],
+          "tags": ["transform"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -2248,17 +1924,13 @@
           "definitional_dependency": [],
           "logical_dependency": [],
           "assumption_dependency": [],
-          "construction_dependency": [
-            "fourier_transform_Rd"
-          ],
+          "construction_dependency": ["fourier_transform_Rd"],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "inversion"
-          ],
+          "tags": ["inversion"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -2280,36 +1952,23 @@
             "inverse_fourier_transform"
           ],
           "logical_dependency": [],
-          "assumption_dependency": [
-            "schwartz_space"
-          ],
+          "assumption_dependency": ["schwartz_space"],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "plancherel_theorem_Rd"
-          ],
+          "pedagogical_dependency": ["plancherel_theorem_Rd"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "inversion"
-          ],
+          "tags": ["inversion"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "hypotheses": [
-          "f in Schwartz space"
-        ],
+        "hypotheses": ["f in Schwartz space"],
         "conclusion": "inverse Fourier transform recovers f pointwise",
-        "proof_methods": [
-          "gaussian_regularization",
-          "approximate_identity"
-        ],
+        "proof_methods": ["gaussian_regularization", "approximate_identity"],
         "related_theorems": [],
         "examples": [],
-        "applications": [
-          "PDE_fourier_method"
-        ],
+        "applications": ["PDE_fourier_method"],
         "variants": []
       },
       {
@@ -2324,13 +1983,8 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "fourier_transform_Rd",
-            "l2_space"
-          ],
-          "logical_dependency": [
-            "fourier_inversion_schwartz"
-          ],
+          "definitional_dependency": ["fourier_transform_Rd", "l2_space"],
+          "logical_dependency": ["fourier_inversion_schwartz"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -2338,21 +1992,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "unitary",
-            "energy"
-          ],
+          "tags": ["unitary", "energy"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "hypotheses": [
-          "initially f in Schwartz space; extends to L2"
-        ],
+        "hypotheses": ["initially f in Schwartz space; extends to L2"],
         "conclusion": "Fourier transform is unitary on L2 after extension",
-        "proof_methods": [
-          "fourier_inversion_schwartz",
-          "convolution_theorem"
-        ],
+        "proof_methods": ["fourier_inversion_schwartz", "convolution_theorem"],
         "related_theorems": [],
         "examples": [],
         "applications": [],
@@ -2370,9 +2016,7 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "fourier_transform_Rd"
-          ],
+          "definitional_dependency": ["fourier_transform_Rd"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -2381,10 +2025,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "convolution",
-            "multiplication"
-          ],
+          "tags": ["convolution", "multiplication"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -2392,16 +2033,10 @@
           "f and g in Schwartz space or suitable integrability classes"
         ],
         "conclusion": "Transform of convolution equals product of transforms",
-        "proof_methods": [
-          "Fubini",
-          "change_of_variables"
-        ],
+        "proof_methods": ["Fubini", "change_of_variables"],
         "related_theorems": [],
         "examples": [],
-        "applications": [
-          "filtering",
-          "PDE_fourier_method"
-        ],
+        "applications": ["filtering", "PDE_fourier_method"],
         "variants": []
       },
       {
@@ -2425,10 +2060,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "duality",
-            "signal"
-          ],
+          "tags": ["duality", "signal"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -2453,38 +2085,24 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "fourier_transform_Rd"
-          ],
+          "logical_dependency": ["fourier_transform_Rd"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "PDE_fourier_method"
-          ],
+          "pedagogical_dependency": ["PDE_fourier_method"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "PDE",
-            "multiplier"
-          ],
+          "tags": ["PDE", "multiplier"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "hypotheses": [
-          "f in Schwartz space or distribution setting"
-        ],
+        "hypotheses": ["f in Schwartz space or distribution setting"],
         "conclusion": "Derivatives become algebraic frequency multipliers",
-        "proof_methods": [
-          "integration_by_parts"
-        ],
+        "proof_methods": ["integration_by_parts"],
         "related_theorems": [],
         "examples": [],
-        "applications": [
-          "PDE_fourier_method",
-          "sobolev_space"
-        ],
+        "applications": ["PDE_fourier_method", "sobolev_space"],
         "variants": []
       },
       {
@@ -2500,9 +2118,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "fourier_transform_Rd"
-          ],
+          "logical_dependency": ["fourier_transform_Rd"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -2510,9 +2126,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "duality"
-          ],
+          "tags": ["duality"],
           "syllabus_priority": "high",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -2545,21 +2159,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "Gaussian",
-            "example"
-          ],
+          "tags": ["Gaussian", "example"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "satisfies": [
-          "schwartz_space"
-        ],
+        "satisfies": ["schwartz_space"],
         "violates": [],
-        "demonstrates": [
-          "fourier_inversion_schwartz",
-          "plancherel_theorem_Rd"
-        ],
+        "demonstrates": ["fourier_inversion_schwartz", "plancherel_theorem_Rd"],
         "related_theorems": []
       },
       {
@@ -2583,17 +2189,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "symmetry"
-          ],
+          "tags": ["symmetry"],
           "syllabus_priority": "high",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
         "introduced_object": "radial_function",
         "genus": "function",
-        "differentia": [
-          "invariant under rotations"
-        ],
+        "differentia": ["invariant under rotations"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -2622,19 +2224,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "symmetry"
-          ],
+          "tags": ["symmetry"],
           "syllabus_priority": "high",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "hypotheses": [
-          "f is radial and Fourier transform is defined"
-        ],
+        "hypotheses": ["f is radial and Fourier transform is defined"],
         "conclusion": "hat f is radial",
-        "proof_methods": [
-          "rotation_invariance"
-        ],
+        "proof_methods": ["rotation_invariance"],
         "related_theorems": [],
         "examples": [],
         "applications": [],
@@ -2653,10 +2249,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "fourier_series",
-            "fourier_transform_Rd"
-          ],
+          "logical_dependency": ["fourier_series", "fourier_transform_Rd"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -2664,27 +2257,16 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "lattice",
-            "number theory"
-          ],
+          "tags": ["lattice", "number theory"],
           "syllabus_priority": "high",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "hypotheses": [
-          "f sufficiently regular and decaying, e.g. Schwartz"
-        ],
+        "hypotheses": ["f sufficiently regular and decaying, e.g. Schwartz"],
         "conclusion": "integer samples of f and hat f have equal sums",
-        "proof_methods": [
-          "periodization",
-          "fourier_series"
-        ],
+        "proof_methods": ["periodization", "fourier_series"],
         "related_theorems": [],
         "examples": [],
-        "applications": [
-          "theta_function",
-          "sampling_theorem"
-        ],
+        "applications": ["theta_function", "sampling_theorem"],
         "variants": []
       },
       {
@@ -2700,9 +2282,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "fourier_transform_Rd"
-          ],
+          "logical_dependency": ["fourier_transform_Rd"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -2710,10 +2290,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "uncertainty",
-            "concentration"
-          ],
+          "tags": ["uncertainty", "concentration"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -2722,10 +2299,7 @@
           "finite variances"
         ],
         "conclusion": "space-frequency concentration has a positive lower bound",
-        "proof_methods": [
-          "integration_by_parts",
-          "Cauchy-Schwarz"
-        ],
+        "proof_methods": ["integration_by_parts", "Cauchy-Schwarz"],
         "related_theorems": [],
         "examples": [],
         "applications": [],
@@ -2752,17 +2326,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "distribution"
-          ],
+          "tags": ["distribution"],
           "syllabus_priority": "core",
           "source": null
         },
         "introduced_object": "test_function",
         "genus": "smooth function",
-        "differentia": [
-          "used in pairings with distributions"
-        ],
+        "differentia": ["used in pairings with distributions"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -2779,9 +2349,7 @@
         "notation": "\\langle T,\\varphi\\rangle",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "test_function"
-          ],
+          "definitional_dependency": ["test_function"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -2790,17 +2358,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "generalized function"
-          ],
+          "tags": ["generalized function"],
           "syllabus_priority": "core",
           "source": "standard distribution theory / Schwartz tempered distributions"
         },
         "introduced_object": "distribution",
         "genus": "continuous linear functional",
-        "differentia": [
-          "acts on smooth compactly supported test functions"
-        ],
+        "differentia": ["acts on smooth compactly supported test functions"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -2817,30 +2381,22 @@
         "notation": "\\mathcal S^\\prime",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "schwartz_space"
-          ],
+          "definitional_dependency": ["schwartz_space"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "sobolev_space"
-          ],
+          "pedagogical_dependency": ["sobolev_space"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "tempered"
-          ],
+          "tags": ["tempered"],
           "syllabus_priority": "core",
           "source": "standard distribution theory / Schwartz tempered distributions"
         },
         "introduced_object": "tempered_distribution",
         "genus": "distribution",
-        "differentia": [
-          "acts continuously on Schwartz space"
-        ],
+        "differentia": ["acts continuously on Schwartz space"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -2866,22 +2422,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "distribution",
-            "point mass"
-          ],
+          "tags": ["distribution", "point mass"],
           "syllabus_priority": "core",
           "source": "standard distribution theory / Schwartz tempered distributions"
         },
-        "satisfies": [
-          "tempered_distribution"
-        ],
-        "violates": [
-          "locally_integrable_function_as_distribution"
-        ],
-        "demonstrates": [
-          "distribution"
-        ],
+        "satisfies": ["tempered_distribution"],
+        "violates": ["locally_integrable_function_as_distribution"],
+        "demonstrates": ["distribution"],
         "related_theorems": []
       },
       {
@@ -2896,12 +2443,8 @@
         "notation": "\\partial^\\alpha T",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "distribution"
-          ],
-          "logical_dependency": [
-            "duality_method"
-          ],
+          "definitional_dependency": ["distribution"],
+          "logical_dependency": ["duality_method"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -2909,17 +2452,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "weak derivative"
-          ],
+          "tags": ["weak derivative"],
           "syllabus_priority": "core",
           "source": "standard distribution theory / Schwartz tempered distributions"
         },
         "introduced_object": "weak_derivative",
         "genus": "distribution operation",
-        "differentia": [
-          "defined by duality against test functions"
-        ],
+        "differentia": ["defined by duality against test functions"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -2936,12 +2475,8 @@
         "notation": "\\widehat T",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "tempered_distribution"
-          ],
-          "logical_dependency": [
-            "duality_method"
-          ],
+          "definitional_dependency": ["tempered_distribution"],
+          "logical_dependency": ["duality_method"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -2949,18 +2484,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "distribution",
-            "Fourier transform"
-          ],
+          "tags": ["distribution", "Fourier transform"],
           "syllabus_priority": "core",
           "source": "standard distribution theory / Schwartz tempered distributions"
         },
         "introduced_object": "fourier_transform_tempered_distribution",
         "genus": "duality construction",
-        "differentia": [
-          "uses action on transformed test functions"
-        ],
+        "differentia": ["uses action on transformed test functions"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -2989,10 +2519,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "PDE",
-            "regularity"
-          ],
+          "tags": ["PDE", "regularity"],
           "syllabus_priority": "high",
           "source": null
         }
@@ -3009,12 +2536,8 @@
         "notation": "E",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "dirac_delta"
-          ],
-          "logical_dependency": [
-            "fourier_transform_tempered_distribution"
-          ],
+          "definitional_dependency": ["dirac_delta"],
+          "logical_dependency": ["fourier_transform_tempered_distribution"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -3022,10 +2545,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "PDE",
-            "Green function"
-          ],
+          "tags": ["PDE", "Green function"],
           "syllabus_priority": "high",
           "source": null
         }
@@ -3045,17 +2565,13 @@
           "definitional_dependency": [],
           "logical_dependency": [],
           "assumption_dependency": [],
-          "construction_dependency": [
-            "distribution"
-          ],
+          "construction_dependency": ["distribution"],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "embedding"
-          ],
+          "tags": ["embedding"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -3081,9 +2597,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "field"
-          ],
+          "tags": ["field"],
           "syllabus_priority": "core",
           "source": "standard harmonic analysis terminology"
         }
@@ -3109,9 +2623,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "LCA group"
-          ],
+          "tags": ["LCA group"],
           "syllabus_priority": "medium",
           "source": null
         }
@@ -3128,9 +2640,7 @@
         "notation": "dx",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "locally_compact_abelian_group"
-          ],
+          "definitional_dependency": ["locally_compact_abelian_group"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -3139,10 +2649,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "measure",
-            "group"
-          ],
+          "tags": ["measure", "group"],
           "syllabus_priority": "medium",
           "source": "Bowers-Kalton, An Introductory Course in Functional Analysis (2014)"
         }
@@ -3159,29 +2666,20 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "character"
-          ],
+          "definitional_dependency": ["character"],
           "logical_dependency": [],
-          "assumption_dependency": [
-            "locally_compact_abelian_group"
-          ],
+          "assumption_dependency": ["locally_compact_abelian_group"],
           "construction_dependency": [],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "duality",
-            "group"
-          ],
+          "tags": ["duality", "group"],
           "syllabus_priority": "medium",
           "source": null
         },
-        "hypotheses": [
-          "G locally compact abelian"
-        ],
+        "hypotheses": ["G locally compact abelian"],
         "conclusion": "canonical map G to double dual is an isomorphism",
         "proof_methods": [],
         "related_theorems": [],
@@ -3201,9 +2699,7 @@
         "notation": "T_m",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "fourier_transform_Rd"
-          ],
+          "definitional_dependency": ["fourier_transform_Rd"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -3212,18 +2708,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "operator",
-            "filter"
-          ],
+          "tags": ["operator", "filter"],
           "syllabus_priority": "high",
           "source": null
         },
         "introduced_object": "fourier_multiplier",
         "genus": "operator",
-        "differentia": [
-          "diagonal in Fourier variables"
-        ],
+        "differentia": ["diagonal in Fourier variables"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -3249,10 +2740,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "singular integral",
-            "signal"
-          ],
+          "tags": ["singular integral", "signal"],
           "syllabus_priority": "high",
           "source": "standard harmonic analysis terminology"
         }
@@ -3278,9 +2766,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "singular integral"
-          ],
+          "tags": ["singular integral"],
           "syllabus_priority": "medium",
           "source": null
         }
@@ -3306,10 +2792,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "maximal",
-            "averaging"
-          ],
+          "tags": ["maximal", "averaging"],
           "syllabus_priority": "medium",
           "source": null
         }
@@ -3327,9 +2810,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "oscillatory_cancellation"
-          ],
+          "logical_dependency": ["oscillatory_cancellation"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -3337,9 +2818,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "singular integral"
-          ],
+          "tags": ["singular integral"],
           "syllabus_priority": "medium",
           "source": "standard harmonic analysis terminology"
         },
@@ -3368,18 +2847,13 @@
           "definitional_dependency": [],
           "logical_dependency": [],
           "assumption_dependency": [],
-          "construction_dependency": [
-            "fourier_multiplier"
-          ],
+          "construction_dependency": ["fourier_multiplier"],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "scale",
-            "frequency"
-          ],
+          "tags": ["scale", "frequency"],
           "syllabus_priority": "medium",
           "source": null
         }
@@ -3396,9 +2870,7 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "fourier_transform_Rd"
-          ],
+          "definitional_dependency": ["fourier_transform_Rd"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -3407,10 +2879,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "advanced",
-            "open problems"
-          ],
+          "tags": ["advanced", "open problems"],
           "syllabus_priority": "low",
           "source": null
         }
@@ -3439,9 +2908,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "PDE"
-          ],
+          "tags": ["PDE"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -3459,9 +2926,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "superposition_principle"
-          ],
+          "logical_dependency": ["superposition_principle"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -3469,10 +2934,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "PDE",
-            "waves"
-          ],
+          "tags": ["PDE", "waves"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -3498,10 +2960,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "PDE",
-            "diffusion"
-          ],
+          "tags": ["PDE", "diffusion"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -3527,10 +2986,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "PDE",
-            "harmonic"
-          ],
+          "tags": ["PDE", "harmonic"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -3556,17 +3012,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "PDE"
-          ],
+          "tags": ["PDE"],
           "syllabus_priority": "core",
           "source": null
         },
         "introduced_object": "harmonic_function",
         "genus": "function",
-        "differentia": [
-          "annihilated by Laplacian"
-        ],
+        "differentia": ["annihilated by Laplacian"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -3583,12 +3035,8 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "laplace_equation"
-          ],
-          "logical_dependency": [
-            "poisson_kernel_circle"
-          ],
+          "definitional_dependency": ["laplace_equation"],
+          "logical_dependency": ["poisson_kernel_circle"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -3596,10 +3044,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "PDE",
-            "Poisson kernel"
-          ],
+          "tags": ["PDE", "Poisson kernel"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -3619,18 +3064,13 @@
           "definitional_dependency": [],
           "logical_dependency": [],
           "assumption_dependency": [],
-          "construction_dependency": [
-            "gaussian_fourier_eigenfunction"
-          ],
+          "construction_dependency": ["gaussian_fourier_eigenfunction"],
           "notation_dependency": [],
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "kernel",
-            "PDE"
-          ],
+          "tags": ["kernel", "PDE"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -3656,10 +3096,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "kernel",
-            "harmonic"
-          ],
+          "tags": ["kernel", "harmonic"],
           "syllabus_priority": "high",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -3676,9 +3113,7 @@
         "notation": "R f",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "euclidean_space_Rd"
-          ],
+          "definitional_dependency": ["euclidean_space_Rd"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
@@ -3687,10 +3122,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "tomography",
-            "integral geometry"
-          ],
+          "tags": ["tomography", "integral geometry"],
           "syllabus_priority": "high",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -3716,12 +3148,8 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "radon_transform"
-          ],
-          "logical_dependency": [
-            "fourier_transform_Rd"
-          ],
+          "definitional_dependency": ["radon_transform"],
+          "logical_dependency": ["fourier_transform_Rd"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -3729,25 +3157,16 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "Radon",
-            "tomography"
-          ],
+          "tags": ["Radon", "tomography"],
           "syllabus_priority": "high",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "hypotheses": [
-          "f in Schwartz space or suitable tomography class"
-        ],
+        "hypotheses": ["f in Schwartz space or suitable tomography class"],
         "conclusion": "Radon transform data gives Fourier transform on lines",
-        "proof_methods": [
-          "change_of_variables"
-        ],
+        "proof_methods": ["change_of_variables"],
         "related_theorems": [],
         "examples": [],
-        "applications": [
-          "computed_tomography"
-        ],
+        "applications": ["computed_tomography"],
         "variants": []
       },
       {
@@ -3771,9 +3190,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "waves"
-          ],
+          "tags": ["waves"],
           "syllabus_priority": "high",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -3791,10 +3208,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "fourier_slice_theorem",
-            "radon_transform"
-          ],
+          "logical_dependency": ["fourier_slice_theorem", "radon_transform"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -3802,10 +3216,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "medical imaging",
-            "Radon"
-          ],
+          "tags": ["medical imaging", "Radon"],
           "syllabus_priority": "high",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -3827,16 +3238,11 @@
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "heat_equation"
-          ],
+          "pedagogical_dependency": ["heat_equation"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "finance",
-            "PDE"
-          ],
+          "tags": ["finance", "PDE"],
           "syllabus_priority": "low",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -3862,9 +3268,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "finite"
-          ],
+          "tags": ["finite"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -3890,10 +3294,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "finite",
-            "circle"
-          ],
+          "tags": ["finite", "circle"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -3910,33 +3311,22 @@
         "notation": "DFT",
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "cyclic_group_ZN",
-            "character"
-          ],
+          "definitional_dependency": ["cyclic_group_ZN", "character"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "fast_fourier_transform"
-          ],
+          "pedagogical_dependency": ["fast_fourier_transform"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "DFT",
-            "signal"
-          ],
+          "tags": ["DFT", "signal"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
         "introduced_object": "discrete_fourier_transform",
         "genus": "finite transform",
-        "differentia": [
-          "finite sum",
-          "frequencies modulo N"
-        ],
+        "differentia": ["finite sum", "frequencies modulo N"],
         "examples": [],
         "non_examples": [],
         "equivalent_definitions": []
@@ -3953,12 +3343,8 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "discrete_fourier_transform"
-          ],
-          "logical_dependency": [
-            "character_orthogonality"
-          ],
+          "definitional_dependency": ["discrete_fourier_transform"],
+          "logical_dependency": ["character_orthogonality"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -3966,20 +3352,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "DFT",
-            "inversion"
-          ],
+          "tags": ["DFT", "inversion"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "hypotheses": [
-          "x is a function on Z/NZ"
-        ],
+        "hypotheses": ["x is a function on Z/NZ"],
         "conclusion": "x is reconstructed from its DFT",
-        "proof_methods": [
-          "character_orthogonality"
-        ],
+        "proof_methods": ["character_orthogonality"],
         "related_theorems": [],
         "examples": [],
         "applications": [],
@@ -3997,12 +3376,8 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "discrete_fourier_transform"
-          ],
-          "logical_dependency": [
-            "character_orthogonality"
-          ],
+          "definitional_dependency": ["discrete_fourier_transform"],
+          "logical_dependency": ["character_orthogonality"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -4010,10 +3385,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "DFT",
-            "energy"
-          ],
+          "tags": ["DFT", "energy"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -4046,9 +3418,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "algorithm"
-          ],
+          "tags": ["algorithm"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         }
@@ -4065,23 +3435,16 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "sampled_signal"
-          ],
+          "definitional_dependency": ["sampled_signal"],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "poisson_summation_formula"
-          ],
+          "pedagogical_dependency": ["poisson_summation_formula"],
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "sampling",
-            "signal"
-          ],
+          "tags": ["sampling", "signal"],
           "syllabus_priority": "high",
           "source": "standard signal-processing terminology"
         },
@@ -4117,10 +3480,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "sampling",
-            "counterexample"
-          ],
+          "tags": ["sampling", "counterexample"],
           "syllabus_priority": "high",
           "source": null
         }
@@ -4149,10 +3509,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "signal",
-            "convolution"
-          ],
+          "tags": ["signal", "convolution"],
           "syllabus_priority": "core",
           "source": "standard signal-processing terminology"
         }
@@ -4170,9 +3527,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "product_convolution_duality"
-          ],
+          "logical_dependency": ["product_convolution_duality"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -4180,10 +3535,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "signal",
-            "spectral"
-          ],
+          "tags": ["signal", "spectral"],
           "syllabus_priority": "medium",
           "source": null
         }
@@ -4209,10 +3561,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "signal",
-            "energy"
-          ],
+          "tags": ["signal", "energy"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -4238,21 +3587,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "example",
-            "jump"
-          ],
+          "tags": ["example", "jump"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "satisfies": [
-          "piecewise_smooth_function"
-        ],
+        "satisfies": ["piecewise_smooth_function"],
         "violates": [],
-        "demonstrates": [
-          "dirichlet_pointwise_theorem",
-          "gibbs_phenomenon"
-        ],
+        "demonstrates": ["dirichlet_pointwise_theorem", "gibbs_phenomenon"],
         "related_theorems": []
       },
       {
@@ -4276,18 +3617,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "example",
-            "signal"
-          ],
+          "tags": ["example", "signal"],
           "syllabus_priority": "high",
           "source": null
         },
         "satisfies": [],
         "violates": [],
-        "demonstrates": [
-          "gibbs_phenomenon"
-        ],
+        "demonstrates": ["gibbs_phenomenon"],
         "related_theorems": []
       },
       {
@@ -4303,9 +3639,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "sine_cosine_series"
-          ],
+          "logical_dependency": ["sine_cosine_series"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -4313,21 +3647,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "wave equation",
-            "example"
-          ],
+          "tags": ["wave equation", "example"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "satisfies": [
-          "wave_equation_initial_data"
-        ],
+        "satisfies": ["wave_equation_initial_data"],
         "violates": [],
-        "demonstrates": [
-          "sine_cosine_series",
-          "separation_of_variables"
-        ],
+        "demonstrates": ["sine_cosine_series", "separation_of_variables"],
         "related_theorems": []
       },
       {
@@ -4351,20 +3677,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "signal",
-            "distribution"
-          ],
+          "tags": ["signal", "distribution"],
           "syllabus_priority": "medium",
           "source": null
         },
-        "satisfies": [
-          "tempered_distribution"
-        ],
+        "satisfies": ["tempered_distribution"],
         "violates": [],
-        "demonstrates": [
-          "power_spectrum"
-        ],
+        "demonstrates": ["power_spectrum"],
         "related_theorems": []
       },
       {
@@ -4388,21 +3707,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "distribution"
-          ],
+          "tags": ["distribution"],
           "syllabus_priority": "core",
           "source": null
         },
-        "satisfies": [
-          "distribution"
-        ],
-        "violates": [
-          "ordinary_function"
-        ],
-        "demonstrates": [
-          "dirac_delta"
-        ],
+        "satisfies": ["distribution"],
+        "violates": ["ordinary_function"],
+        "demonstrates": ["dirac_delta"],
         "related_theorems": []
       },
       {
@@ -4426,22 +3737,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "signal",
-            "aliasing"
-          ],
+          "tags": ["signal", "aliasing"],
           "syllabus_priority": "high",
           "source": null
         },
-        "satisfies": [
-          "sampled_signal"
-        ],
-        "violates": [
-          "unique_continuous_frequency_recovery"
-        ],
-        "demonstrates": [
-          "aliasing"
-        ],
+        "satisfies": ["sampled_signal"],
+        "violates": ["unique_continuous_frequency_recovery"],
+        "demonstrates": ["aliasing"],
         "related_theorems": []
       },
       {
@@ -4465,21 +3767,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "test function",
-            "Schwartz"
-          ],
+          "tags": ["test function", "Schwartz"],
           "syllabus_priority": "high",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "satisfies": [
-          "test_function",
-          "schwartz_space"
-        ],
+        "satisfies": ["test_function", "schwartz_space"],
         "violates": [],
-        "demonstrates": [
-          "distribution"
-        ],
+        "demonstrates": ["distribution"],
         "related_theorems": []
       },
       {
@@ -4503,17 +3797,13 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "oscillation"
-          ],
+          "tags": ["oscillation"],
           "syllabus_priority": "high",
           "source": null
         },
         "satisfies": [],
         "violates": [],
-        "demonstrates": [
-          "weak_convergence_intuition"
-        ],
+        "demonstrates": ["weak_convergence_intuition"],
         "related_theorems": []
       },
       {
@@ -4537,10 +3827,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "weak convergence",
-            "oscillation"
-          ],
+          "tags": ["weak convergence", "oscillation"],
           "syllabus_priority": "medium",
           "source": null
         }
@@ -4558,10 +3845,7 @@
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": [],
-          "logical_dependency": [
-            "good_kernel_method",
-            "convolution_circle"
-          ],
+          "logical_dependency": ["good_kernel_method", "convolution_circle"],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
@@ -4569,9 +3853,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof"
-          ],
+          "tags": ["proof"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -4582,12 +3864,8 @@
           "ps_fejer_good_kernel",
           "ps_fejer_near_far_split"
         ],
-        "uses_methods": [
-          "good_kernel_method"
-        ],
-        "uses_results": [
-          "convolution_circle"
-        ],
+        "uses_methods": ["good_kernel_method"],
+        "uses_results": ["convolution_circle"],
         "critical_assumptions": [
           "continuity of f",
           "positivity and normalization of F_N"
@@ -4619,9 +3897,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof_step"
-          ],
+          "tags": ["proof_step"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -4629,11 +3905,7 @@
         "step_number": 1,
         "claim": "The Cesaro mean sigma_N(f) equals convolution f*F_N.",
         "justification": "Average the identities S_k(f)=f*D_k and collect the averaged kernel.",
-        "uses": [
-          "cesaro_mean_fourier",
-          "fejer_kernel",
-          "convolution_circle"
-        ]
+        "uses": ["cesaro_mean_fourier", "fejer_kernel", "convolution_circle"]
       },
       {
         "id": "ps_fejer_good_kernel",
@@ -4660,9 +3932,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof_step"
-          ],
+          "tags": ["proof_step"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -4670,10 +3940,7 @@
         "step_number": 2,
         "claim": "The Fejer kernels form a good kernel family.",
         "justification": "Closed-form positivity, normalized integral, and decay away from zero verify the approximate-identity hypotheses.",
-        "uses": [
-          "fejer_kernel",
-          "good_kernel"
-        ]
+        "uses": ["fejer_kernel", "good_kernel"]
       },
       {
         "id": "ps_fejer_near_far_split",
@@ -4700,9 +3967,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof_step"
-          ],
+          "tags": ["proof_step"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -4710,10 +3975,7 @@
         "step_number": 3,
         "claim": "The convolution error tends uniformly to zero for continuous f.",
         "justification": "Uniform continuity controls nearby values; the good-kernel tail controls far values.",
-        "uses": [
-          "good_kernel_method",
-          "uniform_convergence"
-        ]
+        "uses": ["good_kernel_method", "uniform_convergence"]
       },
       {
         "id": "proof_plancherel_Rd",
@@ -4740,9 +4002,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof"
-          ],
+          "tags": ["proof"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
@@ -4753,9 +4013,7 @@
           "ps_plancherel_inversion_at_zero",
           "ps_plancherel_density_extension"
         ],
-        "uses_methods": [
-          "duality_method"
-        ],
+        "uses_methods": ["duality_method"],
         "uses_results": [
           "fourier_inversion_schwartz",
           "convolution_theorem_transform"
@@ -4789,9 +4047,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof_step"
-          ],
+          "tags": ["proof_step"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -4799,9 +4055,7 @@
         "step_number": 1,
         "claim": "For h=f*tilde f, the Fourier transform of h is |hat f|^2.",
         "justification": "Apply the convolution theorem and reflection/conjugation.",
-        "uses": [
-          "convolution_theorem_transform"
-        ]
+        "uses": ["convolution_theorem_transform"]
       },
       {
         "id": "ps_plancherel_inversion_at_zero",
@@ -4827,9 +4081,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof_step"
-          ],
+          "tags": ["proof_step"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -4837,9 +4089,7 @@
         "step_number": 2,
         "claim": "The integral of |hat f|^2 equals h(0)=int |f|^2.",
         "justification": "Fourier inversion applied to h at x=0.",
-        "uses": [
-          "fourier_inversion_schwartz"
-        ]
+        "uses": ["fourier_inversion_schwartz"]
       },
       {
         "id": "ps_plancherel_density_extension",
@@ -4866,9 +4116,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof_step"
-          ],
+          "tags": ["proof_step"],
           "syllabus_priority": "core",
           "source": null
         },
@@ -4876,10 +4124,7 @@
         "step_number": 3,
         "claim": "The transform extends uniquely to a unitary operator on L2.",
         "justification": "Schwartz functions are dense in L2 and the norm identity makes the transform continuous.",
-        "uses": [
-          "schwartz_space",
-          "l2_space"
-        ]
+        "uses": ["schwartz_space", "l2_space"]
       },
       {
         "id": "proof_fourier_slice",
@@ -4906,25 +4151,15 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof"
-          ],
+          "tags": ["proof"],
           "syllabus_priority": "high",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
         "proves": "fourier_slice_theorem",
         "strategy": "Parametrize hyperplanes perpendicular to gamma, then take the one-dimensional Fourier transform in the offset variable.",
-        "steps": [
-          "ps_slice_parametrize",
-          "ps_slice_change_variables"
-        ],
-        "uses_methods": [
-          "change_of_variables"
-        ],
-        "uses_results": [
-          "fourier_transform_Rd",
-          "radon_transform"
-        ],
+        "steps": ["ps_slice_parametrize", "ps_slice_change_variables"],
+        "uses_methods": ["change_of_variables"],
+        "uses_results": ["fourier_transform_Rd", "radon_transform"],
         "critical_assumptions": [
           "Fubini/change of variables justified by rapid decay"
         ]
@@ -4954,9 +4189,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof_step"
-          ],
+          "tags": ["proof_step"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -4964,10 +4197,7 @@
         "step_number": 1,
         "claim": "A point x can be written as t gamma plus a vector u perpendicular to gamma.",
         "justification": "Decompose Euclidean space into the gamma direction and its orthogonal plane.",
-        "uses": [
-          "euclidean_space_Rd",
-          "orthogonality"
-        ]
+        "uses": ["euclidean_space_Rd", "orthogonality"]
       },
       {
         "id": "ps_slice_change_variables",
@@ -4994,9 +4224,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof_step"
-          ],
+          "tags": ["proof_step"],
           "syllabus_priority": "high",
           "source": null
         },
@@ -5004,10 +4232,7 @@
         "step_number": 2,
         "claim": "The transformed Radon data equals hat f(s gamma).",
         "justification": "After substituting x=t gamma+u, the exponential is e^{-2pi i s gamma dot x}.",
-        "uses": [
-          "fourier_transform_Rd",
-          "radon_transform"
-        ]
+        "uses": ["fourier_transform_Rd", "radon_transform"]
       },
       {
         "id": "continuous_periodic_function",
@@ -5030,9 +4255,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "function class"
-          ],
+          "tags": ["function class"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -5058,9 +4281,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "function class"
-          ],
+          "tags": ["function class"],
           "syllabus_priority": "high",
           "source": null
         }
@@ -5086,9 +4307,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "function class"
-          ],
+          "tags": ["function class"],
           "syllabus_priority": "medium",
           "source": null
         }
@@ -5114,9 +4333,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "signal"
-          ],
+          "tags": ["signal"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -5142,9 +4359,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "sampling"
-          ],
+          "tags": ["sampling"],
           "syllabus_priority": "medium",
           "source": null
         }
@@ -5170,9 +4385,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "PDE"
-          ],
+          "tags": ["PDE"],
           "syllabus_priority": "high",
           "source": null
         }
@@ -5198,10 +4411,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "integration",
-            "proof"
-          ],
+          "tags": ["integration", "proof"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -5227,10 +4437,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof",
-            "oscillation"
-          ],
+          "tags": ["proof", "oscillation"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -5256,9 +4463,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof"
-          ],
+          "tags": ["proof"],
           "syllabus_priority": "core",
           "source": null
         }
@@ -5284,10 +4489,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof",
-            "kernel"
-          ],
+          "tags": ["proof", "kernel"],
           "syllabus_priority": "high",
           "source": null
         }
@@ -5313,9 +4515,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "proof"
-          ],
+          "tags": ["proof"],
           "syllabus_priority": "high",
           "source": null
         }
@@ -5341,17 +4541,11 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "finite",
-            "orthogonality"
-          ],
+          "tags": ["finite", "orthogonality"],
           "syllabus_priority": "core",
           "source": "Stein-Shakarchi, Fourier Analysis: An Introduction (2003)"
         },
-        "hypotheses": [
-          "G finite abelian",
-          "chi and psi characters"
-        ],
+        "hypotheses": ["G finite abelian", "chi and psi characters"],
         "conclusion": "characters are orthonormal after normalization",
         "proof_methods": [],
         "related_theorems": [],
@@ -5380,9 +4574,7 @@
           "historical_dependency": []
         },
         "metadata": {
-          "tags": [
-            "advanced"
-          ],
+          "tags": ["advanced"],
           "syllabus_priority": "medium",
           "source": null
         }
@@ -8021,9 +7213,7 @@
         "pedagogical_dependency",
         "historical_dependency"
       ],
-      "root_items": [
-        "fourier_analysis"
-      ],
+      "root_items": ["fourier_analysis"],
       "example_traversal": "Start from a root item and traverse requires/prerequisite_for edges by depth."
     },
     "proof_graph": {
@@ -8115,12 +7305,8 @@
       "query_name": "definitions_needed_for_fourier_transform",
       "start_item": "fourier_transform_Rd",
       "edge_filter": {
-        "edge_types": [
-          "requires"
-        ],
-        "dependency_classes": [
-          "definitional_dependency"
-        ]
+        "edge_types": ["requires"],
+        "dependency_classes": ["definitional_dependency"]
       },
       "traversal_direction": "outgoing"
     },
@@ -8128,13 +7314,8 @@
       "query_name": "proof_of_fejer_theorem",
       "start_item": "fejer_theorem",
       "edge_filter": {
-        "edge_types": [
-          "proves",
-          "uses"
-        ],
-        "dependency_classes": [
-          "logical_dependency"
-        ]
+        "edge_types": ["proves", "uses"],
+        "dependency_classes": ["logical_dependency"]
       },
       "traversal_direction": "incoming_then_outgoing"
     },
@@ -8142,15 +7323,8 @@
       "query_name": "applications_of_convolution_theorem",
       "start_item": "convolution_theorem_transform",
       "edge_filter": {
-        "edge_types": [
-          "uses",
-          "applied_to",
-          "motivates"
-        ],
-        "dependency_classes": [
-          "logical_dependency",
-          "pedagogical_dependency"
-        ]
+        "edge_types": ["uses", "applied_to", "motivates"],
+        "dependency_classes": ["logical_dependency", "pedagogical_dependency"]
       },
       "traversal_direction": "incoming"
     },
@@ -8163,9 +7337,7 @@
           "violates_assumption",
           "shows_necessity_of"
         ],
-        "dependency_classes": [
-          "logical_dependency"
-        ]
+        "dependency_classes": ["logical_dependency"]
       },
       "traversal_direction": "incoming"
     },
@@ -8173,11 +7345,7 @@
       "query_name": "signal_processing_path",
       "start_item": "discrete_fourier_transform",
       "edge_filter": {
-        "edge_types": [
-          "prerequisite_for",
-          "applied_to",
-          "uses"
-        ],
+        "edge_types": ["prerequisite_for", "applied_to", "uses"],
         "dependency_classes": [
           "pedagogical_dependency",
           "logical_dependency",
