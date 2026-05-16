@@ -33,14 +33,6 @@ export function MathText({ text, className }: MathTextProps) {
   );
 }
 
-/**
- * Use this for raw JSON values that contain only TeX,
- * for example:
- *
- * {
- *   "mathematicalFormula": "U \\subseteq X \\iff ..."
- * }
- */
 export function asInlineMath(value: string): string {
   const s = value.trim();
   if (!s) return "";

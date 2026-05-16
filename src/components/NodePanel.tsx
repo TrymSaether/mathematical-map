@@ -152,7 +152,7 @@ function OverviewTab({ node }: { node: GraphNode }) {
   return (
     <>
       <Section title={formalStatement ? "Formal statement" : "Statement"} icon={<BookOpen className="h-3 w-3" />}>
-        <div className="rounded-[14px] border border-[var(--border-soft)] bg-[var(--surface-soft)] p-3 font-serif text-[15px] leading-relaxed text-[var(--text-soft)]">
+        <div className="rounded-[14px] border border-[var(--border-soft)] bg-[var(--surface-soft)] p-3 font-serif text-[14px]">
           <MathText text={formalStatement || statement || "No statement available."} />
         </div>
       </Section>
