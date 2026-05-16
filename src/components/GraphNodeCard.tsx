@@ -5,6 +5,7 @@ import { cn } from "../lib/utils";
 import { useStore, type LearningState } from "../store";
 import type { GraphNode } from "../types";
 import { getKindAbbrev, getKindTier } from "../lib/kindStyle";
+import { MathText } from "../lib/katex";
 
 export type RouteRole = "from" | "to" | "waypoint" | null;
 
@@ -146,7 +147,7 @@ function GraphNodeCardComponent({ data, selected }: NodeProps<Data>) {
           state === "locked" ? "text-[var(--faint)]" : "text-[var(--text)]"
         )}
       >
-        {node.title}
+        <MathText text={node.title} />
       </div>
 
       {hasOutgoing && (

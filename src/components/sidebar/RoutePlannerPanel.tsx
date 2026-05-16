@@ -4,6 +4,7 @@ import { Button, Section } from "../ui";
 import { useStore } from "../../store";
 import { findRoute } from "../../lib/route";
 import type { GraphData, GraphNode } from "../../types";
+import { MathText } from "../../lib/katex";
 
 function RouteRow({
   label,
@@ -21,7 +22,7 @@ function RouteRow({
       <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: accent }} />
       <div className="min-w-0 flex-1">
         <div className="text-[10px] font-medium uppercase tracking-[0.06em] text-[var(--muted)]">{label}</div>
-        <div className="truncate text-[13px] font-semibold text-[var(--text)]">{node ? node.title : "—"}</div>
+        <div className="truncate text-[13px] font-semibold text-[var(--text)]">{node ? <MathText text={node.title} /> : "—"}</div>
       </div>
       {node && (
         <button onClick={onClear} aria-label={`Clear ${label}`} className="rounded p-1 text-[var(--faint)] hover:text-[var(--text-soft)]">
