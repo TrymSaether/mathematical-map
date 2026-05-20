@@ -2041,11 +2041,11 @@
       },
       {
         "id": "open_set",
-        "statement": "In a topological space (X, τ), a subset U of X is open exactly when U belongs to τ.",
-        "formal_statement": "$$U\\subseteq X \\text{ is open in }(X,\\tau)\\Longleftrightarrow U\\in\\tau.$$",
+        "statement": "In a topological space $(X, \\mathcal{T})$, a subset $U$ of $X$ is open exactly when $U$ belongs to $\\mathcal{T}$.",
+        "formal_statement": "$$U\\subseteq X \\text{ is open in }(X,\\mathcal{T})\\Longleftrightarrow U\\in\\mathcal{T}.$$",
         "definition": "An open set of a topological space (X, τ) is a subset U⊆X that is an element of the topology τ.",
         "intuition": "Open sets are the primitive observable neighborhoods of the space; all topological notions are expressed in terms of them.",
-        "notation": "$$U\\in\\tau$$",
+        "notation": "$$U\\in\\mathcal{T}$$",
         "assumptions": [],
         "dependencies": {
           "definitional_dependency": ["topology"],
