@@ -28,14 +28,14 @@ export function NodePanel() {
           style={{ "--c": getNodeKindRgbString(node.kind) } as React.CSSProperties}
           className={cn(
             `kind-${node.kind}`,
-            "glass scanlines absolute right-3 top-3 bottom-3 z-20 flex w-[400px] max-w-[42vw] flex-col overflow-hidden rounded-2xl shadow-2xl"
+            "glass scanlines absolute inset-x-2 bottom-2 z-20 flex max-h-[68%] flex-col overflow-hidden rounded-xl shadow-2xl md:inset-x-auto md:bottom-3 md:right-3 md:top-3 md:max-h-none md:w-[400px] md:max-w-[42vw] md:rounded-2xl"
           )}
         >
           {/* Top accent bar */}
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(var(--c),0.9)] to-transparent" />
           <div className="absolute -left-px top-12 h-32 w-px bg-gradient-to-b from-[rgba(var(--c),0.9)] to-transparent" />
 
-          <header className="flex items-start justify-between gap-3 border-b border-white/10 p-4">
+          <header className="flex items-start justify-between gap-3 border-b border-white/10 p-3 md:p-4">
             <div className="min-w-0">
               <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-[rgba(var(--c),0.95)]">
                 <span className="rounded-sm bg-[rgba(var(--c),0.12)] px-1.5 py-0.5">
@@ -43,7 +43,7 @@ export function NodePanel() {
                 </span>
                 <span className="text-white/60">{node.topicCluster}</span>
               </div>
-              <h2 className="mt-1.5 font-display text-xl font-semibold leading-tight">
+              <h2 className="mt-1.5 font-display text-lg font-semibold leading-tight md:text-xl">
                 <MathText text={node.title} />
               </h2>
             </div>
@@ -55,7 +55,7 @@ export function NodePanel() {
             </button>
           </header>
 
-          <div className="flex-1 overflow-y-auto p-4 space-y-5">
+          <div className="flex-1 overflow-y-auto p-3 space-y-4 md:p-4 md:space-y-5">
             <Section title={formalStatement ? "Formal statement" : "Statement"} icon={<BookOpen className="h-3 w-3" />}>
               <div className="rounded-lg border border-white/10 bg-black/20 p-3 text-[13px] leading-relaxed text-white/85 font-serif">
                 <MathText text={formalStatement || node.originalText} />
@@ -112,7 +112,10 @@ export function NodePanel() {
 
           <footer className="border-t border-white/10 p-3">
             <button
-              onClick={() => setPathTarget(node.id)}
+              onClick={() => {
+                setPathTarget(node.id);
+                select(null);
+              }}
               className="flex w-full items-center justify-center gap-2 rounded-lg border border-accent-violet/40 bg-accent-violet/10 px-3 py-2 text-xs font-medium text-accent-violet shadow-glow-violet hover:bg-accent-violet/20"
             >
               <Route className="h-3.5 w-3.5" /> Generate learning path to here

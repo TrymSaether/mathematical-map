@@ -52,9 +52,9 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
       initial={{ x: -16, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className="glass scanlines relative flex h-full w-[280px] shrink-0 flex-col overflow-hidden rounded-2xl"
+      className="glass scanlines relative flex max-h-[38dvh] w-full shrink-0 flex-col overflow-hidden rounded-xl md:h-full md:max-h-none md:w-[280px] md:rounded-2xl"
     >
-      <div className="border-b border-white/10 p-4">
+      <div className="border-b border-white/10 p-3 md:p-4">
         <div className="flex items-center gap-2">
           <div className="relative">
             <div className="h-7 w-7 rounded-full border border-accent-cyan/60 bg-accent-cyan/10 shadow-glow-cyan" />
@@ -71,7 +71,7 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-5">
+      <div className="flex-1 overflow-y-auto p-3 space-y-4 md:p-4 md:space-y-5">
         {/* Search */}
         <div>
           <div className="mb-1 flex items-center justify-between">
@@ -155,9 +155,9 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
 
         {/* Relations */}
         <Section title="Edge relation">
-          <div className="flex flex-col gap-1.5">
+          <div className="grid grid-cols-2 gap-1.5 md:flex md:flex-col">
             {map.relations.map((r) => (
-              <label key={r} className="flex cursor-pointer items-center gap-2 rounded-md px-1 py-0.5 hover:bg-white/5">
+              <label key={r} className="flex min-w-0 cursor-pointer items-center gap-2 rounded-md px-1 py-0.5 hover:bg-white/5">
                 <input
                   type="checkbox"
                   checked={relations.has(r)}
@@ -165,7 +165,7 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
                   className="accent-accent-cyan"
                 />
                 <span className="h-2 w-6 rounded" style={{ background: RELATION_COLOR[r] }} />
-                <span className="text-xs text-white/80">{RELATION_LABEL[r]}</span>
+                <span className="truncate text-xs text-white/80">{RELATION_LABEL[r]}</span>
               </label>
             ))}
           </div>

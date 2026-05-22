@@ -10,7 +10,10 @@
 }
 
 html, body, #root { height: 100%; }
-body { font-family: "Inter", system-ui, sans-serif; }
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  overflow: hidden;
+}
 
 /* Light theme overrides */
 html:not(.dark) {

@@ -31,12 +31,12 @@ export function PathPanel() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 16 }}
           transition={{ duration: 0.3 }}
-          className="glass scanlines absolute bottom-4 left-1/2 z-30 w-[min(960px,92vw)] -translate-x-1/2 rounded-2xl"
+          className="glass scanlines absolute inset-x-2 bottom-2 z-30 rounded-xl md:bottom-4 md:left-1/2 md:w-[min(960px,92vw)] md:-translate-x-1/2 md:rounded-2xl"
         >
-          <header className="flex items-center justify-between border-b border-white/10 px-4 py-2.5">
-            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-accent-violet">
+          <header className="flex items-center justify-between gap-3 border-b border-white/10 px-3 py-2.5 md:px-4">
+            <div className="flex min-w-0 items-center gap-2 truncate text-[11px] uppercase tracking-wider text-accent-violet md:text-xs md:tracking-widest">
               <Route className="h-3.5 w-3.5" />
-              Learning path → {KIND_LABEL[target.kind]} {target.number} · {target.title}
+              <span className="truncate">Learning path to {KIND_LABEL[target.kind]} {target.number} · {target.title}</span>
             </div>
             <button onClick={close} className="rounded p-1 text-white/50 hover:bg-white/10 hover:text-white"><X className="h-4 w-4" /></button>
           </header>
@@ -49,7 +49,7 @@ export function PathPanel() {
                     style={{ "--c": getNodeKindRgbString(n.kind) } as React.CSSProperties}
                     className={cn(
                       `kind-${n.kind}`,
-                      "group flex w-[220px] flex-col rounded-lg border border-[rgba(var(--c),0.4)] bg-[rgba(var(--c),0.06)] p-2 text-left hover:bg-[rgba(var(--c),0.12)]"
+                      "group flex w-[180px] flex-col rounded-lg border border-[rgba(var(--c),0.4)] bg-[rgba(var(--c),0.06)] p-2 text-left hover:bg-[rgba(var(--c),0.12)] md:w-[220px]"
                     )}
                   >
                     <div className="flex items-center justify-between text-[10px] uppercase tracking-widest text-[rgba(var(--c),0.95)]">

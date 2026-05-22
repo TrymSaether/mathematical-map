@@ -35,12 +35,12 @@ export default function App() {
   }, [map, kinds, topics, search, searchScope]);
 
   return (
-    <div className="relative flex h-screen w-screen flex-col p-3">
+    <div className="relative flex h-dvh w-screen flex-col overflow-hidden p-2 md:p-3">
       <Background />
       <TopBar />
-      <div className="flex min-h-0 flex-1 gap-3">
+      <div className="flex min-h-0 flex-1 flex-col gap-2 md:flex-row md:gap-3">
         <Sidebar visibleCount={visibleCount} />
-        <main className="relative min-h-0 flex-1 overflow-hidden rounded-2xl border border-white/10 bg-ink-950/30">
+        <main className="relative min-h-0 flex-1 overflow-hidden rounded-xl border border-white/10 bg-ink-950/30 md:rounded-2xl">
           <GraphCanvas />
           <NodePanel />
           <PathPanel />
