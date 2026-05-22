@@ -1,16 +1,19 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { X, ArrowUpRight, ArrowDownRight, Tag, BookOpen, Route } from "lucide-react";
 import { useStore } from "../store";
-import { nodeById } from "../data";
+import { registeredMaps, type LoadedMap } from "../data";
 import { MathText } from "../lib/katex";
 import { cn } from "../lib/utils";
+import { getNodeKindRgbString } from "../lib/colors";
 import { KIND_LABEL } from "../types";
 
 export function NodePanel() {
+  const mapId = useStore((s) => s.mapId);
+  const map = registeredMaps[mapId];
   const id = useStore((s) => s.selectedId);
   const select = useStore((s) => s.select);
   const setPathTarget = useStore((s) => s.setPathTarget);
-  const node = id ? nodeById.get(id) ?? null : null;
+  const node = id ? map.nodeById.get(id) ?? null : null;
   const formalStatement = node?.formalStatement.trim() ?? "";
 
   return (
@@ -22,6 +25,7 @@ export function NodePanel() {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 24 }}
           transition={{ duration: 0.28, ease: [0.2, 0.7, 0.2, 1] }}
+          style={{ "--c": getNodeKindRgbString(node.kind) } as React.CSSProperties}
           className={cn(
             `kind-${node.kind}`,
             "glass scanlines absolute right-3 top-3 bottom-3 z-20 flex w-[400px] max-w-[42vw] flex-col overflow-hidden rounded-2xl shadow-2xl"
@@ -75,13 +79,15 @@ export function NodePanel() {
             <DepSection
               title="Prerequisites"
               ids={[...new Set([...node.statementDependencies, ...node.proofDependencies])]}
+              map={map}
               icon={<ArrowUpRight className="h-3 w-3 rotate-180" />}
               empty="No upstream dependencies inferred."
             />
 
             <DepSection
               title="Consequences"
-              ids={consequencesOf(node.id)}
+              ids={consequencesOf(node.id, map)}
+              map={map}
               icon={<ArrowDownRight className="h-3 w-3" />}
               empty="No downstream results inferred."
             />
@@ -97,8 +103,8 @@ export function NodePanel() {
 
             <Section title="Reference">
               <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[11px]">
-                <dt className="text-white/40">Theme</dt><dd className="text-white/70">{node.topicCluster}</dd>
-                <dt className="text-white/40">Textbook</dt><dd className="text-white/70">Ch. {node.chapter} §{node.section} — {node.sectionTitle} · № {node.number}</dd>
+                <dt className="text-white/40">Domain</dt><dd className="text-white/70">{node.topicCluster}</dd>
+                <dt className="text-white/40">Source</dt><dd className="text-white/70">{node.chapter} · {node.section || "unranked"} · #{node.number}</dd>
                 <dt className="text-white/40">ID</dt><dd className="font-mono text-white/55 truncate">{node.id}</dd>
               </dl>
             </Section>
@@ -129,7 +135,7 @@ function Section({ title, icon, children }: { title: string; icon?: React.ReactN
   );
 }
 
-function DepSection({ title, ids, icon, empty }: { title: string; ids: string[]; icon: React.ReactNode; empty: string }) {
+function DepSection({ title, ids, map, icon, empty }: { title: string; ids: string[]; map: LoadedMap; icon: React.ReactNode; empty: string }) {
   const select = useStore((s) => s.select);
   return (
     <Section title={title} icon={icon}>
@@ -138,12 +144,13 @@ function DepSection({ title, ids, icon, empty }: { title: string; ids: string[];
       ) : (
         <ul className="space-y-1">
           {ids.map((id) => {
-            const n = nodeById.get(id);
+            const n = map.nodeById.get(id);
             if (!n) return null;
             return (
               <li key={id}>
                 <button
                   onClick={() => select(id)}
+                  style={{ "--c": getNodeKindRgbString(n.kind) } as React.CSSProperties}
                   className={cn(
                     `kind-${n.kind}`,
                     "group flex w-full items-center justify-between gap-2 rounded-md border border-white/5 bg-white/[0.02] px-2 py-1.5 text-left text-[12px] hover:bg-white/5"
@@ -165,10 +172,6 @@ function DepSection({ title, ids, icon, empty }: { title: string; ids: string[];
   );
 }
 
-function consequencesOf(id: string): string[] {
-  const out: string[] = [];
-  for (const n of nodeById.values()) {
-    if (n.statementDependencies.includes(id) || n.proofDependencies.includes(id)) out.push(n.id);
-  }
-  return out;
+function consequencesOf(id: string, map: LoadedMap): string[] {
+  return [...new Set((map.outgoingEdgesByNodeId.get(id) ?? []).map((edge) => edge.to))];
 }

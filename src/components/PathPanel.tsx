@@ -2,22 +2,26 @@ import { AnimatePresence, motion } from "framer-motion";
 import { X, Route, ChevronRight } from "lucide-react";
 import { useMemo } from "react";
 import { useStore } from "../store";
-import { data, nodeById } from "../data";
+import { registeredMaps } from "../data";
 import { buildLearningPath } from "../lib/graph";
+import { getNodeKindRgbString } from "../lib/colors";
 import { KIND_LABEL } from "../types";
 import { cn } from "../lib/utils";
 
 export function PathPanel() {
+  const mapId = useStore((s) => s.mapId);
+  const map = registeredMaps[mapId];
+  const { data } = map;
   const targetId = useStore((s) => s.pathTargetId);
   const close = () => useStore.getState().setPathTarget(null);
   const select = useStore((s) => s.select);
   const relations = useStore((s) => s.relations);
-  const target = targetId ? nodeById.get(targetId) : null;
+  const target = targetId ? map.nodeById.get(targetId) : null;
 
   const path = useMemo(() => {
     if (!target) return [];
     return buildLearningPath(target.id, data.edges, relations, data.nodes);
-  }, [target, relations]);
+  }, [target, data, relations]);
 
   return (
     <AnimatePresence>
@@ -42,6 +46,7 @@ export function PathPanel() {
                 <li key={n.id} className="flex items-center gap-2">
                   <button
                     onClick={() => select(n.id)}
+                    style={{ "--c": getNodeKindRgbString(n.kind) } as React.CSSProperties}
                     className={cn(
                       `kind-${n.kind}`,
                       "group flex w-[220px] flex-col rounded-lg border border-[rgba(var(--c),0.4)] bg-[rgba(var(--c),0.06)] p-2 text-left hover:bg-[rgba(var(--c),0.12)]"

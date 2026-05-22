@@ -1,6 +1,6 @@
 import { BaseEdge, EdgeLabelRenderer, getBezierPath, type EdgeProps } from "reactflow";
 import type { TopoEdge as TopoEdgeT } from "../types";
-import { RELATION_COLOR } from "../types";
+import { RELATION_COLOR, RELATION_LABEL } from "../types";
 
 interface Data {
   edge: TopoEdgeT;
@@ -46,7 +46,7 @@ export function TopoEdgeView(props: EdgeProps<Data>) {
             }}
             className="rounded-full border border-white/15 bg-ink-900/80 px-2 py-0.5 text-[9px] uppercase tracking-widest text-white/80 backdrop-blur"
           >
-            {e?.relation}
+            {e ? RELATION_LABEL[e.relation] : ""}
           </div>
         </EdgeLabelRenderer>
       )}

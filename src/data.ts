@@ -1,5 +1,12 @@
-import raw from "./data/topology.json";
-import { TopoData, type TopoData as TopoDataType } from "./types";
+import { loadRegisteredMaps } from "./data/loadMap";
+import { DEFAULT_MAP_ID, type MapId } from "./data/mapRegistry";
 
-export const data: TopoDataType = TopoData.parse(raw);
-export const nodeById = new Map(data.nodes.map((n) => [n.id, n]));
+export const registeredMaps = loadRegisteredMaps();
+export const defaultMap = registeredMaps[DEFAULT_MAP_ID];
+
+export function getLoadedMap(mapId: MapId) {
+  return registeredMaps[mapId];
+}
+
+export { loadMap, loadRegisteredMaps, type LoadedMap } from "./data/loadMap";
+export { MAPS, DEFAULT_MAP_ID, isMapId, type MapId } from "./data/mapRegistry";

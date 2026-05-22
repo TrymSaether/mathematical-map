@@ -8,19 +8,21 @@ import { CommandPalette } from "./components/CommandPalette";
 import { PathPanel } from "./components/PathPanel";
 import { useKeyboardNav } from "./hooks/useKeyboardNav";
 import { useStore } from "./store";
-import { data } from "./data";
+import { registeredMaps } from "./data";
 
 export default function App() {
   useKeyboardNav();
+  const mapId = useStore((s) => s.mapId);
+  const map = registeredMaps[mapId];
   const kinds = useStore((s) => s.kinds);
   const topics = useStore((s) => s.topics);
   const search = useStore((s) => s.search).toLowerCase().trim();
   const searchScope = useStore((s) => s.searchScope);
 
   const visibleCount = useMemo(() => {
-    return data.nodes.filter((n) => {
+    return map.data.nodes.filter((n) => {
       if (!kinds.has(n.kind)) return false;
-      if (topics.size && !topics.has(n.topicCluster)) return false;
+      if (topics.size && !topics.has(n.domainId)) return false;
       if (search) {
         const hay =
           searchScope === "title"
@@ -30,7 +32,7 @@ export default function App() {
       }
       return true;
     }).length;
-  }, [kinds, topics, search, searchScope]);
+  }, [map, kinds, topics, search, searchScope]);
 
   return (
     <div className="relative flex h-screen w-screen flex-col p-3">

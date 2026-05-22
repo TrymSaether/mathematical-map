@@ -1,6 +1,7 @@
 import dagre from "dagre";
 import type { Node, Edge, MarkerType } from "reactflow";
 import type { TopoEdge, TopoNode } from "../types";
+import { getRelationColor } from "./colors";
 import { cmpNum } from "./graph";
 
 export interface LayoutInput {
@@ -203,5 +204,5 @@ function cmpKey(a: [string, number[]], b: [string, number[]]): number {
 }
 
 function edgeColor(e: TopoEdge): string {
-  return e.relation === "proof" ? "#a78bff" : e.relation === "illustration" ? "#ffd58a" : "#5ce1ff";
+  return getRelationColor(e.relation);
 }

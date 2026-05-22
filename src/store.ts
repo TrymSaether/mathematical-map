@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { DEFAULT_MAP_ID, registeredMaps, type MapId } from "./data";
 import type { NodeKind, Relation } from "./types";
 
 export type ViewMode = "dependency" | "cluster";
@@ -6,6 +7,9 @@ export type HighlightMode = "immediate" | "full";
 export type SearchScope = "all" | "title";
 
 interface State {
+  mapId: MapId;
+  setMap: (mapId: MapId) => void;
+
   view: ViewMode;
   setView: (v: ViewMode) => void;
 
@@ -43,16 +47,29 @@ interface State {
   setPanelCollapsed: (v: boolean) => void;
 }
 
-const ALL_KINDS: NodeKind[] = ["definition", "theorem", "lemma", "example", "proposition", "corollary"];
-const ALL_RELATIONS: Relation[] = ["statement", "proof", "illustration"];
-
 function toggle<T>(set: Set<T>, v: T) {
   const next = new Set(set);
   if (next.has(v)) next.delete(v); else next.add(v);
   return next;
 }
 
+const initialMap = registeredMaps[DEFAULT_MAP_ID];
+
 export const useStore = create<State>((set) => ({
+  mapId: DEFAULT_MAP_ID,
+  setMap: (mapId) => {
+    const map = registeredMaps[mapId];
+    set({
+      mapId,
+      search: "",
+      kinds: new Set(map.kinds),
+      topics: new Set(),
+      relations: new Set(map.relations),
+      selectedId: null,
+      pathTargetId: null,
+    });
+  },
+
   view: "dependency",
   setView: (v) => set({ view: v }),
 
@@ -61,14 +78,14 @@ export const useStore = create<State>((set) => ({
   searchScope: "all",
   setSearchScope: (s) => set({ searchScope: s }),
 
-  kinds: new Set(ALL_KINDS),
+  kinds: new Set(initialMap.kinds),
   toggleKind: (k) => set((s) => ({ kinds: toggle(s.kinds, k) })),
 
   topics: new Set(),
   toggleTopic: (t) => set((s) => ({ topics: toggle(s.topics, t) })),
   resetTopics: () => set({ topics: new Set() }),
 
-  relations: new Set(ALL_RELATIONS),
+  relations: new Set(initialMap.relations),
   toggleRelation: (r) => set((s) => ({ relations: toggle(s.relations, r) })),
 
   selectedId: null,

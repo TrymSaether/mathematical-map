@@ -1,8 +1,9 @@
 import { Handle, Position, type NodeProps } from "reactflow";
 import { motion } from "framer-motion";
 import { cn } from "../lib/utils";
+import { getNodeKindRgbString } from "../lib/colors";
 import { useStore } from "../store";
-import { KIND_LABEL, type NodeKind, type TopoNode as TopoNodeT } from "../types";
+import { KIND_LABEL, type TopoNode as TopoNodeT } from "../types";
 
 interface Data {
   node: TopoNodeT;
@@ -12,13 +13,26 @@ interface Data {
 
 type Tier = "primary" | "secondary" | "compact";
 
-const KIND_TIER: Record<NodeKind, Tier> = {
+const KIND_TIER: Record<string, Tier> = {
   definition: "primary",
   theorem: "primary",
+  structure: "primary",
+  axiom: "primary",
+  property: "primary",
   proposition: "secondary",
   lemma: "secondary",
   corollary: "secondary",
+  construction: "secondary",
+  object: "secondary",
+  algorithm: "secondary",
+  process: "secondary",
   example: "compact",
+  counterexample: "compact",
+  non_example: "compact",
+  notation: "compact",
+  proof: "compact",
+  proof_step: "compact",
+  proof_method: "compact",
 };
 
 const TIER_STYLE: Record<Tier, { w: number; titleClamp: number; titleSize: string; pad: string }> = {
@@ -30,7 +44,7 @@ const TIER_STYLE: Record<Tier, { w: number; titleClamp: number; titleSize: strin
 export function TopoNodeView({ data, selected }: NodeProps<Data>) {
   const { node, dim, highlight } = data;
   const select = useStore((s) => s.select);
-  const tier = KIND_TIER[node.kind];
+  const tier = KIND_TIER[node.kind] ?? "secondary";
   const tw = TIER_STYLE[tier];
   const isPrimary = tier === "primary";
 
@@ -41,7 +55,7 @@ export function TopoNodeView({ data, selected }: NodeProps<Data>) {
       animate={{ opacity: dim ? 0.28 : 1, y: 0 }}
       transition={{ duration: 0.25 }}
       onClick={() => select(node.id)}
-      style={{ width: tw.w }}
+      style={{ width: tw.w, "--c": getNodeKindRgbString(node.kind) } as React.CSSProperties}
       className={cn(
         `kind-${node.kind}`,
         "group relative cursor-pointer rounded-xl border font-display",

@@ -5,14 +5,15 @@ import {
   GitBranchPlus, GitMerge, Sparkles, Eye, EyeOff, Type, Text,
 } from "lucide-react";
 import { useStore } from "../store";
-import { data } from "../data";
+import { registeredMaps } from "../data";
 import { cn } from "../lib/utils";
-import { KIND_LABEL, RELATION_COLOR, type NodeKind, type Relation } from "../types";
-
-const KINDS: NodeKind[] = ["definition", "theorem", "lemma", "example", "proposition", "corollary"];
-const RELATIONS: Relation[] = ["statement", "proof", "illustration"];
+import { getNodeKindRgbString } from "../lib/colors";
+import { KIND_LABEL, RELATION_COLOR, RELATION_LABEL, type NodeKind } from "../types";
 
 export function Sidebar({ visibleCount }: { visibleCount: number }) {
+  const mapId = useStore((s) => s.mapId);
+  const map = registeredMaps[mapId];
+  const { data } = map;
   const view = useStore((s) => s.view);
   const setView = useStore((s) => s.setView);
   const search = useStore((s) => s.search);
@@ -32,21 +33,19 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
   const showOrphans = useStore((s) => s.showOrphans);
   const setShowOrphans = useStore((s) => s.setShowOrphans);
 
-  const { allTopics, topicCounts, counts } = useMemo(() => {
+  const { domains, domainCounts, counts } = useMemo(() => {
     const tc: Record<string, number> = {};
     const kc: Record<string, number> = {};
-    const firstNum: Record<string, [string, number[]]> = {};
     for (const n of data.nodes) {
-      tc[n.topicCluster] = (tc[n.topicCluster] ?? 0) + 1;
+      tc[n.domainId] = (tc[n.domainId] ?? 0) + 1;
       kc[n.kind] = (kc[n.kind] ?? 0) + 1;
-      const nums = n.number.split(".").map((p) => Number(p) || 0);
-      const key: [string, number[]] = [n.chapter, nums];
-      const cur = firstNum[n.topicCluster];
-      if (!cur || cmpKey(key, cur) < 0) firstNum[n.topicCluster] = key;
     }
-    const topicsOrdered = Object.keys(tc).sort((a, b) => cmpKey(firstNum[a], firstNum[b]));
-    return { allTopics: topicsOrdered, topicCounts: tc, counts: kc };
-  }, []);
+    return {
+      domains: data.domains.filter((domain) => (tc[domain.id] ?? 0) > 0),
+      domainCounts: tc,
+      counts: kc,
+    };
+  }, [data]);
 
   return (
     <motion.aside
@@ -63,7 +62,7 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
           </div>
           <div>
             <div className="font-display text-sm font-semibold tracking-wide title-gradient">
-              TOPOLOGY · ATLAS
+              {data.field || "math"} · atlas
             </div>
             <div className="text-[10px] uppercase tracking-[0.25em] text-white/40">
               concepts · dependencies
@@ -148,7 +147,7 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
         {/* Kinds */}
         <Section title="Kind" icon={<Filter className="h-3 w-3" />}>
           <div className="flex flex-wrap gap-1.5">
-            {KINDS.filter((k) => (counts[k] ?? 0) > 0).map((k) => (
+            {map.kinds.filter((k) => (counts[k] ?? 0) > 0).map((k) => (
               <KindPill key={k} k={k} active={kinds.has(k)} count={counts[k] ?? 0} onClick={() => toggleKind(k)} />
             ))}
           </div>
@@ -157,7 +156,7 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
         {/* Relations */}
         <Section title="Edge relation">
           <div className="flex flex-col gap-1.5">
-            {RELATIONS.map((r) => (
+            {map.relations.map((r) => (
               <label key={r} className="flex cursor-pointer items-center gap-2 rounded-md px-1 py-0.5 hover:bg-white/5">
                 <input
                   type="checkbox"
@@ -166,7 +165,7 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
                   className="accent-accent-cyan"
                 />
                 <span className="h-2 w-6 rounded" style={{ background: RELATION_COLOR[r] }} />
-                <span className="text-xs capitalize text-white/80">{r}</span>
+                <span className="text-xs text-white/80">{RELATION_LABEL[r]}</span>
               </label>
             ))}
           </div>
@@ -174,7 +173,7 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
 
         {/* Theme */}
         <Section
-          title="Theme"
+          title="Domain"
           icon={<Layers className="h-3 w-3" />}
           aside={
             topics.size > 0 ? (
@@ -183,13 +182,13 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
           }
         >
           <div className="flex flex-col gap-1">
-            {allTopics.map((t) => {
-              const active = topics.size === 0 || topics.has(t);
-              const muted = topics.size > 0 && !topics.has(t);
+            {domains.map((domain) => {
+              const active = topics.size === 0 || topics.has(domain.id);
+              const muted = topics.size > 0 && !topics.has(domain.id);
               return (
                 <button
-                  key={t}
-                  onClick={() => toggleTopic(t)}
+                  key={domain.id}
+                  onClick={() => toggleTopic(domain.id)}
                   className={cn(
                     "flex w-full items-center justify-between rounded-md border px-2 py-1 text-[12px] transition-colors",
                     muted
@@ -199,8 +198,8 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
                         : "border-white/10 bg-white/[0.02] text-white/55 hover:bg-white/5"
                   )}
                 >
-                  <span className="truncate text-left">{t}</span>
-                  <span className="ml-2 shrink-0 text-[10px] text-white/40">{topicCounts[t]}</span>
+                  <span className="truncate text-left">{domain.label}</span>
+                  <span className="ml-2 shrink-0 text-[10px] text-white/40">{domainCounts[domain.id]}</span>
                 </button>
               );
             })}
@@ -212,7 +211,7 @@ export function Sidebar({ visibleCount }: { visibleCount: number }) {
         <span className="text-[10px] uppercase tracking-widest text-white/40">
           {data.nodes.length} concepts · {data.edges.length} links
         </span>
-        <span className="text-[10px] text-white/30">{allTopics.length} themes</span>
+        <span className="text-[10px] text-white/30">{domains.length} domains</span>
       </div>
     </motion.aside>
   );
@@ -265,20 +264,11 @@ function Pill({ active, onClick, children, muted }: { active?: boolean; onClick?
   );
 }
 
-function cmpKey(a: [string, number[]], b: [string, number[]]): number {
-  if (a[0] !== b[0]) return a[0] < b[0] ? -1 : 1;
-  const len = Math.max(a[1].length, b[1].length);
-  for (let i = 0; i < len; i++) {
-    const x = a[1][i] ?? 0, y = b[1][i] ?? 0;
-    if (x !== y) return x - y;
-  }
-  return 0;
-}
-
 function KindPill({ k, active, count, onClick }: { k: NodeKind; active: boolean; count: number; onClick: () => void }) {
   return (
     <button
       onClick={onClick}
+      style={{ "--c": getNodeKindRgbString(k) } as React.CSSProperties}
       className={cn(
         `kind-${k}`,
         "inline-flex items-center gap-1.5 rounded-md border px-2 py-1 text-[11px] transition-colors",

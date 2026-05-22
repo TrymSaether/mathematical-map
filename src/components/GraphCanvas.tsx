@@ -9,10 +9,11 @@ import ReactFlow, {
   type Node,
   type Edge,
 } from "reactflow";
-import { data } from "../data";
+import { registeredMaps } from "../data";
 import { useStore } from "../store";
 import { dependencyLayout, clusterLayout, type Lane } from "../lib/layout";
 import { buildAdjacency, ancestors, descendants } from "../lib/graph";
+import { getNodeKindColor } from "../lib/colors";
 import { TopoNodeView } from "./TopoNode";
 import { TopoEdgeView } from "./TopoEdge";
 import { LaneNode } from "./LaneNode";
@@ -20,12 +21,10 @@ import { LaneNode } from "./LaneNode";
 const nodeTypes = { topo: TopoNodeView, lane: LaneNode };
 const edgeTypes = { topo: TopoEdgeView };
 
-const KIND_HEX: Record<string, string> = {
-  definition: "#5ce1ff", theorem: "#a78bff", lemma: "#7af3c4",
-  example: "#ffd58a", proposition: "#ff8fb1", corollary: "#ffb86c",
-};
-
 function InnerGraph() {
+  const mapId = useStore((s) => s.mapId);
+  const map = registeredMaps[mapId];
+  const { data } = map;
   const view = useStore((s) => s.view);
   const search = useStore((s) => s.search).toLowerCase().trim();
   const searchScope = useStore((s) => s.searchScope);
@@ -40,7 +39,7 @@ function InnerGraph() {
   const filteredNodes = useMemo(() => {
     return data.nodes.filter((n) => {
       if (!kinds.has(n.kind)) return false;
-      if (topics.size && !topics.has(n.topicCluster)) return false;
+      if (topics.size && !topics.has(n.domainId)) return false;
       if (search) {
         const hay =
           searchScope === "title"
@@ -50,7 +49,7 @@ function InnerGraph() {
       }
       return true;
     });
-  }, [kinds, topics, search, searchScope]);
+  }, [data, kinds, topics, search, searchScope]);
 
   const visibleIds = useMemo(() => new Set(filteredNodes.map((n) => n.id)), [filteredNodes]);
   const filteredEdges = useMemo(
@@ -176,7 +175,7 @@ function InnerGraph() {
         nodeColor={(n) => {
           if (n.type === "lane") return "transparent";
           const k = (n.data as any)?.node?.kind;
-          return k ? KIND_HEX[k] ?? "#5ce1ff" : "#5ce1ff";
+          return k ? getNodeKindColor(k) : "#2563eb";
         }}
         nodeStrokeColor={(n) =>
           n.type === "lane" ? "transparent" : n.selected ? "#ffffff" : "rgba(255,255,255,0.18)"
