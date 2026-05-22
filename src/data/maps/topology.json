@@ -4309,12 +4309,12 @@
       },
       {
         "id": "brouwer_fixed_point_theorem",
-        "statement": null,
-        "formal_statement": null,
-        "definition": null,
-        "intuition": null,
-        "notation": null,
-        "assumptions": [],
+        "statement": "Let $f: \\mathbb{D}^n \\to \\mathbb{D}^n$ be a continuous map from the (unit) disk $\\mathbb{D}^n$ in $\\mathbb{R}^n$ to itself. Then $f$ has a fixed point, i.e., there is some point $x \\in \\mathbb{D}^n$ such that $f(x) = x$.\n\nFor $n = 1$ this is a well-known result from calculus: The graph of any continuous map $f: [0, 1] \\to [0, 1]$ must cross the diagonal $y = x$ for some $x^* \\in [0, 1]$. Hence, $f(x^*) = x^*$.",
+        "formal_statement": "$$f: \\mathbb{D}^n \\to \\mathbb{D}^n \\text{ continuous} \\implies \\exists x \\in \\mathbb{D}^n, f(x) = x.$$",
+        "definition": "A fixed point of a function $f: X \\to X$ is a point $x \\in X$ such that $f(x) = x$. The Brouwer fixed point theorem states that any continuous function from the n-dimensional disk to itself has at least one fixed point.",
+        "intuition": "Intuitively, if you have a continuous function that maps a disk to itself, you can imagine it as a deformation of the disk. No matter how you stretch or twist the disk, there will always be at least one point that ends up in the same place after the deformation.",
+        "notation": "$$f: \\mathbb{D}^n \\to \\mathbb{D}^n, \\text{ continuous} \\implies \\exists x \\in \\mathbb{D}^n, f(x) = x$$",
+        "assumptions": ["continuity", "compactness", "euclidean_space"],
         "dependencies": {
           "definitional_dependency": [
             "continuity",
