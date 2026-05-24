@@ -1,5 +1,4 @@
 import { BaseEdge, getBezierPath, type EdgeProps } from "reactflow";
-import { EDGE_COLOR, EDGE_COLOR_HIGHLIGHT } from "../types";
 
 interface Data {
   dim?: boolean;
@@ -11,12 +10,23 @@ export function TopoEdgeView(props: EdgeProps<Data>) {
   const [path] = getBezierPath({ sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition });
 
   const isHi = !!data?.highlight;
-  const stroke = isHi ? EDGE_COLOR_HIGHLIGHT : EDGE_COLOR;
-  const width = isHi ? 1.6 : 1;
-  const opacity = data?.dim ? 0.4 : 1;
+  const stroke = isHi ? "var(--accent)" : "var(--fg-4)";
+  const width = isHi ? 2.2 : 1.2;
+  const opacity = data?.dim ? 0.18 : 1;
 
   return (
     <>
+      {/* halo for contrast on any backdrop */}
+      <BaseEdge
+        id={`${props.id}-halo`}
+        path={path}
+        style={{
+          stroke: "var(--bg)",
+          strokeWidth: width + 3.5,
+          strokeOpacity: opacity * 0.9,
+          fill: "none",
+        }}
+      />
       <BaseEdge
         id={props.id}
         path={path}
@@ -30,7 +40,7 @@ export function TopoEdgeView(props: EdgeProps<Data>) {
       <circle
         cx={targetX}
         cy={targetY}
-        r={isHi ? 2.4 : 1.6}
+        r={isHi ? 2.6 : 1.8}
         fill={stroke}
         opacity={opacity}
       />

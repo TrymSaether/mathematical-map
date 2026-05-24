@@ -28,7 +28,10 @@ export default function App() {
 
   return (
     <ReactFlowProvider>
-      <div className="relative h-dvh w-screen overflow-hidden bg-canvas text-ink-900">
+      <div
+        className="relative h-dvh w-screen overflow-hidden"
+        style={{ background: "var(--bg)", color: "var(--fg-1)" }}
+      >
         <Background />
         <main className="absolute inset-0">
           {map ? (
@@ -37,7 +40,10 @@ export default function App() {
               <NodePanel />
             </>
           ) : (
-            <div className="flex h-full items-center justify-center px-6 text-center text-sm text-ink-500">
+            <div
+              className="flex h-full items-center justify-center px-6 text-center text-sm"
+              style={{ color: "var(--fg-2)" }}
+            >
               {mapError
                 ? `Could not load map: ${mapError}`
                 : loadingMapId

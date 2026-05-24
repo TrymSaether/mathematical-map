@@ -43,7 +43,8 @@ export function CommandPalette() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 z-50 bg-ink-900/12 backdrop-blur-[2px]"
+                className="fixed inset-0 z-50 backdrop-blur-[2px]"
+                style={{ background: "color-mix(in srgb, var(--bg-deep) 55%, transparent)" }}
               />
             </Dialog.Overlay>
             <Dialog.Content asChild>
@@ -59,25 +60,34 @@ export function CommandPalette() {
                   Jump to a concept or switch fields.
                 </Dialog.Description>
                 <Command
-                  className="overflow-hidden rounded-2xl border border-hairline bg-white shadow-float"
+                  className="overflow-hidden rounded-2xl border"
+                  style={{
+                    background: "var(--surface)",
+                    borderColor: "var(--border)",
+                    boxShadow: "var(--shadow-3)",
+                  }}
                   loop
                 >
-                  <div className="border-b border-ink-100 px-4 py-3">
+                  <div
+                    className="border-b px-4 py-3"
+                    style={{ borderColor: "var(--border-subtle)" }}
+                  >
                     <Command.Input
                       value={query}
                       onValueChange={setQuery}
                       placeholder="Search concepts, definitions, theorems…"
-                      className="w-full bg-transparent text-[14px] text-ink-900 outline-none placeholder:text-ink-400"
+                      className="w-full bg-transparent text-[14px] outline-none"
+                      style={{ color: "var(--fg-1)" }}
                     />
                   </div>
                   <Command.List className="max-h-[420px] overflow-y-auto p-2">
-                    <Command.Empty className="px-3 py-6 text-center text-[12px] text-ink-400">
+                    <Command.Empty className="px-3 py-6 text-center text-[12px] text-[color:var(--fg-3)]">
                       No results.
                     </Command.Empty>
 
                     <Command.Group
                       heading="Fields"
-                      className="px-2 pt-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-400"
+                      className="px-2 pt-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-[color:var(--fg-3)]"
                     >
                       {(Object.keys(MAPS) as MapId[]).map((id) => (
                         <Item
@@ -88,7 +98,7 @@ export function CommandPalette() {
                             setOpen(false);
                           }}
                         >
-                          <span className="text-[13px] text-ink-900">Open {MAPS[id].label}</span>
+                          <span className="text-[13px] text-[color:var(--fg-1)]">Open {MAPS[id].label}</span>
                         </Item>
                       ))}
                     </Command.Group>
@@ -96,7 +106,7 @@ export function CommandPalette() {
                     {data && (
                       <Command.Group
                         heading="Concepts"
-                        className="px-2 pt-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-400"
+                        className="px-2 pt-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-[color:var(--fg-3)]"
                       >
                         {data.nodes.map((n) => {
                           const tone = getDomainTone(n.domainId);
@@ -114,13 +124,13 @@ export function CommandPalette() {
                                   className="h-2 w-2 flex-shrink-0 rounded-full"
                                   style={{ background: tone.color }}
                                 />
-                                <span className="w-[96px] flex-shrink-0 text-[10.5px] font-medium uppercase tracking-[0.08em] text-ink-400">
+                                <span className="w-[96px] flex-shrink-0 text-[10.5px] font-medium uppercase tracking-[0.08em] text-[color:var(--fg-3)]">
                                   {KIND_LABEL[n.kind]}
                                 </span>
-                                <span className="min-w-0 flex-1 truncate text-[13px] text-ink-800">
+                                <span className="min-w-0 flex-1 truncate text-[13px] text-[color:var(--fg-1)]">
                                   {n.title}
                                 </span>
-                                <span className="ml-2 max-w-[140px] truncate text-[10.5px] text-ink-400">
+                                <span className="ml-2 max-w-[140px] truncate text-[10.5px] text-[color:var(--fg-3)]">
                                   {n.topicCluster}
                                 </span>
                               </span>
@@ -131,7 +141,10 @@ export function CommandPalette() {
                     )}
                   </Command.List>
 
-                  <div className="flex items-center justify-between border-t border-ink-100 px-3 py-1.5 text-[10.5px] text-ink-400">
+                  <div
+                    className="flex items-center justify-between border-t px-3 py-1.5 text-[10.5px] text-[color:var(--fg-3)]"
+                    style={{ borderColor: "var(--border-subtle)" }}
+                  >
                     <span>↑↓ navigate · ↵ select · esc close</span>
                     <span className="font-mono">⌘K</span>
                   </div>
@@ -158,7 +171,7 @@ function Item({
     <Command.Item
       value={value}
       onSelect={onSelect}
-      className="cursor-pointer rounded-md px-2 py-2 text-[13px] text-ink-800 aria-selected:bg-accent-blueSoft aria-selected:text-ink-900"
+      className="cursor-pointer rounded-md px-2 py-2 text-[13px] text-[color:var(--fg-1)] aria-selected:bg-[color:var(--accent-soft)] aria-selected:text-[color:var(--fg-1)]"
     >
       {children}
     </Command.Item>

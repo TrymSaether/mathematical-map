@@ -1,32 +1,39 @@
-/** Apple Maps–inspired palette: soft pastel tints per domain, neutral nodes, blue accent for selection. */
+/**
+ * Math Atlas 8-domain palette.
+ * Each tone carries: solid color, pastel tint (region fill), soft border.
+ * All values are CSS variables so they automatically retune across light/dark themes.
+ */
 
-export const APPLE_BLUE = "#0A84FF";
-export const APPLE_BLUE_SOFT = "#E6F0FF";
-export const CANVAS_BG = "#F7F5F0";
-export const INK_900 = "#1C1C1E";
-export const INK_700 = "#3A3A3C";
-export const INK_500 = "#6E6E73";
-export const INK_300 = "#AEAEB2";
-export const INK_100 = "#E5E5EA";
-export const HAIRLINE = "rgba(0, 0, 0, 0.08)";
-
-interface DomainTone {
+export interface DomainTone {
+  /** Solid color (text, stroke, ID, dot) */
   color: string;
+  /** Pastel tint for region/cluster fills */
   tint: string;
+  /** Soft border weight for region outlines */
   border: string;
+  /** Stable key (for inline classes if needed) */
+  key: DomainKey;
 }
 
-/** Soft pastel palette used to color domain accents. Order is cycled deterministically per field. */
-const DOMAIN_TONES: DomainTone[] = [
-  { color: "#3A82F7", tint: "#E7F0FE", border: "#C9DCFB" }, // blue
-  { color: "#34A853", tint: "#E7F5EA", border: "#C7E4CD" }, // green
-  { color: "#E07A4B", tint: "#FBEDE3", border: "#F2D2BC" }, // peach
-  { color: "#8E5BD9", tint: "#F0E8FB", border: "#DBC9F0" }, // lilac
-  { color: "#D9A441", tint: "#F8EFD8", border: "#ECDAA8" }, // amber
-  { color: "#3FA9B5", tint: "#E1F2F4", border: "#BCDEE2" }, // teal
-  { color: "#D55F88", tint: "#FAE3EC", border: "#F0C5D5" }, // rose
-  { color: "#7E8A99", tint: "#EEF1F3", border: "#D6DCE2" }, // slate
-  { color: "#A78A6B", tint: "#F2ECE3", border: "#DCCBB3" }, // sand
+export type DomainKey =
+  | "blue"
+  | "green"
+  | "purple"
+  | "red"
+  | "teal"
+  | "orange"
+  | "pink"
+  | "gold";
+
+const PALETTE: DomainTone[] = [
+  { key: "blue",   color: "var(--blue)",   tint: "var(--blue-50)",   border: "var(--blue-200)"   },
+  { key: "green",  color: "var(--green)",  tint: "var(--green-50)",  border: "var(--green-200)"  },
+  { key: "purple", color: "var(--purple)", tint: "var(--purple-50)", border: "var(--purple-200)" },
+  { key: "red",    color: "var(--red)",    tint: "var(--red-50)",    border: "var(--red-200)"    },
+  { key: "teal",   color: "var(--teal)",   tint: "var(--teal-50)",   border: "var(--teal-200)"   },
+  { key: "orange", color: "var(--orange)", tint: "var(--orange-50)", border: "var(--orange-200)" },
+  { key: "pink",   color: "var(--pink)",   tint: "var(--pink-50)",   border: "var(--pink-200)"   },
+  { key: "gold",   color: "var(--gold)",   tint: "var(--gold-50)",   border: "var(--gold-200)"   },
 ];
 
 function hash(value: string): number {
@@ -44,10 +51,8 @@ export function getDomainTone(domainId: string, fallbackIndex?: number): DomainT
   const cached = domainToneCache.get(domainId);
   if (cached) return cached;
   const idx =
-    typeof fallbackIndex === "number"
-      ? fallbackIndex
-      : hash(domainId);
-  const tone = DOMAIN_TONES[idx % DOMAIN_TONES.length];
+    typeof fallbackIndex === "number" ? fallbackIndex : hash(domainId);
+  const tone = PALETTE[idx % PALETTE.length];
   domainToneCache.set(domainId, tone);
   return tone;
 }
@@ -56,24 +61,13 @@ export function getDomainTone(domainId: string, fallbackIndex?: number): DomainT
 export function assignDomainTones(domainIds: string[]): Map<string, DomainTone> {
   const result = new Map<string, DomainTone>();
   domainIds.forEach((id, index) => {
-    const tone = DOMAIN_TONES[index % DOMAIN_TONES.length];
+    const tone = PALETTE[index % PALETTE.length];
     result.set(id, tone);
     domainToneCache.set(id, tone);
   });
   return result;
 }
 
-export function hexToRgb(hex: string): [number, number, number] {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  if (!result) throw new Error(`Invalid hex color: ${hex}`);
-  return [
-    parseInt(result[1], 16),
-    parseInt(result[2], 16),
-    parseInt(result[3], 16),
-  ];
-}
-
-export function rgbaFromHex(hex: string, opacity: number): string {
-  const [r, g, b] = hexToRgb(hex);
-  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+export function clearDomainToneCache(): void {
+  domainToneCache.clear();
 }

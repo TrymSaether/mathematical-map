@@ -11,6 +11,21 @@ interface Data {
   isRelated?: boolean;
 }
 
+const KIND_BADGE: Record<string, string> = {
+  definition: "D",
+  theorem: "T",
+  lemma: "L",
+  proposition: "P",
+  corollary: "C",
+  example: "E",
+  remark: "R",
+  axiom: "A",
+};
+
+function kindLetter(kind: string): string {
+  return KIND_BADGE[kind] ?? kind[0]?.toUpperCase() ?? "·";
+}
+
 export function TopoNodeView({ data }: NodeProps<Data>) {
   const { node, dim, isSelected, isRelated } = data;
   const select = useStore((s) => s.select);
@@ -28,30 +43,49 @@ export function TopoNodeView({ data }: NodeProps<Data>) {
       tabIndex={0}
       aria-label={`${KIND_LABEL[node.kind]}: ${node.title}`}
       className={cn(
-        "group relative flex w-[220px] cursor-pointer items-stretch overflow-hidden rounded-[10px] bg-white outline-none transition-[opacity,box-shadow,transform] duration-150",
-        "border border-[rgba(0,0,0,0.08)] shadow-[0_1px_2px_rgba(0,0,0,0.04)]",
-        "hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(0,0,0,0.08),0_2px_4px_rgba(0,0,0,0.04)]",
-        "focus-visible:ring-2 focus-visible:ring-[#0A84FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F7F5F0]",
-        isSelected && "shadow-[0_0_0_2px_#0A84FF,0_8px_24px_rgba(10,132,255,0.18)] border-transparent",
-        !isSelected && isRelated && "shadow-[0_0_0_1px_#0A84FF80,0_4px_12px_rgba(10,132,255,0.10)]",
+        "group relative flex w-[220px] cursor-pointer flex-col gap-1 rounded-[10px] px-3 py-2.5 outline-none transition-all duration-150",
+        "hover:-translate-y-px",
         dim && "opacity-25",
       )}
+      style={{
+        background: "var(--surface)",
+        border: `1.4px solid ${isSelected || isRelated ? tone.color : "var(--border)"}`,
+        boxShadow: isSelected
+          ? `0 0 0 3px ${tone.tint}, var(--shadow-2)`
+          : isRelated
+            ? "var(--shadow-2)"
+            : "var(--shadow-1)",
+      }}
     >
       <Handle type="target" position={Position.Top} className="!opacity-0" />
-      <span
-        aria-hidden
-        className="block w-[5px] flex-shrink-0"
-        style={{ background: tone.color }}
-      />
-      <div className="min-w-0 flex-1 px-3 py-2">
-        <div className="flex items-center gap-2 text-[9.5px] font-medium uppercase tracking-[0.12em] text-ink-400">
-          <span style={{ color: tone.color }}>{KIND_LABEL[node.kind]}</span>
-        </div>
-        <div className="mt-0.5 truncate text-[13px] font-medium leading-snug text-ink-900">
-          {node.title}
-        </div>
+      <div className="flex items-center gap-2">
+        <span
+          aria-hidden
+          className="inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-[4px] px-1 font-sans text-[10px] font-bold leading-none"
+          style={{ background: tone.color, color: "var(--fg-on-color)" }}
+        >
+          {kindLetter(node.kind)}
+        </span>
+        <span
+          className="truncate font-mono text-[10.5px] font-semibold tracking-[0.02em]"
+          style={{ color: tone.color }}
+          title={node.id}
+        >
+          {shortId(node.id)}
+        </span>
+      </div>
+      <div
+        className="truncate text-[12.5px] font-medium leading-snug"
+        style={{ color: "var(--fg-1)" }}
+      >
+        {node.title}
       </div>
       <Handle type="source" position={Position.Bottom} className="!opacity-0" />
     </div>
   );
+}
+
+function shortId(id: string): string {
+  if (id.length <= 14) return id;
+  return id.slice(0, 12) + "…";
 }

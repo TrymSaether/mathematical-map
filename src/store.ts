@@ -3,8 +3,20 @@ import { DEFAULT_MAP_ID, loadMap, type LoadedMap, type MapId } from "./data";
 import type { NodeKind, Relation } from "./types";
 
 export type SearchScope = "all" | "title";
+export type Theme = "light" | "dark";
+
+function readInitialTheme(): Theme {
+  if (typeof document === "undefined") return "light";
+  const attr = document.documentElement.dataset.theme;
+  if (attr === "dark" || attr === "light") return attr;
+  return "light";
+}
 
 interface State {
+  theme: Theme;
+  setTheme: (t: Theme) => void;
+  toggleTheme: () => void;
+
   mapId: MapId;
   setMap: (mapId: MapId) => void;
   loadedMaps: Partial<Record<MapId, LoadedMap>>;
@@ -40,7 +52,29 @@ function toggle<T>(set: Set<T>, v: T) {
   return next;
 }
 
+function applyTheme(theme: Theme) {
+  if (typeof document === "undefined") return;
+  document.documentElement.dataset.theme = theme;
+  document.documentElement.classList.toggle("dark", theme === "dark");
+  try {
+    localStorage.setItem("math-map-theme", theme);
+  } catch {
+    /* ignore */
+  }
+}
+
 export const useStore = create<State>((set, get) => ({
+  theme: readInitialTheme(),
+  setTheme: (theme) => {
+    applyTheme(theme);
+    set({ theme });
+  },
+  toggleTheme: () => {
+    const next: Theme = get().theme === "dark" ? "light" : "dark";
+    applyTheme(next);
+    set({ theme: next });
+  },
+
   mapId: DEFAULT_MAP_ID,
   loadedMaps: {},
   loadingMapId: null,

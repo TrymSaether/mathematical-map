@@ -1,7 +1,5 @@
 import { useMemo, useEffect } from "react";
 import ReactFlow, {
-  Background as RFBackground,
-  BackgroundVariant,
   MiniMap,
   useReactFlow,
   type Node,
@@ -33,7 +31,7 @@ function LoadedGraph({ map }: { map: LoadedMap }) {
   const selectedId = useStore((s) => s.selectedId);
   const rf = useReactFlow();
 
-  const { data, positions } = map;
+  const { data, positions, domainBounds } = map;
 
   const filteredNodes = useMemo(() => {
     return data.nodes.filter((n) => {
@@ -75,7 +73,39 @@ function LoadedGraph({ map }: { map: LoadedMap }) {
     return new Set(filteredEdges.filter((e) => e.from === selectedId || e.to === selectedId).map((e) => e.id));
   }, [selectedId, filteredEdges]);
 
-  const nodes: Node[] = useMemo(
+  /** Cluster region overlay nodes, rendered behind concept nodes. */
+  const clusterNodes: Node[] = useMemo(() => {
+    const visibleDomains = new Set(filteredNodes.map((n) => n.domainId));
+    const pad = 28;
+    const nodes: Node[] = [];
+    for (const [domainId, bounds] of domainBounds) {
+      if (!visibleDomains.has(domainId)) continue;
+      const tone = getDomainTone(domainId);
+      const domain = map.domainById.get(domainId);
+      nodes.push({
+        id: `cluster::${domainId}`,
+        type: "cluster",
+        position: { x: bounds.x - pad, y: bounds.y - pad },
+        draggable: false,
+        selectable: false,
+        zIndex: -1,
+        data: {
+          width: bounds.width + pad * 2,
+          height: bounds.height + pad * 2,
+          tone,
+          label: domain?.label ?? domainId,
+        },
+        style: {
+          width: bounds.width + pad * 2,
+          height: bounds.height + pad * 2,
+          pointerEvents: "none",
+        },
+      });
+    }
+    return nodes;
+  }, [domainBounds, filteredNodes, map.domainById]);
+
+  const conceptNodes: Node[] = useMemo(
     () =>
       filteredNodes.map((n) => {
         const pos = positions.get(n.id) ?? { x: 0, y: 0 };
@@ -92,6 +122,8 @@ function LoadedGraph({ map }: { map: LoadedMap }) {
       }),
     [filteredNodes, positions, selectedId, relatedIds],
   );
+
+  const nodes = useMemo(() => [...clusterNodes, ...conceptNodes], [clusterNodes, conceptNodes]);
 
   const edges: Edge[] = useMemo(
     () =>
@@ -129,7 +161,7 @@ function LoadedGraph({ map }: { map: LoadedMap }) {
     <ReactFlow
       nodes={nodes}
       edges={edges}
-      nodeTypes={nodeTypes}
+      nodeTypes={nodeTypes as never}
       edgeTypes={edgeTypes}
       onPaneClick={() => useStore.getState().select(null)}
       proOptions={{ hideAttribution: true }}
@@ -141,32 +173,81 @@ function LoadedGraph({ map }: { map: LoadedMap }) {
       nodesDraggable={false}
       defaultEdgeOptions={{ type: "topo" }}
     >
-      <RFBackground
-        variant={BackgroundVariant.Dots}
-        gap={22}
-        size={0.8}
-        color="rgba(0,0,0,0.07)"
-      />
       <MiniMap
         pannable
         zoomable
         ariaLabel="Atlas overview"
         nodeColor={(n) => {
-          const node = (n.data as any)?.node;
-          if (!node) return "#0A84FF";
+          const node = (n.data as { node?: { domainId: string } })?.node;
+          if (!node) return "transparent";
           return getDomainTone(node.domainId).color;
         }}
         nodeStrokeColor={() => "transparent"}
         nodeBorderRadius={3}
         nodeStrokeWidth={0}
-        maskColor="rgba(247, 245, 240, 0.72)"
-        maskStrokeColor="rgba(0,0,0,0.12)"
+        maskColor="color-mix(in srgb, var(--bg) 72%, transparent)"
+        maskStrokeColor="var(--border)"
         maskStrokeWidth={1}
         style={{ width: 180, height: 130 }}
       />
     </ReactFlow>
   );
 }
+
+/* Register the cluster node type alongside the concept node. */
+(nodeTypes as Record<string, unknown>).cluster = function ClusterNode({
+  data,
+}: {
+  data: {
+    width: number;
+    height: number;
+    tone: { color: string; tint: string; border: string };
+    label: string;
+  };
+}) {
+  return (
+    <div
+      style={{
+        width: data.width,
+        height: data.height,
+        background: data.tone.tint,
+        border: `1px dashed ${data.tone.border}`,
+        borderRadius: 24,
+        position: "relative",
+        pointerEvents: "none",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          top: 10,
+          left: 16,
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 6,
+          fontFamily: "var(--font-sans)",
+          fontSize: 10.5,
+          fontWeight: 700,
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          color: data.tone.color,
+          opacity: 0.85,
+        }}
+      >
+        <span
+          style={{
+            display: "inline-block",
+            width: 6,
+            height: 6,
+            borderRadius: 999,
+            background: data.tone.color,
+          }}
+        />
+        {data.label}
+      </div>
+    </div>
+  );
+};
 
 export function GraphCanvas() {
   return <InnerGraph />;
