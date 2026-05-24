@@ -41,11 +41,12 @@ export function Background() {
       }
       t += 0.0035;
       ctx.clearRect(0, 0, w, h);
+      const isDark = document.documentElement.classList.contains("dark");
 
       // depth gradient
       const g = ctx.createRadialGradient(w * 0.6, h * 0.35, 60, w * 0.6, h * 0.35, Math.max(w, h));
-      g.addColorStop(0, "rgba(60,90,180,0.18)");
-      g.addColorStop(0.4, "rgba(20,28,70,0.10)");
+      g.addColorStop(0, isDark ? "rgba(60,90,180,0.18)" : "rgba(37,99,235,0.12)");
+      g.addColorStop(0.4, isDark ? "rgba(20,28,70,0.10)" : "rgba(13,148,136,0.06)");
       g.addColorStop(1, "rgba(0,0,0,0)");
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
@@ -57,7 +58,9 @@ export function Background() {
         const radius = 220 + i * 110 + Math.sin(t + i) * 18;
         ctx.beginPath();
         ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(120,160,255,${0.06 - i * 0.012})`;
+        ctx.strokeStyle = isDark
+          ? `rgba(120,160,255,${0.06 - i * 0.012})`
+          : `rgba(37,99,235,${0.055 - i * 0.01})`;
         ctx.lineWidth = 1;
         ctx.stroke();
       }
@@ -70,7 +73,9 @@ export function Background() {
         if (p.x > w + 4) p.x = -4;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(200,220,255,${0.18 + p.z * 0.5})`;
+        ctx.fillStyle = isDark
+          ? `rgba(200,220,255,${0.18 + p.z * 0.5})`
+          : `rgba(30,64,175,${0.05 + p.z * 0.18})`;
         ctx.fill();
       }
 
@@ -88,7 +93,7 @@ export function Background() {
         className="absolute inset-0 opacity-[0.4] dark:opacity-100"
         style={{
           backgroundImage:
-            "radial-gradient(rgba(120,140,255,0.18) 1px, transparent 1px)",
+            "radial-gradient(var(--ambient-dot) 1px, transparent 1px)",
           backgroundSize: "26px 26px",
           maskImage:
             "radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%)",

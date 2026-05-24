@@ -1,4 +1,4 @@
-import { Sigma, Command as CommandIcon, Compass } from "lucide-react";
+import { Sigma, Command as CommandIcon, Compass, Moon, Sun } from "lucide-react";
 import { MAPS, isMapId } from "../data";
 import { useStore } from "../store";
 
@@ -8,6 +8,9 @@ export function TopBar() {
   const mapId = useStore((s) => s.mapId);
   const setMap = useStore((s) => s.setMap);
   const activeMap = useStore((s) => s.loadedMaps[mapId]);
+  const theme = useStore((s) => s.theme);
+  const toggleTheme = useStore((s) => s.toggleTheme);
+  const isDark = theme === "dark";
 
   return (
     <header className="glass scanlines mx-auto mb-2 flex min-h-12 w-full items-center justify-between gap-2 rounded-xl px-3 py-2 md:mb-3 md:rounded-2xl md:px-4">
@@ -35,6 +38,14 @@ export function TopBar() {
         </select>
         <Compass className="hidden h-3.5 w-3.5 sm:block" />
         <span className="hidden sm:inline">Mode: <span className="text-white/90">{view}</span></span>
+        <button
+          onClick={toggleTheme}
+          className="inline-flex h-7 w-7 items-center justify-center rounded-md border border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
+          aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
+          title={`Switch to ${isDark ? "light" : "dark"} mode`}
+        >
+          {isDark ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
+        </button>
         <button
           onClick={() => setPaletteOpen(true)}
           className="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-1 hover:bg-white/10 md:ml-3"

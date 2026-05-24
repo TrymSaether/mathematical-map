@@ -5,6 +5,7 @@ import type { NodeKind, Relation } from "./types";
 export type ViewMode = "dependency" | "cluster";
 export type HighlightMode = "immediate" | "full";
 export type SearchScope = "all" | "title";
+export type ThemeMode = "light" | "dark";
 
 interface State {
   mapId: MapId;
@@ -49,6 +50,10 @@ interface State {
 
   panelCollapsed: boolean;
   setPanelCollapsed: (v: boolean) => void;
+
+  theme: ThemeMode;
+  setTheme: (theme: ThemeMode) => void;
+  toggleTheme: () => void;
 }
 
 function toggle<T>(set: Set<T>, v: T) {
@@ -57,7 +62,23 @@ function toggle<T>(set: Set<T>, v: T) {
   return next;
 }
 
+function getInitialTheme(): ThemeMode {
+  if (typeof window === "undefined") return "dark";
+  let stored: string | null = null;
+  try {
+    stored = window.localStorage.getItem("math-map-theme");
+  } catch {
+    stored = null;
+  }
+  if (stored === "light" || stored === "dark") return stored;
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
+}
+
 export const useStore = create<State>((set, get) => ({
+  theme: getInitialTheme(),
+  setTheme: (theme) => set({ theme }),
+  toggleTheme: () => set((state) => ({ theme: state.theme === "dark" ? "light" : "dark" })),
+
   mapId: DEFAULT_MAP_ID,
   loadedMaps: {},
   loadingMapId: null,

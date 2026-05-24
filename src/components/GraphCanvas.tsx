@@ -173,7 +173,7 @@ function LoadedGraph({ map }: { map: LoadedMap }) {
         variant={BackgroundVariant.Dots}
         gap={28}
         size={1}
-        color="rgba(120,140,255,0.22)"
+        color="var(--canvas-grid-dot)"
       />
       <MiniMap
         pannable zoomable
@@ -184,16 +184,16 @@ function LoadedGraph({ map }: { map: LoadedMap }) {
           return k ? getNodeKindColor(k) : "#2563eb";
         }}
         nodeStrokeColor={(n) =>
-          n.type === "lane" ? "transparent" : n.selected ? "#ffffff" : "rgba(255,255,255,0.18)"
+          n.type === "lane" ? "transparent" : n.selected ? "var(--text-strong)" : "var(--border)"
         }
         nodeBorderRadius={3}
         nodeStrokeWidth={1}
-        maskColor="rgba(5,6,10,0.78)"
-        maskStrokeColor="rgba(92,225,255,0.45)"
+        maskColor="var(--minimap-mask)"
+        maskStrokeColor="var(--minimap-stroke)"
         maskStrokeWidth={1.5}
         style={{
-          background: "rgba(10,12,20,0.85)",
-          border: "1px solid rgba(255,255,255,0.10)",
+          background: "var(--minimap-bg)",
+          border: "1px solid var(--panel-border)",
           borderRadius: 12,
           backdropFilter: "blur(8px)",
         }}

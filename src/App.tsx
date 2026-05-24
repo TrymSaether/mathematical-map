@@ -20,10 +20,21 @@ export default function App() {
   const topics = useStore((s) => s.topics);
   const search = useStore((s) => s.search).toLowerCase().trim();
   const searchScope = useStore((s) => s.searchScope);
+  const theme = useStore((s) => s.theme);
 
   useEffect(() => {
     void ensureMapLoaded(mapId);
   }, [ensureMapLoaded, mapId]);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    document.documentElement.dataset.theme = theme;
+    try {
+      window.localStorage.setItem("math-map-theme", theme);
+    } catch {
+      // Theme still applies for the current session when storage is unavailable.
+    }
+  }, [theme]);
 
   const visibleCount = useMemo(() => {
     if (!map) return 0;
