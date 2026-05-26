@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Search, SlidersHorizontal, Plus, Minus, Locate, Sun, Moon } from "lucide-react";
+import { Search, SlidersHorizontal, Plus, Minus, Locate, Sun, Moon, ChevronDown } from "lucide-react";
 import { useReactFlow } from "reactflow";
 import { MAPS, type MapId } from "../data";
 import { useStore } from "../store";
@@ -12,8 +12,7 @@ export function TopBar() {
   return (
     <header className="pointer-events-none absolute inset-x-0 top-3 z-30 flex justify-center px-3">
       <div className="pointer-events-auto flex w-full max-w-[1180px] items-center gap-2">
-        <Wordmark />
-        <FieldSwitcher />
+        <BrandSection />
         <div className="ml-auto flex items-center gap-2">
           <SearchBox />
           <FilterButton />
@@ -25,58 +24,144 @@ export function TopBar() {
   );
 }
 
-function Wordmark() {
+function BrandSection() {
+  const mapId = useStore((s) => s.mapId);
+  const setMap = useStore((s) => s.setMap);
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
+  const currentLabel = MAPS[mapId].label;
+
   return (
     <div
-      className="flex h-10 items-center gap-2.5 rounded-pill border px-3.5"
+      ref={ref}
+      className="relative flex h-10 items-center gap-1 rounded-pill border p-1"
       style={{
         background: "var(--surface)",
         borderColor: "var(--border)",
+        borderWidth: "1px",
         boxShadow: "var(--shadow-1)",
       }}
     >
-      <LogoMark size={20} className="text-[color:var(--fg-1)]" />
-      <span
-        className="whitespace-nowrap font-serif text-[17px] leading-none"
-        style={{ color: "var(--fg-1)", letterSpacing: "-0.005em" }}
+      <div className="flex items-center gap-2.5 px-2.5">
+        <LogoMark size={20} className="text-[color:var(--fg-1)]" />
+        <span
+          className="whitespace-nowrap font-serif text-[17px] leading-none"
+          style={{ color: "var(--fg-1)", letterSpacing: "-0.005em" }}
+        >
+          Math Atlas
+        </span>
+      </div>
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="flex h-8 items-center gap-1.5 rounded-pill px-3 text-[12.5px] font-medium transition-all"
+        style={{
+          background: open ? "var(--surface-3)" : "var(--surface-2)",
+          color: "var(--fg-1)",
+          border: `1px solid var(--border)`,
+        }}
+        aria-label="Field selector"
+        aria-expanded={open}
       >
-        Math Atlas
-      </span>
+        <span>{currentLabel}</span>
+        <ChevronDown
+          className="h-3.5 w-3.5 transition-transform"
+          style={{
+            color: "var(--fg-2)",
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+          }}
+        />
+      </button>
+      {open && (
+        <div
+          className="absolute left-0 top-12 w-max rounded-2xl border"
+          style={{
+            background: "var(--surface)",
+            borderColor: "var(--border)",
+            boxShadow: "var(--shadow-3)",
+          }}
+        >
+          {(Object.keys(MAPS) as MapId[]).map((id) => {
+            const active = id === mapId;
+            return (
+              <button
+                key={id}
+                onClick={() => {
+                  setMap(id);
+                  setOpen(false);
+                }}
+                className="block w-full px-3 py-2 text-left text-[12.5px] font-medium transition-colors"
+                style={{
+                  background: active ? "var(--surface-3)" : "transparent",
+                  color: active ? "var(--fg-1)" : "var(--fg-2)",
+                  borderBottomColor: "var(--border)",
+                  borderBottomWidth: id !== "functional_analysis" ? "1px" : "0",
+                }}
+              >
+                <span>{MAPS[id].label}</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
 
-function FieldSwitcher() {
-  const mapId = useStore((s) => s.mapId);
-  const setMap = useStore((s) => s.setMap);
+function MapButton() {
   return (
-    <div
-      className="flex h-10 items-center rounded-pill border p-1"
+    <button
+      className="flex h-10 items-center rounded-pill border px-3 text-[12.5px] font-medium transition-colors"
       style={{
         background: "var(--surface)",
         borderColor: "var(--border)",
+        color: "var(--fg-2)",
+        boxShadow: "var(--shadow-1)",
+      }}
+      aria-label="Map"
+    >
+      Map
+    </button>
+  );
+}
+
+function PagesNav() {
+  return (
+    <div
+      className="flex h-10 items-center gap-1 rounded-pill border p-1"
+      style={{
+        background: "var(--surface)",
+        borderColor: "var(--border)",
+        borderWidth: "1px",
         boxShadow: "var(--shadow-1)",
       }}
     >
-      {(Object.keys(MAPS) as MapId[]).map((id) => {
-        const active = id === mapId;
-        return (
-          <button
-            key={id}
-            onClick={() => setMap(id)}
-            className={cn(
-              "h-8 whitespace-nowrap rounded-pill px-3 text-[12.5px] font-medium transition-colors",
-            )}
-            style={{
-              background: active ? "var(--surface-3)" : "transparent",
-              color: active ? "var(--fg-1)" : "var(--fg-2)",
-            }}
-            aria-pressed={active}
-          >
-            {MAPS[id].label}
-          </button>
-        );
-      })}
+      <button
+        className="flex h-8 items-center rounded-pill px-3 text-[12.5px] font-medium transition-colors"
+        style={{
+          background: "var(--surface-2)",
+          color: "var(--fg-1)",
+        }}
+        aria-label="Map"
+      >
+        Map
+      </button>
     </div>
   );
 }
@@ -218,10 +303,10 @@ function FilterPopover() {
               style={
                 active
                   ? {
-                      background: "var(--accent-soft)",
-                      borderColor: "var(--accent-border)",
-                      color: "var(--accent)",
-                    }
+                    background: "var(--accent-soft)",
+                    borderColor: "var(--accent-border)",
+                    color: "var(--accent)",
+                  }
                   : { background: "var(--surface)", borderColor: "var(--border)", color: "var(--fg-3)" }
               }
             >
