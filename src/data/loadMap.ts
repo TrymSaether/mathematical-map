@@ -5,7 +5,7 @@ import {
   type GraphDomain,
   type GraphEdge,
 } from "../types";
-import { computeAtlasLayout, type Position } from "../lib/atlasLayout";
+import { computeAtlasLayout, type DomainBounds, type Position } from "../lib/atlasLayout";
 import { DEFAULT_MAP_ID, MAPS, loadRawMap, type MapId } from "./mapRegistry";
 import { normalizeFieldGraph } from "./normalizeFieldGraph";
 
@@ -31,7 +31,7 @@ export interface LoadedMap {
   relations: string[];
   topics: string[];
   positions: Map<string, Position>;
-  domainBounds: Map<string, { x: number; y: number; width: number; height: number }>;
+  domainBounds: Map<string, DomainBounds>;
 }
 
 function buildLoadedMap(data: GraphData): LoadedMap {

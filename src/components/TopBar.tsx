@@ -16,7 +16,6 @@ export function TopBar() {
         <div className="ml-auto flex items-center gap-2">
           <SearchBox />
           <FilterButton />
-          <ZoomControls />
           <ThemeToggle />
         </div>
       </div>
@@ -171,7 +170,7 @@ function SearchBox() {
   return (
     <button
       onClick={() => setPaletteOpen(true)}
-      className="flex h-10 items-center gap-2 rounded-pill border px-3 text-[12.5px]"
+      className="flex h-9 items-center gap-2 rounded-pill border px-3 text-[12.5px] sm:h-10"
       style={{
         background: "var(--surface)",
         borderColor: "var(--border)",
@@ -213,7 +212,7 @@ function FilterButton() {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((o) => !o)}
-        className="flex h-10 w-10 items-center justify-center rounded-pill border"
+        className="flex h-9 w-9 items-center justify-center rounded-pill border sm:h-10 sm:w-10"
         style={{
           background: "var(--surface)",
           borderColor: "var(--border)",
@@ -367,7 +366,7 @@ function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      className="flex h-10 w-10 items-center justify-center rounded-pill border"
+      className="flex h-9 w-9 items-center justify-center rounded-pill border sm:h-10 sm:w-10"
       style={{
         background: "var(--surface)",
         borderColor: "var(--border)",

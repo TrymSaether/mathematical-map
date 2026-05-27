@@ -1,18 +1,17 @@
-import { useMemo, useEffect } from "react";
-import ReactFlow, {
-  MiniMap,
-  useReactFlow,
-  type Node,
-  type Edge,
-} from "reactflow";
+import { useEffect, useMemo } from "react";
+import ReactFlow, { useReactFlow, type Edge, type Node } from "reactflow";
 import type { LoadedMap } from "../data";
-import { useStore } from "../store";
+import { ATLAS_NODE_HEIGHT, ATLAS_NODE_WIDTH, computeClusterLayout } from "../lib/atlasLayout";
 import { getDomainTone } from "../lib/colors";
-import { ATLAS_NODE_WIDTH, ATLAS_NODE_HEIGHT } from "../lib/atlasLayout";
-import { TopoNodeView } from "./TopoNode";
+import { getRelationStyle } from "../lib/relationStyle";
+import { useStore } from "../store";
+import { DomainRegionNode } from "./DomainRegionNode";
+import { Dock } from "./Dock";
+import { MinimapCard } from "./MinimapCard";
 import { TopoEdgeView } from "./TopoEdge";
+import { TopoNodeView } from "./TopoNode";
 
-const nodeTypes = { topo: TopoNodeView };
+const nodeTypes = { topo: TopoNodeView, domainRegion: DomainRegionNode };
 const edgeTypes = { topo: TopoEdgeView };
 
 function InnerGraph() {
@@ -23,231 +22,242 @@ function InnerGraph() {
 }
 
 function LoadedGraph({ map }: { map: LoadedMap }) {
+  const view = useStore((s) => s.view);
   const search = useStore((s) => s.search).toLowerCase().trim();
   const searchScope = useStore((s) => s.searchScope);
   const kinds = useStore((s) => s.kinds);
   const topics = useStore((s) => s.topics);
   const relations = useStore((s) => s.relations);
   const selectedId = useStore((s) => s.selectedId);
+  const focusMode = useStore((s) => s.focusMode);
+  const focusDepth = useStore((s) => s.focusDepth);
   const rf = useReactFlow();
 
-  const { data, positions, domainBounds } = map;
+  const { data } = map;
 
   const filteredNodes = useMemo(() => {
-    return data.nodes.filter((n) => {
-      if (!kinds.has(n.kind)) return false;
-      if (topics.size && !topics.has(n.domainId)) return false;
+    return data.nodes.filter((node) => {
+      if (!kinds.has(node.kind)) return false;
+      if (topics.size && !topics.has(node.domainId)) return false;
       if (search) {
-        const hay =
+        const haystack =
           searchScope === "title"
-            ? `${n.title} ${n.kind}`.toLowerCase()
-            : `${n.title} ${n.kind} ${n.tags.join(" ")} ${n.formalStatement} ${n.originalText}`.toLowerCase();
-        if (!hay.includes(search)) return false;
+            ? `${node.title} ${node.kind}`.toLowerCase()
+            : `${node.title} ${node.kind} ${node.tags.join(" ")} ${node.formalStatement} ${node.originalText}`.toLowerCase();
+        if (!haystack.includes(search)) return false;
       }
       return true;
     });
-  }, [data, kinds, topics, search, searchScope]);
+  }, [data.nodes, kinds, topics, search, searchScope]);
 
-  const visibleIds = useMemo(() => new Set(filteredNodes.map((n) => n.id)), [filteredNodes]);
+  const visibleIds = useMemo(() => new Set(filteredNodes.map((node) => node.id)), [filteredNodes]);
 
   const filteredEdges = useMemo(
     () =>
       data.edges.filter(
-        (e) => relations.has(e.relation) && visibleIds.has(e.from) && visibleIds.has(e.to),
+        (edge) => relations.has(edge.relation) && visibleIds.has(edge.from) && visibleIds.has(edge.to),
       ),
     [data.edges, relations, visibleIds],
   );
 
-  const relatedIds = useMemo(() => {
-    if (!selectedId) return new Set<string>();
+  const activeLayout = useMemo(() => {
+    if (view === "cluster") {
+      return computeClusterLayout(filteredNodes, data.domains);
+    }
+    return { positions: map.positions, domainBounds: map.domainBounds };
+  }, [data.domains, filteredNodes, map.domainBounds, map.positions, view]);
+
+  const visibleDomainCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const node of filteredNodes) {
+      counts.set(node.domainId, (counts.get(node.domainId) ?? 0) + 1);
+    }
+    return counts;
+  }, [filteredNodes]);
+
+  const immediateRelatedIds = useMemo(() => {
+    if (!selectedId || !visibleIds.has(selectedId)) return new Set<string>();
     const set = new Set<string>();
-    for (const e of filteredEdges) {
-      if (e.from === selectedId) set.add(e.to);
-      if (e.to === selectedId) set.add(e.from);
+    for (const edge of filteredEdges) {
+      if (edge.from === selectedId) set.add(edge.to);
+      if (edge.to === selectedId) set.add(edge.from);
     }
     return set;
-  }, [selectedId, filteredEdges]);
+  }, [selectedId, visibleIds, filteredEdges]);
+
+  const focusSet = useMemo(() => {
+    if (!focusMode || !selectedId || !visibleIds.has(selectedId)) return null;
+
+    const neighbors = new Map<string, Set<string>>();
+    for (const edge of filteredEdges) {
+      const fromSet = neighbors.get(edge.from) ?? new Set<string>();
+      fromSet.add(edge.to);
+      neighbors.set(edge.from, fromSet);
+
+      const toSet = neighbors.get(edge.to) ?? new Set<string>();
+      toSet.add(edge.from);
+      neighbors.set(edge.to, toSet);
+    }
+
+    const seen = new Set<string>([selectedId]);
+    let frontier = [selectedId];
+    for (let depth = 0; depth < focusDepth; depth += 1) {
+      const next: string[] = [];
+      for (const id of frontier) {
+        for (const neighbor of neighbors.get(id) ?? []) {
+          if (seen.has(neighbor)) continue;
+          seen.add(neighbor);
+          next.push(neighbor);
+        }
+      }
+      frontier = next;
+    }
+    return seen;
+  }, [focusMode, selectedId, visibleIds, filteredEdges, focusDepth]);
+
+  const contextIds = focusSet ?? immediateRelatedIds;
 
   const highlightedEdgeIds = useMemo(() => {
-    if (!selectedId) return new Set<string>();
-    return new Set(filteredEdges.filter((e) => e.from === selectedId || e.to === selectedId).map((e) => e.id));
-  }, [selectedId, filteredEdges]);
+    if (!selectedId || !visibleIds.has(selectedId)) return new Set<string>();
+    return new Set(
+      filteredEdges
+        .filter((edge) => edge.from === selectedId || edge.to === selectedId)
+        .map((edge) => edge.id),
+    );
+  }, [selectedId, visibleIds, filteredEdges]);
 
-  /** Cluster region overlay nodes, rendered behind concept nodes. */
-  const clusterNodes: Node[] = useMemo(() => {
-    const visibleDomains = new Set(filteredNodes.map((n) => n.domainId));
-    const pad = 28;
+  const nodeHandleState = useMemo(() => {
+    const incoming = new Map<string, string>();
+    const outgoing = new Map<string, string>();
+
+    for (const edge of filteredEdges) {
+      const color = getRelationStyle(edge.relation).color;
+      if (!outgoing.has(edge.from)) outgoing.set(edge.from, color);
+      if (!incoming.has(edge.to)) incoming.set(edge.to, color);
+    }
+
+    return { incoming, outgoing };
+  }, [filteredEdges]);
+
+  const regionNodes: Node[] = useMemo(() => {
     const nodes: Node[] = [];
-    for (const [domainId, bounds] of domainBounds) {
-      if (!visibleDomains.has(domainId)) continue;
+    for (const [domainId, bounds] of activeLayout.domainBounds) {
+      const count = visibleDomainCounts.get(domainId) ?? 0;
+      if (count === 0) continue;
       const tone = getDomainTone(domainId);
       const domain = map.domainById.get(domainId);
       nodes.push({
-        id: `cluster::${domainId}`,
-        type: "cluster",
-        position: { x: bounds.x - pad, y: bounds.y - pad },
+        id: `domain-region::${domainId}`,
+        type: "domainRegion",
+        position: { x: bounds.x, y: bounds.y },
         draggable: false,
         selectable: false,
-        zIndex: -1,
+        focusable: false,
+        zIndex: -10,
         data: {
-          width: bounds.width + pad * 2,
-          height: bounds.height + pad * 2,
-          tone,
           label: domain?.label ?? domainId,
+          count,
+          width: bounds.width,
+          height: bounds.height,
+          color: tone.color,
+          tint: tone.tint,
+          border: tone.border,
+          shape: bounds.shape ?? "rect",
         },
         style: {
-          width: bounds.width + pad * 2,
-          height: bounds.height + pad * 2,
+          width: bounds.width,
+          height: bounds.height,
           pointerEvents: "none",
         },
       });
     }
     return nodes;
-  }, [domainBounds, filteredNodes, map.domainById]);
+  }, [activeLayout.domainBounds, visibleDomainCounts, map.domainById]);
 
   const conceptNodes: Node[] = useMemo(
     () =>
-      filteredNodes.map((n) => {
-        const pos = positions.get(n.id) ?? { x: 0, y: 0 };
-        const isSelected = n.id === selectedId;
-        const isRelated = relatedIds.has(n.id);
-        const dim = selectedId !== null && !isSelected && !isRelated;
+      filteredNodes.map((node) => {
+        const position = activeLayout.positions.get(node.id) ?? { x: 0, y: 0 };
+        const isSelected = node.id === selectedId;
+        const isRelated = !isSelected && contextIds.has(node.id);
+        const dim = selectedId !== null && visibleIds.has(selectedId) && !isSelected && !contextIds.has(node.id);
         return {
-          id: n.id,
+          id: node.id,
           type: "topo",
-          position: pos,
+          position,
           draggable: false,
-          data: { node: n, isSelected, isRelated, dim },
+          data: {
+            node,
+            isSelected,
+            isRelated,
+            dim,
+            hasIncoming: nodeHandleState.incoming.has(node.id),
+            hasOutgoing: nodeHandleState.outgoing.has(node.id),
+            incomingHandleColor: nodeHandleState.incoming.get(node.id),
+            outgoingHandleColor: nodeHandleState.outgoing.get(node.id),
+          },
         };
       }),
-    [filteredNodes, positions, selectedId, relatedIds],
+    [filteredNodes, activeLayout.positions, selectedId, contextIds, visibleIds, nodeHandleState],
   );
 
-  const nodes = useMemo(() => [...clusterNodes, ...conceptNodes], [clusterNodes, conceptNodes]);
+  const nodes = useMemo(() => [...regionNodes, ...conceptNodes], [regionNodes, conceptNodes]);
 
   const edges: Edge[] = useMemo(
     () =>
-      filteredEdges.map((e) => {
-        const highlight = highlightedEdgeIds.has(e.id);
-        const dim = selectedId !== null && !highlight;
+      filteredEdges.map((edge) => {
+        const highlight = highlightedEdgeIds.has(edge.id);
+        const inFocus = !focusSet || (focusSet.has(edge.from) && focusSet.has(edge.to));
+        const dim = selectedId !== null && visibleIds.has(selectedId) && (focusSet ? !inFocus : !highlight);
         return {
-          id: e.id,
-          source: e.from,
-          target: e.to,
+          id: edge.id,
+          source: edge.from,
+          target: edge.to,
           type: "topo",
-          data: { highlight, dim },
+          data: { edge, highlight, dim },
         };
       }),
-    [filteredEdges, highlightedEdgeIds, selectedId],
+    [filteredEdges, highlightedEdgeIds, focusSet, selectedId, visibleIds],
   );
 
   useEffect(() => {
-    const t = setTimeout(() => rf.fitView({ padding: 0.18, duration: 0 }), 30);
-    return () => clearTimeout(t);
-  }, [rf, map.data.id]);
+    const timeout = window.setTimeout(() => rf.fitView({ padding: 0.18, duration: view === "cluster" ? 520 : 0 }), 40);
+    return () => window.clearTimeout(timeout);
+  }, [rf, map.data.id, view]);
 
   useEffect(() => {
     if (!selectedId) return;
-    const pos = positions.get(selectedId);
-    if (!pos) return;
+    const position = activeLayout.positions.get(selectedId);
+    if (!position) return;
     rf.setCenter(
-      pos.x + ATLAS_NODE_WIDTH / 2,
-      pos.y + ATLAS_NODE_HEIGHT / 2,
+      position.x + ATLAS_NODE_WIDTH / 2,
+      position.y + ATLAS_NODE_HEIGHT / 2,
       { zoom: Math.max(0.9, rf.getZoom()), duration: 450 },
     );
-  }, [selectedId, positions, rf]);
+  }, [selectedId, activeLayout.positions, rf]);
 
   return (
-    <ReactFlow
-      nodes={nodes}
-      edges={edges}
-      nodeTypes={nodeTypes as never}
-      edgeTypes={edgeTypes}
-      onPaneClick={() => useStore.getState().select(null)}
-      proOptions={{ hideAttribution: true }}
-      minZoom={0.1}
-      maxZoom={2.4}
-      fitView
-      panOnScroll
-      selectionOnDrag={false}
-      nodesDraggable={false}
-      defaultEdgeOptions={{ type: "topo" }}
-    >
-      <MiniMap
-        pannable
-        zoomable
-        ariaLabel="Atlas overview"
-        nodeColor={(n) => {
-          const node = (n.data as { node?: { domainId: string } })?.node;
-          if (!node) return "transparent";
-          return getDomainTone(node.domainId).color;
-        }}
-        nodeStrokeColor={() => "transparent"}
-        nodeBorderRadius={3}
-        nodeStrokeWidth={0}
-        maskColor="color-mix(in srgb, var(--bg) 72%, transparent)"
-        maskStrokeColor="var(--border)"
-        maskStrokeWidth={1}
-        style={{ width: 180, height: 130 }}
+    <>
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
+        onPaneClick={() => useStore.getState().select(null)}
+        proOptions={{ hideAttribution: true }}
+        minZoom={0.08}
+        maxZoom={2.4}
+        fitView
+        panOnScroll
+        selectionOnDrag={false}
+        nodesDraggable={false}
+        defaultEdgeOptions={{ type: "topo" }}
       />
-    </ReactFlow>
+      <MinimapCard nodes={conceptNodes} regions={activeLayout.domainBounds} selectedId={selectedId} />
+      <Dock />
+    </>
   );
 }
-
-/* Register the cluster node type alongside the concept node. */
-(nodeTypes as Record<string, unknown>).cluster = function ClusterNode({
-  data,
-}: {
-  data: {
-    width: number;
-    height: number;
-    tone: { color: string; tint: string; border: string };
-    label: string;
-  };
-}) {
-  return (
-    <div
-      style={{
-        width: data.width,
-        height: data.height,
-        background: data.tone.tint,
-        border: `1px dashed ${data.tone.border}`,
-        borderRadius: 24,
-        position: "relative",
-        pointerEvents: "none",
-      }}
-    >
-      <div
-        style={{
-          position: "absolute",
-          top: 10,
-          left: 16,
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 6,
-          fontFamily: "var(--font-sans)",
-          fontSize: 10.5,
-          fontWeight: 700,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          color: data.tone.color,
-          opacity: 0.85,
-        }}
-      >
-        <span
-          style={{
-            display: "inline-block",
-            width: 6,
-            height: 6,
-            borderRadius: 999,
-            background: data.tone.color,
-          }}
-        />
-        {data.label}
-      </div>
-    </div>
-  );
-};
 
 export function GraphCanvas() {
   return <InnerGraph />;

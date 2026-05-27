@@ -1,5 +1,5 @@
 import dagre from "dagre";
-import type { GraphData, GraphEdge, GraphNode } from "../types";
+import type { GraphData, GraphDomain, GraphEdge, GraphNode } from "../types";
 
 export interface Position {
   x: number;
@@ -7,9 +7,9 @@ export interface Position {
 }
 
 const NODE_WIDTH = 220;
-const NODE_HEIGHT = 56;
-const RANK_SEP = 90;
-const NODE_SEP = 44;
+const NODE_HEIGHT = 84;
+const RANK_SEP = 118;
+const NODE_SEP = 54;
 const CLUSTER_GAP = 220;
 const JITTER = 8;
 
@@ -108,7 +108,15 @@ function placeClusters(
 
 export interface AtlasLayout {
   positions: Map<string, Position>;
-  domainBounds: Map<string, { x: number; y: number; width: number; height: number }>;
+  domainBounds: Map<string, DomainBounds>;
+}
+
+export interface DomainBounds {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  shape?: "rect" | "circle";
 }
 
 export function computeAtlasLayout(data: GraphData): AtlasLayout {
@@ -140,7 +148,7 @@ export function computeAtlasLayout(data: GraphData): AtlasLayout {
   );
 
   const positions = new Map<string, Position>();
-  const domainBounds = new Map<string, { x: number; y: number; width: number; height: number }>();
+  const domainBounds = new Map<string, DomainBounds>();
 
   for (const domainId of domainOrder) {
     const layout = domainLayouts.get(domainId)!;
@@ -178,6 +186,93 @@ export function computeAtlasLayout(data: GraphData): AtlasLayout {
   }
 
   return { positions, domainBounds };
+}
+
+export function computeClusterLayout(nodes: GraphNode[], domains: GraphDomain[]): AtlasLayout {
+  const nodesByDomain = new Map<string, GraphNode[]>();
+  for (const node of nodes) {
+    const list = nodesByDomain.get(node.domainId) ?? [];
+    list.push(node);
+    nodesByDomain.set(node.domainId, list);
+  }
+
+  const domainIds = domains
+    .map((domain) => domain.id)
+    .filter((id) => nodesByDomain.has(id));
+  for (const id of nodesByDomain.keys()) {
+    if (!domainIds.includes(id)) domainIds.push(id);
+  }
+
+  const positions = new Map<string, Position>();
+  const domainBounds = new Map<string, DomainBounds>();
+  if (domainIds.length === 0) return { positions, domainBounds };
+
+  const domainCount = domainIds.length;
+  const domainRing = domainCount === 1 ? 0 : Math.max(720, domainCount * 190);
+
+  domainIds.forEach((domainId, domainIndex) => {
+    const members = [...(nodesByDomain.get(domainId) ?? [])].sort(compareNodeOrder);
+    const domainAngle = domainCount === 1
+      ? 0
+      : -Math.PI / 2 + (domainIndex / domainCount) * Math.PI * 2;
+    const cx = Math.cos(domainAngle) * domainRing;
+    const cy = Math.sin(domainAngle) * domainRing;
+    const itemRing = Math.max(132, 88 + Math.sqrt(members.length) * 56);
+
+    let minX = Infinity;
+    let minY = Infinity;
+    let maxX = -Infinity;
+    let maxY = -Infinity;
+
+    members.forEach((node, itemIndex) => {
+      const rand = seeded(hashString(`${domainId}:${node.id}`));
+      const angle = members.length === 1
+        ? 0
+        : -Math.PI / 2 + (itemIndex / members.length) * Math.PI * 2;
+      const radius = members.length === 1
+        ? 0
+        : itemRing + (rand() - 0.5) * 24;
+      const x = cx + Math.cos(angle) * radius - NODE_WIDTH / 2;
+      const y = cy + Math.sin(angle) * radius - NODE_HEIGHT / 2;
+      positions.set(node.id, { x, y });
+      minX = Math.min(minX, x);
+      minY = Math.min(minY, y);
+      maxX = Math.max(maxX, x + NODE_WIDTH);
+      maxY = Math.max(maxY, y + NODE_HEIGHT);
+    });
+
+    if (!Number.isFinite(minX)) return;
+
+    const width = maxX - minX;
+    const height = maxY - minY;
+    const diameter = Math.max(width, height) + 112;
+    domainBounds.set(domainId, {
+      x: cx - diameter / 2,
+      y: cy - diameter / 2,
+      width: diameter,
+      height: diameter,
+      shape: "circle",
+    });
+  });
+
+  return { positions, domainBounds };
+}
+
+function compareNodeOrder(a: GraphNode, b: GraphNode): number {
+  const chapter = a.chapter.localeCompare(b.chapter);
+  if (chapter !== 0) return chapter;
+  const an = numberParts(a.number);
+  const bn = numberParts(b.number);
+  const length = Math.max(an.length, bn.length);
+  for (let i = 0; i < length; i++) {
+    const diff = (an[i] ?? 0) - (bn[i] ?? 0);
+    if (diff !== 0) return diff;
+  }
+  return a.title.localeCompare(b.title);
+}
+
+function numberParts(value: string): number[] {
+  return value.split(".").map((part) => Number(part) || 0);
 }
 
 export const ATLAS_NODE_WIDTH = NODE_WIDTH;

@@ -4,6 +4,7 @@ import type { NodeKind, Relation } from "./types";
 
 export type SearchScope = "all" | "title";
 export type Theme = "light" | "dark";
+export type ViewMode = "dependency" | "cluster";
 
 function readInitialTheme(): Theme {
   if (typeof document === "undefined") return "light";
@@ -38,6 +39,13 @@ interface State {
 
   relations: Set<Relation>;
   toggleRelation: (r: Relation) => void;
+
+  view: ViewMode;
+  setView: (v: ViewMode) => void;
+  focusMode: boolean;
+  toggleFocusMode: () => void;
+  focusDepth: number;
+  setFocusDepth: (d: number) => void;
 
   selectedId: string | null;
   select: (id: string | null) => void;
@@ -138,6 +146,13 @@ export const useStore = create<State>((set, get) => ({
 
   relations: new Set(),
   toggleRelation: (r) => set((s) => ({ relations: toggle(s.relations, r) })),
+
+  view: "dependency",
+  setView: (v) => set({ view: v }),
+  focusMode: false,
+  toggleFocusMode: () => set((s) => ({ focusMode: !s.focusMode })),
+  focusDepth: 1,
+  setFocusDepth: (d) => set({ focusDepth: Math.min(3, Math.max(1, d)) }),
 
   selectedId: null,
   select: (id) => set({ selectedId: id }),
