@@ -61,15 +61,21 @@ export function Dock() {
           onClick={toggleFocusMode}
           className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-pill border px-3 text-[12.5px] font-medium transition-colors hover:bg-[var(--surface-3)]"
           style={{
-            background: focusMode ? "var(--accent-soft)" : "transparent",
-            borderColor: focusMode ? "var(--accent-border)" : "transparent",
-            color: focusMode ? "var(--accent)" : "var(--fg-2)",
+            background: focusMode ? "var(--surface-2)" : "transparent",
+            color: focusMode ? "var(--fg-1)" : "var(--fg-2)",
+            borderColor: focusMode ? "var(--border)" : "transparent",
           }}
           aria-pressed={focusMode}
           title="Focus on the selected neighborhood"
         >
           <Crosshair className="h-3.5 w-3.5" />
           <span className="hidden sm:inline">Focus</span>
+          {focusMode && (
+            <span
+              className="absolute bottom-[3px] left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-pill"
+              style={{ background: "var(--surface-2)" }}
+            />
+          )}
         </button>
 
         <div
@@ -80,15 +86,16 @@ export function Dock() {
         >
           {[1, 2, 3].map((depth) => {
             const active = focusDepth === depth;
+            const activeEnabled = focusMode && active;
             return (
               <button
                 key={depth}
                 onClick={() => setFocusDepth(depth)}
-                className="h-7 w-7 rounded-pill border text-[12px] font-semibold tabular-nums transition-colors"
+                className="h-7 w-7 rounded-pill border text-[12px] font-semibold tabular-nums transition-all"
                 style={{
-                  background: active ? "var(--surface-2)" : "transparent",
-                  borderColor: active ? "var(--accent-border)" : "var(--border)",
-                  color: active ? "var(--accent)" : "var(--fg-2)",
+                  background: activeEnabled ? "var(--surface-2)" : "transparent",
+                  color: activeEnabled ? "var(--fg-1)" : "var(--fg-2)",
+                  borderColor: activeEnabled ? "var(--border)" : "transparent",
                 }}
                 aria-label={`Focus depth ${depth}`}
                 aria-pressed={active}
@@ -139,7 +146,7 @@ function IconButton({
   return (
     <button
       onClick={onClick}
-      className="flex h-8 w-8 items-center justify-center rounded-pill transition-colors hover:bg-[var(--surface-3)]"
+      className="flex h-9 w-9 items-center justify-center rounded-[18px] transition-colors hover:bg-[var(--surface-3)]"
       style={{ color: "var(--fg-2)" }}
       aria-label={label}
       title={label}
