@@ -4204,46 +4204,12 @@
         "notation": null,
         "assumptions": [],
         "dependencies": {
-          "definitional_dependency": [
-            "exercise_7_1",
-            "exercise_7_2",
-            "exercise_7_3",
-            "exercise_7_4",
-            "exercise_7_5",
-            "exercise_7_6",
-            "exercise_7_7",
-            "exercise_7_8",
-            "exercise_8_1",
-            "exercise_8_2",
-            "exercise_8_3",
-            "exercise_8_4",
-            "exercise_8_5",
-            "exercise_8_6",
-            "exercise_8_7",
-            "exercise_8_8"
-          ],
+          "definitional_dependency": [],
           "logical_dependency": [],
           "assumption_dependency": [],
           "construction_dependency": [],
           "notation_dependency": [],
-          "pedagogical_dependency": [
-            "exercise_7_1",
-            "exercise_7_2",
-            "exercise_7_3",
-            "exercise_7_4",
-            "exercise_7_5",
-            "exercise_7_6",
-            "exercise_7_7",
-            "exercise_7_8",
-            "exercise_8_1",
-            "exercise_8_2",
-            "exercise_8_3",
-            "exercise_8_4",
-            "exercise_8_5",
-            "exercise_8_6",
-            "exercise_8_7",
-            "exercise_8_8"
-          ],
+          "pedagogical_dependency": [],
           "historical_dependency": []
         },
         "outgoing_relations": [],
@@ -5229,15 +5195,7 @@
           "definitional_dependency": [
             "metric_space",
             "hausdorff_property",
-            "second_countability",
-            "exercise_4_1",
-            "exercise_4_2",
-            "exercise_4_3",
-            "exercise_4_4",
-            "exercise_4_5",
-            "exercise_4_6",
-            "exercise_4_7",
-            "exercise_4_8"
+            "second_countability"
           ],
           "logical_dependency": [],
           "assumption_dependency": [],
@@ -5246,15 +5204,7 @@
           "pedagogical_dependency": [
             "metric_space",
             "hausdorff_property",
-            "second_countability",
-            "exercise_4_1",
-            "exercise_4_2",
-            "exercise_4_3",
-            "exercise_4_4",
-            "exercise_4_5",
-            "exercise_4_6",
-            "exercise_4_7",
-            "exercise_4_8"
+            "second_countability"
           ],
           "historical_dependency": []
         },

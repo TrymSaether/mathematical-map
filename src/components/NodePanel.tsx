@@ -63,31 +63,30 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
     () => (map.outgoingEdgesByNodeId.get(node.id) ?? []).map((edge) => edge.to),
     [map, node.id],
   );
-  const incomingSources = useMemo(
-    () => (map.incomingEdgesByNodeId.get(node.id) ?? []).map((edge) => edge.from),
-    [map, node.id],
-  );
-  const linkedIds = useMemo(
-    () => [...new Set([...allConsequences, ...incomingSources])],
-    [allConsequences, incomingSources],
-  );
   const examples = useMemo(
-    () =>
-      linkedIds
-        .filter((cid) => {
-          const n = map.nodeById.get(cid);
-          return n && /example/.test(n.kind);
-        }),
-    [linkedIds, map],
+    () => {
+      const ids = new Set<string>();
+      for (const edge of map.outgoingEdgesByNodeId.get(node.id) ?? []) {
+        if (edge.relation === "has_example" || edge.relation === "has_counterexample") ids.add(edge.to);
+      }
+      for (const edge of map.incomingEdgesByNodeId.get(node.id) ?? []) {
+        if (edge.relation === "has_property" || edge.relation === "motivates") ids.add(edge.from);
+      }
+      return [...ids].filter((cid) => {
+        const n = map.nodeById.get(cid);
+        return n && /example/.test(n.kind);
+      });
+    },
+    [map, node.id],
   );
   const exercises = useMemo(
     () =>
-      linkedIds
-        .filter((cid) => {
-          const n = map.nodeById.get(cid);
-          return n?.kind === "exercise";
-        }),
-    [linkedIds, map],
+      (map.outgoingEdgesByNodeId.get(node.id) ?? [])
+        .filter((edge) => edge.relation === "requires")
+        .map((edge) => edge.to)
+        .filter((cid, index, ids) => ids.indexOf(cid) === index)
+        .filter((cid) => map.nodeById.get(cid)?.kind === "exercise"),
+    [map, node.id],
   );
   const usedBy = useMemo(
     () =>
