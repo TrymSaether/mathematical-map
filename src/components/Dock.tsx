@@ -20,17 +20,16 @@ export function Dock() {
   const { zoom } = useViewport();
 
   return (
-    <div className="pointer-events-none absolute inset-x-3 bottom-4 z-30 flex justify-center">
+    <div className="pointer-events-none absolute inset-x-3 bottom-4 z-30 flex justify-center px-0 sm:px-3">
       <div
-        className="dock-scrollbar pointer-events-auto flex max-w-full items-center gap-1.5 overflow-x-auto rounded-[18px] border p-1.5"
+        className="dock-scrollbar pointer-events-auto flex h-10 max-w-full items-center gap-1 overflow-x-auto rounded-pill border p-1"
         style={{
-          background: "color-mix(in srgb, var(--surface) 88%, transparent)",
+          background: "var(--surface)",
           borderColor: "var(--border)",
-          boxShadow: "var(--shadow-3)",
-          backdropFilter: "blur(14px) saturate(1.18)",
+          boxShadow: "var(--shadow-1)",
         }}
       >
-        <div className="flex shrink-0 gap-0.5 rounded-[13px] p-0.5" style={{ background: "var(--surface-3)" }}>
+        <div className="flex shrink-0 items-center gap-1">
           {VIEWS.map(({ id, label, icon: Icon }) => {
             const active = view === id;
             return (
@@ -38,12 +37,13 @@ export function Dock() {
                 key={id}
                 onClick={() => setView(id)}
                 className={cn(
-                  "inline-flex h-8 items-center gap-1.5 rounded-[10px] px-3 text-[12px] font-semibold transition",
-                  active ? "shadow-[var(--shadow-1)]" : "hover:bg-[var(--surface)]",
+                  "inline-flex h-8 items-center gap-1.5 rounded-pill px-3 text-[12.5px] font-medium transition-colors",
+                  !active && "hover:bg-[var(--surface-3)]",
                 )}
                 style={{
-                  background: active ? "var(--surface)" : "transparent",
+                  background: active ? "var(--surface-2)" : "transparent",
                   color: active ? "var(--fg-1)" : "var(--fg-2)",
+                  border: active ? "1px solid var(--border)" : "1px solid transparent",
                 }}
                 aria-label={`${label} view`}
                 aria-pressed={active}
@@ -59,7 +59,7 @@ export function Dock() {
 
         <button
           onClick={toggleFocusMode}
-          className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-[10px] border px-3 text-[12px] font-semibold transition hover:bg-[var(--surface-3)]"
+          className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-pill border px-3 text-[12.5px] font-medium transition-colors hover:bg-[var(--surface-3)]"
           style={{
             background: focusMode ? "var(--accent-soft)" : "transparent",
             borderColor: focusMode ? "var(--accent-border)" : "transparent",
@@ -74,7 +74,7 @@ export function Dock() {
 
         <div
           className={cn(
-            "flex shrink-0 items-center gap-1 rounded-[10px] px-1 transition-opacity",
+            "flex shrink-0 items-center gap-1 px-1 transition-opacity",
             !focusMode && "pointer-events-none opacity-45",
           )}
         >
@@ -84,9 +84,9 @@ export function Dock() {
               <button
                 key={depth}
                 onClick={() => setFocusDepth(depth)}
-                className="h-7 w-7 rounded-[8px] border text-[12px] font-bold tabular-nums transition"
+                className="h-7 w-7 rounded-pill border text-[12px] font-semibold tabular-nums transition-colors"
                 style={{
-                  background: active ? "var(--surface)" : "transparent",
+                  background: active ? "var(--surface-2)" : "transparent",
                   borderColor: active ? "var(--accent-border)" : "var(--border)",
                   color: active ? "var(--accent)" : "var(--fg-2)",
                 }}
@@ -139,7 +139,7 @@ function IconButton({
   return (
     <button
       onClick={onClick}
-      className="flex h-8 w-8 items-center justify-center rounded-[10px] transition hover:bg-[var(--surface-3)]"
+      className="flex h-8 w-8 items-center justify-center rounded-pill transition-colors hover:bg-[var(--surface-3)]"
       style={{ color: "var(--fg-2)" }}
       aria-label={label}
       title={label}
