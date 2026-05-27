@@ -1,6 +1,5 @@
 import {
   FieldJsonSchema,
-  TopoDataSchema,
   type GraphData,
   type GraphDomain,
   type GraphEdge,
@@ -20,6 +19,29 @@ function groupEdges(edges: GraphEdge[], key: "from" | "to") {
   return grouped;
 }
 
+function buildAdjacency(edges: GraphEdge[]): Map<string, Set<string>> {
+  const adjacency = new Map<string, Set<string>>();
+  const link = (a: string, b: string) => {
+    const set = adjacency.get(a) ?? new Set<string>();
+    set.add(b);
+    adjacency.set(a, set);
+  };
+  for (const edge of edges) {
+    link(edge.from, edge.to);
+    link(edge.to, edge.from);
+  }
+  return adjacency;
+}
+
+function computeDegrees(edges: GraphEdge[]): Map<string, number> {
+  const degrees = new Map<string, number>();
+  for (const edge of edges) {
+    degrees.set(edge.from, (degrees.get(edge.from) ?? 0) + 1);
+    degrees.set(edge.to, (degrees.get(edge.to) ?? 0) + 1);
+  }
+  return degrees;
+}
+
 export interface LoadedMap {
   data: GraphData;
   nodeById: Map<string, GraphData["nodes"][number]>;
@@ -27,6 +49,10 @@ export interface LoadedMap {
   edgeById: Map<string, GraphEdge>;
   incomingEdgesByNodeId: Map<string, GraphEdge[]>;
   outgoingEdgesByNodeId: Map<string, GraphEdge[]>;
+  /** Undirected neighbor sets, computed once. */
+  neighborsByNodeId: Map<string, Set<string>>;
+  /** Total (in+out) degree per node. */
+  degreeByNodeId: Map<string, number>;
   kinds: string[];
   relations: string[];
   topics: string[];
@@ -43,6 +69,8 @@ function buildLoadedMap(data: GraphData): LoadedMap {
     edgeById: new Map(data.edges.map((edge) => [edge.id, edge])),
     incomingEdgesByNodeId: groupEdges(data.edges, "to"),
     outgoingEdgesByNodeId: groupEdges(data.edges, "from"),
+    neighborsByNodeId: buildAdjacency(data.edges),
+    degreeByNodeId: computeDegrees(data.edges),
     kinds: [...new Set(data.nodes.map((node) => node.kind))].sort(),
     relations: [...new Set(data.edges.map((edge) => edge.relation))].sort(),
     topics: data.domains.map((domain) => domain.id),
@@ -54,7 +82,7 @@ function buildLoadedMap(data: GraphData): LoadedMap {
 async function parseMapData(mapId: MapId): Promise<GraphData> {
   const raw = await loadRawMap(mapId);
   const parsed = FieldJsonSchema.parse(raw);
-  return TopoDataSchema.parse(normalizeFieldGraph(parsed));
+  return normalizeFieldGraph(parsed);
 }
 
 const loadedMapCache = new Map<MapId, Promise<LoadedMap>>();

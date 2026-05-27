@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(pdfinfo topology.pdf)"
+      "Bash(pdfinfo topology.pdf)",
+      "Bash(python3 -c ' *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)"
     ]
   }
 }

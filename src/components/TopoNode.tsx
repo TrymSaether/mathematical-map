@@ -80,14 +80,13 @@ function TopoNodeViewComponent({ data }: NodeProps<Data>) {
         dim && "opacity-30",
       )}
       style={{
-        background: "color-mix(in srgb, var(--surface) 93%, transparent)",
+        background: "var(--surface)",
         borderColor: accented ? tone.color : "var(--border)",
         boxShadow: isSelected
           ? `0 0 0 4px ${tone.tint}, var(--shadow-2)`
           : isRelated
             ? `0 0 0 2px ${tone.tint}, var(--shadow-1)`
             : "var(--shadow-1)",
-        backdropFilter: "blur(8px) saturate(1.08)",
       }}
     >
       {hasIncoming && (

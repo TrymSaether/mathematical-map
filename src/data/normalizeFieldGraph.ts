@@ -86,21 +86,26 @@ export function normalizeFieldGraph(input: FieldJson): GraphData {
       };
     });
 
-  const nodes: GraphNode[] = input.graph.items.map((item, index) => {
+  // Per-domain index — meaningful local ordering since source has no chapter numbering.
+  const domainCounters = new Map<string, number>();
+  const nodes: GraphNode[] = input.graph.items.map((item) => {
     const deps = [...(dependencyIdsByItem.get(item.id) ?? [])];
     const source = item.metadata?.source ?? "";
     const domain = domainById.get(item.domain);
     if (!domain) throw new Error(`Item ${item.id} references missing domain ${item.domain}`);
 
+    const idx = (domainCounters.get(item.domain) ?? 0) + 1;
+    domainCounters.set(item.domain, idx);
+
     return {
       id: item.id,
       kind: item.kind,
       domainId: item.domain,
-      number: String(index + 1),
+      number: String(idx),
       title: item.label,
-      chapter: input.graph.label,
+      chapter: item.domain,
       section: item.metadata?.syllabus_priority ?? "",
-      sectionTitle: source || input.graph.label,
+      sectionTitle: source || domain.label,
       topicCluster: domain.label,
       originalText: sourceText(item),
       formalStatement: formalText(item),
