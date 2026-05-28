@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Search, SlidersHorizontal, Plus, Minus, Locate, Sun, Moon, ChevronDown } from "lucide-react";
+import { Search, SlidersHorizontal, Plus, Minus, Locate, Sun, Moon, ChevronDown, BookOpen } from "lucide-react";
 import { useReactFlow } from "reactflow";
 import { MAPS, type MapId } from "../data";
 import { useStore } from "../store";
@@ -15,6 +15,7 @@ export function TopBar() {
         <BrandSection />
         <div className="ml-auto flex items-center gap-2">
           <SearchBox />
+          <DictionaryButton />
           <FilterButton />
           <ThemeToggle />
         </div>
@@ -192,6 +193,27 @@ function SearchBox() {
         ⌘K
       </kbd>
     </button>
+  );
+}
+
+function DictionaryButton() {
+  return (
+    <a
+      href="/topology-dictionary.html"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex h-9 w-9 items-center justify-center rounded-pill border sm:h-10 sm:w-10"
+      style={{
+        background: "var(--surface)",
+        borderColor: "var(--border)",
+        color: "var(--fg-2)",
+        boxShadow: "var(--shadow-1)",
+      }}
+      aria-label="Topology Dictionary"
+      title="Topology Dictionary"
+    >
+      <BookOpen className="h-4 w-4" />
+    </a>
   );
 }
 

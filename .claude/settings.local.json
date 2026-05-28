@@ -4,7 +4,9 @@
       "Bash(pdfinfo topology.pdf)",
       "Bash(python3 -c ' *)",
       "Bash(npx tsc *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(unzip -o /Users/saether/Downloads/files.zip -d topology_dict)",
+      "mcp__Claude_Preview__preview_start"
     ]
   }
 }
