@@ -1,0 +1,1680 @@
+[
+  {
+    "id": "based-map",
+    "term": "Based map",
+    "kind": "Definition",
+    "ref": "Def. 7.21",
+    "chapter": "7",
+    "statement": "A \\textbf{based map} $h\\colon(X,x_0)\\to(Y,y_0)$ is a continuous map $h\\colon X\\to Y$ with $h(x_0)=y_0$.",
+    "gloss": "A continuous map that respects chosen basepoints. Based maps are what induce homomorphisms of fundamental groups.",
+    "example": "Composing a loop at $x_0$ with $h$ gives a loop at $y_0$.",
+    "related": [
+      "induced-homomorphism",
+      "functoriality",
+      "fundamental-group"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/based-map.svg"
+  },
+  {
+    "id": "basepoint-independence",
+    "term": "Basepoint independence",
+    "kind": "Theorem",
+    "ref": "Thm. 7.19",
+    "chapter": "7",
+    "statement": "If $X$ is path-connected and $x_0,x_1\\in X$, then $\\pi_1(X,x_0)\\cong\\pi_1(X,x_1)$.",
+    "gloss": "In a path-connected space the fundamental group does not depend (up to isomorphism) on the chosen basepoint — so one often writes $\\pi_1(X)$.",
+    "example": "A path $\\alpha$ from $x_0$ to $x_1$ induces the isomorphism $\\hat\\alpha([f])=[\\alpha]^{-1}*[f]*[\\alpha]$.",
+    "related": [
+      "fundamental-group",
+      "path-connected",
+      "isomorphism"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/basepoint-independence.svg"
+  },
+  {
+    "id": "basis",
+    "term": "Basis for a topology",
+    "kind": "Definition",
+    "ref": "Def. 4.6",
+    "chapter": "4",
+    "statement": "A \\textbf{basis} on $X$ is a collection $\\mathcal{B}$ of subsets such that:\\;\\textbf{(B1)}\\ every $x\\in X$ lies in some $B\\in\\mathcal{B}$;\\;\\textbf{(B2)}\\ if $x\\in B_1\\cap B_2$ with $B_1,B_2\\in\\mathcal{B}$, there is $B_3\\in\\mathcal{B}$ with $x\\in B_3\\subseteq B_1\\cap B_2$.",
+    "gloss": "A small kit of sets from which all open sets are built as unions. Open $=$ union of basis elements (Thm. 4.10).",
+    "example": "The open $\\epsilon$-balls form a basis for the metric topology; all singletons form a basis for the discrete topology.",
+    "related": [
+      "subbasis",
+      "generated-topology",
+      "product-topology",
+      "continuity-basis"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/basis.svg"
+  },
+  {
+    "id": "binary-operation",
+    "term": "Binary operation",
+    "kind": "Definition",
+    "ref": "Def. B.1",
+    "chapter": "B",
+    "statement": "A \\textbf{binary operation} on a set $S$ is a map $*\\colon S\\times S\\to S$; one writes $a*b$ for $*(a,b)$.",
+    "gloss": "A rule combining two elements of $S$ into a third, with $S$ closed under it. The raw ingredient of a group.",
+    "example": "Addition and multiplication on $\\mathbb{Z}$ are binary operations.",
+    "related": [
+      "group",
+      "cartesian-product"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/binary-operation.svg"
+  },
+  {
+    "id": "bounded",
+    "term": "Bounded subset",
+    "kind": "Definition",
+    "ref": "Def. 6.41",
+    "chapter": "6",
+    "statement": "In a metric space $(X,d)$, a subset $A$ is \\textbf{bounded} if there is $M\\in\\mathbb{R}$ with $d(a_1,a_2)\\le M$ for all $a_1,a_2\\in A$.",
+    "gloss": "The set fits inside some ball of finite radius — its points are never more than $M$ apart.",
+    "example": "In $\\mathbb{R}^n$, $A$ is bounded iff it sits inside some ball about the origin. Boundedness is metric, not topological.",
+    "related": [
+      "heine-borel",
+      "metric-space",
+      "open-closed-ball"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/bounded.svg"
+  },
+  {
+    "id": "brouwer",
+    "term": "Brouwer fixed point theorem",
+    "kind": "Theorem",
+    "ref": "Thm. 1.1 / 8.17",
+    "chapter": "8",
+    "statement": "Every continuous map $f\\colon D^n\\to D^n$ of the closed unit disc to itself has a fixed point: some $x$ with $f(x)=x$. (Proved here for $n=2$ via $\\pi_1(S^1)$.)",
+    "gloss": "You cannot continuously map a disc to itself without leaving some point fixed. In dimension $2$ the proof uses that no retraction $D^2\\to S^1$ exists.",
+    "example": "If $f$ had no fixed point, the ray from $f(x)$ through $x$ would define a retraction $D^2\\to S^1$, contradicting $\\pi_1(S^1)\\cong\\mathbb{Z}$.",
+    "related": [
+      "pi1-circle",
+      "retraction"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/brouwer.svg"
+  },
+  {
+    "id": "cartesian-product",
+    "term": "Cartesian product",
+    "kind": "Definition",
+    "ref": "Def. A.5",
+    "chapter": "A",
+    "statement": "$A\\times B=\\{(x,y)\\mid x\\in A,\\ y\\in B\\}$, the set of ordered pairs.",
+    "gloss": "All pairings of an element of $A$ with an element of $B$ — the set underlying the product topology.",
+    "example": "$\\mathbb{R}^2=\\mathbb{R}\\times\\mathbb{R}$; the torus is $S^1\\times S^1$.",
+    "related": [
+      "product-topology",
+      "disjoint-union"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/cartesian-product.svg"
+  },
+  {
+    "id": "closed-subset",
+    "term": "Closed subset",
+    "kind": "Definition",
+    "ref": "Def. 3.24",
+    "chapter": "3",
+    "statement": "A subset $K$ of a topological space $X$ is \\textbf{closed} if its complement $K^c=X\\setminus K$ is open.",
+    "gloss": "Closed = complement is open. Closed sets satisfy the dual axioms: arbitrary intersections and finite unions of closed sets are closed (Thm. 3.28).",
+    "example": "In a discrete space every subset is closed; in $\\mathbb{R}$ every interval $[a,b]$ and every singleton is closed.",
+    "related": [
+      "open-closed-set-metric",
+      "closure",
+      "topological-space",
+      "complement"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/closed-subset.svg"
+  },
+  {
+    "id": "closure",
+    "term": "Closure",
+    "kind": "Definition",
+    "ref": "Def. 3.29",
+    "chapter": "3",
+    "statement": "The \\textbf{closure} $\\overline{A}$ of $A\\subseteq X$ is the intersection of all closed subsets of $X$ containing $A$ — the smallest closed set containing $A$.",
+    "gloss": "The closure adds exactly the points $A$ “almost reaches.” If $A$ is already closed then $\\overline{A}=A$.",
+    "example": "In $\\mathbb{R}$, $\\overline{(a,b]}=[a,b]$. In general $\\mathrm{Int}(A)\\subseteq A\\subseteq\\overline{A}$.",
+    "related": [
+      "interior",
+      "closed-subset",
+      "dense"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/closure.svg"
+  },
+  {
+    "id": "cofinite-topology",
+    "term": "Cofinite topology",
+    "kind": "Definition",
+    "ref": "Ex. 3.8",
+    "chapter": "3",
+    "statement": "On any set $X$, the \\textbf{cofinite topology} consists of $\\varnothing$ together with all $U\\subseteq X$ whose complement $X\\setminus U$ is finite.",
+    "gloss": "A subset is open exactly when it misses only finitely many points. A natural example of a topology that need not come from a metric.",
+    "example": "If $X$ is finite, the cofinite topology equals the discrete topology; if $X$ is infinite it is strictly coarser.",
+    "related": [
+      "discrete-topology",
+      "comparable-topologies",
+      "hausdorff"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/cofinite-topology.svg"
+  },
+  {
+    "id": "compact-space",
+    "term": "Compact space",
+    "kind": "Definition",
+    "ref": "Def. 6.29",
+    "chapter": "6",
+    "statement": "$X$ is \\textbf{compact} if every open cover of $X$ has a finite subcover.",
+    "gloss": "No matter how you cover $X$ with open sets, finitely many already suffice. A powerful finiteness condition standing in for “closed and bounded.”",
+    "example": "Finite spaces and indiscrete spaces are compact; $\\mathbb{R}$ is not (the cover by $(n-1,n+1)$ has no finite subcover).",
+    "related": [
+      "cover",
+      "compact-subspace",
+      "heine-borel",
+      "compact-image",
+      "product-compact",
+      "topological-property"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/compact-space.svg"
+  },
+  {
+    "id": "compact-in-hausdorff-closed",
+    "term": "Compact subset of Hausdorff is closed",
+    "kind": "Theorem",
+    "ref": "Thm. 6.36",
+    "chapter": "6",
+    "statement": "If $X$ is Hausdorff and $K\\subseteq X$ is compact, then $K$ is closed in $X$.",
+    "gloss": "In a Hausdorff space, compactness forces closedness — a frequently used bridge between the two notions.",
+    "example": "Combined with Thm. 6.37 it shows a continuous bijection from a compact space to a Hausdorff space is a homeomorphism.",
+    "related": [
+      "hausdorff",
+      "compact-space",
+      "homeomorphism-open-closed",
+      "heine-borel"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/compact-in-hausdorff-closed.svg"
+  },
+  {
+    "id": "compact-subspace",
+    "term": "Compact subspace",
+    "kind": "Definition",
+    "ref": "Def. 6.33",
+    "chapter": "6",
+    "statement": "$A\\subseteq X$ is \\textbf{compact} if it is compact in the subspace topology; equivalently, every cover of $A$ by open subsets of $X$ has a finite subcollection covering $A$ (Lemma 6.34).",
+    "gloss": "Compactness of a subset can be tested with open sets of the ambient space — often more convenient.",
+    "example": "$S^n\\subseteq\\mathbb{R}^{n+1}$ is compact; the torus $T^2$ is compact.",
+    "related": [
+      "compact-space",
+      "heine-borel",
+      "compact-in-hausdorff-closed"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/compact-subspace.svg"
+  },
+  {
+    "id": "comparable-topologies",
+    "term": "Comparable topologies (coarser / finer)",
+    "kind": "Definition",
+    "ref": "Def. 3.7",
+    "chapter": "3",
+    "statement": "For topologies $\\mathcal{T}_1,\\mathcal{T}_2$ on $X$: if $\\mathcal{T}_1\\subseteq\\mathcal{T}_2$ we say $\\mathcal{T}_1$ is \\textbf{coarser} and $\\mathcal{T}_2$ is \\textbf{finer}. They are \\textbf{comparable} if one contains the other.",
+    "gloss": "Topologies on a fixed set are partially ordered by inclusion. “Finer” means more open sets (more resolving power); “coarser” means fewer.",
+    "example": "$\\mathcal{T}_{\\mathrm{ind}}\\subseteq\\mathcal{T}\\subseteq\\mathcal{T}_{\\mathrm{disc}}$ for every $\\mathcal{T}$. Not every pair of topologies is comparable.",
+    "related": [
+      "discrete-topology",
+      "indiscrete-topology",
+      "basis"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/comparable-topologies.svg"
+  },
+  {
+    "id": "complement",
+    "term": "Complement",
+    "kind": "Definition",
+    "ref": "Def. A.4",
+    "chapter": "A",
+    "statement": "For $B\\subseteq A$, the \\textbf{complement} of $B$ in $A$ is $B^c=A\\setminus B$.",
+    "gloss": "The difference of $A$ and $B$ when an ambient set $A$ is understood. Openness and closedness in topology are dual via complements.",
+    "example": "In a topological space, $K$ is closed iff $K^c$ is open.",
+    "related": [
+      "set-difference",
+      "closed-subset",
+      "intersection-union"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/complement.svg"
+  },
+  {
+    "id": "composition-continuous",
+    "term": "Composition of continuous maps",
+    "kind": "Theorem",
+    "ref": "Thm. 3.16",
+    "chapter": "3",
+    "statement": "If $f\\colon X\\to Y$ and $g\\colon Y\\to Z$ are continuous, then $g\\circ f\\colon X\\to Z$ is continuous.",
+    "gloss": "Continuity is preserved under composition — the property that makes topological spaces and continuous maps into a category.",
+    "example": "Used repeatedly, e.g. to show that being homeomorphic is transitive (Thm. 3.23).",
+    "related": [
+      "continuous-map-top",
+      "homeomorphism",
+      "composition-maps"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/composition-continuous.svg"
+  },
+  {
+    "id": "composition-maps",
+    "term": "Composition of maps",
+    "kind": "Definition",
+    "ref": "Def. A.9",
+    "chapter": "A",
+    "statement": "For $f\\colon A\\to B$ and $g\\colon B\\to C$, the \\textbf{composition} $g\\circ f\\colon A\\to C$ is $(g\\circ f)(x)=g(f(x))$.",
+    "gloss": "Apply $f$, then $g$. Composition is associative and the identity acts as a unit — the backbone of categorical thinking in topology.",
+    "example": "$\\mathrm{id}_B\\circ f=f=f\\circ\\mathrm{id}_A$; continuity and homomorphism properties are preserved under composition.",
+    "related": [
+      "composition-continuous",
+      "homomorphism",
+      "image"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/composition-maps.svg"
+  },
+  {
+    "id": "connected-space",
+    "term": "Connected space",
+    "kind": "Definition",
+    "ref": "Def. 6.1",
+    "chapter": "6",
+    "statement": "A \\textbf{separation} of $X$ is a pair of disjoint non-empty open sets $U,V$ with $U\\cup V=X$. $X$ is \\textbf{connected} if it has no separation; otherwise \\textbf{disconnected}.",
+    "gloss": "Connected means the space cannot be split into two non-trivial open pieces — equivalently, its only clopen subsets are $\\varnothing$ and $X$.",
+    "example": "$\\mathbb{R}$ is connected (Thm. 6.12); a two-point discrete space is disconnected.",
+    "related": [
+      "connected-image",
+      "real-line-connected",
+      "path-connected",
+      "ivt",
+      "topological-property"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/connected-space.svg"
+  },
+  {
+    "id": "continuity-point-metric",
+    "term": "Continuity at a point (nbhd form)",
+    "kind": "Theorem",
+    "ref": "Thm. 2.12",
+    "chapter": "2",
+    "statement": "$f\\colon X\\to Y$ is continuous at $p$ iff for every neighborhood $B$ of $f(p)$ there is a neighborhood $A$ of $p$ with $f(A)\\subseteq B$.",
+    "gloss": "Reformulates $\\epsilon$-$\\delta$ continuity purely with neighborhoods — the bridge that lets continuity make sense without a metric.",
+    "example": "Recovers the $\\epsilon$-$\\delta$ definition by taking $B=\\mathsf{B}_Y(f(p);\\epsilon)$ and $A=\\mathsf{B}_X(p;\\delta)$.",
+    "related": [
+      "continuous-map-metric",
+      "neighborhood-metric",
+      "continuity-point-top"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/continuity-point-metric.svg"
+  },
+  {
+    "id": "continuity-point-top",
+    "term": "Continuity at a point (topological)",
+    "kind": "Definition",
+    "ref": "Def. 3.17",
+    "chapter": "3",
+    "statement": "$f\\colon X\\to Y$ is \\textbf{continuous at} $x$ if for every neighborhood $V$ of $f(x)$ there is a neighborhood $U$ of $x$ with $f(U)\\subseteq V$.",
+    "gloss": "Local continuity stated with neighborhoods. A map is continuous iff it is continuous at every point (Thm. 3.18).",
+    "example": "Directly generalises the metric neighborhood criterion of Thm. 2.12.",
+    "related": [
+      "continuous-map-top",
+      "neighborhood-top",
+      "continuity-point-metric"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/continuity-point-top.svg"
+  },
+  {
+    "id": "continuity-basis",
+    "term": "Continuity via a (sub)basis",
+    "kind": "Theorem",
+    "ref": "Thm. 4.16",
+    "chapter": "4",
+    "statement": "If $\\mathcal{B}$ (resp. $\\mathcal{S}$) is a basis (resp. subbasis) for $Y$, then $f\\colon X\\to Y$ is continuous iff $f^{-1}(B)$ is open for every $B\\in\\mathcal{B}$ (resp. $f^{-1}(S)$ open for every $S\\in\\mathcal{S}$).",
+    "gloss": "To check continuity you need only test preimages of basis (or subbasis) elements, not all open sets — a big practical economy.",
+    "example": "Crucial for proving that projections out of a product are continuous.",
+    "related": [
+      "basis",
+      "subbasis",
+      "continuous-map-top"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/continuity-basis.svg"
+  },
+  {
+    "id": "continuity-preimage-metric",
+    "term": "Continuity via open sets (metric)",
+    "kind": "Theorem",
+    "ref": "Thm. 2.13",
+    "chapter": "2",
+    "statement": "$f\\colon X\\to Y$ between metric spaces is continuous iff for every $B\\subseteq Y$ open in $Y$, the preimage $f^{-1}(B)$ is open in $X$.",
+    "gloss": "The decisive insight: continuity is detected by preimages of open sets, with no reference to distances. This is what makes the leap to topological spaces possible.",
+    "example": "This open-set criterion becomes the <em>definition</em> of continuity for topological spaces (Def. 3.11).",
+    "related": [
+      "continuous-map-top",
+      "open-closed-set-metric",
+      "continuity-basis"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/continuity-preimage-metric.svg"
+  },
+  {
+    "id": "compact-image",
+    "term": "Continuous image of a compact space",
+    "kind": "Theorem",
+    "ref": "Thm. 6.37",
+    "chapter": "6",
+    "statement": "If $X$ is compact and $f\\colon X\\to Y$ is a surjective continuous map, then $Y$ is compact. Hence $f(X)$ is compact for any continuous $f$.",
+    "gloss": "Continuity preserves compactness, just as it preserves connectedness. A key step toward the extreme value theorem.",
+    "example": "Pull an open cover of $Y$ back through $f$, take a finite subcover upstairs, push forward.",
+    "related": [
+      "compact-space",
+      "connected-image",
+      "evt",
+      "homeomorphism-open-closed"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/compact-image.svg"
+  },
+  {
+    "id": "connected-image",
+    "term": "Continuous image of a connected space",
+    "kind": "Theorem",
+    "ref": "Thm. 6.7",
+    "chapter": "6",
+    "statement": "If $X$ is connected, $Y$ a space, and $f\\colon X\\to Y$ a surjective continuous map, then $Y$ is connected. Hence $f(X)$ is connected for any continuous $f$.",
+    "gloss": "Continuity cannot tear a connected space apart: its image stays in one piece. This makes connectedness a topological invariant.",
+    "example": "Yields the Intermediate Value Theorem as a special case (Thm. 6.13).",
+    "related": [
+      "connected-space",
+      "ivt",
+      "compact-image",
+      "topological-property"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/connected-image.svg"
+  },
+  {
+    "id": "continuous-map-metric",
+    "term": "Continuous map (metric)",
+    "kind": "Definition",
+    "ref": "Def. 2.6",
+    "chapter": "2",
+    "statement": "$f\\colon X\\to Y$ between metric spaces is \\textbf{continuous at} $p$ if $\\forall\\,\\epsilon>0\\ \\exists\\,\\delta>0$ such that $d_X(p,q)<\\delta \\Rightarrow d_Y(f(p),f(q))<\\epsilon$. It is \\textbf{continuous} if it is continuous at every $p\\in X$.",
+    "gloss": "The familiar $\\epsilon$-$\\delta$ definition: points close in the domain are sent to points close in the codomain. Nearness is measured by the two metrics.",
+    "example": "Every map out of a discrete metric space is continuous; the identity $\\mathbb{R}\\to\\mathbb{R}$ is continuous, but $\\mathbb{R}\\to\\mathbb{R}_{\\mathrm{disc}}$ is not.",
+    "related": [
+      "continuity-point-metric",
+      "continuity-preimage-metric",
+      "continuous-map-top",
+      "neighborhood-metric"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/continuous-map-metric.svg"
+  },
+  {
+    "id": "continuous-map-top",
+    "term": "Continuous map (topological)",
+    "kind": "Definition",
+    "ref": "Def. 3.11",
+    "chapter": "3",
+    "statement": "$f\\colon X\\to Y$ between topological spaces is \\textbf{continuous} if for every open $V\\subseteq Y$ the preimage $f^{-1}(V)$ is open in $X$.",
+    "gloss": "The definition of continuity in full generality: preimages of open sets are open. It needs only the open-set structure, no metric.",
+    "example": "Constant maps are continuous (preimages are $\\varnothing$ or $X$). Every map from a discrete space is continuous.",
+    "related": [
+      "continuity-preimage-metric",
+      "composition-continuous",
+      "homeomorphism",
+      "continuity-point-top",
+      "continuity-basis"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/continuous-map-top.svg"
+  },
+  {
+    "id": "cover",
+    "term": "Cover of a space",
+    "kind": "Definition",
+    "ref": "Def. 6.27",
+    "chapter": "6",
+    "statement": "A collection $\\mathcal{A}$ of subsets is a \\textbf{cover} of $X$ if $X=\\bigcup_{A\\in\\mathcal{A}}A$. It is an \\textbf{open cover} if each $A$ is open. $\\mathcal{A}'\\subseteq\\mathcal{A}$ is a \\textbf{subcover} if it still covers.",
+    "gloss": "A way of overlaying $X$ with (open) patches. The notion of “every open cover has a finite subcover” defines compactness.",
+    "example": "Any basis or subbasis for $X$ is an open cover of $X$.",
+    "related": [
+      "compact-space",
+      "basis",
+      "lebesgue-number"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/cover.svg"
+  },
+  {
+    "id": "covering-space",
+    "term": "Covering space",
+    "kind": "Definition",
+    "ref": "Def. 8.1",
+    "chapter": "8",
+    "statement": "A surjective continuous $p\\colon E\\to B$ is a \\textbf{covering map} if every $b\\in B$ has a neighborhood $U$ with $p^{-1}(U)=\\bigsqcup_{\\lambda}V_\\lambda$ a disjoint union of opens, each mapped homeomorphically onto $U$ by $p$. $E$ \\textbf{covers} $B$.",
+    "gloss": "$B$ is “evenly covered”: locally $E$ looks like a stack of disjoint copies of a patch of $B$. The route to computing $\\pi_1$ via lifting.",
+    "example": "$p\\colon\\mathbb{R}\\to S^1$, $t\\mapsto e^{2\\pi i t}$, is the universal cover of the circle.",
+    "related": [
+      "local-homeomorphism",
+      "lifting",
+      "path-lifting",
+      "pi1-circle"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/covering-space.svg"
+  },
+  {
+    "id": "cyclic-subgroup",
+    "term": "Cyclic subgroup",
+    "kind": "Theorem",
+    "ref": "Thm. B.9",
+    "chapter": "B",
+    "statement": "For $x\\in G$ (multiplicative), $\\langle x\\rangle=\\{x^n\\mid n\\in\\mathbb{Z}\\}$ is a subgroup — the \\textbf{cyclic subgroup generated by} $x$, the smallest subgroup containing $x$. $G$ is \\textbf{cyclic} if $G=\\langle x'\\rangle$ for some $x'$.",
+    "gloss": "The powers of a single element form a subgroup. A whole group generated this way is cyclic; all cyclic groups are abelian.",
+    "example": "$\\mathbb{Z}=\\langle 1\\rangle=\\langle -1\\rangle$ is infinite cyclic. $\\pi_1(S^1)\\cong\\mathbb{Z}$ is cyclic.",
+    "related": [
+      "subgroup",
+      "group",
+      "pi1-circle"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/cyclic-subgroup.svg"
+  },
+  {
+    "id": "deformation-retract",
+    "term": "Deformation retract",
+    "kind": "Definition",
+    "ref": "Def. 7.31",
+    "chapter": "7",
+    "statement": "A homotopy $H\\colon X\\times I\\to X$ is a \\textbf{deformation retraction} onto $A$ if $H(x,0)=x$, $H(x,1)\\in A$ for all $x$, and $H(a,t)=a$ for all $a\\in A$, $t\\in I$. Then $A$ is a \\textbf{deformation retract}.",
+    "gloss": "Continuously shrink $X$ onto $A$ over time, holding $A$ fixed throughout. It exhibits $X$ and $A$ as homotopy equivalent.",
+    "example": "$\\mathbb{R}^2\\setminus\\{0\\}$ deformation retracts onto $S^1$; a disc retracts onto its centre.",
+    "related": [
+      "retraction",
+      "homotopy-equivalence",
+      "homotopy"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/deformation-retract.svg"
+  },
+  {
+    "id": "dense",
+    "term": "Dense subset",
+    "kind": "Definition",
+    "ref": "Def. 3.32",
+    "chapter": "3",
+    "statement": "$A\\subseteq X$ is \\textbf{dense} in $X$ if $\\overline{A}=X$; equivalently, $A\\cap U\\neq\\varnothing$ for every non-empty open $U\\subseteq X$.",
+    "gloss": "A dense set is everywhere — its closure fills the whole space, so it meets every open set.",
+    "example": "$\\mathbb{Q}$ is dense in $\\mathbb{R}$. In a discrete space the only dense subset is the whole space.",
+    "related": [
+      "closure",
+      "topological-space"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/dense.svg"
+  },
+  {
+    "id": "set-difference",
+    "term": "Difference of sets",
+    "kind": "Definition",
+    "ref": "Def. A.3",
+    "chapter": "A",
+    "statement": "For $B\\subseteq A$, the \\textbf{difference} is $A\\setminus B=\\{x\\in A\\mid x\\notin B\\}$.",
+    "gloss": "What remains of $A$ after removing $B$. Disjoint from $B$, with $(A\\setminus B)\\cup B=A\\cup B$.",
+    "example": "$\\{1,2,3\\}\\setminus\\{2\\}=\\{1,3\\}$.",
+    "related": [
+      "complement",
+      "intersection-union",
+      "subset"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/set-difference.svg"
+  },
+  {
+    "id": "discrete-topology",
+    "term": "Discrete topology",
+    "kind": "Definition",
+    "ref": "Ex. 3.4",
+    "chapter": "3",
+    "statement": "On any set $X$, the \\textbf{discrete topology} is $\\mathcal{T}_{\\mathrm{disc}}=\\mathcal{P}(X)$, the power set: \\textbf{every} subset is open.",
+    "gloss": "The finest possible topology — a space of isolated points with no interaction. Singletons are open here, which uniquely characterises it.",
+    "example": "For any set $X$, $\\mathcal{T}_{\\mathrm{disc}}$ is the largest topology; every map out of a discrete space is continuous.",
+    "related": [
+      "indiscrete-topology",
+      "comparable-topologies",
+      "topological-space"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/discrete-topology.svg"
+  },
+  {
+    "id": "disjoint-union",
+    "term": "Disjoint union",
+    "kind": "Definition",
+    "ref": "Def. A.14",
+    "chapter": "A",
+    "statement": "For a family $\\{A_i\\}_{i\\in I}$, the \\textbf{disjoint union} is $\\bigsqcup_{i\\in I}A_i=\\bigcup_{i\\in I}\\{(x,i)\\mid x\\in A_i\\}$ — elements are tagged pairs $(x,i)$.",
+    "gloss": "Combine sets while keeping track of which piece each element came from, so copies never merge. Used to describe $p^{-1}(U)$ for covering maps.",
+    "example": "The preimage of an evenly covered set is a disjoint union of homeomorphic sheets (Def. 8.1).",
+    "related": [
+      "cartesian-product",
+      "covering-space"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/disjoint-union.svg"
+  },
+  {
+    "id": "equivalence-class",
+    "term": "Equivalence class",
+    "kind": "Definition",
+    "ref": "Def. 5.14",
+    "chapter": "5",
+    "statement": "For an equivalence relation $\\sim$ on $X$, the \\textbf{equivalence class} of $x$ is $[x]=\\{y\\in X\\mid x\\sim y\\}$, and $X/\\!\\sim\\ =\\{[x]\\mid x\\in X\\}$.",
+    "gloss": "Classes partition $X$: any two are equal or disjoint, and together they cover $X$. The quotient set $X/\\!\\sim$ collects them.",
+    "example": "Equivalence relations correspond (up to bijection) to surjective maps $X\\to A$ (Lemma 5.15).",
+    "related": [
+      "quotient-space",
+      "coset",
+      "homotopy-classes"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/equivalence-class.svg"
+  },
+  {
+    "id": "functoriality",
+    "term": "Functoriality of π₁",
+    "kind": "Theorem",
+    "ref": "Thm. 7.24",
+    "chapter": "7",
+    "statement": "For based maps $h_1\\colon(X,x_0)\\to(Y,y_0)$ and $h_2\\colon(Y,y_0)\\to(Z,z_0)$: $(h_2\\circ h_1)_*=(h_2)_*\\circ(h_1)_*$, and $(\\mathrm{id}_X)_*=\\mathrm{id}$.",
+    "gloss": "$\\pi_1$ is a functor: it sends spaces to groups and maps to homomorphisms, respecting identities and composition.",
+    "example": "Immediately gives that homeomorphic based spaces have isomorphic $\\pi_1$ (Cor. 7.25).",
+    "related": [
+      "induced-homomorphism",
+      "pi1-invariant",
+      "composition-continuous",
+      "homomorphism"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/functoriality.svg"
+  },
+  {
+    "id": "fundamental-group",
+    "term": "Fundamental group",
+    "kind": "Definition",
+    "ref": "Def. 7.15",
+    "chapter": "7",
+    "statement": "For a based space $(X,x_0)$, a \\textbf{loop} at $x_0$ is a path from $x_0$ to $x_0$. The \\textbf{fundamental group} is $\\pi_1(X,x_0)=\\{[f]\\mid f\\ \\text{a loop at}\\ x_0\\}$ with operation $*$.",
+    "gloss": "The group of loops at $x_0$ up to path homotopy. The identity is the constant loop and inverses are reversed loops. It measures “holes” the space cannot retract away.",
+    "example": "$\\pi_1(\\mathbb{R}^n,0)=0$ (trivial); $\\pi_1(S^1,s_0)\\cong\\mathbb{Z}$ (Thm. 8.16).",
+    "related": [
+      "path-homotopy-classes",
+      "product-of-paths",
+      "simply-connected",
+      "basepoint-independence",
+      "induced-homomorphism",
+      "pi1-circle"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/fundamental-group.svg"
+  },
+  {
+    "id": "fht",
+    "term": "Fundamental homomorphism theorem",
+    "kind": "Theorem",
+    "ref": "Thm. B.21",
+    "chapter": "B",
+    "statement": "For a homomorphism $\\varphi\\colon G_1\\to G_2$, the map $\\bar\\varphi\\colon G_1/\\ker\\varphi\\to\\operatorname{im}\\varphi$, $\\bar\\varphi(x\\ker\\varphi)=\\varphi(x)$, is an isomorphism, and $\\varphi=\\bar\\varphi\\circ\\pi$ where $\\pi\\colon G_1\\to G_1/\\ker\\varphi$.",
+    "gloss": "Any homomorphism factors as a quotient followed by an isomorphism: $G_1/\\ker\\varphi\\cong\\operatorname{im}\\varphi$. The first isomorphism theorem.",
+    "example": "Identifies the image of $\\varphi$ with the quotient of $G_1$ by what $\\varphi$ collapses.",
+    "related": [
+      "homomorphism",
+      "isomorphism",
+      "quotient-group",
+      "normal-subgroup"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/fht.svg"
+  },
+  {
+    "id": "fta",
+    "term": "Fundamental theorem of algebra",
+    "kind": "Theorem",
+    "ref": "Thm. 1.2",
+    "chapter": "8",
+    "statement": "Every polynomial $z^n+a_{n-1}z^{n-1}+\\cdots+a_0$ of degree $n>0$ with complex coefficients has a complex root.",
+    "gloss": "Complex polynomials always have roots — proved topologically via winding numbers of loops, i.e. via $\\pi_1(S^1)\\cong\\mathbb{Z}$.",
+    "example": "A non-vanishing polynomial would let a large loop be contracted, contradicting that its image winds $n$ times.",
+    "related": [
+      "pi1-circle"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/fta.svg"
+  },
+  {
+    "id": "evt",
+    "term": "Generalized extreme value theorem",
+    "kind": "Theorem",
+    "ref": "Thm. 6.43",
+    "chapter": "6",
+    "statement": "If $X$ is compact and $f\\colon X\\to\\mathbb{R}$ is continuous, then there exist $m,M\\in X$ with $f(m)\\le f(x)\\le f(M)$ for all $x\\in X$.",
+    "gloss": "A continuous real function on a compact space attains its maximum and minimum. The image is compact, hence closed and bounded, hence contains its sup and inf.",
+    "example": "The classical “continuous functions on $[a,b]$ attain extrema” is the case $X=[a,b]$.",
+    "related": [
+      "compact-image",
+      "heine-borel",
+      "compact-space"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/evt.svg"
+  },
+  {
+    "id": "ivt",
+    "term": "Generalized intermediate value theorem",
+    "kind": "Theorem",
+    "ref": "Thm. 6.13",
+    "chapter": "6",
+    "statement": "Let $X$ be connected and $f\\colon X\\to\\mathbb{R}$ continuous. If $a,b\\in X$ and $r$ lies between $f(a)$ and $f(b)$, then $f(c)=r$ for some $c\\in X$.",
+    "gloss": "A continuous real-valued function on a connected space hits every intermediate value — the classical IVT, freed from intervals.",
+    "example": "If $r\\notin f(X)$ then $f^{-1}((-\\infty,r))$ and $f^{-1}((r,\\infty))$ would separate $X$.",
+    "related": [
+      "connected-space",
+      "connected-image",
+      "real-line-connected"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/ivt.svg"
+  },
+  {
+    "id": "group",
+    "term": "Group",
+    "kind": "Definition",
+    "ref": "Def. B.3",
+    "chapter": "B",
+    "statement": "A \\textbf{group} is a non-empty set $G$ with a binary operation $*$ such that:\\;\\textbf{(G1)}\\ associativity $(a*b)*c=a*(b*c)$;\\;\\textbf{(G2)}\\ an identity $e$ with $a*e=a=e*a$;\\;\\textbf{(G3)}\\ inverses $a'$ with $a*a'=e=a'*a$. It is \\textbf{abelian} if $*$ is commutative.",
+    "gloss": "A set with an associative, invertible operation and a neutral element. The algebraic target of the fundamental group functor.",
+    "example": "$(\\mathbb{Z},+)$ is an abelian group; $\\pi_1(X,x_0)$ is a group under $*$ (Thm. 7.16).",
+    "related": [
+      "binary-operation",
+      "subgroup",
+      "homomorphism",
+      "fundamental-group"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/group.svg"
+  },
+  {
+    "id": "homomorphism",
+    "term": "Group homomorphism",
+    "kind": "Definition",
+    "ref": "Def. B.15",
+    "chapter": "B",
+    "statement": "A map $\\varphi\\colon G_1\\to G_2$ is a \\textbf{homomorphism} if $\\varphi(x*_1 y)=\\varphi(x)*_2\\varphi(y)$ for all $x,y$.",
+    "gloss": "A map respecting the group operations. Automatically $\\varphi(e_1)=e_2$ and $\\varphi(x^{-1})=\\varphi(x)^{-1}$. Composites of homomorphisms are homomorphisms.",
+    "example": "The induced map $h_*\\colon\\pi_1(X)\\to\\pi_1(Y)$ is a homomorphism (Def. 7.22).",
+    "related": [
+      "group",
+      "isomorphism",
+      "fht",
+      "induced-homomorphism",
+      "composition-maps"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/homomorphism.svg"
+  },
+  {
+    "id": "hausdorff",
+    "term": "Hausdorff space",
+    "kind": "Definition",
+    "ref": "Def. 6.19",
+    "chapter": "6",
+    "statement": "$X$ is \\textbf{Hausdorff} ($T_2$) if for all distinct $x,y\\in X$ there are disjoint open sets $U\\ni x$ and $V\\ni y$.",
+    "gloss": "Distinct points can be “housed” in disjoint neighborhoods. This separation guarantees limits are unique and compact sets are closed.",
+    "example": "Every metric space is Hausdorff; an infinite set with the cofinite topology is not.",
+    "related": [
+      "compact-in-hausdorff-closed",
+      "heine-borel",
+      "metric-space"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/hausdorff.svg"
+  },
+  {
+    "id": "heine-borel",
+    "term": "Heine–Borel theorem",
+    "kind": "Theorem",
+    "ref": "Thm. 6.42",
+    "chapter": "6",
+    "statement": "A subset $A\\subseteq\\mathbb{R}^n$ (Euclidean) is compact iff it is closed and bounded.",
+    "gloss": "In Euclidean space, the abstract notion of compactness coincides exactly with the concrete “closed and bounded.” One of the cornerstones of analysis.",
+    "example": "$[0,1]$, $S^n$, and closed balls are compact; open or unbounded sets are not.",
+    "related": [
+      "compact-space",
+      "bounded",
+      "compact-in-hausdorff-closed",
+      "product-compact",
+      "evt"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/heine-borel.svg"
+  },
+  {
+    "id": "homeomorphism-open-closed",
+    "term": "Homeo ⇔ open ⇔ closed (bijective)",
+    "kind": "Theorem",
+    "ref": "Thm. 5.21",
+    "chapter": "5",
+    "statement": "For a continuous bijection $f\\colon X\\to Y$, the following are equivalent: (1) $f$ is a homeomorphism; (2) $f$ is an open map; (3) $f$ is a closed map.",
+    "gloss": "For a continuous bijection, having a continuous inverse is the same as being open, which is the same as being closed.",
+    "example": "Often the quickest route to proving a continuous bijection is a homeomorphism (e.g. from a compact space to a Hausdorff one).",
+    "related": [
+      "homeomorphism",
+      "open-closed-map",
+      "compact-image",
+      "compact-in-hausdorff-closed"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/homeomorphism-open-closed.svg"
+  },
+  {
+    "id": "homeomorphism",
+    "term": "Homeomorphism",
+    "kind": "Definition",
+    "ref": "Def. 3.19",
+    "chapter": "3",
+    "statement": "A \\textbf{homeomorphism} is a bijection $f\\colon X\\to Y$ such that both $f$ and $f^{-1}$ are continuous. If one exists we write $X\\cong Y$ and call $X,Y$ \\textbf{homeomorphic}.",
+    "gloss": "The notion of “sameness” in topology: a continuous bijection with continuous inverse. It matches open sets of $X$ with open sets of $Y$ perfectly.",
+    "example": "$f(x)=2x-1$ is a homeomorphism $\\mathbb{R}\\to\\mathbb{R}$. A continuous bijection need <em>not</em> be a homeomorphism (e.g. $\\mathrm{id}\\colon X_{\\mathrm{disc}}\\to X_{\\mathrm{ind}}$).",
+    "related": [
+      "topological-property",
+      "continuous-map-top",
+      "homeomorphism-open-closed",
+      "homotopy-equivalence",
+      "sij"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/homeomorphism.svg"
+  },
+  {
+    "id": "homotopy",
+    "term": "Homotopy",
+    "kind": "Definition",
+    "ref": "Def. 7.1",
+    "chapter": "7",
+    "statement": "Continuous maps $f_0,f_1\\colon X\\to Y$ are \\textbf{homotopic} ($f_0\\simeq f_1$) if there is a continuous $H\\colon X\\times I\\to Y$ with $H(x,0)=f_0(x)$ and $H(x,1)=f_1(x)$. $H$ is a \\textbf{homotopy}.",
+    "gloss": "A continuous one-parameter deformation of one map into another. Think of $t\\in[0,1]$ as time, sliding $f_0$ to $f_1$.",
+    "example": "If $f_0\\simeq f_1$ with $f_1$ constant, $f_0$ is <em>nullhomotopic</em>. Any two maps into $\\mathbb{R}^n$ are homotopic via the straight-line homotopy.",
+    "related": [
+      "nullhomotopic",
+      "path-homotopy",
+      "homotopy-classes",
+      "homotopy-equivalence"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/homotopy.svg"
+  },
+  {
+    "id": "homotopy-classes",
+    "term": "Homotopy classes",
+    "kind": "Definition",
+    "ref": "Def. 7.5",
+    "chapter": "7",
+    "statement": "On $C(X,Y)$ (continuous maps $X\\to Y$), $\\simeq$ is an equivalence relation. Its classes are \\textbf{homotopy classes}; $[f]$ denotes the class of $f$ and $[X,Y]=C(X,Y)/\\!\\simeq$.",
+    "gloss": "Bundle maps that can be deformed into one another. Topology often studies $[X,Y]$ rather than individual maps.",
+    "example": "$[X,\\mathbb{R}^n]$ has a single element, since all such maps are homotopic.",
+    "related": [
+      "homotopy",
+      "path-homotopy",
+      "equivalence-class"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/homotopy-classes.svg"
+  },
+  {
+    "id": "homotopy-equivalence",
+    "term": "Homotopy equivalence",
+    "kind": "Definition",
+    "ref": "Def. 7.34",
+    "chapter": "7",
+    "statement": "Maps $f\\colon X\\to Y$, $g\\colon Y\\to X$ are \\textbf{homotopy equivalences} if $g\\circ f\\simeq\\mathrm{id}_X$ and $f\\circ g\\simeq\\mathrm{id}_Y$; each is a \\textbf{homotopy inverse} of the other.",
+    "gloss": "A weaker sameness than homeomorphism: the spaces are interchangeable up to deformation. Every homeomorphism is a homotopy equivalence, but not conversely.",
+    "example": "$\\mathbb{R}$ and a point $\\{p\\}$ are homotopy equivalent but not homeomorphic.",
+    "related": [
+      "homotopy-type",
+      "deformation-retract",
+      "homotopy-equiv-iso",
+      "homeomorphism"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/homotopy-equivalence.svg"
+  },
+  {
+    "id": "homotopy-equiv-iso",
+    "term": "Homotopy equivalence induces iso",
+    "kind": "Theorem",
+    "ref": "Thm. 7.38",
+    "chapter": "7",
+    "statement": "If $f\\colon X\\to Y$ is a homotopy equivalence with $f(x_0)=y_0$, then $f_*\\colon\\pi_1(X,x_0)\\to\\pi_1(Y,y_0)$ is an isomorphism.",
+    "gloss": "$\\pi_1$ is an invariant of homotopy type, not merely of homeomorphism type — a stronger and very useful fact.",
+    "example": "Lets you compute $\\pi_1$ of a space via any simpler space it deformation retracts onto.",
+    "related": [
+      "homotopy-equivalence",
+      "homotopy-type",
+      "pi1-invariant",
+      "deformation-retract"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/homotopy-equiv-iso.svg"
+  },
+  {
+    "id": "homotopy-lifting",
+    "term": "Homotopy lifting property",
+    "kind": "Theorem",
+    "ref": "Thm. 8.13",
+    "chapter": "8",
+    "statement": "Let $p\\colon E\\to B$ be a covering map with $p(e_0)=b_0$. Any continuous $H\\colon I\\times I\\to B$ with $H(0,0)=b_0$ has a unique lift $\\tilde H\\colon I\\times I\\to E$ with $\\tilde H(0,0)=e_0$; if $H$ is a path homotopy so is $\\tilde H$.",
+    "gloss": "Whole homotopies lift uniquely, and path homotopies lift to path homotopies. This makes the lifting correspondence well-defined on $\\pi_1$.",
+    "example": "Ensures path-homotopic loops in $B$ have lifts with the same endpoint, so $\\Phi$ is well-defined (Def. 8.14).",
+    "related": [
+      "path-lifting",
+      "covering-space",
+      "lifting-correspondence",
+      "path-homotopy"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/homotopy-lifting.svg"
+  },
+  {
+    "id": "homotopy-type",
+    "term": "Homotopy type",
+    "kind": "Definition",
+    "ref": "Def. 7.36",
+    "chapter": "7",
+    "statement": "Spaces $X,Y$ have the same \\textbf{homotopy type} (are \\textbf{homotopy equivalent}) if there is a homotopy equivalence $f\\colon X\\to Y$.",
+    "gloss": "The equivalence relation under which topology classifies spaces ‘up to deformation’. Many invariants, including $\\pi_1$, depend only on homotopy type.",
+    "example": "All contractible spaces (those homotopy equivalent to a point) share one homotopy type.",
+    "related": [
+      "homotopy-equivalence",
+      "homotopy-equiv-iso"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/homotopy-type.svg"
+  },
+  {
+    "id": "image",
+    "term": "Image of a map",
+    "kind": "Definition",
+    "ref": "Def. A.6",
+    "chapter": "A",
+    "statement": "For $f\\colon A\\to B$, the \\textbf{image} is $f(A)=\\{f(x)\\in B\\mid x\\in A\\}\\subseteq B$.",
+    "gloss": "All values actually attained by $f$. $f$ is surjective exactly when $f(A)=B$.",
+    "example": "For $f\\colon\\mathbb{R}\\to\\mathbb{R}$, $f(x)=x^2$, the image is $[0,\\infty)$.",
+    "related": [
+      "sij",
+      "restriction",
+      "composition-maps"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/image.svg"
+  },
+  {
+    "id": "inclusion-map",
+    "term": "Inclusion map",
+    "kind": "Definition",
+    "ref": "Def. A.13",
+    "chapter": "A",
+    "statement": "For $R\\subseteq A$, the \\textbf{inclusion} $i\\colon R\\to A$ is $i(x)=x$.",
+    "gloss": "The map that views a subset as sitting inside the ambient set. Composing with it recovers a restriction: $f\\circ i=f|_R$.",
+    "example": "The inclusion of a subspace is continuous for the subspace topology.",
+    "related": [
+      "restriction",
+      "subspace-topology",
+      "composition-maps"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/inclusion-map.svg"
+  },
+  {
+    "id": "indiscrete-topology",
+    "term": "Indiscrete topology",
+    "kind": "Definition",
+    "ref": "Ex. 3.5",
+    "chapter": "3",
+    "statement": "On any set $X$, the \\textbf{indiscrete topology} is $\\mathcal{T}_{\\mathrm{ind}}=\\{\\varnothing,X\\}$.",
+    "gloss": "The coarsest possible topology — the only open sets are the empty set and the whole space. Points are topologically indistinguishable.",
+    "example": "For any topology $\\mathcal{T}$ on $X$ we have $\\mathcal{T}_{\\mathrm{ind}}\\subseteq\\mathcal{T}\\subseteq\\mathcal{T}_{\\mathrm{disc}}$. Every map <em>into</em> an indiscrete space is continuous.",
+    "related": [
+      "discrete-topology",
+      "comparable-topologies",
+      "topological-space"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/indiscrete-topology.svg"
+  },
+  {
+    "id": "induced-homomorphism",
+    "term": "Induced homomorphism",
+    "kind": "Definition",
+    "ref": "Def. 7.22",
+    "chapter": "7",
+    "statement": "A based map $h\\colon(X,x_0)\\to(Y,y_0)$ induces $h_*\\colon\\pi_1(X,x_0)\\to\\pi_1(Y,y_0)$ by $h_*([f])=[h\\circ f]$; it is a group homomorphism (Lemma 7.23).",
+    "gloss": "Maps of spaces turn into maps of fundamental groups by post-composing loops. This is how $\\pi_1$ becomes algebraic.",
+    "example": "$(\\mathrm{id}_X)_*$ is the identity; composites behave well (functoriality, Thm. 7.24).",
+    "related": [
+      "based-map",
+      "functoriality",
+      "homomorphism",
+      "fundamental-group"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/induced-homomorphism.svg"
+  },
+  {
+    "id": "interior",
+    "term": "Interior",
+    "kind": "Concept",
+    "ref": "near 3.29",
+    "chapter": "3",
+    "statement": "The \\textbf{interior} $\\mathrm{Int}(A)$ is the union of all open subsets of $X$ contained in $A$ — the largest open set inside $A$.",
+    "gloss": "Dual to the closure: it strips $A$ down to the points it surrounds with room to spare. Always $\\mathrm{Int}(A)\\subseteq A\\subseteq\\overline{A}$.",
+    "example": "In $\\mathbb{R}$, $\\mathrm{Int}((a,b])=(a,b)$.",
+    "related": [
+      "closure",
+      "open-closed-set-metric"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/interior.svg"
+  },
+  {
+    "id": "intersection-union",
+    "term": "Intersection and union",
+    "kind": "Definition",
+    "ref": "Def. A.2",
+    "chapter": "A",
+    "statement": "$A\\cap B=\\{x\\mid x\\in A\\ \\text{and}\\ x\\in B\\}$ and $A\\cup B=\\{x\\mid x\\in A\\ \\text{or}\\ x\\in B\\}$ (inclusive “or”).",
+    "gloss": "Intersection keeps common elements; union pools both. They are commutative, associative, and distribute over each other.",
+    "example": "$A,B$ are <em>disjoint</em> when $A\\cap B=\\varnothing$. Always $A\\cap B\\subseteq A\\subseteq A\\cup B$.",
+    "related": [
+      "subset",
+      "set-difference",
+      "complement"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/intersection-union.svg"
+  },
+  {
+    "id": "intersection-topologies",
+    "term": "Intersection of topologies",
+    "kind": "Theorem",
+    "ref": "Thm. 4.1",
+    "chapter": "4",
+    "statement": "If $\\mathcal{T}_1,\\mathcal{T}_2$ are topologies on $X$, then $\\mathcal{T}_1\\cap\\mathcal{T}_2$ is a topology. More generally $\\bigcap_{\\lambda}\\mathcal{T}_\\lambda$ is a topology for any family.",
+    "gloss": "Topologies are closed under intersection — the basis for “generating” the smallest topology containing a given collection. The <em>union</em> of topologies generally is not a topology.",
+    "example": "On $\\{a,b,c\\}$, intersecting two topologies can give $\\{\\varnothing,X\\}$ while their union fails T2.",
+    "related": [
+      "generated-topology",
+      "topological-space"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/intersection-topologies.svg"
+  },
+  {
+    "id": "isomorphism",
+    "term": "Isomorphism",
+    "kind": "Definition",
+    "ref": "Def. B.19",
+    "chapter": "B",
+    "statement": "An \\textbf{isomorphism} is a bijective homomorphism $\\varphi\\colon G_1\\to G_2$. An isomorphism from a group to itself is an \\textbf{automorphism}.",
+    "gloss": "A perfect structural match between groups: same group, relabelled. Isomorphic groups are interchangeable for all group-theoretic purposes.",
+    "example": "$\\Phi\\colon\\pi_1(S^1)\\to\\mathbb{Z}$ is an isomorphism (Thm. 8.16).",
+    "related": [
+      "homomorphism",
+      "sij",
+      "pi1-circle",
+      "fht"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/isomorphism.svg"
+  },
+  {
+    "id": "lebesgue-number",
+    "term": "Lebesgue number lemma",
+    "kind": "Lemma",
+    "ref": "Lemma 8.10",
+    "chapter": "8",
+    "statement": "For a compact metric space $(X,d)$ and an open cover $\\mathcal{A}$, there is $\\lambda>0$ (a \\textbf{Lebesgue number}) such that every ball $\\mathsf{B}(x;\\lambda)$ lies inside some single $U\\in\\mathcal{A}$.",
+    "gloss": "On a compact metric space, every open cover has a uniform scale below which small balls fit inside one cover element. Enables subdividing paths finely enough to lift.",
+    "example": "Used to chop $I$ into small subintervals, each mapping into one evenly covered open set (proof of Thm. 8.12).",
+    "related": [
+      "compact-space",
+      "cover",
+      "path-lifting"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/lebesgue-number.svg"
+  },
+  {
+    "id": "coset",
+    "term": "Left and right cosets",
+    "kind": "Definition",
+    "ref": "Def. B.11",
+    "chapter": "B",
+    "statement": "For $H\\le G$ and $g\\in G$: the \\textbf{left coset} is $gH=\\{g*h\\mid h\\in H\\}$ and the \\textbf{right coset} is $Hg=\\{h*g\\mid h\\in H\\}$.",
+    "gloss": "Translates of a subgroup. Cosets partition $G$ into equal-sized blocks; they coincide ($gH=Hg$) precisely for normal subgroups.",
+    "example": "In an abelian group all left and right cosets agree.",
+    "related": [
+      "subgroup",
+      "normal-subgroup",
+      "quotient-group",
+      "equivalence-class"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/coset.svg"
+  },
+  {
+    "id": "lifting",
+    "term": "Lifting",
+    "kind": "Definition",
+    "ref": "Def. 8.9",
+    "chapter": "8",
+    "statement": "Given $p\\colon E\\to B$ and $f\\colon X\\to B$, a \\textbf{lifting} of $f$ is a continuous $\\tilde f\\colon X\\to E$ with $p\\circ\\tilde f=f$.",
+    "gloss": "Lift a map from the base into the total space, compatibly with $p$. Path and homotopy lifting (for covering maps) drive the computation of $\\pi_1(S^1)$.",
+    "example": "A path in $S^1$ lifts to a path in $\\mathbb{R}$ once a starting point is chosen (Thm. 8.12).",
+    "related": [
+      "covering-space",
+      "path-lifting",
+      "homotopy-lifting",
+      "lifting-correspondence"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/lifting.svg"
+  },
+  {
+    "id": "lifting-correspondence",
+    "term": "Lifting correspondence",
+    "kind": "Definition",
+    "ref": "Def. 8.14",
+    "chapter": "8",
+    "statement": "For a covering $p\\colon E\\to B$ with $p(e_0)=b_0$, the \\textbf{lifting correspondence} is $\\Phi\\colon\\pi_1(B,b_0)\\to p^{-1}(b_0)$, $\\Phi([f])=\\tilde f(1)$, where $\\tilde f$ is the lift of the loop $f$ with $\\tilde f(0)=e_0$.",
+    "gloss": "Send each loop class to the endpoint of its lift in the fibre. Well-defined by homotopy lifting; a bijection when $E$ is path-connected (Thm. 8.15).",
+    "example": "For $p\\colon\\mathbb{R}\\to S^1$, $\\Phi$ sends a loop to its winding number, giving $\\pi_1(S^1)\\cong\\mathbb{Z}$.",
+    "related": [
+      "path-lifting",
+      "homotopy-lifting",
+      "pi1-circle",
+      "fundamental-group"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/lifting-correspondence.svg"
+  },
+  {
+    "id": "local-homeomorphism",
+    "term": "Local homeomorphism",
+    "kind": "Definition",
+    "ref": "Def. 8.4",
+    "chapter": "8",
+    "statement": "$f\\colon X\\to Y$ is a \\textbf{local homeomorphism} if every $x\\in X$ has a neighborhood $U$ with $f(U)$ open and $f|_U\\colon U\\to f(U)$ a homeomorphism.",
+    "gloss": "Looks like a homeomorphism in a neighborhood of each point, though not necessarily globally. Every covering map is a local homeomorphism.",
+    "example": "Preserves local properties such as local connectedness; $p\\colon\\mathbb{R}\\to S^1$ is a local homeomorphism but not injective.",
+    "related": [
+      "covering-space",
+      "homeomorphism"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/local-homeomorphism.svg"
+  },
+  {
+    "id": "metric-space",
+    "term": "Metric space",
+    "kind": "Definition",
+    "ref": "Def. 2.1",
+    "chapter": "2",
+    "statement": "A \\textbf{metric space} $(X,d)$ is a non-empty set $X$ with a map $d\\colon X\\times X\\to\\mathbb{R}$ such that for all $x,y,z\\in X$:\\;\\textbf{(M1)}\\ d(x,y)\\ge 0,\\ \\text{and}\\ d(x,y)=0\\Leftrightarrow x=y;\\;\\textbf{(M2)}\\ d(x,y)=d(y,x);\\;\\textbf{(M3)}\\ d(x,z)\\le d(x,y)+d(y,z).",
+    "gloss": "A set equipped with a notion of distance. The three axioms say distance is non-negative (and zero only between identical points), symmetric, and obeys the triangle inequality.",
+    "example": "$\\mathbb{R}^n$ with $d(x,y)=\\lVert x-y\\rVert$ is the prototype. The <em>discrete metric</em> ($d(x,y)=1$ for $x\\neq y$, else $0$) makes any set a metric space.",
+    "related": [
+      "open-closed-ball",
+      "open-closed-set-metric",
+      "continuous-map-metric",
+      "topological-space"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/metric-space.svg"
+  },
+  {
+    "id": "neighborhood-metric",
+    "term": "Neighborhood (metric)",
+    "kind": "Definition",
+    "ref": "Def. 2.11",
+    "chapter": "2",
+    "statement": "$A\\subseteq X$ is a \\textbf{neighborhood} of $x$ if some open ball about $x$ is contained in $A$. It is an \\textbf{open neighborhood} if $A$ itself is open.",
+    "gloss": "A set that surrounds $x$ with some breathing room. It need not be open itself — only contain an open ball around $x$.",
+    "example": "In $\\mathbb{R}$, the interval $[-1,2]$ is a neighborhood of $0$ but not of the endpoint $2$.",
+    "related": [
+      "open-closed-ball",
+      "neighborhood-top",
+      "continuity-point-metric"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/neighborhood-metric.svg"
+  },
+  {
+    "id": "neighborhood-top",
+    "term": "Neighborhood (topological)",
+    "kind": "Definition",
+    "ref": "Def. 3.9",
+    "chapter": "3",
+    "statement": "For a topological space $X$ and $x\\in X$, a subset $U$ is a \\textbf{neighborhood} of $x$ if $x\\in U$ and $U$ is open in $X$.",
+    "gloss": "In these notes a neighborhood is simply an open set containing the point (an “open neighborhood”). A set is open iff it is a neighborhood of each of its points (Thm. 3.10).",
+    "example": "In $\\mathbb{R}$ with the standard topology, $(-1,1)$ is a neighborhood of $0$.",
+    "related": [
+      "neighborhood-metric",
+      "topological-space",
+      "continuity-point-top"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/neighborhood-top.svg"
+  },
+  {
+    "id": "normal-subgroup",
+    "term": "Normal subgroup",
+    "kind": "Definition",
+    "ref": "Def. B.12",
+    "chapter": "B",
+    "statement": "$H\\le G$ is \\textbf{normal} if $gH=Hg$ for all $g$; equivalently $g*h*g^{-1}\\in H$ for all $g\\in G$, $h\\in H$.",
+    "gloss": "A subgroup whose left and right cosets agree — exactly the condition needed for the cosets to form a group.",
+    "example": "Every subgroup of an abelian group is normal; kernels of homomorphisms are always normal.",
+    "related": [
+      "coset",
+      "quotient-group",
+      "subgroup",
+      "homomorphism"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/normal-subgroup.svg"
+  },
+  {
+    "id": "nullhomotopic",
+    "term": "Nullhomotopic map",
+    "kind": "Concept",
+    "ref": "in 7.1",
+    "chapter": "7",
+    "statement": "A map $f$ is \\textbf{nullhomotopic} if $f\\simeq c$ for some constant map $c$.",
+    "gloss": "The map can be continuously shrunk to a single point. Loops being nullhomotopic is what makes a space simply connected.",
+    "example": "Every map into $\\mathbb{R}^n$ is nullhomotopic; the identity $S^1\\to S^1$ is <em>not</em>.",
+    "related": [
+      "homotopy",
+      "simply-connected",
+      "fundamental-group"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/nullhomotopic.svg"
+  },
+  {
+    "id": "open-closed-set-metric",
+    "term": "Open / closed set (metric)",
+    "kind": "Definition",
+    "ref": "Def. 2.9",
+    "chapter": "2",
+    "statement": "$A\\subseteq X$ is \\textbf{open} if every $a\\in A$ has an open ball $\\mathsf{B}(a;r)\\subseteq A$. It is \\textbf{closed} if its complement $A^c=X\\setminus A$ is open.",
+    "gloss": "Open means every point sits inside the set with a little room to spare. Closed is defined by its complement. Most sets are neither; sets that are both are called <em>clopen</em>.",
+    "example": "Open balls are open and closed balls are closed (Lemma 2.10). Both $\\varnothing$ and $X$ are clopen.",
+    "related": [
+      "open-closed-ball",
+      "topological-space",
+      "closed-subset",
+      "metric-space"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/open-closed-set-metric.svg"
+  },
+  {
+    "id": "open-closed-ball",
+    "term": "Open and closed balls",
+    "kind": "Definition",
+    "ref": "Def. 2.7",
+    "chapter": "2",
+    "statement": "For $(X,d)$, $a\\in X$ and $r>0$: the \\textbf{open ball} is $\\mathsf{B}(a;r)=\\{x\\in X\\mid d(x,a)<r\\}$ and the \\textbf{closed ball} is $\\overline{\\mathsf{B}}(a;r)=\\{x\\in X\\mid d(x,a)\\le r\\}$.",
+    "gloss": "All points within distance $r$ of a centre $a$ — strictly less than $r$ for open, at most $r$ for closed. In $\\mathbb{R}^n$ these are ordinary balls and discs.",
+    "example": "In the discrete metric, $\\mathsf{B}(x;r)=\\{x\\}$ for $r\\le 1$ and $\\mathsf{B}(x;r)=X$ for $r>1$.",
+    "related": [
+      "metric-space",
+      "open-closed-set-metric",
+      "neighborhood-metric"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/open-closed-ball.svg"
+  },
+  {
+    "id": "open-closed-map",
+    "term": "Open and closed maps",
+    "kind": "Definition",
+    "ref": "Def. 5.19",
+    "chapter": "5",
+    "statement": "A continuous $f\\colon X\\to Y$ is an \\textbf{open map} if $f(U)$ is open for every open $U$, and a \\textbf{closed map} if $f(V)$ is closed for every closed $V$.",
+    "gloss": "These push openness/closedness <em>forward</em>, unlike continuity which pulls openness back. They are the tool linking quotient maps to homeomorphisms.",
+    "example": "Every homeomorphism is both open and closed, but $\\mathbb{R}\\to\\{*\\}$ is open and closed yet not a homeomorphism.",
+    "related": [
+      "quotient-space",
+      "homeomorphism-open-closed",
+      "continuous-map-top"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/open-closed-map.svg"
+  },
+  {
+    "id": "pasting-lemma",
+    "term": "Pasting lemma",
+    "kind": "Lemma",
+    "ref": "Lemma 7.3",
+    "chapter": "7",
+    "statement": "Let $X=A\\cup B$ with $A,B$ closed in $X$, and let $f\\colon A\\to Y$, $g\\colon B\\to Y$ be continuous with $f=g$ on $A\\cap B$. Then $h\\colon X\\to Y$ defined piecewise by $f$ and $g$ is continuous.",
+    "gloss": "Two continuous pieces that agree on the overlap glue to a continuous whole — provided the pieces are closed.",
+    "example": "Makes the concatenation of paths $f*g$ continuous (Def. 7.12).",
+    "related": [
+      "product-of-paths",
+      "closed-subset",
+      "homotopy"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/pasting-lemma.svg"
+  },
+  {
+    "id": "path-homotopy",
+    "term": "Path homotopy",
+    "kind": "Definition",
+    "ref": "Def. 7.7",
+    "chapter": "7",
+    "statement": "Paths $f,g\\colon I\\to X$ from $x_0$ to $x_1$ are \\textbf{path homotopic} ($f\\simeq_p g$) if there is continuous $H\\colon I\\times I\\to X$ with $H(s,0)=f(s)$, $H(s,1)=g(s)$, and $H(0,t)=x_0$, $H(1,t)=x_1$ for all $t$.",
+    "gloss": "Deform one path into another while keeping the endpoints pinned. This rel-endpoints relation is what the fundamental group is built from.",
+    "example": "Any two paths in $\\mathbb{R}^n$ with the same endpoints are path homotopic via the straight-line homotopy.",
+    "related": [
+      "homotopy",
+      "path-homotopy-classes",
+      "product-of-paths",
+      "fundamental-group"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/path-homotopy.svg"
+  },
+  {
+    "id": "path-homotopy-classes",
+    "term": "Path homotopy classes",
+    "kind": "Definition",
+    "ref": "Def. 7.11",
+    "chapter": "7",
+    "statement": "For a path $f$ from $x_0$ to $x_1$, $[f]=\\{g\\mid g\\ \\text{a path}\\ x_0\\to x_1,\\ f\\simeq_p g\\}$ is its \\textbf{path homotopy class}.",
+    "gloss": "The endpoint-fixed deformation class of a path. The fundamental group consists of such classes for loops.",
+    "example": "The product $*$ and inverse descend to these classes, giving group structure (Thm. 7.14).",
+    "related": [
+      "path-homotopy",
+      "product-of-paths",
+      "fundamental-group"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/path-homotopy-classes.svg"
+  },
+  {
+    "id": "path-connected",
+    "term": "Path-connected space",
+    "kind": "Definition",
+    "ref": "Def. 6.14",
+    "chapter": "6",
+    "statement": "A \\textbf{path} from $x$ to $y$ is a continuous map $f\\colon[a,b]\\to X$ with $f(a)=x$, $f(b)=y$. $X$ is \\textbf{path-connected} if any two points are joined by a path.",
+    "gloss": "You can walk continuously between any two points. A stronger, more geometric cousin of connectedness.",
+    "example": "$\\mathbb{R}^n$ is path-connected, as is $\\mathbb{R}^n\\setminus\\{p\\}$ for $n\\ge 2$.",
+    "related": [
+      "path-implies-connected",
+      "connected-space",
+      "fundamental-group",
+      "homotopy"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/path-connected.svg"
+  },
+  {
+    "id": "path-implies-connected",
+    "term": "Path-connected ⇒ connected",
+    "kind": "Theorem",
+    "ref": "Thm. 6.17",
+    "chapter": "6",
+    "statement": "Every path-connected space is connected.",
+    "gloss": "Being walkable implies being in one piece. The converse fails in general, though it holds for open subsets of $\\mathbb{R}^n$.",
+    "example": "The topologist's sine curve is connected but not path-connected (a standard counterexample).",
+    "related": [
+      "path-connected",
+      "connected-space"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/path-implies-connected.svg"
+  },
+  {
+    "id": "product-compact",
+    "term": "Product of compact spaces is compact",
+    "kind": "Theorem",
+    "ref": "Thm. 6.39",
+    "chapter": "6",
+    "statement": "If $X_1,\\dots,X_n$ are compact, then $X_1\\times\\cdots\\times X_n$ is compact.",
+    "gloss": "Compactness survives finite products (and, by Tychonoff, arbitrary products with the product topology).",
+    "example": "With Thm. 6.40 this gives compactness of closed boxes in $\\mathbb{R}^n$, hence Heine–Borel.",
+    "related": [
+      "tube-lemma",
+      "compact-space",
+      "heine-borel",
+      "product-topology"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/product-compact.svg"
+  },
+  {
+    "id": "product-of-paths",
+    "term": "Product of paths",
+    "kind": "Definition",
+    "ref": "Def. 7.12",
+    "chapter": "7",
+    "statement": "For a path $f$ from $x_0$ to $x_1$ and $g$ from $x_1$ to $x_2$, the \\textbf{product} $f*g\\colon I\\to X$ is $f$ run on $[0,\\tfrac12]$ then $g$ on $[\\tfrac12,1]$: $(f*g)(s)=f(2s)$ for $s\\le\\tfrac12$, $g(2s-1)$ otherwise.",
+    "gloss": "Concatenate two paths by traversing the first at double speed, then the second. Continuous by the pasting lemma.",
+    "example": "On path homotopy classes, $*$ is associative with constant-path units and reverse-path inverses (Thm. 7.14).",
+    "related": [
+      "path-homotopy",
+      "pasting-lemma",
+      "fundamental-group",
+      "path-homotopy-classes"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/product-of-paths.svg"
+  },
+  {
+    "id": "product-topology",
+    "term": "Product topology",
+    "kind": "Definition",
+    "ref": "Def. 5.7",
+    "chapter": "5",
+    "statement": "For spaces $X,Y$, the \\textbf{product topology} on $X\\times Y$ is generated by the basis $\\mathcal{B}=\\{U\\times V\\mid U\\ \\text{open in}\\ X,\\ V\\ \\text{open in}\\ Y\\}$.",
+    "gloss": "Open sets of the product are unions of open rectangles. It is the coarsest topology making both projections continuous (its universal property).",
+    "example": "If $\\mathcal{B}_X,\\mathcal{B}_Y$ are bases, the products $B_X\\times B_Y$ form a basis (Thm. 5.9). The torus $T^2=S^1\\times S^1$ carries this topology.",
+    "related": [
+      "subspace-topology",
+      "basis",
+      "tube-lemma",
+      "product-compact",
+      "cartesian-product",
+      "pi1-product"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/product-topology.svg"
+  },
+  {
+    "id": "quotient-group",
+    "term": "Quotient (factor) group",
+    "kind": "Theorem",
+    "ref": "Thm. B.13",
+    "chapter": "B",
+    "statement": "For a normal subgroup $H\\trianglelefteq G$, the cosets $G/H$ form a group under $(g_1H)(g_2H)=(g_1g_2)H$.",
+    "gloss": "Collapse a normal subgroup to the identity: the cosets inherit a well-defined group structure. The algebraic analogue of a quotient space.",
+    "example": "$\\mathbb{Z}/m\\mathbb{Z}$ is the cyclic group of order $m$.",
+    "related": [
+      "normal-subgroup",
+      "coset",
+      "fht",
+      "quotient-space"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/quotient-group.svg"
+  },
+  {
+    "id": "quotient-space",
+    "term": "Quotient space",
+    "kind": "Definition",
+    "ref": "Def. 5.16",
+    "chapter": "5",
+    "statement": "For a surjection $\\pi\\colon X\\to A$ from a space $X$, the \\textbf{quotient topology} on $A$ is $\\{U\\subseteq A\\mid \\pi^{-1}(U)\\ \\text{open in}\\ X\\}$. Then $\\pi$ is a \\textbf{quotient map} and $A$ the \\textbf{quotient space}.",
+    "gloss": "Glue points of $X$ together (via $\\pi$) and declare a set in $A$ open exactly when its preimage is open. It is the finest topology making $\\pi$ continuous.",
+    "example": "Collapsing the boundary circle of a disc to a point yields a sphere; gluing the ends of $[0,1]$ yields $S^1$.",
+    "related": [
+      "equivalence-class",
+      "quotient-universal",
+      "open-closed-map",
+      "subspace-topology"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/quotient-space.svg"
+  },
+  {
+    "id": "restriction",
+    "term": "Restriction of a map",
+    "kind": "Definition",
+    "ref": "Def. A.8",
+    "chapter": "A",
+    "statement": "For $f\\colon A\\to B$ and $R\\subseteq A$, the \\textbf{restriction} $f|_R\\colon R\\to B$ is $f|_R(x)=f(x)$ for $x\\in R$.",
+    "gloss": "Use the same rule on a smaller domain. Restrictions appear constantly, e.g. $p|_{V_\\lambda}$ in covering maps.",
+    "example": "If $f|_R$ is injective, then $f|_R\\colon R\\to f(R)$ is a bijection.",
+    "related": [
+      "inclusion-map",
+      "image",
+      "composition-maps"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/restriction.svg"
+  },
+  {
+    "id": "retraction",
+    "term": "Retraction",
+    "kind": "Definition",
+    "ref": "Def. 7.28",
+    "chapter": "7",
+    "statement": "For a subspace $A\\subseteq X$, a continuous $r\\colon X\\to A$ is a \\textbf{retraction} if $r(a)=a$ for all $a\\in A$. Then $A$ is a \\textbf{retract} of $X$.",
+    "gloss": "A continuous way of collapsing $X$ onto $A$ that leaves $A$ fixed. Retractions constrain how $\\pi_1(A)$ sits inside $\\pi_1(X)$.",
+    "example": "$S^1$ is a retract of $\\mathbb{R}^2\\setminus\\{0\\}$ via $r(x)=x/\\lVert x\\rVert$.",
+    "related": [
+      "deformation-retract",
+      "subspace-topology",
+      "brouwer"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/retraction.svg"
+  },
+  {
+    "id": "simply-connected",
+    "term": "Simply connected space",
+    "kind": "Definition",
+    "ref": "Def. 7.20",
+    "chapter": "7",
+    "statement": "A path-connected space $X$ is \\textbf{simply connected} if $\\pi_1(X,x_0)$ is trivial for some (hence every) $x_0\\in X$.",
+    "gloss": "Path-connected and every loop contracts to a point — no $1$-dimensional holes.",
+    "example": "$\\mathbb{R}^n$ is simply connected; $S^1$ and the torus $T^2$ are not.",
+    "related": [
+      "fundamental-group",
+      "nullhomotopic",
+      "path-connected"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/simply-connected.svg"
+  },
+  {
+    "id": "subbasis",
+    "term": "Subbasis for a topology",
+    "kind": "Definition",
+    "ref": "Def. 4.12",
+    "chapter": "4",
+    "statement": "A \\textbf{subbasis} on $X$ is a collection $\\mathcal{S}$ of subsets whose union is $X$. Its finite intersections form a basis, whose unions form the \\textbf{topology generated by} $\\mathcal{S}$.",
+    "gloss": "An even smaller seed: take finite intersections to get a basis, then unions to get the topology. Open sets are unions of finite intersections of subbasis elements.",
+    "example": "$\\langle\\mathcal{S}\\rangle=\\big\\{\\bigcup_\\lambda\\bigcap_{i=1}^{n_\\lambda}S_{\\lambda,i}\\mid S_{\\lambda,i}\\in\\mathcal{S}\\big\\}$ (Thm. 4.15).",
+    "related": [
+      "basis",
+      "generated-topology",
+      "product-topology"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/subbasis.svg"
+  },
+  {
+    "id": "subgroup",
+    "term": "Subgroup",
+    "kind": "Definition",
+    "ref": "Def. B.7",
+    "chapter": "B",
+    "statement": "A subset $H\\subseteq G$ is a \\textbf{subgroup} ($H\\le G$) if $*$ restricts to a binary operation on $H$ making $(H,*|_{H\\times H})$ a group. It is \\textbf{proper} ($H<G$) if $H\\subsetneq G$.",
+    "gloss": "A subset that is itself a group under the same operation. The trivial subgroup $\\{e\\}$ always qualifies.",
+    "example": "$m\\mathbb{Z}=\\{mn\\mid n\\in\\mathbb{Z}\\}$ is a proper subgroup of $\\mathbb{Z}$ for $m\\ge 2$.",
+    "related": [
+      "group",
+      "cyclic-subgroup",
+      "normal-subgroup",
+      "coset"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/subgroup.svg"
+  },
+  {
+    "id": "subset",
+    "term": "Subset",
+    "kind": "Definition",
+    "ref": "Def. A.1",
+    "chapter": "A",
+    "statement": "$B$ is a \\textbf{subset} of $A$ ($B\\subseteq A$) if every element of $B$ is an element of $A$. If also $A\\neq B$, then $B$ is a \\textbf{proper subset}, $B\\subsetneq A$.",
+    "gloss": "Everything in $B$ is already in $A$. Sets are equal iff each is a subset of the other.",
+    "example": "$\\{1,2\\}\\subsetneq\\{1,2,3\\}$ and $\\mathbb{Z}\\subseteq\\mathbb{R}$.",
+    "related": [
+      "intersection-union",
+      "set-difference",
+      "complement"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/subset.svg"
+  },
+  {
+    "id": "subspace-topology",
+    "term": "Subspace topology",
+    "kind": "Definition",
+    "ref": "Def. 5.1",
+    "chapter": "5",
+    "statement": "For $A\\subseteq X$, the \\textbf{subspace topology} on $A$ is $\\mathcal{T}_A=\\{A\\cap U\\mid U\\ \\text{open in}\\ X\\}$.",
+    "gloss": "$A$ inherits openness by slicing the open sets of $X$. A set may be open in $A$ without being open in $X$.",
+    "example": "$K\\subseteq A$ is closed in $A$ iff $K=A\\cap L$ for some $L$ closed in $X$ (Thm. 5.3).",
+    "related": [
+      "product-topology",
+      "quotient-space",
+      "topological-space"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/subspace-topology.svg"
+  },
+  {
+    "id": "sij",
+    "term": "Surjective / injective / bijective",
+    "kind": "Definition",
+    "ref": "Def. A.7",
+    "chapter": "A",
+    "statement": "$f\\colon A\\to B$ is \\textbf{surjective} if every $b\\in B$ equals $f(a)$ for some $a$; \\textbf{injective} if $f(a_1)=f(a_2)\\Rightarrow a_1=a_2$; \\textbf{bijective} if both.",
+    "gloss": "Surjective hits everything, injective never collides, bijective is a perfect one-to-one matching. A bijection has an inverse $f^{-1}$.",
+    "example": "$f$ is bijective iff there is $g$ with $g\\circ f=\\mathrm{id}_A$ and $f\\circ g=\\mathrm{id}_B$ (Thm. A.10).",
+    "related": [
+      "image",
+      "homeomorphism",
+      "isomorphism",
+      "composition-maps"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/sij.svg"
+  },
+  {
+    "id": "real-line-connected",
+    "term": "The real numbers are connected",
+    "kind": "Theorem",
+    "ref": "Thm. 6.12",
+    "chapter": "6",
+    "statement": "$\\mathbb{R}$ with the standard topology is connected.",
+    "gloss": "The fundamental connected space. The proof uses the least-upper-bound property of $\\mathbb{R}$.",
+    "example": "Consequently all intervals are connected, and $\\mathbb{R}^n$ is connected.",
+    "related": [
+      "connected-space",
+      "ivt",
+      "path-connected"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/real-line-connected.svg"
+  },
+  {
+    "id": "topological-property",
+    "term": "Topological property / invariant",
+    "kind": "Concept",
+    "ref": "near 3.19",
+    "chapter": "3",
+    "statement": "A \\textbf{topological property} is any property expressible in terms of points and open sets; such properties are preserved by homeomorphisms. A \\textbf{topological invariant} is a quantity invariant under homeomorphism.",
+    "gloss": "These are exactly the features topology can see. If $X\\cong Y$ and $X$ has the property, so does $Y$ — hence invariants can prove two spaces are <em>not</em> homeomorphic.",
+    "example": "Connectedness, compactness, Hausdorffness and the fundamental group are all topological invariants.",
+    "related": [
+      "homeomorphism",
+      "connected-space",
+      "compact-space",
+      "fundamental-group"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/topological-property.svg"
+  },
+  {
+    "id": "topological-space",
+    "term": "Topological space",
+    "kind": "Definition",
+    "ref": "Def. 3.1",
+    "chapter": "3",
+    "statement": "A \\textbf{topological space} is a set $X$ with a collection $\\mathcal{T}$ of subsets (the \\textbf{open sets}) such that:\\;\\textbf{(T1)}\\ \\varnothing,X\\in\\mathcal{T};\\;\\textbf{(T2)}\\ arbitrary unions of members of $\\mathcal{T}$ lie in $\\mathcal{T}$;\\;\\textbf{(T3)}\\ finite intersections of members of $\\mathcal{T}$ lie in $\\mathcal{T}$.",
+    "gloss": "The central object: a set together with a choice of which subsets count as open. Note the asymmetry — <em>any</em> union but only <em>finite</em> intersections.",
+    "example": "Every metric space is a topological space via its metric topology (Thm. 3.2). On $\\{a,b,c\\}$ there are $29$ distinct topologies.",
+    "related": [
+      "open-closed-set-metric",
+      "discrete-topology",
+      "indiscrete-topology",
+      "continuous-map-top",
+      "basis"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/topological-space.svg"
+  },
+  {
+    "id": "generated-topology",
+    "term": "Topology generated by a collection",
+    "kind": "Definition",
+    "ref": "Def. 4.3",
+    "chapter": "4",
+    "statement": "For a collection $\\mathcal{S}$ of subsets of $X$, the \\textbf{topology generated by} $\\mathcal{S}$ is $\\langle\\mathcal{S}\\rangle=\\bigcap\\{\\mathcal{T}\\ \\text{topology}\\mid \\mathcal{S}\\subseteq\\mathcal{T}\\}$, the smallest topology containing $\\mathcal{S}$.",
+    "gloss": "Take any collection of “intended open sets” and form the coarsest topology making them open, by intersecting all topologies that contain them.",
+    "example": "$\\langle\\varnothing\\rangle=\\mathcal{T}_{\\mathrm{ind}}$; the collection of all singletons generates $\\mathcal{T}_{\\mathrm{disc}}$.",
+    "related": [
+      "intersection-topologies",
+      "basis",
+      "subbasis"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/generated-topology.svg"
+  },
+  {
+    "id": "tube-lemma",
+    "term": "Tube lemma",
+    "kind": "Lemma",
+    "ref": "Lemma 6.38",
+    "chapter": "6",
+    "statement": "Let $Y$ be compact. If $x\\in X$ and $U$ is open in $X\\times Y$ containing the slice $\\{x\\}\\times Y$, then there is a neighborhood $W$ of $x$ with $W\\times Y\\subseteq U$.",
+    "gloss": "An open set containing a whole compact slice automatically contains a “tube” $W\\times Y$ around it. The technical engine behind compactness of products.",
+    "example": "Used directly to prove that a finite product of compact spaces is compact (Thm. 6.39).",
+    "related": [
+      "product-compact",
+      "compact-space",
+      "product-topology"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/tube-lemma.svg"
+  },
+  {
+    "id": "path-lifting",
+    "term": "Unique path lifting property",
+    "kind": "Theorem",
+    "ref": "Thm. 8.12",
+    "chapter": "8",
+    "statement": "Let $p\\colon E\\to B$ be a covering map with $p(e_0)=b_0$. For any path $f\\colon I\\to B$ with $f(0)=b_0$ there is a \\textbf{unique} path $\\tilde f\\colon I\\to E$ lifting $f$ with $\\tilde f(0)=e_0$.",
+    "gloss": "Paths lift uniquely once you fix a starting point upstairs. The cornerstone for relating loops in $B$ to points in a fibre.",
+    "example": "For $p\\colon\\mathbb{R}\\to S^1$, a loop winding once lifts to a path in $\\mathbb{R}$ from $0$ to $1$.",
+    "related": [
+      "covering-space",
+      "lifting",
+      "homotopy-lifting",
+      "lebesgue-number",
+      "lifting-correspondence"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/path-lifting.svg"
+  },
+  {
+    "id": "quotient-universal",
+    "term": "Universal property of the quotient",
+    "kind": "Theorem",
+    "ref": "Thm. 5.26",
+    "chapter": "5",
+    "statement": "The quotient topology is the unique topology on $A$ such that for every space $Y$ and every map $f\\colon A\\to Y$: $f$ is continuous iff $f\\circ\\pi\\colon X\\to Y$ is continuous.",
+    "gloss": "A clean test: a map <em>out of</em> a quotient is continuous exactly when its composite with $\\pi$ is. This characterises the quotient topology completely.",
+    "example": "Lets you define continuous maps on glued spaces by defining them on $X$ in a $\\sim$-compatible way.",
+    "related": [
+      "quotient-space",
+      "composition-continuous"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/quotient-universal.svg"
+  },
+  {
+    "id": "pi1-invariant",
+    "term": "π₁ is a topological invariant",
+    "kind": "Corollary",
+    "ref": "Cor. 7.25",
+    "chapter": "7",
+    "statement": "If $h\\colon X\\to Y$ is a homeomorphism with $h(x_0)=y_0$, then $h_*\\colon\\pi_1(X,x_0)\\to\\pi_1(Y,y_0)$ is an isomorphism.",
+    "gloss": "Homeomorphic spaces have isomorphic fundamental groups — so different $\\pi_1$ proves spaces are not homeomorphic.",
+    "example": "Since $\\pi_1(\\mathbb{R}^2)=0$ but $\\pi_1(S^1)\\cong\\mathbb{Z}$, the plane and the circle are not homeomorphic.",
+    "related": [
+      "functoriality",
+      "homeomorphism",
+      "topological-property",
+      "pi1-circle"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/pi1-invariant.svg"
+  },
+  {
+    "id": "pi1-product",
+    "term": "π₁ of a product",
+    "kind": "Theorem",
+    "ref": "Thm. 7.26",
+    "chapter": "7",
+    "statement": "For based spaces $(X,x_0),(Y,y_0)$: $\\pi_1(X\\times Y,(x_0,y_0))\\cong\\pi_1(X,x_0)\\times\\pi_1(Y,y_0)$.",
+    "gloss": "The fundamental group of a product is the direct product of the fundamental groups — loops split into their coordinate loops.",
+    "example": "$\\pi_1(T^2)=\\pi_1(S^1\\times S^1)\\cong\\mathbb{Z}\\times\\mathbb{Z}$.",
+    "related": [
+      "fundamental-group",
+      "product-topology",
+      "pi1-circle"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/pi1-product.svg"
+  },
+  {
+    "id": "pi1-circle",
+    "term": "π₁(S¹) ≅ ℤ",
+    "kind": "Theorem",
+    "ref": "Thm. 8.16",
+    "chapter": "8",
+    "statement": "For any $s_0\\in S^1$, the lifting correspondence $\\Phi\\colon\\pi_1(S^1,s_0)\\to\\mathbb{Z}$ is a group isomorphism.",
+    "gloss": "The fundamental group of the circle is the integers, with the integer counting how many times a loop winds around. The first non-trivial $\\pi_1$ computation.",
+    "example": "It underlies the $2$-dimensional Brouwer theorem and the fundamental theorem of algebra.",
+    "related": [
+      "lifting-correspondence",
+      "covering-space",
+      "fundamental-group",
+      "brouwer",
+      "fta",
+      "pi1-product"
+    ],
+    "diagramPath": "/atlas-assets/diagrams/pi1-circle.svg"
+  }
+]
