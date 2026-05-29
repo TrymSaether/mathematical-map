@@ -9,19 +9,52 @@
 
 export type ColorScheme = "light" | "dark";
 
+export interface ThemePreview {
+  bg: string;
+  surface: string;
+  ink: string;
+  accent: string;
+}
+
 export interface ThemeDef {
   id: string;
   label: string;
   scheme: ColorScheme;
-  /** Tiny preview swatch for the picker: [surface, ink, accent]. */
-  swatch: [string, string, string];
+  /** Themes pair up by family; the scheme toggle flips between siblings. */
+  family: string;
+  /** Real colors for the picker thumbnail. */
+  preview: ThemePreview;
 }
 
 export const THEMES: ThemeDef[] = [
-  { id: "paper", label: "Paper", scheme: "light", swatch: ["#FFFFFF", "#0F172A", "#2563EB"] },
-  { id: "chalkboard", label: "Chalkboard", scheme: "dark", swatch: ["#161D2F", "#ECEEF4", "#58C4DD"] },
-  { id: "manuscript", label: "Manuscript", scheme: "light", swatch: ["#FBF8F1", "#211D18", "#A8431D"] },
-  { id: "nocturne", label: "Nocturne", scheme: "dark", swatch: ["#1F1C16", "#ECE4D4", "#E08A4F"] },
+  {
+    id: "paper",
+    label: "Paper",
+    scheme: "light",
+    family: "slate",
+    preview: { bg: "#F8FAFC", surface: "#FFFFFF", ink: "#0F172A", accent: "#2563EB" },
+  },
+  {
+    id: "chalkboard",
+    label: "Chalkboard",
+    scheme: "dark",
+    family: "slate",
+    preview: { bg: "#0E1322", surface: "#1F2740", ink: "#ECEEF4", accent: "#58C4DD" },
+  },
+  {
+    id: "manuscript",
+    label: "Manuscript",
+    scheme: "light",
+    family: "sepia",
+    preview: { bg: "#F4EFE6", surface: "#FBF8F1", ink: "#211D18", accent: "#A8431D" },
+  },
+  {
+    id: "nocturne",
+    label: "Nocturne",
+    scheme: "dark",
+    family: "sepia",
+    preview: { bg: "#16140F", surface: "#2A261E", ink: "#ECE4D4", accent: "#E08A4F" },
+  },
 ];
 
 export const DEFAULT_THEME_ID = "paper";
@@ -39,6 +72,18 @@ export function resolveThemeId(value: string | null | undefined): string {
 
 export function schemeFor(themeId: string): ColorScheme {
   return THEME_BY_ID.get(themeId)?.scheme ?? "light";
+}
+
+/**
+ * The opposite-scheme theme in the same family (Paper↔Chalkboard,
+ * Manuscript↔Nocturne). Used by the quick light/dark toggle so flipping the
+ * scheme keeps the chosen palette family.
+ */
+export function siblingOf(themeId: string): string {
+  const theme = THEME_BY_ID.get(themeId);
+  if (!theme) return DEFAULT_THEME_ID;
+  const sib = THEMES.find((t) => t.family === theme.family && t.scheme !== theme.scheme);
+  return sib?.id ?? themeId;
 }
 
 /** Read the persisted theme id (falling back to the default). */

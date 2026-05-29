@@ -15,6 +15,7 @@ import type { LoadedMap } from "../data";
 import { MathText } from "../lib/katex";
 import { cn } from "../lib/utils";
 import { getDomainTone } from "../lib/colors";
+import { CATEGORY_META, categoryOf } from "../lib/nodeCategory";
 import { KIND_LABEL, type GraphNode } from "../types";
 
 const USED_BY_INITIAL = 8;
@@ -250,7 +251,7 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
               <Empty>No related cases linked.</Empty>
             ) : (
               examples.map((rid) => (
-                <RefRow key={rid} id={rid} map={map} onClick={() => select(rid)} dotColor="#E0A92F" />
+                <RefRow key={rid} id={rid} map={map} onClick={() => select(rid)} />
               ))
             )}
           </div>
@@ -271,7 +272,7 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
               <Empty>No exercises linked.</Empty>
             ) : (
               exercises.map((rid) => (
-                <RefRow key={rid} id={rid} map={map} onClick={() => select(rid)} dotColor="#64748B" />
+                <RefRow key={rid} id={rid} map={map} onClick={() => select(rid)} />
               ))
             )}
           </div>
@@ -398,24 +399,25 @@ function RefRow({
   id,
   map,
   onClick,
-  dotColor,
 }: {
   id: string;
   map: LoadedMap;
   onClick: () => void;
-  dotColor?: string;
 }) {
   const node = map.nodeById.get(id);
   if (!node) return null;
   const tone = getDomainTone(node.domainId);
+  const Icon = CATEGORY_META[categoryOf(node.kind)].icon;
   return (
     <button
       onClick={onClick}
       className="flex w-full items-center gap-2.5 rounded-md px-1 py-1.5 text-left transition-colors hover:bg-[color:var(--surface-3)]"
     >
-      <span
-        className="h-2 w-2 flex-shrink-0 rounded-full"
-        style={{ background: dotColor ?? tone.color }}
+      <Icon
+        className="h-3.5 w-3.5 flex-shrink-0"
+        strokeWidth={2.25}
+        style={{ color: tone.color }}
+        aria-hidden
       />
       <span
         className="w-[68px] flex-shrink-0 truncate text-[10.5px] font-medium uppercase tracking-[0.08em]"

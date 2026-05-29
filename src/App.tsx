@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { ReactFlowProvider } from "reactflow";
 import { Background } from "./components/Background";
 import { TopBar } from "./components/TopBar";
@@ -21,9 +21,12 @@ export default function App() {
     void ensureMapLoaded(mapId);
   }, [ensureMapLoaded, mapId]);
 
-  useEffect(() => {
-    if (!map) return;
-    assignDomainTones(map.data.domains.map((d) => d.id));
+  // Assign domain tones during render (not in an effect) so the ordered palette
+  // is in the cache before GraphCanvas builds its region nodes. Otherwise the
+  // region tones get baked from getDomainTone's hash fallback on first paint —
+  // producing duplicate/colliding hues that never match the nodes or minimap.
+  useMemo(() => {
+    if (map) assignDomainTones(map.data.domains.map((d) => d.id));
   }, [map]);
 
   return (

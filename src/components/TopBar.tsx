@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Search, SlidersHorizontal, ChevronDown, BookOpen, Settings2 } from "lucide-react";
+import { Search, SlidersHorizontal, ChevronDown, BookOpen, Settings2, Sun, Moon } from "lucide-react";
 import { MAPS, type MapId } from "../data";
 import { useStore, type EdgeStyle } from "../store";
-import { THEMES } from "../lib/themes";
+import { THEMES, schemeFor, siblingOf } from "../lib/themes";
 import { cn } from "../lib/utils";
 import { getDomainTone } from "../lib/colors";
 import { KIND_LABEL } from "../types";
@@ -17,6 +17,7 @@ export function TopBar() {
           <SearchBox />
           <DictionaryButton />
           <FilterButton />
+          <SchemeToggle />
           <DisplayButton />
         </div>
       </div>
@@ -217,6 +218,10 @@ function FilterPopover() {
   const topics = useStore((s) => s.topics);
   const toggleTopic = useStore((s) => s.toggleTopic);
   const resetTopics = useStore((s) => s.resetTopics);
+  const showSoftDeps = useStore((s) => s.showSoftDeps);
+  const toggleSoftDeps = useStore((s) => s.toggleSoftDeps);
+  const showExercises = useStore((s) => s.showExercises);
+  const toggleExercises = useStore((s) => s.toggleExercises);
   if (!map) return null;
 
   return (
@@ -294,6 +299,20 @@ function FilterPopover() {
           );
         })}
       </div>
+
+      <div className="my-3.5 h-px" style={{ background: "var(--border)" }} />
+      <div
+        className="mb-1 text-[10.5px] font-semibold uppercase tracking-[0.14em]"
+        style={{ color: "var(--fg-3)" }}
+      >
+        On the map
+      </div>
+      <SettingRow label="Exercises" hint="Show practice nodes">
+        <ToggleSwitch active={showExercises} onClick={toggleExercises} />
+      </SettingRow>
+      <SettingRow label="Soft links" hint="Pedagogical 'learn-first' edges">
+        <ToggleSwitch active={showSoftDeps} onClick={toggleSoftDeps} />
+      </SettingRow>
     </div>
   );
 }
@@ -404,75 +423,59 @@ function ToggleSwitch({ active, onClick }: { active: boolean; onClick: () => voi
   );
 }
 
+function ThemeSwatch({ theme, active, onClick }: { theme: (typeof THEMES)[number]; active: boolean; onClick: () => void }) {
+  const p = theme.preview;
+  return (
+    <button
+      onClick={onClick}
+      className="h-[22px] w-[22px] rounded-full transition-transform hover:scale-110"
+      style={{
+        background: `linear-gradient(135deg, ${p.surface} 0 50%, ${p.accent} 50% 100%)`,
+        boxShadow: active
+          ? "0 0 0 2px var(--surface), 0 0 0 3.5px var(--accent)"
+          : "inset 0 0 0 1px var(--border-strong)",
+      }}
+      aria-pressed={active}
+      aria-label={theme.label}
+      title={theme.label}
+    />
+  );
+}
+
 function DisplayPopover() {
   const theme = useStore((s) => s.theme);
   const setTheme = useStore((s) => s.setTheme);
   const edgeStyle = useStore((s) => s.edgeStyle);
   const setEdgeStyle = useStore((s) => s.setEdgeStyle);
-  const showSoftDeps = useStore((s) => s.showSoftDeps);
-  const toggleSoftDeps = useStore((s) => s.toggleSoftDeps);
-  const showExercises = useStore((s) => s.showExercises);
-  const toggleExercises = useStore((s) => s.toggleExercises);
+  const activeLabel = THEMES.find((t) => t.id === theme)?.label ?? theme;
 
   return (
     <div
-      className="absolute right-0 top-12 w-[300px] rounded-2xl border p-4"
+      className="absolute right-0 top-12 w-[260px] rounded-2xl border p-4"
       style={{
         background: "var(--surface)",
         borderColor: "var(--border)",
         boxShadow: "var(--shadow-3)",
       }}
     >
-      <div
-        className="mb-1.5 text-[10.5px] font-semibold uppercase tracking-[0.14em]"
-        style={{ color: "var(--fg-3)" }}
-      >
-        Appearance
+      <div className="mb-2.5 flex items-baseline justify-between">
+        <span
+          className="text-[10.5px] font-semibold uppercase tracking-[0.14em]"
+          style={{ color: "var(--fg-3)" }}
+        >
+          Theme
+        </span>
+        <span className="text-[11.5px] font-medium" style={{ color: "var(--fg-2)" }}>
+          {activeLabel}
+        </span>
       </div>
-      <div className="mt-1 grid grid-cols-2 gap-1.5">
-        {THEMES.map((t) => {
-          const active = t.id === theme;
-          return (
-            <button
-              key={t.id}
-              onClick={() => setTheme(t.id)}
-              className="flex items-center gap-2 rounded-xl border px-2.5 py-2 text-left transition-colors"
-              style={{
-                borderColor: active ? "var(--accent)" : "var(--border)",
-                background: active ? "var(--accent-soft)" : "var(--surface-2)",
-                boxShadow: active ? `0 0 0 1px var(--accent)` : "none",
-              }}
-              aria-pressed={active}
-            >
-              <span
-                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border"
-                style={{ background: t.swatch[0], borderColor: "var(--border)" }}
-              >
-                <span
-                  className="flex h-3.5 w-3.5 items-center justify-center rounded-full"
-                  style={{ background: t.swatch[1] }}
-                >
-                  <span className="h-1.5 w-1.5 rounded-full" style={{ background: t.swatch[2] }} />
-                </span>
-              </span>
-              <span
-                className="text-[12px] font-medium"
-                style={{ color: active ? "var(--accent)" : "var(--fg-1)" }}
-              >
-                {t.label}
-              </span>
-            </button>
-          );
-        })}
+      <div className="flex items-center gap-3">
+        {THEMES.map((t) => (
+          <ThemeSwatch key={t.id} theme={t} active={t.id === theme} onClick={() => setTheme(t.id)} />
+        ))}
       </div>
 
-      <div className="my-2 h-px" style={{ background: "var(--border)" }} />
-      <div
-        className="mb-1.5 text-[10.5px] font-semibold uppercase tracking-[0.14em]"
-        style={{ color: "var(--fg-3)" }}
-      >
-        Graph
-      </div>
+      <div className="my-3.5 h-px" style={{ background: "var(--border)" }} />
       <SettingRow label="Edge style">
         <Segmented<EdgeStyle>
           value={edgeStyle}
@@ -484,12 +487,28 @@ function DisplayPopover() {
           ]}
         />
       </SettingRow>
-      <SettingRow label="Soft links" hint="Pedagogical 'learn-first' edges">
-        <ToggleSwitch active={showSoftDeps} onClick={toggleSoftDeps} />
-      </SettingRow>
-      <SettingRow label="Exercises" hint="Show practice nodes on the map">
-        <ToggleSwitch active={showExercises} onClick={toggleExercises} />
-      </SettingRow>
     </div>
+  );
+}
+
+function SchemeToggle() {
+  const theme = useStore((s) => s.theme);
+  const setTheme = useStore((s) => s.setTheme);
+  const isDark = schemeFor(theme) === "dark";
+  return (
+    <button
+      onClick={() => setTheme(siblingOf(theme))}
+      className="flex h-9 w-9 items-center justify-center rounded-pill border sm:h-10 sm:w-10"
+      style={{
+        background: "var(--surface)",
+        borderColor: "var(--border)",
+        color: "var(--fg-2)",
+        boxShadow: "var(--shadow-1)",
+      }}
+      aria-label={isDark ? "Switch to light scheme" : "Switch to dark scheme"}
+      title={isDark ? "Light" : "Dark"}
+    >
+      {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+    </button>
   );
 }
