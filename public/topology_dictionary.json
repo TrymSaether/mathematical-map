@@ -951,7 +951,7 @@
     "kind": "Definition",
     "ref": "Def. 2.1",
     "chapter": "2",
-    "statement": "A \\textbf{metric space} $(X,d)$ is a non-empty set $X$ with a map $d\\colon X\\times X\\to\\mathbb{R}$ such that for all $x,y,z\\in X$:\\;\\textbf{(M1)}\\ d(x,y)\\ge 0,\\ \\text{and}\\ d(x,y)=0\\Leftrightarrow x=y;\\;\\textbf{(M2)}\\ d(x,y)=d(y,x);\\;\\textbf{(M3)}\\ d(x,z)\\le d(x,y)+d(y,z).",
+    "statement": "A \\textbf{metric space} $(X,d)$ is a non-empty set $X$ with a map $d\\colon X\\times X\\to\\mathbb{R}$ such that for all $x,y,z\\in X$: $$\\begin{aligned} \\textbf{(M1)}\\quad d(x,y) &\\ge 0,\\ \\text{and}\\ d(x,y)=0\\Leftrightarrow x=y \\\\ \\textbf{(M2)}\\quad d(x,y) &= d(y,x) \\\\ \\textbf{(M3)}\\quad d(x,z) &\\le d(x,y)+d(y,z). \\end{aligned}$$",
     "gloss": "A set equipped with a notion of distance. The three axioms say distance is non-negative (and zero only between identical points), symmetric, and obeys the triangle inequality.",
     "example": "$\\mathbb{R}^n$ with $d(x,y)=\\lVert x-y\\rVert$ is the prototype. The <em>discrete metric</em> ($d(x,y)=1$ for $x\\neq y$, else $0$) makes any set a metric space.",
     "related": [

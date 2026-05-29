@@ -508,7 +508,7 @@
             <input
               id="q"
               type="search"
-              placeholder="Search terms, statements, ideas&hellip; (press /)"
+              placeholder="Search terms, statements, ideas&hellip; (press / to focus)"
               autocomplete="off"
             />
           </label>
@@ -755,16 +755,16 @@
       <div class="tags"><span class="tag kind">${e.kind}</span>
         <span class="tag ref">${esc(e.ref)}</span>
         <span class="tag">Ch. ${e.chapter} &middot; ${esc(CHAPTERS[e.chapter].replace(/^Appendix .\u2014 /, ""))}</span></div>
-      <div class="statement"><span class="lab">Statement</span><div class="tex-d">${processLatex(e.statement)}</div></div>
-      <div class="gloss"><span class="lab">In words</span>${processLatex(e.gloss)}</div>
-      <div class="example"><span class="lab">Example</span>${processLatex(e.example)}</div>
+      <div class="statement"><span class="lab">Statement</span><div class="tex-d">${processInlineMarkup(e.statement)}</div></div>
+      <div class="gloss"><span class="lab">In words</span>${processInlineMarkup(e.gloss)}</div>
+      <div class="example"><span class="lab">Example</span>${processInlineMarkup(e.example)}</div>
       ${rel ? `<div class="related"><span class="lab">See also</span>${rel}</div>` : ""}
     </div>
     <div class="dia" aria-hidden="true">${e.diagramPath ? `<img src="${esc(e.diagramPath)}" alt="" loading="lazy" decoding="async" />` : ""}</div>`;
         return c;
       }
-      /* Split on $…$ / $$…$$ boundaries; escape + convert LaTeX text commands in non-math segments */
-      function processLatex(s) {
+      /* Split on $…$ / $$…$$ boundaries; preserve semantic inline HTML in non-math segments. */
+      function processInlineMarkup(s) {
         const out = [];
         let i = 0;
         while (i < s.length) {
@@ -786,19 +786,38 @@
           }
           let j = i;
           while (j < s.length && s[j] !== "$") j++;
-          out.push(textToHtml(s.slice(i, j)));
+          out.push(renderInlineHtml(s.slice(i, j)));
           i = j;
         }
         return out.join("");
       }
-      function textToHtml(s) {
-        s = esc(s);
+      function renderInlineHtml(s) {
         s = s.replace(/\\textbf\{([^}]*)\}/g, "<strong>$1</strong>");
         s = s.replace(/\\(?:textit|emph)\{([^}]*)\}/g, "<em>$1</em>");
         s = s.replace(/\\text\{([^}]*)\}/g, "$1");
         s = s.replace(/\\;/g, " ");
         s = s.replace(/\\ /g, " ");
-        return s;
+
+        const template = document.createElement("template");
+        template.innerHTML = s;
+
+        const allowed = new Set(["EM", "STRONG", "BR", "CODE", "SUB", "SUP"]);
+        Array.from(template.content.querySelectorAll("*"))
+          .reverse()
+          .forEach((el) => {
+            if (!allowed.has(el.tagName)) {
+              const parent = el.parentNode;
+              if (!parent) return;
+              while (el.firstChild) parent.insertBefore(el.firstChild, el);
+              parent.removeChild(el);
+              return;
+            }
+            Array.from(el.attributes).forEach((attr) =>
+              el.removeAttribute(attr.name),
+            );
+          });
+
+        return template.innerHTML;
       }
 
       /* ---- A-Z rail ---- */
