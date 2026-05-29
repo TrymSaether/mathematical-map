@@ -12,140 +12,164 @@
   color-scheme: light;
 
   /* Surfaces */
-  --bg:         #F8FAFC;
-  --bg-deep:    #F1F5F9;
-  --surface:    #FFFFFF;
-  --surface-2:  #FCFCFD;
-  --surface-3:  #F1F5F9;
+  --bg: #F8FAFC;
+  --bg-deep: #F1F5F9;
+  --surface: #FFFFFF;
+  --surface-2: #FCFCFD;
+  --surface-3: #F1F5F9;
 
   /* Ink */
-  --fg-1:       #0F172A;
-  --fg-2:       #475569;
-  --fg-3:       #94A3B8;
-  --fg-4:       #CBD5E1;
-  --fg-on-color:#FFFFFF;
+  --fg-1: #0F172A;
+  --fg-2: #475569;
+  --fg-3: #94A3B8;
+  --fg-4: #CBD5E1;
+  --fg-on-color: #FFFFFF;
 
   /* Borders */
-  --border:        #E2E8F0;
+  --border: #E2E8F0;
   --border-strong: #CBD5E1;
   --border-subtle: #F1F5F9;
-  --hairline:      #E2E8F0;
+  --hairline: #E2E8F0;
 
   /* 8 Atlas domains */
-  --blue:    #2563EB;  /* Foundations */
-  --green:   #16A34A;  /* Continuity */
-  --purple:  #7C3AED;  /* Connectedness */
-  --red:     #DC2626;  /* Fundamental Group */
-  --teal:    #0D9488;  /* Covering Spaces */
-  --orange:  #F97316;  /* Compactness */
-  --pink:    #DB2777;  /* Homotopy */
-  --gold:    #EAB308;  /* Examples */
+  --blue: #2563EB;
+  /* Foundations */
+  --green: #16A34A;
+  /* Continuity */
+  --purple: #7C3AED;
+  /* Connectedness */
+  --red: #DC2626;
+  /* Fundamental Group */
+  --teal: #0D9488;
+  /* Covering Spaces */
+  --orange: #F97316;
+  /* Compactness */
+  --pink: #DB2777;
+  /* Homotopy */
+  --gold: #EAB308;
+  /* Examples */
 
   /* Pastel surface tints (96% L) */
-  --blue-50:   #EFF4FF;
-  --green-50:  #ECFBF1;
+  --blue-50: #EFF4FF;
+  --green-50: #ECFBF1;
   --purple-50: #F4EEFE;
-  --red-50:    #FEF1F1;
-  --teal-50:   #EAF7F5;
+  --red-50: #FEF1F1;
+  --teal-50: #EAF7F5;
   --orange-50: #FFF1E8;
-  --pink-50:   #FDEEF5;
-  --gold-50:   #FBF6E1;
+  --pink-50: #FDEEF5;
+  --gold-50: #FBF6E1;
 
   /* Border weight for region outlines (88% L) */
-  --blue-200:   #C9DAFE;
-  --green-200:  #BEE9CB;
+  --blue-200: #C9DAFE;
+  --green-200: #BEE9CB;
   --purple-200: #D8C8FB;
-  --red-200:    #F4C5C5;
-  --teal-200:   #B8DDD6;
+  --red-200: #F4C5C5;
+  --teal-200: #B8DDD6;
   --orange-200: #F8CFB0;
-  --pink-200:   #F4C0D7;
-  --gold-200:   #EFDF8E;
+  --pink-200: #F4C0D7;
+  --gold-200: #EFDF8E;
 
-  --accent:        var(--blue);
-  --accent-soft:   var(--blue-50);
+  --accent: var(--blue);
+  --accent-soft: var(--blue-50);
   --accent-border: var(--blue-200);
 
   --selection: rgba(37, 99, 235, 0.18);
 
   /* Edges are monochrome ink — color is reserved for domains. */
-  --edge-ink:       #64748B;
+  --edge-ink: #64748B;
   --edge-highlight: var(--blue);
 
   --shadow-1: 0 1px 2px rgba(15, 23, 42, 0.04);
   --shadow-2: 0 4px 12px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
   --shadow-3: 0 12px 32px rgba(15, 23, 42, 0.10), 0 2px 6px rgba(15, 23, 42, 0.05);
 
-  --grid-dot:   #E5E7EB;
+  --grid-dot: #E5E7EB;
   --grid-major: rgba(15, 23, 42, 0.05);
   --grid-minor: rgba(15, 23, 42, 0.025);
+
+  /* Diagram tokens (used by inline SVGs in /public/atlas-assets/diagrams) */
+  --dia-fill: var(--surface-2);
+  --dia-fil2: var(--surface-3);
+  --dia-ink: var(--fg-1);
+  --dia-acc: var(--accent);
+  --dia-acc2: var(--accent-border);
+  --dia-mut: var(--fg-3);
 }
 
 :root[data-theme="chalkboard"] {
   color-scheme: dark;
 
   /* Chalkboard surfaces */
-  --bg:         #0E1322;
-  --bg-deep:    #080C18;
-  --surface:    #161D2F;
-  --surface-2:  #1F2740;
-  --surface-3:  #28324F;
+  --bg: #0E1322;
+  --bg-deep: #080C18;
+  --surface: #161D2F;
+  --surface-2: #1F2740;
+  --surface-3: #28324F;
 
-  --fg-1:       #ECEEF4;
-  --fg-2:       #A8B0C0;
-  --fg-3:       #6B7280;
-  --fg-4:       #3F4761;
-  --fg-on-color:#0E1322;
+  --fg-1: #ECEEF4;
+  --fg-2: #A8B0C0;
+  --fg-3: #6B7280;
+  --fg-4: #3F4761;
+  --fg-on-color: #0E1322;
 
-  --border:        rgba(255, 255, 255, 0.10);
+  --border: rgba(255, 255, 255, 0.10);
   --border-strong: rgba(255, 255, 255, 0.18);
   --border-subtle: rgba(255, 255, 255, 0.05);
-  --hairline:      rgba(255, 255, 255, 0.10);
+  --hairline: rgba(255, 255, 255, 0.10);
 
   /* Same hues, lifted for contrast on chalkboard */
-  --blue:    #58C4DD;
-  --green:   #83C167;
-  --purple:  #B594D6;
-  --red:     #FC6255;
-  --teal:    #5CD0B3;
-  --orange:  #F0AC5F;
-  --pink:    #D147BD;
-  --gold:    #FFD93D;
+  --blue: #58C4DD;
+  --green: #83C167;
+  --purple: #B594D6;
+  --red: #FC6255;
+  --teal: #5CD0B3;
+  --orange: #F0AC5F;
+  --pink: #D147BD;
+  --gold: #FFD93D;
 
-  --blue-50:   rgba( 88, 196, 221, 0.12);
-  --green-50:  rgba(131, 193, 103, 0.12);
+  --blue-50: rgba(88, 196, 221, 0.12);
+  --green-50: rgba(131, 193, 103, 0.12);
   --purple-50: rgba(181, 148, 214, 0.14);
-  --red-50:    rgba(252,  98,  85, 0.12);
-  --teal-50:   rgba( 92, 208, 179, 0.12);
-  --orange-50: rgba(240, 172,  95, 0.12);
-  --pink-50:   rgba(209,  71, 189, 0.12);
-  --gold-50:   rgba(255, 217,  61, 0.12);
+  --red-50: rgba(252, 98, 85, 0.12);
+  --teal-50: rgba(92, 208, 179, 0.12);
+  --orange-50: rgba(240, 172, 95, 0.12);
+  --pink-50: rgba(209, 71, 189, 0.12);
+  --gold-50: rgba(255, 217, 61, 0.12);
 
-  --blue-200:   rgba( 88, 196, 221, 0.36);
-  --green-200:  rgba(131, 193, 103, 0.36);
+  --blue-200: rgba(88, 196, 221, 0.36);
+  --green-200: rgba(131, 193, 103, 0.36);
   --purple-200: rgba(181, 148, 214, 0.36);
-  --red-200:    rgba(252,  98,  85, 0.36);
-  --teal-200:   rgba( 92, 208, 179, 0.36);
-  --orange-200: rgba(240, 172,  95, 0.36);
-  --pink-200:   rgba(209,  71, 189, 0.36);
-  --gold-200:   rgba(255, 217,  61, 0.36);
+  --red-200: rgba(252, 98, 85, 0.36);
+  --teal-200: rgba(92, 208, 179, 0.36);
+  --orange-200: rgba(240, 172, 95, 0.36);
+  --pink-200: rgba(209, 71, 189, 0.36);
+  --gold-200: rgba(255, 217, 61, 0.36);
 
-  --accent:        var(--blue);
-  --accent-soft:   var(--blue-50);
+  --accent: var(--blue);
+  --accent-soft: var(--blue-50);
   --accent-border: var(--blue-200);
 
   --selection: rgba(88, 196, 221, 0.28);
 
   /* Edges are monochrome ink — color is reserved for domains. */
-  --edge-ink:       #6B7689;
+  --edge-ink: #6B7689;
   --edge-highlight: var(--blue);
 
   --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-2: 0 4px 16px rgba(0, 0, 0, 0.5);
   --shadow-3: 0 18px 48px rgba(0, 0, 0, 0.55);
 
-  --grid-dot:   rgba(255, 255, 255, 0.08);
+  --grid-dot: rgba(255, 255, 255, 0.08);
   --grid-major: rgba(255, 255, 255, 0.05);
   --grid-minor: rgba(255, 255, 255, 0.025);
+
+  /* Diagram tokens */
+  --dia-fill: var(--surface-2);
+  --dia-fil2: var(--surface-3);
+  --dia-ink: var(--fg-1);
+  --dia-acc: var(--accent);
+  --dia-acc2: var(--accent-border);
+  --dia-mut: var(--fg-3);
 }
 
 /* Manuscript — warm "old paper" reskin. Only the surfaces/ink/borders/accent
@@ -154,39 +178,47 @@
 :root[data-theme="manuscript"] {
   color-scheme: light;
 
-  --bg:         #F4EFE6;
-  --bg-deep:    #ECE5D8;
-  --surface:    #FBF8F1;
-  --surface-2:  #F6F1E7;
-  --surface-3:  #ECE5D8;
+  --bg: #F4EFE6;
+  --bg-deep: #ECE5D8;
+  --surface: #FBF8F1;
+  --surface-2: #F6F1E7;
+  --surface-3: #ECE5D8;
 
-  --fg-1:       #211D18;
-  --fg-2:       #6B6256;
-  --fg-3:       #9A8E7C;
-  --fg-4:       #C9BCA6;
-  --fg-on-color:#FBF8F1;
+  --fg-1: #211D18;
+  --fg-2: #6B6256;
+  --fg-3: #9A8E7C;
+  --fg-4: #C9BCA6;
+  --fg-on-color: #FBF8F1;
 
-  --border:        #DDD2BD;
+  --border: #DDD2BD;
   --border-strong: #C9BCA6;
   --border-subtle: #ECE5D8;
-  --hairline:      #DDD2BD;
+  --hairline: #DDD2BD;
 
-  --accent:        #A8431D;
-  --accent-soft:   #F3E4DA;
+  --accent: #A8431D;
+  --accent-soft: #F3E4DA;
   --accent-border: #E3C3B2;
 
   --selection: rgba(168, 67, 29, 0.16);
 
-  --edge-ink:       #8A7E6C;
+  --edge-ink: #8A7E6C;
   --edge-highlight: var(--accent);
 
   --shadow-1: 0 1px 2px rgba(40, 30, 15, 0.06);
   --shadow-2: 0 4px 14px rgba(40, 30, 15, 0.10), 0 1px 2px rgba(40, 30, 15, 0.06);
   --shadow-3: 0 14px 36px rgba(40, 30, 15, 0.16), 0 2px 6px rgba(40, 30, 15, 0.08);
 
-  --grid-dot:   #E2D7C4;
+  --grid-dot: #E2D7C4;
   --grid-major: rgba(33, 29, 24, 0.05);
   --grid-minor: rgba(33, 29, 24, 0.025);
+
+  /* Diagram tokens */
+  --dia-fill: var(--surface-2);
+  --dia-fil2: var(--surface-3);
+  --dia-ink: var(--fg-1);
+  --dia-acc: var(--accent);
+  --dia-acc2: var(--accent-border);
+  --dia-mut: var(--fg-3);
 }
 
 /* Nocturne — warm dark. Self-contained: dark schemes must redefine the lifted
@@ -194,82 +226,95 @@
 :root[data-theme="nocturne"] {
   color-scheme: dark;
 
-  --bg:         #16140F;
-  --bg-deep:    #100E0A;
-  --surface:    #1F1C16;
-  --surface-2:  #2A261E;
-  --surface-3:  #353026;
+  --bg: #16140F;
+  --bg-deep: #100E0A;
+  --surface: #1F1C16;
+  --surface-2: #2A261E;
+  --surface-3: #353026;
 
-  --fg-1:       #ECE4D4;
-  --fg-2:       #A99E89;
-  --fg-3:       #7A7060;
-  --fg-4:       #4A4334;
-  --fg-on-color:#16140F;
+  --fg-1: #ECE4D4;
+  --fg-2: #A99E89;
+  --fg-3: #7A7060;
+  --fg-4: #4A4334;
+  --fg-on-color: #16140F;
 
-  --border:        rgba(236, 228, 212, 0.12);
+  --border: rgba(236, 228, 212, 0.12);
   --border-strong: rgba(236, 228, 212, 0.20);
   --border-subtle: rgba(236, 228, 212, 0.06);
-  --hairline:      rgba(236, 228, 212, 0.12);
+  --hairline: rgba(236, 228, 212, 0.12);
 
   /* Lifted domain hues (warm-leaning) for contrast on sepia. */
-  --blue:    #6FB6C9;
-  --green:   #9FC279;
-  --purple:  #C0A0DA;
-  --red:     #F0795F;
-  --teal:    #66CDB8;
-  --orange:  #E0A05A;
-  --pink:    #D96FA8;
-  --gold:    #E6C45A;
+  --blue: #6FB6C9;
+  --green: #9FC279;
+  --purple: #C0A0DA;
+  --red: #F0795F;
+  --teal: #66CDB8;
+  --orange: #E0A05A;
+  --pink: #D96FA8;
+  --gold: #E6C45A;
 
-  --blue-50:   rgba(111, 182, 201, 0.13);
-  --green-50:  rgba(159, 194, 121, 0.13);
+  --blue-50: rgba(111, 182, 201, 0.13);
+  --green-50: rgba(159, 194, 121, 0.13);
   --purple-50: rgba(192, 160, 218, 0.14);
-  --red-50:    rgba(240, 121,  95, 0.13);
-  --teal-50:   rgba(102, 205, 184, 0.13);
-  --orange-50: rgba(224, 160,  90, 0.13);
-  --pink-50:   rgba(217, 111, 168, 0.13);
-  --gold-50:   rgba(230, 196,  90, 0.13);
+  --red-50: rgba(240, 121, 95, 0.13);
+  --teal-50: rgba(102, 205, 184, 0.13);
+  --orange-50: rgba(224, 160, 90, 0.13);
+  --pink-50: rgba(217, 111, 168, 0.13);
+  --gold-50: rgba(230, 196, 90, 0.13);
 
-  --blue-200:   rgba(111, 182, 201, 0.36);
-  --green-200:  rgba(159, 194, 121, 0.36);
+  --blue-200: rgba(111, 182, 201, 0.36);
+  --green-200: rgba(159, 194, 121, 0.36);
   --purple-200: rgba(192, 160, 218, 0.36);
-  --red-200:    rgba(240, 121,  95, 0.36);
-  --teal-200:   rgba(102, 205, 184, 0.36);
-  --orange-200: rgba(224, 160,  90, 0.36);
-  --pink-200:   rgba(217, 111, 168, 0.36);
-  --gold-200:   rgba(230, 196,  90, 0.36);
+  --red-200: rgba(240, 121, 95, 0.36);
+  --teal-200: rgba(102, 205, 184, 0.36);
+  --orange-200: rgba(224, 160, 90, 0.36);
+  --pink-200: rgba(217, 111, 168, 0.36);
+  --gold-200: rgba(230, 196, 90, 0.36);
 
-  --accent:        #E08A4F;
-  --accent-soft:   rgba(224, 138, 79, 0.14);
+  --accent: #E08A4F;
+  --accent-soft: rgba(224, 138, 79, 0.14);
   --accent-border: rgba(224, 138, 79, 0.40);
 
   --selection: rgba(224, 138, 79, 0.26);
 
-  --edge-ink:       #7A7060;
+  --edge-ink: #7A7060;
   --edge-highlight: var(--accent);
 
   --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.45);
   --shadow-2: 0 4px 16px rgba(0, 0, 0, 0.55);
   --shadow-3: 0 18px 48px rgba(0, 0, 0, 0.6);
 
-  --grid-dot:   rgba(236, 228, 212, 0.08);
+  --grid-dot: rgba(236, 228, 212, 0.08);
   --grid-major: rgba(236, 228, 212, 0.05);
   --grid-minor: rgba(236, 228, 212, 0.025);
+
+  /* Diagram tokens */
+  --dia-fill: var(--surface-2);
+  --dia-fil2: var(--surface-3);
+  --dia-ink: var(--fg-1);
+  --dia-acc: var(--accent);
+  --dia-acc2: var(--accent-border);
+  --dia-mut: var(--fg-3);
 }
 
 /* ---- TYPOGRAPHY ----------------------------------------------------- */
 :root {
   --font-serif: "DM Serif Display", "Cormorant Garamond", "Georgia", serif;
-  --font-sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --font-mono:  "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace;
-  --font-math:  "STIX Two Text", "STIX Two Math", "Latin Modern Roman", "Cambria Math", "Georgia", serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace;
+  --font-math: "STIX Two Text", "STIX Two Math", "Latin Modern Roman", "Cambria Math", "Georgia", serif;
 
   --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
   --dur-micro: 120ms;
-  --dur-std:   220ms;
+  --dur-std: 220ms;
 }
 
-html, body, #root { height: 100%; }
+html,
+body,
+#root {
+  height: 100%;
+}
+
 body {
   font-family: var(--font-sans);
   font-size: 14px;
@@ -281,20 +326,39 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   transition: background var(--dur-std) var(--ease-standard),
-              color var(--dur-std) var(--ease-standard);
+    color var(--dur-std) var(--ease-standard);
 }
 
-button { font-family: inherit; }
+button {
+  font-family: inherit;
+}
 
-::selection { background: var(--selection); color: var(--fg-1); }
+::selection {
+  background: var(--selection);
+  color: var(--fg-1);
+}
 
-.font-serif  { font-family: var(--font-serif); }
-.font-math   { font-family: var(--font-math); }
-.font-mono   { font-family: var(--font-mono); }
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-math {
+  font-family: var(--font-math);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
 
 /* React Flow theming */
-.react-flow__renderer { background: transparent !important; }
-.react-flow__edge-path { stroke-linecap: round; }
+.react-flow__renderer {
+  background: transparent !important;
+}
+
+.react-flow__edge-path {
+  stroke-linecap: round;
+}
+
 .react-flow__handle {
   width: 6px !important;
   height: 6px !important;
@@ -302,6 +366,7 @@ button { font-family: inherit; }
   border: 0 !important;
   opacity: 0;
 }
+
 .react-flow__handle.graph-node-handle {
   width: 8px !important;
   height: 8px !important;
@@ -311,16 +376,22 @@ button { font-family: inherit; }
   transition: opacity 0.15s !important;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.18);
 }
+
 .react-flow__node:hover .react-flow__handle.graph-node-handle {
   opacity: 0.75 !important;
 }
+
 .react-flow__handle.graph-node-handle-left {
   left: -4px !important;
 }
+
 .react-flow__handle.graph-node-handle-right {
   right: -4px !important;
 }
-.react-flow__attribution { display: none; }
+
+.react-flow__attribution {
+  display: none;
+}
 
 .react-flow__minimap {
   background: color-mix(in srgb, var(--surface) 92%, transparent) !important;
@@ -329,6 +400,7 @@ button { font-family: inherit; }
   overflow: hidden;
   box-shadow: var(--shadow-2);
 }
+
 .react-flow__controls {
   background: color-mix(in srgb, var(--surface) 96%, transparent) !important;
   border: 1px solid var(--border) !important;
@@ -336,6 +408,7 @@ button { font-family: inherit; }
   overflow: hidden;
   box-shadow: var(--shadow-2);
 }
+
 .react-flow__controls-button {
   background: transparent !important;
   border-bottom: 1px solid var(--border) !important;
@@ -343,32 +416,73 @@ button { font-family: inherit; }
   width: 32px !important;
   height: 32px !important;
 }
-.react-flow__controls-button:last-child { border-bottom: 0 !important; }
-.react-flow__controls-button:hover { background: var(--surface-3) !important; }
-.react-flow__controls-button svg { fill: currentColor; }
+
+.react-flow__controls-button:last-child {
+  border-bottom: 0 !important;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--surface-3) !important;
+}
+
+.react-flow__controls-button svg {
+  fill: currentColor;
+}
 
 .react-flow__edge.selected .react-flow__edge-path,
-.react-flow__edge:focus .react-flow__edge-path { outline: none; }
+.react-flow__edge:focus .react-flow__edge-path {
+  outline: none;
+}
 
-.react-flow__node { font-family: inherit; }
-.react-flow__node:focus { outline: none; }
-.react-flow__node-default { box-shadow: none !important; background: transparent !important; border: 0 !important; }
+.react-flow__node {
+  font-family: inherit;
+}
+
+.react-flow__node:focus {
+  outline: none;
+}
+
+.react-flow__node-default {
+  box-shadow: none !important;
+  background: transparent !important;
+  border: 0 !important;
+}
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--fg-4); border-radius: 8px; }
-::-webkit-scrollbar-thumb:hover { background: var(--fg-3); }
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--fg-4);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--fg-3);
+}
+
 .dock-scrollbar {
   scrollbar-width: none;
 }
+
 .dock-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
 /* KaTeX nudges */
-.katex { font-size: 1em; }
-.katex-display { margin: 0.4em 0; }
+.katex {
+  font-size: 1em;
+}
+
+.katex-display {
+  margin: 0.4em 0;
+}
 
 /* Canvas backdrops */
 .atlas-dots {
@@ -376,12 +490,13 @@ button { font-family: inherit; }
   background-image: radial-gradient(circle, var(--grid-dot) 1px, transparent 1px);
   background-size: 28px 28px;
 }
+
 .atlas-grid {
   background-color: var(--bg);
   background-image:
-    linear-gradient(to right,  var(--grid-major) 1px, transparent 1px),
+    linear-gradient(to right, var(--grid-major) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-major) 1px, transparent 1px),
-    linear-gradient(to right,  var(--grid-minor) 1px, transparent 1px),
+    linear-gradient(to right, var(--grid-minor) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-minor) 1px, transparent 1px);
   background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
 }

@@ -100,7 +100,7 @@ function TopoNodeViewComponent({ data }: NodeProps<Data>) {
       aria-label={`${KIND_LABEL[node.kind]}: ${node.title}`}
       className={cn(
         "group relative flex min-h-[66px] w-[210px] cursor-pointer flex-col overflow-hidden rounded-[12px] border pl-3 pr-3 py-2 outline-none transition-all duration-150",
-        "hover:-translate-y-px hover:shadow-[var(--shadow-2)]",
+        "hover:-translate-y-px",
         dim && "opacity-30",
         isMinor && !accented && !dim && "opacity-[0.82]",
       )}
@@ -108,13 +108,7 @@ function TopoNodeViewComponent({ data }: NodeProps<Data>) {
         background: "var(--surface)",
         borderColor: accented ? tone.color : isLandmark ? tone.border : "var(--border)",
         borderWidth: isLandmark || accented ? 1.5 : 1,
-        boxShadow: isSelected
-          ? `0 0 0 4px ${tone.tint}, var(--shadow-2)`
-          : isRelated
-            ? `0 0 0 2px ${tone.tint}, var(--shadow-1)`
-            : isLandmark
-              ? "var(--shadow-2)"
-              : "var(--shadow-1)",
+        boxShadow: "none",
       }}
     >
       {/* Lane rail — color says which domain, texture says which kind. */}
