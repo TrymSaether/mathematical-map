@@ -4,6 +4,15 @@ import { cn } from "../lib/utils";
 
 const SVG_CACHE = new Map<string, string>();
 
+function withBasePath(src: string): string {
+  if (!src.startsWith("/") || src.startsWith(import.meta.env.BASE_URL)) {
+    return src;
+  }
+
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  return `${base}${src}`;
+}
+
 function scrubSvg(markup: string): string {
   return markup
     .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
@@ -40,7 +49,8 @@ export function ThemedDiagram({
   className?: string;
 }) {
   const instanceId = useId().replace(/[^a-zA-Z0-9_-]/g, "");
-  const [markup, setMarkup] = useState(() => SVG_CACHE.get(src) ?? "");
+  const resolvedSrc = useMemo(() => withBasePath(src), [src]);
+  const [markup, setMarkup] = useState(() => SVG_CACHE.get(resolvedSrc) ?? "");
   const [failed, setFailed] = useState(false);
   const renderedMarkup = useMemo(
     () => (markup ? namespaceSvgIds(markup, `dia-${instanceId}`) : ""),
@@ -48,7 +58,7 @@ export function ThemedDiagram({
   );
 
   useEffect(() => {
-    const cached = SVG_CACHE.get(src);
+    const cached = SVG_CACHE.get(resolvedSrc);
     if (cached) {
       setMarkup(cached);
       setFailed(false);
@@ -59,15 +69,15 @@ export function ThemedDiagram({
     setMarkup("");
     setFailed(false);
 
-    fetch(src)
+    fetch(resolvedSrc)
       .then((response) => {
-        if (!response.ok) throw new Error(`Unable to load diagram: ${src}`);
+        if (!response.ok) throw new Error(`Unable to load diagram: ${resolvedSrc}`);
         return response.text();
       })
       .then((text) => {
         if (cancelled) return;
         const clean = scrubSvg(text);
-        SVG_CACHE.set(src, clean);
+        SVG_CACHE.set(resolvedSrc, clean);
         setMarkup(clean);
       })
       .catch(() => {
@@ -77,12 +87,12 @@ export function ThemedDiagram({
     return () => {
       cancelled = true;
     };
-  }, [src]);
+  }, [resolvedSrc]);
 
   if (failed || !renderedMarkup) {
     return (
       <img
-        src={src}
+        src={resolvedSrc}
         alt={alt}
         loading="lazy"
         decoding="async"
