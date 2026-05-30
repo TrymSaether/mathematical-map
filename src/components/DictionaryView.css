@@ -257,6 +257,7 @@
   border-color: var(--accent);
 }
 
+.dictionary-view .dict-dia .themed-diagram,
 .dictionary-view .dict-dia img {
   display: block;
   width: 100%;

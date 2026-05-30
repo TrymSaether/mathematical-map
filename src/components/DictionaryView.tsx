@@ -15,6 +15,7 @@ import {
   type DictSortMode,
   type SectionFacet,
 } from "../lib/dictionary";
+import { ThemedDiagram } from "./ThemedDiagram";
 import "./DictionaryView.css";
 
 export function DictionaryView() {
@@ -198,7 +199,7 @@ function DictionaryCard({
       </div>
       {entry.diagramPath && (
         <div className="dict-dia">
-          <img src={entry.diagramPath} alt={`Diagram for ${entry.title}`} loading="lazy" decoding="async" />
+          <ThemedDiagram src={entry.diagramPath} alt={`Diagram for ${entry.title}`} />
         </div>
       )}
     </article>

@@ -3200,10 +3200,10 @@
       },
       {
         "id": "bolzano_weierstrass_theorem",
-        "statement": null,
-        "formal_statement": null,
+        "statement": "Every bounded sequence in $\\mathbb{R}^n$ has a convergent subsequence.",
+        "formal_statement": "Let $(x_k)$ be a bounded sequence in $\\mathbb{R}^n$. Then there is a subsequence $(x_{k_j})$ and a point $x\\in\\mathbb{R}^n$ such that $x_{k_j}\\to x$.",
         "definition": null,
-        "intuition": null,
+        "intuition": "Bolzano-Weierstrass is the sequence form of compactness in Euclidean space: bounded infinite data has a convergent subsequence.",
         "notation": null,
         "assumptions": [],
         "dependencies": {
@@ -3217,7 +3217,7 @@
         },
         "outgoing_relations": ["e_bolzano_requires_convergence", "e_bolzano_requires_euclidean_space", "e_bolzano_uses_sequential_compactness"],
         "metadata": {
-          "tags": [],
+          "tags": ["compactness", "sequences", "euclidean"],
           "syllabus_priority": "medium",
           "source": null
         },
@@ -3235,10 +3235,10 @@
       },
       {
         "id": "urysohn_lemma",
-        "statement": null,
-        "formal_statement": null,
+        "statement": "In a normal space, disjoint closed sets can be separated by a continuous real-valued function.",
+        "formal_statement": "Let $X$ be normal and let $A,B\\subseteq X$ be disjoint closed subsets. Then there exists a continuous function $f:X\\to[0,1]$ with $f(A)=\\{0\\}$ and $f(B)=\\{1\\}$.",
         "definition": null,
-        "intuition": null,
+        "intuition": "Urysohn lemma turns normality, a separation property for closed sets, into continuous functions.",
         "notation": null,
         "assumptions": [],
         "dependencies": {
@@ -3252,7 +3252,7 @@
         },
         "outgoing_relations": ["e_urysohn_requires_normality", "e_urysohn_requires_closed_set", "e_urysohn_requires_continuity", "e_urysohn_assumes_normality", "e_urysohn_uses_separation_argument"],
         "metadata": {
-          "tags": [],
+          "tags": ["normality", "closed-sets", "continuity"],
           "syllabus_priority": "medium",
           "source": null
         },
@@ -3270,10 +3270,10 @@
       },
       {
         "id": "tietze_extension_theorem",
-        "statement": null,
-        "formal_statement": null,
+        "statement": "A continuous real-valued function on a closed subset of a normal space extends continuously to the whole space.",
+        "formal_statement": "Let $X$ be normal, let $A\\subseteq X$ be closed, and let $f:A\\to\\mathbb{R}$ be continuous (bounded, in the standard bounded form). Then $f$ extends to a continuous function $F:X\\to\\mathbb{R}$.",
         "definition": null,
-        "intuition": null,
+        "intuition": "Tietze extension upgrades normal separation into an extension theorem for continuous functions.",
         "notation": null,
         "assumptions": [],
         "dependencies": {
@@ -3287,7 +3287,7 @@
         },
         "outgoing_relations": ["e_tietze_requires_normality", "e_tietze_requires_closed_set", "e_tietze_requires_continuity", "e_tietze_uses_urysohn", "e_tietze_assumes_normality", "e_tietze_uses_separation_argument"],
         "metadata": {
-          "tags": [],
+          "tags": ["normality", "closed-sets", "extension"],
           "syllabus_priority": "medium",
           "source": null
         },
@@ -3305,10 +3305,10 @@
       },
       {
         "id": "alexander_subbase_theorem",
-        "statement": null,
-        "formal_statement": null,
+        "statement": "A space is compact if every cover by subbasic open sets has a finite subcover.",
+        "formal_statement": "Let $\\mathcal S$ be a subbasis for $X$. If every cover of $X$ by members of $\\mathcal S$ has a finite subcover, then $X$ is compact.",
         "definition": null,
-        "intuition": null,
+        "intuition": "Alexander subbase theorem reduces compactness checks from arbitrary open covers to subbasic covers.",
         "notation": null,
         "assumptions": [],
         "dependencies": {
@@ -3322,7 +3322,7 @@
         },
         "outgoing_relations": ["e_alexander_requires_subbasis", "e_alexander_requires_compactness", "e_alexander_uses_zorn", "e_alexander_assumes_choice", "e_alexander_prerequisite_for_tychonoff"],
         "metadata": {
-          "tags": [],
+          "tags": ["compactness", "subbasis", "choice"],
           "syllabus_priority": "medium",
           "source": null
         },
@@ -3340,10 +3340,10 @@
       },
       {
         "id": "tychonoff_theorem",
-        "statement": null,
-        "formal_statement": null,
+        "statement": "The product of any family of compact spaces is compact in the product topology.",
+        "formal_statement": "If $\\{X_i\\}_{i\\in I}$ is a family of compact spaces, then $\\prod_{i\\in I} X_i$ is compact in the product topology.",
         "definition": null,
-        "intuition": null,
+        "intuition": "Tychonoff theorem is the central compactness theorem for arbitrary products; standard proofs use Alexander subbase theorem and choice.",
         "notation": null,
         "assumptions": [],
         "dependencies": {
@@ -3357,7 +3357,7 @@
         },
         "outgoing_relations": ["e_tychonoff_requires_product_space", "e_tychonoff_requires_product_topology", "e_tychonoff_requires_compactness", "e_tychonoff_requires_open_set", "e_tychonoff_uses_alexander", "e_tychonoff_uses_zorn", "e_tychonoff_assumes_choice", "e_tychonoff_requires_open_cover_notation", "e_tychonoff_uses_open_cover_argument", "e_tychonoff_uses_finite_subcover_argument", "e_tychonoff_uses_basis_argument"],
         "metadata": {
-          "tags": [],
+          "tags": ["compactness", "product", "choice"],
           "syllabus_priority": "medium",
           "source": null
         },
@@ -3388,10 +3388,10 @@
       },
       {
         "id": "baire_category_theorem",
-        "statement": null,
-        "formal_statement": null,
+        "statement": "Complete metric spaces and locally compact Hausdorff spaces are Baire spaces: countable intersections of dense open sets are dense.",
+        "formal_statement": "If $X$ is a complete metric space, or more generally a locally compact Hausdorff space in the listed variant, then every countable intersection of dense open subsets of $X$ is dense.",
         "definition": null,
-        "intuition": null,
+        "intuition": "Baire category says that these spaces cannot be built as a thin countable union of nowhere dense pieces.",
         "notation": null,
         "assumptions": [],
         "dependencies": {
@@ -3405,7 +3405,7 @@
         },
         "outgoing_relations": ["e_baire_requires_metric_space", "e_baire_requires_local_compactness", "e_baire_requires_hausdorff", "e_baire_requires_dense_subset", "e_baire_requires_open_set", "e_baire_assumes_complete_metric", "e_baire_assumes_local_compactness", "e_baire_assumes_hausdorff"],
         "metadata": {
-          "tags": [],
+          "tags": ["metric", "local-compactness", "dense-sets"],
           "syllabus_priority": "medium",
           "source": null
         },
@@ -3436,10 +3436,10 @@
       },
       {
         "id": "urysohn_metrization_theorem",
-        "statement": null,
-        "formal_statement": null,
+        "statement": "Every regular second-countable Hausdorff space is metrizable.",
+        "formal_statement": "If $X$ is regular, second countable, and Hausdorff, then there exists a metric $d$ on $X$ whose metric topology is the original topology.",
         "definition": null,
-        "intuition": null,
+        "intuition": "Urysohn metrization gives conditions under which abstract open-set topology comes from an actual metric.",
         "notation": null,
         "assumptions": [],
         "dependencies": {
@@ -3453,7 +3453,7 @@
         },
         "outgoing_relations": ["e_urysohn_metrization_requires_regularity", "e_urysohn_metrization_requires_hausdorff", "e_urysohn_metrization_requires_second_countability", "e_urysohn_metrization_requires_metric_topology", "e_urysohn_metrization_uses_urysohn", "e_urysohn_metrization_assumes_regularity", "e_urysohn_metrization_assumes_hausdorff", "e_urysohn_metrization_assumes_second_countability", "e_urysohn_metrization_uses_basis_argument"],
         "metadata": {
-          "tags": [],
+          "tags": ["metrization", "regularity", "second-countability"],
           "syllabus_priority": "medium",
           "source": null
         },
@@ -3471,7 +3471,7 @@
       },
       {
         "id": "brouwer_fixed_point_theorem",
-        "statement": "Let $f: \\mathbb{D}^n \\to \\mathbb{D}^n$ be a continuous map from the (unit) disk $\\mathbb{D}^n$ in $\\mathbb{R}^n$ to itself. Then $f$ has a fixed point, i.e., there is some point $x \\in \\mathbb{D}^n$ such that $f(x) = x$.\n\nFor $n = 1$ this is a well-known result from calculus: The graph of any continuous map $f: [0, 1] \\to [0, 1]$ must cross the diagonal $y = x$ for some $x^* \\in [0, 1]$. Hence, $f(x^*) = x^*$.",
+        "statement": "Let $f: \\mathbb{D}^n \\to \\mathbb{D}^n$ be a continuous map from the (unit) disk $\\mathbb{D}^n$ in $\\mathbb{R}^n$ to itself. Then $f$ has a fixed point, i.e., there is some point $x \\in \\mathbb{D}^n$ such that $f(x) = x$. For $n = 1$ this is a well-known result from calculus: The graph of any continuous map $f: [0, 1] \\to [0, 1]$ must cross the diagonal $y = x$ for some $x^* \\in [0, 1]$. Hence, $f(x^*) = x^*$.",
         "formal_statement": "$$f: \\mathbb{D}^n \\to \\mathbb{D}^n \\text{ continuous} \\implies \\exists x \\in \\mathbb{D}^n, f(x) = x.$$",
         "definition": "A fixed point of a function $f: X \\to X$ is a point $x \\in X$ such that $f(x) = x$. The Brouwer fixed point theorem states that any continuous function from the n-dimensional disk to itself has at least one fixed point.",
         "intuition": "Intuitively, if you have a continuous function that maps a disk to itself, you can imagine it as a deformation of the disk. No matter how you stretch or twist the disk, there will always be at least one point that ends up in the same place after the deformation.",
@@ -3511,10 +3511,10 @@
       },
       {
         "id": "jordan_curve_theorem",
-        "statement": null,
-        "formal_statement": null,
+        "statement": "A simple closed curve in the plane separates the plane into an inside and an outside, with the curve as their common boundary.",
+        "formal_statement": "If $C\\subseteq\\mathbb{R}^2$ is a simple closed curve, then $\\mathbb{R}^2\\setminus C$ has exactly two connected components, and $C$ is the boundary of each component.",
         "definition": null,
-        "intuition": null,
+        "intuition": "Jordan curve theorem formalizes the planar fact that a circle-like curve cuts the plane into two regions.",
         "notation": null,
         "assumptions": [],
         "dependencies": {
@@ -3528,7 +3528,7 @@
         },
         "outgoing_relations": ["e_jordan_requires_circle", "e_jordan_requires_connectedness", "e_jordan_requires_boundary", "e_jordan_requires_euclidean_space"],
         "metadata": {
-          "tags": [],
+          "tags": ["connectedness", "boundary", "plane"],
           "syllabus_priority": "medium",
           "source": null
         },
@@ -3546,10 +3546,10 @@
       },
       {
         "id": "proof_tychonoff_via_alexander",
-        "statement": null,
+        "statement": "Proof outline: use the subbasis for the product topology, apply Alexander subbase theorem, and use choice/Zorn-style maximality to reduce a subbasic cover to finitely many coordinate conditions.",
         "formal_statement": null,
         "definition": null,
-        "intuition": null,
+        "intuition": "The proof packages the three deleted proof-step nodes: reduction to subbasic covers, choice of coordinates or maximal data, and the finite-subcover contradiction using compact factors.",
         "notation": null,
         "assumptions": [],
         "dependencies": {
@@ -3561,119 +3561,20 @@
           "pedagogical_dependency": [],
           "historical_dependency": []
         },
-        "outgoing_relations": ["e_proof_tychonoff_proves_tychonoff", "e_proof_tychonoff_uses_alexander", "e_proof_tychonoff_uses_zorn", "e_proof_tychonoff_assumes_choice", "e_proof_tychonoff_requires_product_topology", "e_proof_tychonoff_requires_compactness", "e_proof_tychonoff_introduces_step_1", "e_proof_tychonoff_introduces_step_2", "e_proof_tychonoff_introduces_step_3"],
+        "outgoing_relations": ["e_proof_tychonoff_proves_tychonoff", "e_proof_tychonoff_uses_alexander", "e_proof_tychonoff_uses_zorn", "e_proof_tychonoff_assumes_choice", "e_proof_tychonoff_requires_product_topology", "e_proof_tychonoff_requires_compactness"],
         "metadata": {
-          "tags": [],
+          "tags": ["proof", "tychonoff", "subbasis"],
           "syllabus_priority": "medium",
           "source": null
         },
         "kind": "proof",
         "proves": "tychonoff_theorem",
         "strategy": "Use product subbases and Alexander subbase theorem; choice appears through maximal or coordinatewise selection.",
-        "steps": ["proof_step_tychonoff_subbase_cover", "proof_step_tychonoff_choice", "proof_step_tychonoff_finite_subcover"],
+        "steps": ["", "", ""],
         "uses_methods": ["open_cover_argument", "finite_subcover_argument", "basis_argument"],
         "uses_results": ["alexander_subbase_theorem", "zorns_lemma"],
         "critical_assumptions": ["axiom_of_choice"],
         "label": "Proof of Tychonoff via Alexander subbase theorem",
-        "domain": "foundations",
-        "related": []
-      },
-      {
-        "id": "proof_step_tychonoff_subbase_cover",
-        "statement": null,
-        "formal_statement": null,
-        "definition": null,
-        "intuition": null,
-        "notation": null,
-        "assumptions": [],
-        "dependencies": {
-          "definitional_dependency": [],
-          "logical_dependency": [],
-          "assumption_dependency": [],
-          "construction_dependency": [],
-          "notation_dependency": [],
-          "pedagogical_dependency": [],
-          "historical_dependency": []
-        },
-        "outgoing_relations": ["e_step_tychonoff_1_uses_alexander", "e_step_tychonoff_1_uses_product_topology", "e_step_tychonoff_1_uses_subbasis"],
-        "metadata": {
-          "tags": [],
-          "syllabus_priority": "medium",
-          "source": null
-        },
-        "kind": "proof_step",
-        "part_of_proof": "proof_tychonoff_via_alexander",
-        "step_number": 1,
-        "claim": "It suffices to test compactness on subbasic covers.",
-        "justification": "Apply Alexander subbase theorem to the product subbasis.",
-        "uses": ["alexander_subbase_theorem", "product_topology", "subbasis"],
-        "label": "Tychonoff step: reduce to subbasic cover",
-        "domain": "foundations",
-        "related": []
-      },
-      {
-        "id": "proof_step_tychonoff_choice",
-        "statement": null,
-        "formal_statement": null,
-        "definition": null,
-        "intuition": null,
-        "notation": null,
-        "assumptions": [],
-        "dependencies": {
-          "definitional_dependency": [],
-          "logical_dependency": [],
-          "assumption_dependency": [],
-          "construction_dependency": [],
-          "notation_dependency": [],
-          "pedagogical_dependency": [],
-          "historical_dependency": []
-        },
-        "outgoing_relations": ["e_step_tychonoff_2_uses_choice", "e_step_tychonoff_2_uses_zorn"],
-        "metadata": {
-          "tags": [],
-          "syllabus_priority": "medium",
-          "source": null
-        },
-        "kind": "proof_step",
-        "part_of_proof": "proof_tychonoff_via_alexander",
-        "step_number": 2,
-        "claim": "Coherent choices produce a point avoiding a cover when no finite subcover exists.",
-        "justification": "Use choice or an equivalent maximality argument.",
-        "uses": ["axiom_of_choice", "zorns_lemma"],
-        "label": "Tychonoff step: choose coordinates",
-        "domain": "foundations",
-        "related": []
-      },
-      {
-        "id": "proof_step_tychonoff_finite_subcover",
-        "statement": null,
-        "formal_statement": null,
-        "definition": null,
-        "intuition": null,
-        "notation": null,
-        "assumptions": [],
-        "dependencies": {
-          "definitional_dependency": [],
-          "logical_dependency": [],
-          "assumption_dependency": [],
-          "construction_dependency": [],
-          "notation_dependency": [],
-          "pedagogical_dependency": [],
-          "historical_dependency": []
-        },
-        "outgoing_relations": ["e_step_tychonoff_3_uses_compactness", "e_step_tychonoff_3_uses_finite_subcover", "e_step_tychonoff_3_uses_open_cover"],
-        "metadata": {
-          "tags": [],
-          "syllabus_priority": "medium",
-          "source": null
-        },
-        "kind": "proof_step",
-        "part_of_proof": "proof_tychonoff_via_alexander",
-        "step_number": 3,
-        "claim": "Compactness of factors contradicts failure of finite subcover.",
-        "justification": "Project subbasic data to factors and extract finite subcovers.",
-        "uses": ["compactness", "finite_subcover_argument", "open_cover_argument"],
-        "label": "Tychonoff step: finite subcover contradiction",
         "domain": "foundations",
         "related": []
       },
@@ -4581,7 +4482,7 @@
         },
         "exercise_number": "3.1",
         "related_concepts": ["topology", "topological_space", "open_set", "closed_set", "closure", "dense_subset", "continuity", "homeomorphism"],
-        "solution": "### Setup and Definitions\n\nLet $X=\\{a,b,c,d\\}$ and $\\mathcal{T}=\\{\\emptyset,\\{a\\},\\{a,b\\},\\{a,b,c\\},\\{b,c,d\\},X\\}$. A topology must contain $\\emptyset$ and $X$, be closed under arbitrary unions, and be closed under finite intersections.\n\n### Solution\n\nThe collection violates finite intersections: $\\{a,b,c\\},\\{b,c,d\\}\\in\\mathcal{T}$ but $\\{a,b,c\\}\\cap\\{b,c,d\\}=\\{b,c\\}\notin\\mathcal{T}$. Hence it is not a topology. A valid proper non-discrete extension is $\\mathcal{T}'=\\{\\emptyset,\\{a\\},\\{b\\},\\{a,b\\},\\{b,c\\},\\{a,b,c\\},\\{b,c,d\\},X\\}$. Its unions and finite intersections remain in the list, it contains $\\mathcal{T}$, and $\\{c\\}\notin\\mathcal{T}'$, so it is not discrete.",
+        "solution": "### Setup and Definitions Let $X=\\{a,b,c,d\\}$ and $\\mathcal{T}=\\{\\emptyset,\\{a\\},\\{a,b\\},\\{a,b,c\\},\\{b,c,d\\},X\\}$. A topology must contain $\\emptyset$ and $X$, be closed under arbitrary unions, and be closed under finite intersections. ### Solution The collection violates finite intersections: $\\{a,b,c\\},\\{b,c,d\\}\\in\\mathcal{T}$ but $\\{a,b,c\\}\\cap\\{b,c,d\\}=\\{b,c\\}\notin\\mathcal{T}$. Hence it is not a topology. A valid proper non-discrete extension is $\\mathcal{T}'=\\{\\emptyset,\\{a\\},\\{b\\},\\{a,b\\},\\{b,c\\},\\{a,b,c\\},\\{b,c,d\\},X\\}$. Its unions and finite intersections remain in the list, it contains $\\mathcal{T}$, and $\\{c\\}\notin\\mathcal{T}'$, so it is not discrete.",
         "related": []
       },
       {
@@ -4614,7 +4515,7 @@
         },
         "exercise_number": "3.2",
         "related_concepts": ["topology", "topological_space", "open_set", "closed_set", "closure", "dense_subset", "continuity", "homeomorphism"],
-        "solution": "### Setup and Definitions\n\nLet $X$ be non-empty, fix $x_0\\in X$, and define $\\mathcal{T}=\\{U\\subseteq X\\mid x_0\\notin U\\text{ or }X\\setminus U\\text{ is finite}\\}$.\n\n### Solution\n\n$\\emptyset\\in\\mathcal{T}$ because it omits $x_0$, and $X\\in\\mathcal{T}$ because $X\\setminus X=\\emptyset$ is finite. For arbitrary unions, let $V=\\bigcup U_\\lambda$. If $x_0\\notin V$, then $V\\in\\mathcal{T}$. If $x_0\\in V$, then $x_0\\in U_{\\lambda_0}$ for some $\\lambda_0$, so $X\\setminus U_{\\lambda_0}$ is finite and $X\\setminus V\\subseteq X\\setminus U_{\\lambda_0}$ is finite. For finite intersections $W=\\bigcap_{i=1}^nU_i$, if some $U_i$ omits $x_0$, so does $W$; otherwise every $X\\setminus U_i$ is finite and $X\\setminus W=\\bigcup_i(X\\setminus U_i)$ is finite. Thus $\\mathcal{T}$ is a topology.",
+        "solution": "### Setup and Definitions Let $X$ be non-empty, fix $x_0\\in X$, and define $\\mathcal{T}=\\{U\\subseteq X\\mid x_0\\notin U\\text{ or }X\\setminus U\\text{ is finite}\\}$. ### Solution $\\emptyset\\in\\mathcal{T}$ because it omits $x_0$, and $X\\in\\mathcal{T}$ because $X\\setminus X=\\emptyset$ is finite. For arbitrary unions, let $V=\\bigcup U_\\lambda$. If $x_0\\notin V$, then $V\\in\\mathcal{T}$. If $x_0\\in V$, then $x_0\\in U_{\\lambda_0}$ for some $\\lambda_0$, so $X\\setminus U_{\\lambda_0}$ is finite and $X\\setminus V\\subseteq X\\setminus U_{\\lambda_0}$ is finite. For finite intersections $W=\\bigcap_{i=1}^nU_i$, if some $U_i$ omits $x_0$, so does $W$; otherwise every $X\\setminus U_i$ is finite and $X\\setminus W=\\bigcup_i(X\\setminus U_i)$ is finite. Thus $\\mathcal{T}$ is a topology.",
         "related": []
       },
       {
@@ -4647,7 +4548,7 @@
         },
         "exercise_number": "3.3",
         "related_concepts": ["topology", "topological_space", "open_set", "closed_set", "closure", "dense_subset", "continuity", "homeomorphism"],
-        "solution": "### Setup and Definitions\n\nLet $X$ be a set and $A\\subseteq X$. Coarser means contained as a collection of open sets.\n\n### Solution\n\nThe coarsest topology on $X$ in which $A$ is open is $\\mathcal{T}_A=\\{\\emptyset,A,X\\}$. This is a topology because all unions and finite intersections of these three sets are again among these three sets. If $\\mathcal{T}$ is any topology with $A\\in\\mathcal{T}$, then $\\emptyset,X\\in\\mathcal{T}$ by the topology axioms, so $\\mathcal{T}_A\\subseteq\\mathcal{T}$. Hence $\\mathcal{T}_A$ is the desired coarsest topology.",
+        "solution": "### Setup and Definitions Let $X$ be a set and $A\\subseteq X$. Coarser means contained as a collection of open sets. ### Solution The coarsest topology on $X$ in which $A$ is open is $\\mathcal{T}_A=\\{\\emptyset,A,X\\}$. This is a topology because all unions and finite intersections of these three sets are again among these three sets. If $\\mathcal{T}$ is any topology with $A\\in\\mathcal{T}$, then $\\emptyset,X\\in\\mathcal{T}$ by the topology axioms, so $\\mathcal{T}_A\\subseteq\\mathcal{T}$. Hence $\\mathcal{T}_A$ is the desired coarsest topology.",
         "related": []
       },
       {
@@ -4680,7 +4581,7 @@
         },
         "exercise_number": "3.4",
         "related_concepts": ["topology", "topological_space", "open_set", "closed_set", "closure", "dense_subset", "continuity", "homeomorphism"],
-        "solution": "### Setup and Definitions\n\n$\\mathcal{T}_{\\mathrm{disc}}=\\mathcal{P}(X)$ and $\\mathcal{T}_{\\mathrm{cof}}=\\{U\\subseteq X\\mid X\\setminus U\\text{ is finite}\\}\\cup\\{\\emptyset\\}$.\n\n### Solution\n\nEvery $U\\in\\mathcal{T}_{\\mathrm{cof}}$ is a subset of $X$, and every subset of $X$ lies in $\\mathcal{T}_{\\mathrm{disc}}$. Therefore $\\mathcal{T}_{\\mathrm{cof}}\\subseteq\\mathcal{T}_{\\mathrm{disc}}$, so the discrete topology is finer. If $X$ is infinite this containment is strict because singletons are discrete-open but not cofinite-open; if $X$ is finite the two topologies agree.",
+        "solution": "### Setup and Definitions $\\mathcal{T}_{\\mathrm{disc}}=\\mathcal{P}(X)$ and $\\mathcal{T}_{\\mathrm{cof}}=\\{U\\subseteq X\\mid X\\setminus U\\text{ is finite}\\}\\cup\\{\\emptyset\\}$. ### Solution Every $U\\in\\mathcal{T}_{\\mathrm{cof}}$ is a subset of $X$, and every subset of $X$ lies in $\\mathcal{T}_{\\mathrm{disc}}$. Therefore $\\mathcal{T}_{\\mathrm{cof}}\\subseteq\\mathcal{T}_{\\mathrm{disc}}$, so the discrete topology is finer. If $X$ is infinite this containment is strict because singletons are discrete-open but not cofinite-open; if $X$ is finite the two topologies agree.",
         "related": []
       },
       {
@@ -4713,7 +4614,7 @@
         },
         "exercise_number": "3.5",
         "related_concepts": ["topology", "topological_space", "open_set", "closed_set", "closure", "dense_subset", "continuity", "homeomorphism"],
-        "solution": "### Setup and Definitions\n\nLet $X=\\{a,b,c,d\\}$. A homeomorphism is a bijection whose map and inverse are continuous.\n\n### Solution\n\nLet $f$ swap $a$ and $b$ and fix $c,d$. Set $\\mathcal{T}_1=\\{\\emptyset,\\{a\\},\\{a,c\\},\\{a,b,c\\},X\\}$ and $\\mathcal{T}_2=\\{f(U)\\mid U\\in\\mathcal{T}_1\\}=\\{\\emptyset,\\{b\\},\\{b,c\\},\\{a,b,c\\},X\\}$. Both are topologies by direct closure under unions and finite intersections. They are distinct since $\\{a\\}\\in\\mathcal{T}_1$ but $\\{a\\}\\notin\\mathcal{T}_2$. For each open set in $\\mathcal{T}_2$, its preimage under $f$ is the corresponding open set in $\\mathcal{T}_1$; since $f=f^{-1}$, the inverse is continuous by the same check. Thus the two spaces are homeomorphic with unequal topologies.",
+        "solution": "### Setup and Definitions Let $X=\\{a,b,c,d\\}$. A homeomorphism is a bijection whose map and inverse are continuous. ### Solution Let $f$ swap $a$ and $b$ and fix $c,d$. Set $\\mathcal{T}_1=\\{\\emptyset,\\{a\\},\\{a,c\\},\\{a,b,c\\},X\\}$ and $\\mathcal{T}_2=\\{f(U)\\mid U\\in\\mathcal{T}_1\\}=\\{\\emptyset,\\{b\\},\\{b,c\\},\\{a,b,c\\},X\\}$. Both are topologies by direct closure under unions and finite intersections. They are distinct since $\\{a\\}\\in\\mathcal{T}_1$ but $\\{a\\}\\notin\\mathcal{T}_2$. For each open set in $\\mathcal{T}_2$, its preimage under $f$ is the corresponding open set in $\\mathcal{T}_1$; since $f=f^{-1}$, the inverse is continuous by the same check. Thus the two spaces are homeomorphic with unequal topologies.",
         "related": []
       },
       {
@@ -4746,7 +4647,7 @@
         },
         "exercise_number": "3.6",
         "related_concepts": ["topology", "topological_space", "open_set", "closed_set", "closure", "dense_subset", "continuity", "homeomorphism"],
-        "solution": "### Setup and Definitions\n\nLet $X$ be a topological space and $A,B\\subseteq X$. The closure $\\overline{A}$ is the smallest closed set containing $A$.\n\n### Solution\n\nIf $A\\subseteq B$, every closed set containing $B$ also contains $A$, so $\\overline{A}$ is contained in every closed superset of $B$ and hence $\\overline{A}\\subseteq\\overline{B}$. For unions, the first part gives $\\overline{A}\\cup\\overline{B}\\subseteq\\overline{A\\cup B}$. Conversely $\\overline{A}\\cup\\overline{B}$ is closed as a finite union of closed sets and contains $A\\cup B$, so minimality gives $\\overline{A\\cup B}\\subseteq\\overline{A}\\cup\\overline{B}$. Therefore $\\overline{A\\cup B}=\\overline{A}\\cup\\overline{B}$.",
+        "solution": "### Setup and Definitions Let $X$ be a topological space and $A,B\\subseteq X$. The closure $\\overline{A}$ is the smallest closed set containing $A$. ### Solution If $A\\subseteq B$, every closed set containing $B$ also contains $A$, so $\\overline{A}$ is contained in every closed superset of $B$ and hence $\\overline{A}\\subseteq\\overline{B}$. For unions, the first part gives $\\overline{A}\\cup\\overline{B}\\subseteq\\overline{A\\cup B}$. Conversely $\\overline{A}\\cup\\overline{B}$ is closed as a finite union of closed sets and contains $A\\cup B$, so minimality gives $\\overline{A\\cup B}\\subseteq\\overline{A}\\cup\\overline{B}$. Therefore $\\overline{A\\cup B}=\\overline{A}\\cup\\overline{B}$.",
         "related": []
       },
       {
@@ -4779,7 +4680,7 @@
         },
         "exercise_number": "3.7",
         "related_concepts": ["topology", "topological_space", "open_set", "closed_set", "closure", "dense_subset", "continuity", "homeomorphism"],
-        "solution": "### Setup and Definitions\n\nLet $A\\subseteq X$. A neighbourhood of $x$ is an open set containing $x$, and $\\overline{A}$ is the smallest closed set containing $A$.\n\n### Solution\n\nIf some neighbourhood $U$ of $x$ satisfies $U\\cap A=\\emptyset$, then $A\\subseteq X\\setminus U$, where $X\\setminus U$ is closed. Hence $\\overline{A}\\subseteq X\\setminus U$, so $x\\notin\\overline{A}$. Conversely, if $x\\notin\\overline{A}$, then there is a closed set $C\\supseteq A$ with $x\\notin C$. Then $U=X\\setminus C$ is an open neighbourhood of $x$ and $U\\cap A=\\emptyset$. Thus $x\\in\\overline{A}$ iff every neighbourhood of $x$ meets $A$.",
+        "solution": "### Setup and Definitions Let $A\\subseteq X$. A neighbourhood of $x$ is an open set containing $x$, and $\\overline{A}$ is the smallest closed set containing $A$. ### Solution If some neighbourhood $U$ of $x$ satisfies $U\\cap A=\\emptyset$, then $A\\subseteq X\\setminus U$, where $X\\setminus U$ is closed. Hence $\\overline{A}\\subseteq X\\setminus U$, so $x\\notin\\overline{A}$. Conversely, if $x\\notin\\overline{A}$, then there is a closed set $C\\supseteq A$ with $x\\notin C$. Then $U=X\\setminus C$ is an open neighbourhood of $x$ and $U\\cap A=\\emptyset$. Thus $x\\in\\overline{A}$ iff every neighbourhood of $x$ meets $A$.",
         "related": []
       },
       {
@@ -4812,7 +4713,7 @@
         },
         "exercise_number": "3.8",
         "related_concepts": ["topology", "topological_space", "open_set", "closed_set", "closure", "dense_subset", "continuity", "homeomorphism"],
-        "solution": "### Setup and Definitions\n\nLet $X=\\{a,b,c,d,e\\}$ with the listed topology and $S=\\{a,b\\}$. A set is dense iff its closure is all of $X$.\n\n### Solution\n\nClosed sets are complements of listed open sets. The closed sets containing $S$ are exactly $X$ and $\\{a,b,c\\}$, so $\\overline{S}=X\\cap\\{a,b,c\\}=\\{a,b,c\\}$. This is not $X$, so $S$ is not dense. Equivalently, the non-empty open set $\\{d,e\\}$ is disjoint from $S$.",
+        "solution": "### Setup and Definitions Let $X=\\{a,b,c,d,e\\}$ with the listed topology and $S=\\{a,b\\}$. A set is dense iff its closure is all of $X$. ### Solution Closed sets are complements of listed open sets. The closed sets containing $S$ are exactly $X$ and $\\{a,b,c\\}$, so $\\overline{S}=X\\cap\\{a,b,c\\}=\\{a,b,c\\}$. This is not $X$, so $S$ is not dense. Equivalently, the non-empty open set $\\{d,e\\}$ is disjoint from $S$.",
         "related": []
       },
       {
@@ -4845,7 +4746,7 @@
         },
         "exercise_number": "4.1",
         "related_concepts": ["basis_for_topology", "subbasis", "real_line_standard_topology", "metric_topology", "dense_subset"],
-        "solution": "### Setup\n\nLet $X=\\{a,b,c,d,e\\}$ with the listed topology $\\mathcal{T}$.\n\n### Solution\n\nFor $\\mathcal{S}=\\{\\{a,b\\},\\{b,d,e\\},\\{c,d,e\\}\\}$, the union is $X$. Its finite intersections give basis elements $\\{a,b\\},\\{b,d,e\\},\\{c,d,e\\},\\{b\\},\\{d,e\\}$, whose unions are exactly the members of $\\mathcal{T}$. Thus $\\mathcal{S}$ is a subbasis for $\\mathcal{T}$. For $\\mathcal{S}'=\\{\\{a,b\\},\\{b,c,d,e\\},\\{d,e\\}\\}$, the generated basis is $\\{a,b\\},\\{b,c,d,e\\},\\{d,e\\},\\{b\\}$. Unions of these sets cannot produce $\\{c,d,e\\}$, which is in $\\mathcal{T}$, so $\\mathcal{S}'$ is not a subbasis for $\\mathcal{T}$.",
+        "solution": "### Setup Let $X=\\{a,b,c,d,e\\}$ with the listed topology $\\mathcal{T}$. ### Solution For $\\mathcal{S}=\\{\\{a,b\\},\\{b,d,e\\},\\{c,d,e\\}\\}$, the union is $X$. Its finite intersections give basis elements $\\{a,b\\},\\{b,d,e\\},\\{c,d,e\\},\\{b\\},\\{d,e\\}$, whose unions are exactly the members of $\\mathcal{T}$. Thus $\\mathcal{S}$ is a subbasis for $\\mathcal{T}$. For $\\mathcal{S}'=\\{\\{a,b\\},\\{b,c,d,e\\},\\{d,e\\}\\}$, the generated basis is $\\{a,b\\},\\{b,c,d,e\\},\\{d,e\\},\\{b\\}$. Unions of these sets cannot produce $\\{c,d,e\\}$, which is in $\\mathcal{T}$, so $\\mathcal{S}'$ is not a subbasis for $\\mathcal{T}$.",
         "related": []
       },
       {
@@ -4878,7 +4779,7 @@
         },
         "exercise_number": "4.2",
         "related_concepts": ["basis_for_topology", "subbasis", "real_line_standard_topology", "metric_topology", "dense_subset"],
-        "solution": "### Setup\n\nLet $\\mathcal{B}=\\{(a,b)\\mid a,b\\in\\mathbb{R},a<b\\}$.\n\n### Solution\n\nFor every $x$, $(x-1,x+1)$ contains $x$, so B1 holds. If $x\\in(a,b)\\cap(c,d)$, then $x\\in(\\max(a,c),\\min(b,d))\\subseteq(a,b)\\cap(c,d)$, so B2 holds. Thus $\\mathcal{B}$ is a basis. Metric balls for $|x-y|$ are intervals $(x-r,x+r)$, and every interval around a point contains such a ball by choosing $r=\\min(x-a,b-x)$. Hence this basis generates the usual metric topology.",
+        "solution": "### Setup Let $\\mathcal{B}=\\{(a,b)\\mid a,b\\in\\mathbb{R},a<b\\}$. ### Solution For every $x$, $(x-1,x+1)$ contains $x$, so B1 holds. If $x\\in(a,b)\\cap(c,d)$, then $x\\in(\\max(a,c),\\min(b,d))\\subseteq(a,b)\\cap(c,d)$, so B2 holds. Thus $\\mathcal{B}$ is a basis. Metric balls for $|x-y|$ are intervals $(x-r,x+r)$, and every interval around a point contains such a ball by choosing $r=\\min(x-a,b-x)$. Hence this basis generates the usual metric topology.",
         "related": []
       },
       {
@@ -4911,7 +4812,7 @@
         },
         "exercise_number": "4.3",
         "related_concepts": ["basis_for_topology", "subbasis", "real_line_standard_topology", "metric_topology", "dense_subset"],
-        "solution": "### Setup\n\nLet $\\mathcal{S}=\\{(a,\\infty)\\mid a\\in\\mathbb{R}\\}\\cup\\{(-\\infty,b)\\mid b\\in\\mathbb{R}\\}$.\n\n### Solution\n\nThe union of the subbasis elements is $\\mathbb{R}$. Finite intersections are rays, empty sets, or intervals $(a,b)=(a,\\infty)\\cap(-\\infty,b)$. Thus every standard basis interval is generated. Conversely, each ray is a union of standard open intervals, e.g. $(a,\\infty)=\\bigcup_{n=1}^\\infty(a,a+n)$. Therefore the topology generated by $\\mathcal{S}$ is exactly the standard topology.",
+        "solution": "### Setup Let $\\mathcal{S}=\\{(a,\\infty)\\mid a\\in\\mathbb{R}\\}\\cup\\{(-\\infty,b)\\mid b\\in\\mathbb{R}\\}$. ### Solution The union of the subbasis elements is $\\mathbb{R}$. Finite intersections are rays, empty sets, or intervals $(a,b)=(a,\\infty)\\cap(-\\infty,b)$. Thus every standard basis interval is generated. Conversely, each ray is a union of standard open intervals, e.g. $(a,\\infty)=\\bigcup_{n=1}^\\infty(a,a+n)$. Therefore the topology generated by $\\mathcal{S}$ is exactly the standard topology.",
         "related": []
       },
       {
@@ -4944,7 +4845,7 @@
         },
         "exercise_number": "4.4",
         "related_concepts": ["basis_for_topology", "subbasis", "real_line_standard_topology", "metric_topology", "dense_subset"],
-        "solution": "### Setup\n\nLet $\\mathcal{B}_{\\mathbb{Q}}=\\{(a,b)\\mid a,b\\in\\mathbb{Q},a<b\\}$.\n\n### Solution\n\nDensity of $\\mathbb{Q}$ gives rational $a<x<b$ for each real $x$, so B1 holds. Intersections of rational-endpoint intervals are rational-endpoint intervals, so B2 holds. Every such interval is standard-open. Conversely, if $x\\in(a,b)$ with real endpoints, choose rationals $p,q$ with $a<p<x<q<b$; then $(p,q)\\subseteq(a,b)$. Hence these intervals generate the standard topology.",
+        "solution": "### Setup Let $\\mathcal{B}_{\\mathbb{Q}}=\\{(a,b)\\mid a,b\\in\\mathbb{Q},a<b\\}$. ### Solution Density of $\\mathbb{Q}$ gives rational $a<x<b$ for each real $x$, so B1 holds. Intersections of rational-endpoint intervals are rational-endpoint intervals, so B2 holds. Every such interval is standard-open. Conversely, if $x\\in(a,b)$ with real endpoints, choose rationals $p,q$ with $a<p<x<q<b$; then $(p,q)\\subseteq(a,b)$. Hence these intervals generate the standard topology.",
         "related": []
       },
       {
@@ -4977,7 +4878,7 @@
         },
         "exercise_number": "4.5",
         "related_concepts": ["basis_for_topology", "subbasis", "real_line_standard_topology", "metric_topology", "dense_subset"],
-        "solution": "### Setup\n\nLet $\\mathcal{B}_\\ell=\\{[a,b)\\mid a<b\\}$ and let $\\mathcal{T}_\\ell$ be the lower limit topology.\n\n### Solution\n\nB1 follows from $x\\in[x,x+1)$. B2 follows from $[a,b)\\cap[c,d)=[\\max(a,c),\\min(b,d))$ when the intersection is non-empty. The closure of $(0,1)$ is $[0,1)$: first, $[0,1)$ is closed because its complement $(-\\infty,0)\\cup[1,\\infty)$ is lower-limit-open. Thus the closure is contained in $[0,1)$. Every neighbourhood of $0$ contains some $[0,\\varepsilon)$ meeting $(0,1)$, while $[1,2)$ is a neighbourhood of $1$ disjoint from $(0,1)$. Therefore $\\overline{(0,1)}=[0,1)$.",
+        "solution": "### Setup Let $\\mathcal{B}_\\ell=\\{[a,b)\\mid a<b\\}$ and let $\\mathcal{T}_\\ell$ be the lower limit topology. ### Solution B1 follows from $x\\in[x,x+1)$. B2 follows from $[a,b)\\cap[c,d)=[\\max(a,c),\\min(b,d))$ when the intersection is non-empty. The closure of $(0,1)$ is $[0,1)$: first, $[0,1)$ is closed because its complement $(-\\infty,0)\\cup[1,\\infty)$ is lower-limit-open. Thus the closure is contained in $[0,1)$. Every neighbourhood of $0$ contains some $[0,\\varepsilon)$ meeting $(0,1)$, while $[1,2)$ is a neighbourhood of $1$ disjoint from $(0,1)$. Therefore $\\overline{(0,1)}=[0,1)$.",
         "related": []
       },
       {
@@ -5010,7 +4911,7 @@
         },
         "exercise_number": "4.6",
         "related_concepts": ["basis_for_topology", "subbasis", "real_line_standard_topology", "metric_topology", "dense_subset"],
-        "solution": "### Setup\n\nFor $n\\in\\mathbb{Z}$, let $B(n)=\\{n\\}$ if $n$ is odd and $B(n)=\\{n-1,n,n+1\\}$ if $n$ is even.\n\n### Solution\n\nEach $n$ lies in $B(n)$, so B1 holds. For B2, if an intersection contains an odd point $x$, then $B(x)=\\{x\\}$ refines the intersection. If it contains an even point $x$, then the only basis element with even center $x$ supplies the needed local refinement; neighbouring odd basis elements are singletons and cannot contain $x$. Hence every point in an intersection has a basis neighbourhood contained in that intersection, so the collection is a basis.",
+        "solution": "### Setup For $n\\in\\mathbb{Z}$, let $B(n)=\\{n\\}$ if $n$ is odd and $B(n)=\\{n-1,n,n+1\\}$ if $n$ is even. ### Solution Each $n$ lies in $B(n)$, so B1 holds. For B2, if an intersection contains an odd point $x$, then $B(x)=\\{x\\}$ refines the intersection. If it contains an even point $x$, then the only basis element with even center $x$ supplies the needed local refinement; neighbouring odd basis elements are singletons and cannot contain $x$. Hence every point in an intersection has a basis neighbourhood contained in that intersection, so the collection is a basis.",
         "related": []
       },
       {
@@ -5043,7 +4944,7 @@
         },
         "exercise_number": "4.7",
         "related_concepts": ["basis_for_topology", "subbasis", "real_line_standard_topology", "metric_topology", "dense_subset"],
-        "solution": "### Setup\n\nFor $a\\ne0$, define $A_{a,b}=\\{az+b\\mid z\\in\\mathbb{Z}\\}$.\n\n### Solution\n\nB1 holds because $A_{1,0}=\\mathbb{Z}$. If $n\\in A_{a,b}\\cap A_{c,d}$, then the intersection is the congruence class $A_{\\operatorname{lcm}(|a|,|c|),n}$, so B2 holds. Each basis element is clopen because its complement is a finite union of the other residue classes modulo $|a|$. Every non-empty open set is infinite. If there were finitely many primes $p_i$, then $\\mathbb{Z}\\setminus\\{-1,1\\}=\\bigcup_iA_{p_i,0}$ would be closed, so $\\{-1,1\\}$ would be open, contradicting that no non-empty finite set is open. Therefore there are infinitely many primes.",
+        "solution": "### Setup For $a\\ne0$, define $A_{a,b}=\\{az+b\\mid z\\in\\mathbb{Z}\\}$. ### Solution B1 holds because $A_{1,0}=\\mathbb{Z}$. If $n\\in A_{a,b}\\cap A_{c,d}$, then the intersection is the congruence class $A_{\\operatorname{lcm}(|a|,|c|),n}$, so B2 holds. Each basis element is clopen because its complement is a finite union of the other residue classes modulo $|a|$. Every non-empty open set is infinite. If there were finitely many primes $p_i$, then $\\mathbb{Z}\\setminus\\{-1,1\\}=\\bigcup_iA_{p_i,0}$ would be closed, so $\\{-1,1\\}$ would be open, contradicting that no non-empty finite set is open. Therefore there are infinitely many primes.",
         "related": []
       },
       {
@@ -5076,7 +4977,7 @@
         },
         "exercise_number": "4.8",
         "related_concepts": ["basis_for_topology", "subbasis", "real_line_standard_topology", "metric_topology", "dense_subset"],
-        "solution": "### Setup\n\nLet $\\mathcal{B}$ be a basis for $X$ and $A\\subseteq X$.\n\n### Solution\n\nIf $A$ is dense, every non-empty open set meets $A$, hence every non-empty basis element meets $A$. Conversely, assume every non-empty basis element meets $A$. Given a non-empty open set $U$, choose $x\\in U$ and a basis element $B$ with $x\\in B\\subseteq U$. Then $B\\cap A\\ne\\emptyset$, so $U\\cap A\\ne\\emptyset$. Thus every non-empty open set meets $A$, and $A$ is dense.",
+        "solution": "### Setup Let $\\mathcal{B}$ be a basis for $X$ and $A\\subseteq X$. ### Solution If $A$ is dense, every non-empty open set meets $A$, hence every non-empty basis element meets $A$. Conversely, assume every non-empty basis element meets $A$. Given a non-empty open set $U$, choose $x\\in U$ and a basis element $B$ with $x\\in B\\subseteq U$. Then $B\\cap A\\ne\\emptyset$, so $U\\cap A\\ne\\emptyset$. Thus every non-empty open set meets $A$, and $A$ is dense.",
         "related": []
       },
       {
@@ -10923,127 +10824,6 @@
         "notes": null
       },
       {
-        "id": "e_proof_tychonoff_introduces_step_1",
-        "source": "proof_tychonoff_via_alexander",
-        "target": "proof_step_tychonoff_subbase_cover",
-        "type": "introduces",
-        "dependency_class": null,
-        "label": "Proof contains step 1",
-        "direction": "source_to_target",
-        "confidence": "high",
-        "notes": null
-      },
-      {
-        "id": "e_proof_tychonoff_introduces_step_2",
-        "source": "proof_tychonoff_via_alexander",
-        "target": "proof_step_tychonoff_choice",
-        "type": "introduces",
-        "dependency_class": null,
-        "label": "Proof contains step 2",
-        "direction": "source_to_target",
-        "confidence": "high",
-        "notes": null
-      },
-      {
-        "id": "e_proof_tychonoff_introduces_step_3",
-        "source": "proof_tychonoff_via_alexander",
-        "target": "proof_step_tychonoff_finite_subcover",
-        "type": "introduces",
-        "dependency_class": null,
-        "label": "Proof contains step 3",
-        "direction": "source_to_target",
-        "confidence": "high",
-        "notes": null
-      },
-      {
-        "id": "e_step_tychonoff_1_uses_alexander",
-        "source": "proof_step_tychonoff_subbase_cover",
-        "target": "alexander_subbase_theorem",
-        "type": "uses",
-        "dependency_class": "logical_dependency",
-        "label": "Step uses Alexander subbase theorem",
-        "direction": "source_to_target",
-        "confidence": "high",
-        "notes": null
-      },
-      {
-        "id": "e_step_tychonoff_1_uses_product_topology",
-        "source": "proof_step_tychonoff_subbase_cover",
-        "target": "product_topology",
-        "type": "uses",
-        "dependency_class": "logical_dependency",
-        "label": "Step uses product topology",
-        "direction": "source_to_target",
-        "confidence": "high",
-        "notes": null
-      },
-      {
-        "id": "e_step_tychonoff_1_uses_subbasis",
-        "source": "proof_step_tychonoff_subbase_cover",
-        "target": "subbasis",
-        "type": "uses",
-        "dependency_class": "logical_dependency",
-        "label": "Step uses subbasis",
-        "direction": "source_to_target",
-        "confidence": "high",
-        "notes": null
-      },
-      {
-        "id": "e_step_tychonoff_2_uses_choice",
-        "source": "proof_step_tychonoff_choice",
-        "target": "axiom_of_choice",
-        "type": "uses",
-        "dependency_class": "logical_dependency",
-        "label": "Step uses choice",
-        "direction": "source_to_target",
-        "confidence": "high",
-        "notes": null
-      },
-      {
-        "id": "e_step_tychonoff_2_uses_zorn",
-        "source": "proof_step_tychonoff_choice",
-        "target": "zorns_lemma",
-        "type": "uses",
-        "dependency_class": "logical_dependency",
-        "label": "Step uses Zorn's lemma",
-        "direction": "source_to_target",
-        "confidence": "high",
-        "notes": null
-      },
-      {
-        "id": "e_step_tychonoff_3_uses_compactness",
-        "source": "proof_step_tychonoff_finite_subcover",
-        "target": "compactness",
-        "type": "uses",
-        "dependency_class": "logical_dependency",
-        "label": "Step uses compactness of factors",
-        "direction": "source_to_target",
-        "confidence": "high",
-        "notes": null
-      },
-      {
-        "id": "e_step_tychonoff_3_uses_finite_subcover",
-        "source": "proof_step_tychonoff_finite_subcover",
-        "target": "finite_subcover_argument",
-        "type": "uses",
-        "dependency_class": "logical_dependency",
-        "label": "Step uses finite subcover argument",
-        "direction": "source_to_target",
-        "confidence": "high",
-        "notes": null
-      },
-      {
-        "id": "e_step_tychonoff_3_uses_open_cover",
-        "source": "proof_step_tychonoff_finite_subcover",
-        "target": "open_cover_argument",
-        "type": "uses",
-        "dependency_class": "logical_dependency",
-        "label": "Step uses open cover argument",
-        "direction": "source_to_target",
-        "confidence": "high",
-        "notes": null
-      },
-      {
         "id": "e_proof_heine_proves_heine",
         "source": "proof_heine_borel_open_cover",
         "target": "heine_borel_theorem",
@@ -15623,7 +15403,7 @@
       "included_edge_types": ["proves", "introduces", "uses", "assumes", "requires"],
       "included_dependency_classes": ["logical_dependency", "assumption_dependency", "definitional_dependency"],
       "root_items": ["proof_tychonoff_via_alexander", "proof_heine_borel_open_cover"],
-      "example_traversal": "proof_tychonoff_via_alexander -> introduces -> proof_step_tychonoff_choice -> uses -> axiom_of_choice"
+      "example_traversal": "proof_tychonoff_via_alexander -> introduces -> -> uses -> axiom_of_choice"
     },
     "inheritance_tree": {
       "description": "Tree-like or DAG-like inheritance view of mathematical structures; multiple inheritance is retained.",

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   X,
@@ -11,6 +11,7 @@ import {
   StickyNote,
   ChevronDown,
   MessageSquareText,
+  FileText,
 } from "lucide-react";
 
 import { useStore } from "../store";
@@ -20,9 +21,25 @@ import { cn } from "../lib/utils";
 import { getDomainTone } from "../lib/colors";
 import { CATEGORY_META, categoryOf } from "../lib/nodeCategory";
 import { KIND_LABEL, type GraphNode } from "../types";
+import { ThemedDiagram } from "./ThemedDiagram";
 
-const USED_BY_INITIAL = 8;
+const USED_BY_INITIAL = 6;
 const RELATED_CASE_KINDS = new Set(["example", "non_example", "counterexample", "application", "conjecture"]);
+const KIND_SHORT_LABEL: Record<string, string> = {
+  definition: "Def",
+  theorem: "Thm",
+  lemma: "Lem",
+  proposition: "Prop",
+  corollary: "Cor",
+  example: "Ex",
+  non_example: "Non-ex",
+  counterexample: "Cex",
+  application: "App",
+  conjecture: "Conj",
+  exercise: "Exr",
+  construction: "Const",
+  structure: "Struct",
+};
 
 export function NodePanel() {
   const mapId = useStore((s) => s.mapId);
@@ -40,7 +57,7 @@ export function NodePanel() {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 16 }}
           transition={{ duration: 0.22, ease: [0.2, 0.7, 0.2, 1] }}
-          className="pointer-events-auto absolute right-3 top-[68px] bottom-3 z-20 flex w-[380px] flex-col overflow-hidden rounded-2xl border"
+          className="pointer-events-auto absolute left-3 right-3 top-[68px] bottom-3 z-20 flex flex-col overflow-hidden rounded-[14px] border sm:left-auto sm:w-[min(440px,calc(100vw-24px))]"
           style={{ background: "var(--surface)", borderColor: "var(--border)", boxShadow: "var(--shadow-3)" }}
         >
           <PanelContent node={node} map={map} onClose={() => select(null)} />
@@ -57,9 +74,10 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
   const [openDeps, setOpenDeps] = useState(true);
   const [openUsed, setOpenUsed] = useState(true);
   const [openExamples, setOpenExamples] = useState(true);
-  const [openExercises, setOpenExercises] = useState(true);
+  const [openExercises, setOpenExercises] = useState(false);
   const [openReferences, setOpenReferences] = useState(false);
   const [showAllUsed, setShowAllUsed] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const prereqIds = useMemo(
     () => [...new Set([...node.statementDependencies, ...node.proofDependencies])],
@@ -117,36 +135,29 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
   // duplicate.
   const showGloss = gloss && gloss !== explanation;
 
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: 0 });
+  }, [node.id]);
+
   return (
     <>
-      <div className="flex items-center gap-2 px-5 pt-4 pb-2">
-        <span
-          className="font-mono text-[11.5px] font-semibold tracking-wide"
-          style={{ color: tone.color }}
-          title={node.id}
-        >
-          {node.id}
-        </span>
-        <span className="ml-auto" />
+      <div className="relative border-b px-6 pb-5 pt-5" style={{ borderColor: "var(--border-subtle)" }}>
         <button
           onClick={onClose}
-          className="flex h-8 w-8 items-center justify-center rounded-lg"
+          className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-lg transition-colors hover:bg-[color:var(--surface-3)] focus:outline-none focus:ring-2 focus:ring-[color:var(--accent-border)]"
           style={{ color: "var(--fg-2)" }}
           aria-label="Close"
         >
           <X className="h-4 w-4" />
         </button>
-      </div>
-
-      <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-7">
         <h2
-          className="font-serif text-[26px] leading-[1.15] tracking-[-0.01em]"
+          className="pr-9 font-serif text-[30px] leading-[1.05]"
           style={{ color: "var(--fg-1)" }}
         >
           <MathText text={node.title} />
         </h2>
 
-        <div className="mt-3 flex flex-wrap gap-1.5">
+        <div className="mt-4 flex flex-wrap gap-1.5">
           <TagPill
             label={domain?.label ?? node.topicCluster}
             background={tone.tint}
@@ -158,18 +169,24 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
             <TagPill key={t} label={t} neutral />
           ))}
         </div>
+        <div className="mt-3 flex min-w-0 items-center gap-2 text-[11px]" style={{ color: "var(--fg-3)" }}>
+          <span className="font-mono" title={node.id}>{node.id}</span>
+          {node.sectionTitle && (
+            <>
+              <span aria-hidden>·</span>
+              <span className="truncate">{node.sectionTitle}</span>
+            </>
+          )}
+        </div>
+      </div>
 
-        <Divider />
-
+      <div ref={scrollRef} className="min-h-0 flex-1 overflow-y-auto px-6 pb-7">
         {diagramPath && (
           <>
-            <img
+            <ThemedDiagram
               src={diagramPath}
               alt={`Diagram for ${node.title}`}
-              loading="lazy"
-              decoding="async"
               className="w-full rounded-[10px] border p-2"
-              style={{ background: "var(--surface-2)", borderColor: "var(--border)" }}
             />
             <Divider />
           </>
@@ -178,7 +195,7 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
         {statement && (
           <>
             <SectionHeader icon={<BookOpen className="h-[15px] w-[15px]" />} title="Statement" />
-            <div className="text-[13.5px] leading-[1.6]" style={{ color: "var(--fg-1)" }}>
+            <div className="font-math text-[15px] leading-[1.65]" style={{ color: "var(--fg-1)" }}>
               <MathProse text={statement} />
             </div>
             <Divider />
@@ -189,7 +206,7 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
           <>
             <SectionHeader icon={<Sigma className="h-[15px] w-[15px]" />} title="Formal statement" />
             <div
-              className="inline-block w-fit max-w-full rounded-[10px] border px-4 py-3 text-[14px] leading-[1.6] font-math"
+              className="block max-w-full overflow-x-auto rounded-[10px] border px-4 py-3 font-math text-[14px] leading-[1.6]"
               style={{
                 background: "var(--accent-soft)",
                 borderColor: "var(--accent-border)",
@@ -330,15 +347,15 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
         )}
 
         <SectionHeader
-          icon={<LinkIcon className="h-[15px] w-[15px]" />}
-          title="References"
+          icon={<FileText className="h-[15px] w-[15px]" />}
+          title="Metadata"
           count={node.tags.length + (node.ref ? 1 : 0)}
           expanded={openReferences}
           onToggle={() => setOpenReferences((v) => !v)}
         />
         {openReferences && (
           <>
-            <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 pb-1 text-[12px]">
+            <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 pb-1 text-[12px]">
               <dt style={{ color: "var(--fg-3)" }}>Tags</dt>
               <dd style={{ color: "var(--fg-2)" }}>
                 {node.tags.length > 0 ? node.tags.join(", ") : "No tags recorded."}
@@ -381,16 +398,12 @@ function SectionHeader({
   onToggle?: () => void;
 }) {
   const interactive = !!onToggle;
-  return (
-    <div
-      onClick={onToggle}
-      className={cn(
-        "flex items-center gap-2.5 py-3",
-        interactive && "cursor-pointer",
-      )}
-    >
-      <span style={{ color: "var(--accent)" }}>{icon}</span>
-      <span className="text-[13.5px] font-semibold tracking-[-0.005em]" style={{ color: "var(--fg-1)" }}>
+  const content = (
+    <>
+      <span className="flex h-6 w-6 items-center justify-center rounded-md" style={{ color: "var(--accent)" }}>
+        {icon}
+      </span>
+      <span className="text-[13px] font-semibold" style={{ color: "var(--fg-1)" }}>
         {title}
       </span>
       {typeof count === "number" && (
@@ -411,20 +424,31 @@ function SectionHeader({
           style={{ color: "var(--fg-3)" }}
         />
       )}
+    </>
+  );
+
+  if (interactive) {
+    return (
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={expanded}
+        className="flex w-full items-center gap-2.5 py-3 text-left focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[color:var(--accent-border)]"
+      >
+        {content}
+      </button>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-2.5 py-3">
+      {content}
     </div>
   );
 }
 
 function Divider() {
-  return <div className="my-0.5 border-t" style={{ borderColor: "var(--border-subtle)" }} />;
-}
-
-function Empty({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="px-1 pb-2 text-[12px]" style={{ color: "var(--fg-3)" }}>
-      {children}
-    </div>
-  );
+  return <div className="my-3 border-t" style={{ borderColor: "var(--border-subtle)" }} />;
 }
 
 function TagPill({
@@ -476,22 +500,28 @@ function RefRow({
   return (
     <button
       onClick={onClick}
-      className="flex w-full items-center gap-2.5 rounded-md px-1 py-1.5 text-left transition-colors hover:bg-[color:var(--surface-3)]"
+      className="group grid w-full grid-cols-[22px_minmax(0,1fr)_auto] items-center gap-2 rounded-lg px-2 py-2 text-left transition-colors hover:bg-[color:var(--surface-3)] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[color:var(--accent-border)]"
     >
-      <Icon
-        className="h-3.5 w-3.5 flex-shrink-0"
-        strokeWidth={2.25}
-        style={{ color: tone.color }}
-        aria-hidden
-      />
       <span
-        className="w-[68px] flex-shrink-0 truncate text-[10.5px] font-medium uppercase tracking-[0.08em]"
-        style={{ color: "var(--fg-3)" }}
+        className="flex h-[22px] w-[22px] items-center justify-center rounded-md"
+        style={{ background: tone.tint, color: tone.color }}
       >
-        {KIND_LABEL[node.kind]}
+        <Icon className="h-3.5 w-3.5" strokeWidth={2.2} aria-hidden />
       </span>
-      <span className="min-w-0 flex-1 truncate text-[12.5px]" style={{ color: "var(--fg-1)" }}>
-        <MathText text={node.title} />
+      <span className="min-w-0">
+        <span className="block truncate text-[13px] leading-5" style={{ color: "var(--fg-1)" }}>
+          <MathText text={node.title} />
+        </span>
+        <span className="block truncate text-[10.5px] leading-4" style={{ color: "var(--fg-3)" }}>
+          {map.domainById.get(node.domainId)?.label ?? node.topicCluster}
+        </span>
+      </span>
+      <span
+        className="rounded-full border px-2 py-0.5 text-[10px] font-semibold"
+        style={{ borderColor: tone.border, color: tone.color, background: tone.tint }}
+        title={KIND_LABEL[node.kind]}
+      >
+        {KIND_SHORT_LABEL[node.kind] ?? KIND_LABEL[node.kind]}
       </span>
     </button>
   );

@@ -88,12 +88,18 @@
   --grid-minor: rgba(15, 23, 42, 0.025);
 
   /* Diagram tokens (used by inline SVGs in /public/atlas-assets/diagrams) */
+  --dia-paper: var(--surface);
   --dia-fill: var(--surface-2);
-  --dia-fil2: var(--surface-3);
+  --dia-fill2: var(--surface-3);
+  --dia-fil2: var(--dia-fill2);
+  --dia-domain: var(--dia-fill);
+  --dia-open: var(--accent-soft);
   --dia-ink: var(--fg-1);
   --dia-acc: var(--accent);
-  --dia-acc2: var(--accent-border);
+  --dia-acc2: var(--teal);
   --dia-mut: var(--fg-3);
+  --dia-muted: var(--dia-mut);
+  --dia-muted-fill: var(--border-strong);
 }
 
 :root[data-theme="chalkboard"] {
@@ -164,12 +170,18 @@
   --grid-minor: rgba(255, 255, 255, 0.025);
 
   /* Diagram tokens */
+  --dia-paper: var(--surface);
   --dia-fill: var(--surface-2);
-  --dia-fil2: var(--surface-3);
+  --dia-fill2: var(--surface-3);
+  --dia-fil2: var(--dia-fill2);
+  --dia-domain: var(--dia-fill);
+  --dia-open: var(--accent-soft);
   --dia-ink: var(--fg-1);
   --dia-acc: var(--accent);
-  --dia-acc2: var(--accent-border);
+  --dia-acc2: var(--teal);
   --dia-mut: var(--fg-3);
+  --dia-muted: var(--dia-mut);
+  --dia-muted-fill: var(--border-strong);
 }
 
 /* Manuscript — warm "old paper" reskin. Only the surfaces/ink/borders/accent
@@ -213,12 +225,18 @@
   --grid-minor: rgba(33, 29, 24, 0.025);
 
   /* Diagram tokens */
+  --dia-paper: var(--surface);
   --dia-fill: var(--surface-2);
-  --dia-fil2: var(--surface-3);
+  --dia-fill2: var(--surface-3);
+  --dia-fil2: var(--dia-fill2);
+  --dia-domain: var(--dia-fill);
+  --dia-open: var(--accent-soft);
   --dia-ink: var(--fg-1);
   --dia-acc: var(--accent);
-  --dia-acc2: var(--accent-border);
+  --dia-acc2: var(--teal);
   --dia-mut: var(--fg-3);
+  --dia-muted: var(--dia-mut);
+  --dia-muted-fill: var(--border-strong);
 }
 
 /* Nocturne — warm dark. Self-contained: dark schemes must redefine the lifted
@@ -289,19 +307,25 @@
   --grid-minor: rgba(236, 228, 212, 0.025);
 
   /* Diagram tokens */
+  --dia-paper: var(--surface);
   --dia-fill: var(--surface-2);
-  --dia-fil2: var(--surface-3);
+  --dia-fill2: var(--surface-3);
+  --dia-fil2: var(--dia-fill2);
+  --dia-domain: var(--dia-fill);
+  --dia-open: var(--accent-soft);
   --dia-ink: var(--fg-1);
   --dia-acc: var(--accent);
-  --dia-acc2: var(--accent-border);
+  --dia-acc2: var(--teal);
   --dia-mut: var(--fg-3);
+  --dia-muted: var(--dia-mut);
+  --dia-muted-fill: var(--border-strong);
 }
 
 /* ---- TYPOGRAPHY ----------------------------------------------------- */
 :root {
-  --font-serif: "DM Serif Display", "Cormorant Garamond", "Georgia", serif;
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace;
+  --font-serif: "Newsreader", "STIX Two Text", "Iowan Old Style", "Georgia", serif;
+  --font-sans: "IBM Plex Sans", "Aptos", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", ui-monospace, Menlo, monospace;
   --font-math: "STIX Two Text", "STIX Two Math", "Latin Modern Roman", "Cambria Math", "Georgia", serif;
 
   --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -327,6 +351,18 @@ body {
   text-rendering: optimizeLegibility;
   transition: background var(--dur-std) var(--ease-standard),
     color var(--dur-std) var(--ease-standard);
+}
+
+.themed-diagram {
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: var(--dia-ink);
+}
+
+.themed-diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 button {

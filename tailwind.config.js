@@ -5,11 +5,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Inter"', "-apple-system", "BlinkMacSystemFont", "system-ui", "sans-serif"],
-        display: ['"DM Serif Display"', '"Cormorant Garamond"', "Georgia", "serif"],
-        serif: ['"DM Serif Display"', '"Cormorant Garamond"', "Georgia", "serif"],
+        sans: ['"IBM Plex Sans"', "Aptos", "-apple-system", "BlinkMacSystemFont", "system-ui", "sans-serif"],
+        display: ['"Newsreader"', '"STIX Two Text"', "Georgia", "serif"],
+        serif: ['"Newsreader"', '"STIX Two Text"', "Georgia", "serif"],
         math: ['"STIX Two Text"', '"STIX Two Math"', "Georgia", "serif"],
-        mono: ['"JetBrains Mono"', '"SF Mono"', "ui-monospace", "monospace"],
+        mono: ['"IBM Plex Mono"', '"SF Mono"', "ui-monospace", "monospace"],
       },
       colors: {
         bg: "var(--bg)",
