@@ -9,10 +9,11 @@ export type MathSegment =
  * Render text with inline TeX delimited by $...$ and display TeX by $$...$$,
  * plus Unicode math passthrough. Robust against unbalanced dollar signs.
  */
-export function MathText({ text, className }: { text: string; className?: string }) {
+export function MathText({ text, className, asBlock = false }: { text: string; className?: string; asBlock?: boolean }) {
   const html = useMemo(() => renderMathInString(text), [text]);
+  const Tag = asBlock ? "div" : "span";
   return (
-    <span
+    <Tag
       className={className}
       // KaTeX produces trusted HTML from the source text we control.
       dangerouslySetInnerHTML={{ __html: html }}

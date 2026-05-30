@@ -4,10 +4,12 @@ import {
   X,
   Lightbulb,
   Sigma,
+  BookOpen,
   Link as LinkIcon,
   ArrowUpRight,
   Beaker,
   StickyNote,
+  Tag,
   ChevronDown,
 } from "lucide-react";
 
@@ -103,20 +105,29 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
   const visibleUsed = showAllUsed ? usedBy : usedBy.slice(0, USED_BY_INITIAL);
   const hiddenUsedCount = usedBy.length - visibleUsed.length;
 
-  const formal = node.formalStatement.trim();
-  const intuition = node.explanation.trim() || node.originalText.trim();
+  const statement = node.originalText.trim();
+  const formalStatement = node.formalStatement.trim();
+  const explanation = node.explanation.trim();
   const solution = node.solution.trim();
 
   return (
     <>
-      <div className="flex items-center justify-end px-4 pt-3 pb-1">
+      <div className="flex items-center gap-2 px-5 pt-4 pb-2">
+        <span
+          className="font-mono text-[11.5px] font-semibold tracking-wide"
+          style={{ color: tone.color }}
+          title={node.id}
+        >
+          {node.id}
+        </span>
+        <span className="ml-auto" />
         <button
           onClick={onClose}
-          className="flex h-7 w-7 items-center justify-center rounded-lg"
-          style={{ color: "var(--fg-3)" }}
+          className="flex h-8 w-8 items-center justify-center rounded-lg"
+          style={{ color: "var(--fg-2)" }}
           aria-label="Close"
         >
-          <X className="h-3.5 w-3.5" />
+          <X className="h-4 w-4" />
         </button>
       </div>
 
@@ -143,28 +154,38 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
 
         <Divider />
 
-        {intuition && (
+        {statement && (
           <>
-            <SectionHeader icon={<Lightbulb className="h-[15px] w-[15px]" />} title="Intuition" />
+            <SectionHeader icon={<BookOpen className="h-[15px] w-[15px]" />} title="Statement" />
             <div className="text-[13.5px] leading-[1.6]" style={{ color: "var(--fg-1)" }}>
-              <MathText text={intuition} />
+              <MathText text={statement} />
             </div>
             <Divider />
           </>
         )}
 
-        {formal && (
+        {formalStatement && (
           <>
-            <SectionHeader icon={<Sigma className="h-[15px] w-[15px]" />} title="Formal definition" />
+            <SectionHeader icon={<Sigma className="h-[15px] w-[15px]" />} title="Formal statement" />
             <div
-              className="rounded-[10px] border px-4 py-3 text-[14px] leading-[1.6] font-math"
+              className="inline-block w-fit max-w-full rounded-[10px] border px-4 py-3 text-[14px] leading-[1.6] font-math"
               style={{
                 background: "var(--accent-soft)",
                 borderColor: "var(--accent-border)",
                 color: "var(--fg-1)",
               }}
             >
-              <MathText text={formal} />
+              <MathText text={formalStatement} asBlock />
+            </div>
+            <Divider />
+          </>
+        )}
+
+        {explanation && (
+          <>
+            <SectionHeader icon={<Lightbulb className="h-[15px] w-[15px]" />} title="Intuition" />
+            <div className="text-[13.5px] leading-[1.6]" style={{ color: "var(--fg-1)" }}>
+              <MathText text={explanation} />
             </div>
             <Divider />
           </>
@@ -267,15 +288,27 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
           </>
         )}
 
+        <SectionHeader icon={<Tag className="h-[15px] w-[15px]" />} title="Tags" />
+        {node.tags.length > 0 ? (
+          <div className="pb-1 text-[12px] leading-[1.6]" style={{ color: "var(--fg-2)" }}>
+            {node.tags.join(", ")}
+          </div>
+        ) : (
+          <Empty>No tags recorded.</Empty>
+        )}
+
+        <Divider />
+
+        <SectionHeader icon={<LinkIcon className="h-[15px] w-[15px]" />} title="Reference" />
         <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[12px] pb-1">
-          <dt style={{ color: "var(--fg-3)" }}>Field</dt>
-          <dd style={{ color: "var(--fg-2)" }}>{node.chapter}</dd>
-          {node.tags.length > 0 && (
-            <>
-              <dt style={{ color: "var(--fg-3)" }}>Tags</dt>
-              <dd style={{ color: "var(--fg-2)" }}>{node.tags.join(", ")}</dd>
-            </>
-          )}
+          <dt style={{ color: "var(--fg-3)" }}>Domain</dt>
+          <dd style={{ color: "var(--fg-2)" }}>{domain?.label ?? node.topicCluster}</dd>
+          <dt style={{ color: "var(--fg-3)" }}>Source</dt>
+          <dd style={{ color: "var(--fg-2)" }}>{node.chapter} · {node.section || "unranked"} · #{node.number}</dd>
+          <dt style={{ color: "var(--fg-3)" }}>ID</dt>
+          <dd className="truncate font-mono text-[11px]" style={{ color: "var(--fg-2)" }} title={node.id}>
+            {node.id}
+          </dd>
         </dl>
       </div>
     </>
@@ -411,4 +444,3 @@ function RefRow({
     </button>
   );
 }
-
