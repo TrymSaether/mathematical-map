@@ -7,95 +7,105 @@
    Light (paper) + Dark (chalkboard). 8-color Manim/Atlas domain palette.
    ======================================================================== */
 
+
 :root,
 :root[data-theme="paper"] {
   color-scheme: light;
 
-  /* Surfaces */
-  --bg: #F8FAFC;
-  --bg-deep: #F1F5F9;
-  --surface: #FFFFFF;
-  --surface-2: #FCFCFD;
-  --surface-3: #F1F5F9;
+  /* Surfaces: warm paper, matching the standalone SVG/HTML cards. */
+  --bg: #F8F5EF;
+  --bg-deep: #EFE7DA;
+  --surface: #FFFDF8;
+  --surface-2: #FBFAF6;
+  --surface-3: #F4EFE6;
 
   /* Ink */
-  --fg-1: #0F172A;
-  --fg-2: #475569;
-  --fg-3: #94A3B8;
-  --fg-4: #CBD5E1;
-  --fg-on-color: #FFFFFF;
+  --fg-1: #27221D;
+  --fg-2: #51493F;
+  --fg-3: #8C8274;
+  --fg-4: #D8D0C2;
+  --fg-on-color: #FFFDF8;
 
   /* Borders */
-  --border: #E2E8F0;
-  --border-strong: #CBD5E1;
-  --border-subtle: #F1F5F9;
-  --hairline: #E2E8F0;
+  --border: #D8D0C2;
+  --border-strong: #C9BCA6;
+  --border-subtle: #ECE5D8;
+  --hairline: #D8D0C2;
 
   /* 8 Atlas domains */
-  --blue: #2563EB;
+  --blue: #2457C5;
   /* Foundations */
-  --green: #16A34A;
+  --green: #26844A;
   /* Continuity */
   --purple: #7C3AED;
   /* Connectedness */
-  --red: #DC2626;
+  --red: #A8431D;
   /* Fundamental Group */
   --teal: #0D9488;
   /* Covering Spaces */
-  --orange: #F97316;
+  --orange: #C56A24;
   /* Compactness */
-  --pink: #DB2777;
+  --pink: #B83280;
   /* Homotopy */
-  --gold: #EAB308;
+  --gold: #B89418;
   /* Examples */
 
-  /* Pastel surface tints (96% L) */
-  --blue-50: #EFF4FF;
-  --green-50: #ECFBF1;
-  --purple-50: #F4EEFE;
-  --red-50: #FEF1F1;
+  /* Soft domain fills, tuned for manuscript diagrams. */
+  --blue-50: #DCE8FF;
+  --green-50: #E8F5EC;
+  --purple-50: #F1EAFE;
+  --red-50: #F3E4DA;
   --teal-50: #EAF7F5;
-  --orange-50: #FFF1E8;
-  --pink-50: #FDEEF5;
-  --gold-50: #FBF6E1;
+  --orange-50: #F7E7DA;
+  --pink-50: #F7E8F0;
+  --gold-50: #F6EFD2;
 
-  /* Border weight for region outlines (88% L) */
-  --blue-200: #C9DAFE;
-  --green-200: #BEE9CB;
+  --blue-200: #AFC7F7;
+  --green-200: #B9D8C1;
   --purple-200: #D8C8FB;
-  --red-200: #F4C5C5;
+  --red-200: #E3C3B2;
   --teal-200: #B8DDD6;
-  --orange-200: #F8CFB0;
-  --pink-200: #F4C0D7;
-  --gold-200: #EFDF8E;
+  --orange-200: #E6C5AA;
+  --pink-200: #E7BED2;
+  --gold-200: #DDCB82;
 
   --accent: var(--blue);
   --accent-soft: var(--blue-50);
   --accent-border: var(--blue-200);
 
-  --selection: rgba(37, 99, 235, 0.18);
+  --selection: rgba(36, 87, 197, 0.16);
 
   /* Edges are monochrome ink — color is reserved for domains. */
-  --edge-ink: #64748B;
+  --edge-ink: #8C8274;
   --edge-highlight: var(--blue);
 
-  --shadow-1: 0 1px 2px rgba(15, 23, 42, 0.04);
-  --shadow-2: 0 4px 12px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
-  --shadow-3: 0 12px 32px rgba(15, 23, 42, 0.10), 0 2px 6px rgba(15, 23, 42, 0.05);
+  --shadow-1: 0 1px 2px rgba(42, 37, 32, 0.05);
+  --shadow-2: 0 4px 14px rgba(42, 37, 32, 0.08), 0 1px 2px rgba(42, 37, 32, 0.05);
+  --shadow-3: 0 18px 60px rgba(42, 37, 32, 0.10);
 
-  --grid-dot: #E5E7EB;
-  --grid-major: rgba(15, 23, 42, 0.05);
-  --grid-minor: rgba(15, 23, 42, 0.025);
+  --grid-dot: #E2D7C4;
+  --grid-major: rgba(39, 34, 29, 0.05);
+  --grid-minor: rgba(39, 34, 29, 0.025);
 
-  /* Diagram tokens (used by inline SVGs in /public/atlas-assets/diagrams) */
+  /* Diagram tokens (used by inline SVGs in /public/atlas-assets/diagrams). */
   --dia-paper: var(--surface);
-  --dia-fill: var(--surface-2);
-  --dia-fill2: var(--surface-3);
+  --dia-space: var(--surface-2);
+  --dia-panel: var(--surface);
+  --dia-fill: #E7DDC9;
+  --dia-fill2: #F4EFE6;
   --dia-fil2: var(--dia-fill2);
   --dia-domain: var(--dia-fill);
-  --dia-open: var(--accent-soft);
+  --dia-open: #DCE8FF;
+  --dia-int: #DCE8FF;
+  --dia-int-fill: var(--dia-int);
+  --dia-set: var(--dia-fill);
+  --dia-boundary: #A8431D;
+  --dia-ext: #8F8678;
+  --dia-ok: #26844A;
+  --dia-line: var(--border);
+  --dia-border: var(--border);
   --dia-ink: var(--fg-1);
-  --dia-acc: var(--accent);
+  --dia-acc: #2457C5;
   --dia-acc2: var(--teal);
   --dia-mut: var(--fg-3);
   --dia-muted: var(--dia-mut);
@@ -184,55 +194,65 @@
   --dia-muted-fill: var(--border-strong);
 }
 
-/* Manuscript — warm "old paper" reskin. Only the surfaces/ink/borders/accent
-   change; the domain palette is inherited from Paper so cluster colors stay
-   consistent across themes. */
+/* Manuscript — warm "old paper" reskin. Kept in lockstep with the
+   topology SVG/HTML visual style so embedded diagrams do not look like they
+   wandered in from another website, tragic as that would be. */
 :root[data-theme="manuscript"] {
   color-scheme: light;
 
-  --bg: #F4EFE6;
-  --bg-deep: #ECE5D8;
-  --surface: #FBF8F1;
-  --surface-2: #F6F1E7;
-  --surface-3: #ECE5D8;
+  --bg: #F8F5EF;
+  --bg-deep: #EFE7DA;
+  --surface: #FFFDF8;
+  --surface-2: #FBFAF6;
+  --surface-3: #F4EFE6;
 
-  --fg-1: #211D18;
-  --fg-2: #6B6256;
-  --fg-3: #9A8E7C;
-  --fg-4: #C9BCA6;
-  --fg-on-color: #FBF8F1;
+  --fg-1: #27221D;
+  --fg-2: #51493F;
+  --fg-3: #8C8274;
+  --fg-4: #D8D0C2;
+  --fg-on-color: #FFFDF8;
 
-  --border: #DDD2BD;
+  --border: #D8D0C2;
   --border-strong: #C9BCA6;
   --border-subtle: #ECE5D8;
-  --hairline: #DDD2BD;
+  --hairline: #D8D0C2;
 
-  --accent: #A8431D;
-  --accent-soft: #F3E4DA;
-  --accent-border: #E3C3B2;
+  --accent: #2457C5;
+  --accent-soft: #DCE8FF;
+  --accent-border: #AFC7F7;
 
-  --selection: rgba(168, 67, 29, 0.16);
+  --selection: rgba(36, 87, 197, 0.16);
 
-  --edge-ink: #8A7E6C;
+  --edge-ink: #8C8274;
   --edge-highlight: var(--accent);
 
-  --shadow-1: 0 1px 2px rgba(40, 30, 15, 0.06);
-  --shadow-2: 0 4px 14px rgba(40, 30, 15, 0.10), 0 1px 2px rgba(40, 30, 15, 0.06);
-  --shadow-3: 0 14px 36px rgba(40, 30, 15, 0.16), 0 2px 6px rgba(40, 30, 15, 0.08);
+  --shadow-1: 0 1px 2px rgba(42, 37, 32, 0.05);
+  --shadow-2: 0 4px 14px rgba(42, 37, 32, 0.08), 0 1px 2px rgba(42, 37, 32, 0.05);
+  --shadow-3: 0 18px 60px rgba(42, 37, 32, 0.10);
 
   --grid-dot: #E2D7C4;
-  --grid-major: rgba(33, 29, 24, 0.05);
-  --grid-minor: rgba(33, 29, 24, 0.025);
+  --grid-major: rgba(39, 34, 29, 0.05);
+  --grid-minor: rgba(39, 34, 29, 0.025);
 
   /* Diagram tokens */
   --dia-paper: var(--surface);
-  --dia-fill: var(--surface-2);
-  --dia-fill2: var(--surface-3);
+  --dia-space: var(--surface-2);
+  --dia-panel: var(--surface);
+  --dia-fill: #E7DDC9;
+  --dia-fill2: #F4EFE6;
   --dia-fil2: var(--dia-fill2);
   --dia-domain: var(--dia-fill);
-  --dia-open: var(--accent-soft);
+  --dia-open: #DCE8FF;
+  --dia-int: #DCE8FF;
+  --dia-int-fill: var(--dia-int);
+  --dia-set: var(--dia-fill);
+  --dia-boundary: #A8431D;
+  --dia-ext: #8F8678;
+  --dia-ok: #26844A;
+  --dia-line: var(--border);
+  --dia-border: var(--border);
   --dia-ink: var(--fg-1);
-  --dia-acc: var(--accent);
+  --dia-acc: #2457C5;
   --dia-acc2: var(--teal);
   --dia-mut: var(--fg-3);
   --dia-muted: var(--dia-mut);
@@ -353,18 +373,6 @@ body {
     color var(--dur-std) var(--ease-standard);
 }
 
-.themed-diagram {
-  background: var(--surface-2);
-  border-color: var(--border);
-  color: var(--dia-ink);
-}
-
-.themed-diagram svg {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 button {
   font-family: inherit;
 }
@@ -384,6 +392,137 @@ button {
 
 .font-mono {
   font-family: var(--font-mono);
+}
+
+
+/* ---- ATLAS DIAGRAM / ENTRY CARD STYLING ----------------------------
+   Shared stylesheet support for the symbolic SVG style used by the
+   topology entries: warm paper surfaces, serif math labels, compact
+   formula-first annotations, and no miniature essay hiding inside SVG.
+------------------------------------------------------------------------ */
+.entry-card,
+.atlas-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: var(--shadow-3);
+  color: var(--fg-1);
+}
+
+.entry-panel,
+.atlas-panel {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+}
+
+.entry-kicker,
+.atlas-kicker {
+  color: var(--dia-ok);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.entry-title,
+.atlas-title {
+  font-family: var(--font-serif);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--fg-1);
+}
+
+.entry-copy,
+.atlas-copy {
+  color: var(--fg-2);
+  line-height: 1.62;
+}
+
+.formula,
+.math-chip {
+  font-family: var(--font-mono);
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  color: var(--fg-1);
+}
+
+.themed-diagram {
+  background: var(--dia-space);
+  border: 1px solid var(--dia-line);
+  border-radius: 18px;
+  color: var(--dia-ink);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+}
+
+.themed-diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--dia-space);
+}
+
+/* SVG classes used by diagram assets. CSS custom properties still work when
+   the SVG is inline; external SVGs can use the same class names internally. */
+.svg-label {
+  font-family: var(--font-serif);
+  font-style: italic;
+  fill: var(--dia-ink);
+  paint-order: stroke;
+  stroke: var(--dia-space);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.svg-symbol {
+  font-family: var(--font-serif);
+  fill: var(--dia-ink);
+}
+
+.svg-muted {
+  fill: var(--dia-mut);
+}
+
+.svg-acc {
+  fill: var(--dia-acc);
+}
+
+.svg-bound {
+  fill: var(--dia-boundary);
+}
+
+.svg-ok {
+  fill: var(--dia-ok);
+}
+
+.dia-stroke {
+  stroke: var(--dia-ink);
+}
+
+.dia-stroke-muted {
+  stroke: var(--dia-mut);
+}
+
+.dia-stroke-acc {
+  stroke: var(--dia-acc);
+}
+
+.dia-stroke-bound {
+  stroke: var(--dia-boundary);
+}
+
+.dia-fill-set {
+  fill: var(--dia-set);
+}
+
+.dia-fill-int {
+  fill: var(--dia-int);
+}
+
+.dia-fill-space {
+  fill: var(--dia-space);
 }
 
 /* React Flow theming */

@@ -1,57 +1,87 @@
-<svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" font-family="'Newsreader', Georgia, serif" role="img">
+<svg viewBox="0 0 720 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="interior-title interior-desc">
+    <title id="interior-title">Interior</title>
+    <desc id="interior-desc">A symbolic diagram for the interior of a subset A in a topological space X.</desc>
+
     <defs>
-        <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-            <path d="M0,0 L6,3 L0,6 Z" fill="var(--dia-ink,#2a2520)" />
+        <filter id="interior-shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#2a2520" flood-opacity="0.12" />
+        </filter>
+
+        <marker id="interior-arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7"
+            orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 Z" fill="var(--dia-acc, #2457c5)" />
+        </marker>
+
+        <marker id="interior-arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7"
+            orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 Z" fill="var(--dia-boundary, #a8431d)" />
         </marker>
     </defs>
 
-    <!-- Ambient space X -->
-    <rect x="24" y="24" width="312" height="172" rx="20" fill="var(--dia-paper,#f4efe6)" stroke="var(--dia-ink,#2a2520)"
-        stroke-width="1.5" />
+    <!-- X -->
+    <rect x="36" y="36" width="648" height="314" rx="28" fill="var(--dia-space, var(--dia-paper, #fbfaf6))"
+        stroke="var(--dia-line, var(--border, #d8d0c2))" stroke-width="2" />
 
-    <text x="44" y="52" font-size="15" fill="var(--dia-ink,#2a2520)" font-style="italic">X</text>
+    <text x="62" y="75" font-size="24" class="svg-label" fill="var(--dia-ink, #27221d)">X</text>
 
-    <!-- Set A -->
-    <path d="M96,74
-           C130,44 188,48 226,78
-           C266,110 260,158 216,176
-           C172,195 106,172 82,132
-           C62,100 68,82 96,74 Z" fill="var(--dia-fill,#e7ddc9)" stroke="var(--dia-ink,#2a2520)" stroke-width="1.5" />
+    <!-- A -->
+    <ellipse cx="350" cy="188" rx="230" ry="108" fill="var(--dia-set, var(--dia-fill, #e7ddc9))"
+        stroke="var(--dia-ink, #27221d)" stroke-width="12" stroke-opacity="0.13" filter="url(#interior-shadow)" />
 
-    <text x="236" y="83" font-size="15" fill="var(--dia-ink,#2a2520)" font-style="italic">A</text>
+    <ellipse cx="350" cy="188" rx="230" ry="108" fill="none" stroke="var(--dia-ink, #27221d)" stroke-width="2.2" />
 
-    <!-- Interior Int(A) -->
-    <path d="M122,91
-           C151,70 190,76 212,101
-           C234,126 222,153 190,163
-           C154,174 114,150 104,123
-           C98,107 104,98 122,91 Z" fill="var(--dia-acc,#a8431d)" opacity="0.35" stroke="var(--dia-acc,#a8431d)"
-        stroke-width="1.3" />
+    <text x="563" y="125" font-size="26" class="svg-label" fill="var(--dia-ink, #27221d)">A</text>
 
-    <text x="150" y="133" font-size="14" fill="var(--dia-ink,#2a2520)" font-style="italic">Int(A)</text>
+    <!-- A° -->
+    <ellipse cx="350" cy="188" rx="158" ry="70" fill="var(--dia-int, var(--dia-open, #dce8ff))"
+        stroke="var(--dia-acc, #2457c5)" stroke-width="2.2" stroke-dasharray="8 7" />
 
-    <!-- Interior point x -->
-    <circle cx="156" cy="108" r="3.6" fill="var(--dia-ink,#2a2520)" />
+    <text x="350" y="197" font-size="24" class="svg-acc svg-symbol" fill="var(--dia-acc, #2457c5)"
+        text-anchor="middle">A°</text>
 
-    <text x="164" y="105" font-size="13" fill="var(--dia-ink,#2a2520)" font-style="italic">x</text>
+    <!-- formulas -->
+    <text x="350" y="330" font-size="18" class="svg-muted svg-symbol" fill="var(--dia-mut, #8c8274)"
+        text-anchor="middle">A°⊆A⊆X</text>
 
-    <!-- Open neighborhood around x -->
-    <ellipse cx="156" cy="108" rx="30" ry="21" fill="none" stroke="var(--dia-acc,#a8431d)" stroke-width="1.5"
-        stroke-dasharray="4 4" />
+    <text x="350" y="389" font-size="16" class="svg-muted svg-symbol" fill="var(--dia-mut, #8c8274)"
+        text-anchor="middle">A°=⋃{U∈τ:U⊆A}</text>
 
-    <text x="183" y="96" font-size="13" fill="var(--dia-acc,#a8431d)" font-style="italic">U</text>
+    <!-- x -->
+    <circle cx="304" cy="184" r="5" fill="var(--dia-acc, #2457c5)" />
 
-    <!-- Boundary point y -->
-    <circle cx="224" cy="144" r="3.6" fill="var(--dia-ink,#2a2520)" />
+    <circle cx="304" cy="184" r="39" fill="none" stroke="var(--dia-acc, #2457c5)" stroke-width="2"
+        stroke-dasharray="5 5" />
 
-    <text x="232" y="149" font-size="13" fill="var(--dia-ink,#2a2520)" font-style="italic">y</text>
+    <text x="255" y="158" font-size="19" class="svg-acc svg-symbol" fill="var(--dia-acc, #2457c5)">x</text>
 
-    <!-- Leaking neighborhood around boundary point -->
-    <ellipse cx="224" cy="144" rx="31" ry="23" fill="none" stroke="var(--dia-ink,#2a2520)" stroke-width="1.25"
-        stroke-dasharray="3 4" opacity="0.8" />
+    <text x="275" y="236" font-size="17" class="svg-acc svg-symbol" fill="var(--dia-acc, #2457c5)">U⊆A</text>
 
+    <path d="M269 229 C247 220 237 201 247 181" fill="none" stroke="var(--dia-acc, #2457c5)" stroke-width="1.8"
+        marker-end="url(#interior-arrow-blue)" />
 
-    <text x="260" y="155" font-size="11" fill="var(--dia-ink,#2a2520)" font-style="italic">leaking nbhd</text>
-    <!-- Small formula label -->
-    <text x="103" y="59" font-size="13" fill="var(--dia-ink,#2a2520)" font-style="italic">U ⊆ A</text>
+    <!-- ∂A -->
+    <circle cx="556" cy="214" r="5" fill="var(--dia-boundary, #a8431d)" />
+
+    <circle cx="556" cy="214" r="44" fill="none" stroke="var(--dia-boundary, #a8431d)" stroke-width="2"
+        stroke-dasharray="5 5" />
+
+    <text x="576" y="198" font-size="19" class="svg-bound svg-symbol" fill="var(--dia-boundary, #a8431d)">∂A</text>
+
+    <text x="604" y="268" font-size="17" class="svg-bound svg-symbol" fill="var(--dia-boundary, #a8431d)">U⊄A</text>
+
+    <path d="M595 258 C624 247 626 222 608 201" fill="none" stroke="var(--dia-boundary, #a8431d)" stroke-width="1.8"
+        marker-end="url(#interior-arrow-red)" />
+
+    <!-- X∖A -->
+    <circle cx="142" cy="271" r="5" fill="var(--dia-ext, #8f8678)" />
+
+    <circle cx="142" cy="271" r="32" fill="none" stroke="var(--dia-ext, #8f8678)" stroke-width="1.8"
+        stroke-dasharray="5 6" />
+
+    <text x="104" y="318" font-size="18" class="svg-muted svg-symbol" fill="var(--dia-mut, #8c8274)">X∖A</text>
+
+    <!-- τ -->
+    <text x="126" y="108" font-size="18" class="svg-muted svg-symbol" fill="var(--dia-mut, #8c8274)">τ</text>
+
+    <text x="615" y="80" font-size="18" class="svg-muted svg-symbol" fill="var(--dia-mut, #8c8274)">⊆</text>
 </svg>

@@ -3717,7 +3717,8 @@
           "metric_space",
           "discrete_topology",
           "basis_for_topology"
-        ]
+        ],
+        "proof": "Clearly, ∅ ∈ 𝒯𝑑 . To show that 𝑋 ∈ 𝒯𝑑 , note that for any 𝑥 ∈ 𝑋, 𝖡(𝑥; 1) ⊆ 𝑋. Hence, 𝑋 ∈ 𝒯𝑑 . Thus T1 is satisfied. ⋃ Let {𝑈𝜆 }𝜆∈Λ be any subcollection of 𝒯𝑑 . We need to prove that 𝑉 = 𝜆∈Λ 𝑈𝜆 ∈ 𝒯𝑑 . Let 𝑥 ∈ 𝑉 . ⋃ From 𝑉 = 𝜆∈Λ 𝑈𝜆 there is 𝜆 ∈ Λ such that 𝑥 ∈ 𝑈𝜆 . By the property of 𝑈𝜆 satisfied by the 𝑈𝜆 in 𝒯𝑑 there is an 𝑟 > 0 such that 𝖡(𝑥; 𝑟) ⊆ 𝑈𝜆 . Hence, 𝖡(𝑥; 𝑟) ⊆ 𝑉 . Thus 𝑉 ∈ 𝒯𝑑 , and T2 is satisfied. We prove that the intersection of the elements of any finite subcollection of 𝒯𝑑 is also an element of 𝒯𝑑 . Let 𝑈1 , 𝑈2 , … , 𝑈𝑛 ∈ 𝒯𝑑 . We need to prove that 𝑈1 ∩ 𝑈2 ∩ ⋯ ∩ 𝑈𝑛 ∈ 𝒯𝑑 . Let 𝑥 ∈ 𝑈1 ∩ 𝑈2 ∩ ⋯ ∩ 𝑈𝑛 . Since 𝑈1 ∩ 𝑈2 ∩ ⋯ ∩ 𝑈𝑛 ⊆ 𝑈𝑖 , we have that 𝑥 ∈ 𝑈𝑖 for 𝑖 = 1, 2, … , 𝑛. By the defining property of 𝒯𝑑 there is an 𝑟𝑖 > 0 such that 𝖡(𝑥; 𝑟𝑖 ) ⊆ 𝑈𝑖 for 𝑖 = 1, 2, … , 𝑛. Let 𝑟 = min{𝑟1 , 𝑟2 , … , 𝑟𝑛 }. Then 𝖡(𝑥; 𝑟) ⊆ 𝖡(𝑥; 𝑟𝑖 ) ⊆ 𝑈𝑖 for 𝑖 = 1, 2, … , 𝑛. Thus 𝖡(𝑥; 𝑟) ⊆ 𝑈1 ∩𝑈2 ∩⋯∩𝑈𝑛 , and so 𝑈1 ∩𝑈2 ∩⋯∩𝑈𝑛 ∈ 𝒯𝑑 . Hence, T3 is satisfied."
       },
       {
         "id": "order_topology",
@@ -4171,7 +4172,8 @@
           "compact_space",
           "homeomorphism_open_closed",
           "heine_borel_theorem"
-        ]
+        ],
+        "proof": "We show that 𝐾 𝑐 = 𝑋 ⧵ 𝐾 is open in 𝑋. Let 𝑥 ∈ 𝐾 𝑐 . Then for each 𝑦 ∈ 𝐾 there are neighborhoods 𝑈𝑦 and 𝑉𝑦 of 𝑥 and 𝑦, respectively, such that 𝑈𝑦 ∩ 𝑉𝑦 = ∅, since 𝑋 is assumed to be Hausdorff and 𝑥 ≠ 𝑦. The collection 𝒞 = {𝑉𝑦 ∣ 𝑦 ∈ 𝐾} of open subsets of 𝑋 covers 𝐾 since ⋃ 𝐾⊆ 𝑉𝑦 . 𝑦∈𝐾\n\nSince 𝐾 is assumed to be compact there must be a finite subcollection {𝑉𝑦1 , 𝑉𝑦2 , … , 𝑉𝑦𝑛 } that covers 𝐾. Let 𝑉 = 𝑉𝑦1 ∪ 𝑉𝑦2 ∪ ⋯ ∪ 𝑉𝑦𝑛 , and let 𝑈 = 𝑈𝑦1 ∩ 𝑈𝑦2 ∩ ⋯ ∩ 𝑈𝑦𝑛 . Then 𝑈 is open in 𝑋, 𝑥 ∈ 𝑈 and 𝑈 ∩ 𝑉 = ∅. Furthermore, 𝑈 ⊆ 𝑋 ⧵ 𝑉 ⊆ 𝑋 ⧵ 𝐾 = 𝐾 𝑐 . Hence, 𝐾 𝑐 is open in 𝑋."
       },
       {
         "id": "poincare_conjecture",
@@ -4357,6 +4359,12 @@
           "compact_subsets_of_hausdorff_are_closed",
           "product_compact",
           "evt"
+        ],
+        "proof": "Assume that 𝐴 is compact. By Theorem 6.22, ℝ𝑛 is Hausdorff, and so, by Theorem 6.36 𝐴 is closed in ℝ𝑛 . We must show that 𝐴 is also bounded. Let 𝒜 = {𝖡(0; 𝑛) ∣ 𝑛 ∈ ℤ+ }, i.e., a collection of open balls centered at the origin in ℝ𝑛 . Then 𝒜 is a cover of 𝐴 by open subsets of ℝ𝑛 . Since 𝐴 is compact there must be a finite subcollection of 𝒜 that covers 𝐴. Thus there is an 𝑁 ∈ ℤ+ such that 𝐴 ⊆ 𝖡(0; 𝑁). Hence, for all 𝑎1 , 𝑎2 ∈ 𝐴 we have 𝑑(𝑎1 , 𝑎2 ) < 2𝑁. Thus 𝐴 is bounded. Now assume that 𝐴 is bounded and closed in ℝ𝑛 . Let 𝑝 = (𝑝1 , 𝑝2 , … , 𝑝𝑛 ) ∈ 𝐴. Since 𝐴 is bounded there is an 𝑀 ∈ ℝ such that 𝑑(𝑎1 , 𝑎2 ) ⩽ 𝑀 for all 𝑎1 , 𝑎2 ∈ 𝐴. Then 𝐴 is contained in the product space 𝑃 = [𝑝1 − 𝑀, 𝑝1 + 𝑀] × [𝑝2 − 𝑀, 𝑝2 + 𝑀] × ⋯ × [𝑝𝑛 − 𝑀, 𝑝𝑛 + 𝑀]\n\nwhich by Theorem 6.40 and Theorem 6.39 is compact. Since 𝐴 is closed in ℝ𝑛 and a subset of 𝑃 , it follows by extending Theorem 6.35 to our setting that 𝐴 is compact. Specifically, let 𝒞 be a cover of 𝐴 by open subsets of ℝ𝑛 . Since 𝐴 is closed in ℝ𝑛 , 𝐴𝑐 = ℝ𝑛 ⧵ 𝐴 is open in ℝ𝑛 . Thus\n\n𝒜 = 𝒞 ∪ {𝐴𝑐 }\n\nis an open cover of ℝ𝑛 , and thus it is also an open cover of 𝑃 in the subspace topology. Since 𝑃 is compact there must be a finite subcover of 𝒜 that covers 𝑃 . This implies that there is a finite subcover of 𝒞 that covers 𝐴. Thus 𝐴 is compact.",
+        "proof_dependencies": [
+          "compact_subsets_of_hausdorff_are_closed",
+          "product_compact",
+          "compact_hausdorff_space"
         ]
       },
       {
@@ -4920,6 +4928,10 @@
         "related": [
           "pi1_circle",
           "retraction"
+        ],
+        "proof": "Assume that 𝑓 has no fixed points. Then there is a retraction 𝑟 ∶ 𝐷2 → 𝑆 1 given by having 𝑟(𝑥) be the point on the ray that originates at 𝑓 (𝑥) and passes through 𝑥 that lies on the circle. See Figure 8.3.\n\n𝑆1\n\n𝑓 (𝑥)\n\n𝑥\n\n𝑟(𝑥)\n\nFigure 8.3: The map 𝑟 ∶ 𝐷2 → 𝑆 1 .\n\nBy Lemma 7.30, the homomorphism 𝑖∗ ∶ 𝜋1 (𝑆 1 , 𝑠0 ) → 𝜋1 (𝐷2 , 𝑠0 ) induced by the inclusion map 𝑖 ∶ 𝑆 1 → 𝐷2 must be a monomorphism. Since 𝐷2 is simply connected (it has the homotopy type of a point), it follows by Theorem 8.16 that the homomorphism 𝑖∗ cannot be a monomorphism. Hence, there is no retraction 𝑟 ∶ 𝐷2 → 𝑆 1 .",
+        "proof_dependencies": [
+          "pi1_circle"
         ]
       },
       {
@@ -9356,7 +9368,8 @@
           "fundamental_group",
           "path_connected_space",
           "isomorphism"
-        ]
+        ],
+        "proof": "Let 𝛼 ∶ 𝐼 → 𝑋 be a path from 𝑥0 to 𝑥1 . If 𝑓 ∶ 𝐼 → 𝑋 is a loop in 𝑋 based 𝑥0 , then 𝛼 ∗ 𝑓 ∗ 𝛼 ̂ ∶ 𝜋1 (𝑋, 𝑥0 ) → 𝜋1 (𝑋, 𝑥1 ) by is a loop in 𝑋 based at 𝑥1 . We define the map 𝛼\n\n̂([𝑓 ]) = [𝛼]−1 ∗ [𝑓 ] ∗ [𝛼] 𝛼\n\nwhere we have used the fact that [ 𝛼 ] = [𝛼]−1 . It is a well-defined map as ∗ is well-defined, and moreover, it only depends on the path homotopy class of 𝛼. We will show that 𝛼 ̂ ∶ 𝜋1 (𝑋, 𝑥0 ) → 𝜋1 (𝑋, 𝑥1 ) is an isomorphism. We will first show that 𝛼 ̂ is a homomorphism, and then show that it is bijective. Since\n\n̂([𝑓 ] ∗ [𝑔]) = [𝛼]−1 ∗ [𝑓 ] ∗ [𝑔] ∗ [𝛼] 𝛼 = ([𝛼]−1 ∗ [𝑓 ] ∗ [𝛼]) ∗ ([𝛼]−1 ∗ [𝑔] ∗ [𝛼]) =𝛼 ̂([𝑓 ]) ∗ 𝛼 ̂([𝑔]),\n\nfor all [𝑓 ], [𝑔] ∈ 𝜋1 (𝑋, 𝑥0 ), it follows that 𝛼 ̂ is a homomorphism. To show that 𝛼 ̂ is bijective, and hence, an isomorphism, we show that 𝛼 ̂ has an inverse. Let 𝛽 = 𝛼, i.e., 𝛽 is the reverse path of 𝛼. Since ̂ 𝛽([ℎ]) = [𝛽]−1 ∗ [ℎ] ∗ [𝛽] = [𝛼] ∗ [ℎ] ∗ [𝛼]−1 𝛽([ℎ])) = [𝛼]−1 ∗ ([𝛽]−1 ∗ [ℎ] ∗ [𝛽]) ∗ [𝛼] = [ℎ] ̂( ̂ 𝛼\n\nfor all [ℎ] ∈ 𝜋1 (𝑋, 𝑥1 ), and\n\n̂([𝑓 ]) = [𝛼]−1 ∗ [𝑓 ] ∗ [𝛼] = [𝛽] ∗ [𝑓 ] ∗ [𝛽]−1 𝛼 ̂ 𝛼 ([𝑓 ])) = [𝛽]−1 ∗ ([𝛼]−1 ∗ [𝑓 ] ∗ [𝛼]) ∗ [𝛽] = [𝑓 ] 𝛽(̂\n\n𝛼 )−1 . for all [𝑓 ] ∈ 𝜋1 (𝑋, 𝑥0 ), it follows that 𝛽̂ = (̂"
       },
       {
         "id": "binary_operation",
@@ -9660,7 +9673,8 @@
         "related": [
           "homeomorphism",
           "topological_property"
-        ]
+        ],
+        "proof": "The identity map id ∶ 𝑋 → 𝑋 (where the domain and the codomain are equipped with the same topology) is clearly continuous and bijective. As the identity map is its own inverse, then it is also a homeomorphism. Hence, 𝑋 ≅ 𝑋 and so ≅ satisfies the reflexivity condition for an equivalence relation. If 𝑓 ∶ 𝑋 → 𝑌 is a homeomorphism, then 𝑓 −1 ∶ 𝑌 → 𝑋 is also a homeomorphism: 𝑓 −1 is a continuous bijection with continuous inverse (𝑓 −1 )−1 = 𝑓 ∶ 𝑋 → 𝑌 . Hence, 𝑋 ≅ 𝑌 if and only if 𝑌 ≅ 𝑋. Thus ≅ satisfies the symmetry condition for an equivalence relation."
       },
       {
         "id": "composition_continuous",
@@ -9700,6 +9714,10 @@
           "continuity",
           "homeomorphism",
           "composition_maps"
+        ],
+        "proof": "Let 𝑊 ⊆ 𝑍 be open in 𝑍. We need to prove that (𝑔◦𝑓 )−1 (𝑊 ) is open in 𝑋. Since\n\n(𝑔◦𝑓 )−1 (𝑊 ) = {𝑥 ∈ 𝑋 ∣ 𝑔(𝑓 (𝑥)) ∈ 𝑊 } = {𝑥 ∈ 𝑋 ∣ 𝑓 (𝑥) ∈ 𝑔 −1 (𝑊 )} = {𝑥 ∈ 𝑋 ∣ 𝑥 ∈ 𝑓 −1 (𝑔 −1 (𝑊 ))} = 𝑓 −1 (𝑔 −1 (𝑊 ))\n\nand that 𝑔 −1 (𝑊 ) is open in 𝑌 and 𝑓 −1 (𝑔 −1 (𝑊 )) is open in 𝑋 (by continuity of 𝑔 and 𝑓 ), it follows that (𝑔◦𝑓 )−1 (𝑊 ) is open in 𝑋. Hence, 𝑔◦𝑓 is continuous.\n\nWe can express continuity at a point for maps between topological spaces using neighborhoods. (See Theorem 2.12 for the case of metric spaces.)",
+        "proof_dependencies": [
+          "continuity_point_metric"
         ]
       },
       {
@@ -9774,7 +9792,8 @@
           "continuous_map_metric",
           "neighborhood_metric",
           "continuity_point_top"
-        ]
+        ],
+        "proof": "Assume that 𝑓 is continuous at 𝑝. If 𝐵 is a neighborhood of 𝑓 (𝑝), then, by definition, there is an open ball 𝖡𝑌 (𝑓 (𝑝); 𝜖) about 𝑓 (𝑝) that is contained in 𝐵. Since 𝑓 is continuous at 𝑝, there is a 𝛿 > 0 such that if 𝑑𝑋 (𝑝, 𝑞) < 𝛿, then 𝑑𝑌 (𝑓 (𝑝), 𝑓 (𝑞)) < 𝜖. Hence, 𝑓 (𝖡𝑋 (𝑝; 𝛿)) ⊆ 𝖡𝑌 (𝑓 (𝑝); 𝜖) ⊆ 𝐵. That is, if we let 𝐴 = 𝖡𝑋 (𝑝, 𝛿), then for all neighborhoods 𝐵 of 𝑓 (𝑝), we have that 𝑓 (𝐴) ⊆ 𝐵 where 𝐴 is a neighborhood of 𝑝. Assume that for all neighborhoods 𝐵 of 𝑓 (𝑝), there is a neighborhood 𝐴 of 𝑝 such that 𝑓 (𝐴) ⊆ 𝐵. We need to prove that for all 𝜖 > 0, there is a 𝛿 > 0 such that if 𝑑𝑋 (𝑝, 𝑞) < 𝛿, then 𝑑𝑌 (𝑓 (𝑝), 𝑓 (𝑞)) < 𝜖. By utilizing the fact that 𝐵 = 𝖡𝑌 (𝑓 (𝑝); 𝜖) is a neighborhood of 𝑓 (𝑝), then, by assumption, there must be a neighborhood 𝐴 of 𝑝 such that 𝑓 (𝐴) ⊆ 𝐵. Since 𝐴 is a neighborhood of 𝑝, there is an open ball 𝖡𝑋 (𝑝; 𝛿) about 𝑝 that is contained in 𝐴. Now assume that 𝑑𝑋 (𝑝, 𝑝′ ) < 𝛿. Then 𝑝′ ∈ 𝖡𝑋 (𝑝; 𝛿) ⊆ 𝐴. Thus 𝑓 (𝑝′ ) ∈ 𝐵 = 𝖡𝑌 (𝑓 (𝑝); 𝜖), and hence, 𝑑𝑌 (𝑓 (𝑝), 𝑓 (𝑝′ )) < 𝜖. Thus 𝑓 is continuous at 𝑝."
       },
       {
         "id": "continuity_point_top",
@@ -9854,7 +9873,8 @@
           "basis_for_topology",
           "subbasis",
           "continuity"
-        ]
+        ],
+        "proof": "We prove the statement about basis. Assume that 𝑓 is continuous. Since each basis element 𝐵 ∈ ℬ is open in 𝑌 , then by continuity 𝑓 −1 (𝐵) is open in 𝑋. Assume that for each 𝐵 ∈ ℬ the preimage 𝑓 −1 (𝐵) is open in 𝑋. Let 𝒯𝑌 be the topology on 𝑌 . ⋃ Since every 𝑉 ∈ 𝒯𝑌 is a union 𝑉 = 𝜆∈Λ 𝐵𝜆 of basis elements 𝐵𝜆 ∈ ℬ, we have ⋃ 𝑓 −1 (𝑉 ) = 𝑓 −1 (𝐵𝜆 ). 𝜆∈Λ\n\nThus if each 𝑓 −1 (𝐵𝜆 ) is open in 𝑋, so is 𝑓 −1 (𝑉 )."
       },
       {
         "id": "continuity_preimage_metric",
@@ -9895,7 +9915,8 @@
           "continuity",
           "open_closed_set_metric",
           "continuity_basis"
-        ]
+        ],
+        "proof": "Assume that 𝑓 is continuous. For 𝐵 ⊆ 𝑌 open in 𝑌 , we have to prove that 𝑓 −1 (𝐵) ⊆ 𝑋 is open in 𝑋. Let 𝑎 ∈ 𝑓 −1 (𝐵). We want to prove that there is an open ball about 𝑎 in 𝑋 that is contained in 𝑓 −1 (𝐵). By assumption, 𝐵 ⊆ 𝑌 is open in 𝑌 . Hence, there is an 𝜖 > 0 such that 𝖡𝑌 (𝑓 (𝑎); 𝜖) ⊆ 𝐵. From the assumption that 𝑓 is continuous there is a 𝛿 > 0 such that 𝖡𝑋 (𝑎; 𝛿) ⊆ 𝑓 −1 (𝖡𝑌 (𝑓 (𝑎); 𝜖)) ⊆ 𝑓 −1 (𝐵). We now prove the opposite implication. Assume that for every subset 𝐵 ⊆ 𝑌 open in 𝑌 , the preimage 𝑓 −1 (𝐵) of 𝐵 under 𝑓 is open in 𝑋. Let 𝑎 ∈ 𝑋 and 𝜖 > 0 be a real number. From the first assumption it follows that 𝑓 −1 (𝖡𝑌 (𝑓 (𝑎); 𝜖)) ⊆ 𝑋 is open in 𝑋. As 𝑓 −1 (𝖡𝑌 (𝑓 (𝑎); 𝜖)) is open and contains 𝑎, there is a 𝛿 > 0 such that 𝖡𝑋 (𝑎; 𝛿) ⊆ 𝑓 −1 (𝖡𝑌 (𝑓 (𝑎); 𝜖)). Thus 𝑥 ∈ 𝖡𝑋 (𝑎; 𝛿) implies that 𝑓 (𝑥) ∈ 𝖡𝑌 (𝑓 (𝑎); 𝜖). Hence, 𝑓 ∶ 𝑋 → 𝑌 is continuous.\n\nLet 𝐴 and 𝐵 be sets, and let 𝑓 ∶ 𝐴 → 𝐵. Then 𝑓 −1 (𝐵) will always exist even if there is no inverse map. In the cases where 𝑓 has an inverse there is no ambiguity. If 𝑈 and 𝑉 are both subsets of 𝐵 then\n\n𝑓 −1 (𝑈 ∪ 𝑉 ) = 𝑓 −1 (𝑈 ) ∪ 𝑓 −1 (𝑉 ) and 𝑓 −1 (𝑈 ∩ 𝑉 ) = 𝑓 −1 (𝑈 ) ∩ 𝑓 −1 (𝑉 ),\n\nand furthermore, if 𝑈 ⊆ 𝑉 then 𝑓 −1 (𝑈 ) ⊆ 𝑓 −1 (𝑉 ). Let 𝑈 ⊆ 𝐴 and 𝑉 ⊆ 𝐵, then ( ) 𝑈 ⊆ 𝑓 −1 (𝑓 (𝑈 )) and 𝑓 𝑓 −1 (𝑉 ) ⊆ 𝑉 .\n\nWe also note that if 𝑈 is a subset of 𝐵 then\n\n𝑓 −1 (𝐵 ⧵ 𝑈 ) = 𝑓 −1 (𝑈 𝑐 ) = (𝑓 −1 (𝑈 ))𝑐 = 𝐴 ⧵ 𝑓 −1 (𝑈 )."
       },
       {
         "id": "compact_image",
@@ -9935,7 +9956,8 @@
           "connected_image",
           "evt",
           "homeomorphism_open_closed"
-        ]
+        ],
+        "proof": "Let 𝒞 = {𝑈𝜆 }𝜆∈Λ be an open cover of 𝑌 . Then 𝒜 = {𝑓 −1 (𝑈𝜆 )}𝜆∈Λ is an open cover of 𝑋. Since 𝑋 is compact there must be a finite subcover 𝒜′ = {𝑓 −1 (𝑈𝜆1 ), 𝑓 −1 (𝑈𝜆2 ), … , 𝑓 −1 (𝑈𝜆𝑛 )} of 𝒜. Then 𝒞 ′ = {𝑈𝜆1 , 𝑈𝜆2 , … , 𝑈𝜆𝑛 } is a finite subcover of 𝒞. Hence, 𝑌 is compact."
       },
       {
         "id": "connected_image",
@@ -9975,7 +9997,8 @@
           "ivt",
           "compact_image",
           "topological_property"
-        ]
+        ],
+        "proof": "We prove the equivalent statement that if 𝑓 ∶ 𝑋 → 𝑌 is a surjective continuous map and 𝑌 is disconnected then 𝑋 is disconnected. Assume that 𝑌 is disconnected, i.e., there is a separation of 𝑌 . Let the pair 𝑈 and 𝑉 be a separation of 𝑌 . Then 𝑓 −1 (𝑈 ) and 𝑓 −1 (𝑉 ) are non-empty subsets of 𝑋 which are open in 𝑋 as 𝑓 is a surjective continuous map. Furthermore,\n\n𝑓 −1 (𝑈 ) ∩ 𝑓 −1 (𝑉 ) = 𝑓 −1 (𝑈 ∩ 𝑉 ) = ∅ and 𝑓 −1 (𝑈 ) ∪ 𝑓 −1 (𝑉 ) = 𝑓 −1 (𝑈 ∪ 𝑉 ) = 𝑋.\n\nHence, the pair 𝑓 −1 (𝑈 ) and 𝑓 −1 (𝑉 ) is a separation of 𝑋. Thus 𝑋 is disconnected."
       },
       {
         "id": "continuous_map_metric",
@@ -10133,7 +10156,8 @@
           "subgroup",
           "group",
           "pi1_circle"
-        ]
+        ],
+        "proof": "Since 𝐻 is a subgroup of 𝐺, it follows that 𝑥−1 ∈ 𝐻. Thus 𝑥𝑥−1 = 𝑥−1 𝑥 = 𝑥0 = 1 ∈ 𝐻. Furthermore, 𝑥𝑛 ∈ 𝐻 for all 𝑛 ∈ ℤ where 𝑥−𝑚 = (𝑥−1 )𝑚 . Thus ⟨𝑥⟩ is a subgroup of 𝐻."
       },
       {
         "id": "deformation_retract",
@@ -10367,7 +10391,8 @@
           "pi1_invariant",
           "composition_continuous",
           "homomorphism"
-        ]
+        ],
+        "proof": "Assume that 𝑓 ∶ 𝐼 → 𝑋 is a loop in 𝑋 based at 𝑥0 . Then\n\n(ℎ2 ◦ℎ1 )∗ ([𝑓 ]) = [(ℎ2 ◦ℎ1 )◦𝑓 ]\n\nand ( ) (ℎ2 )∗ (ℎ1 )∗ ([𝑓 ]) = [ℎ2 ◦(ℎ1 ◦𝑓 )].\n\nSince composition of continuous maps is associative, i.e., (ℎ2 ◦ℎ1 )◦𝑓 = ℎ2 ◦(ℎ1 ◦𝑓 ), these path homotopy classes must be equal. Hence, (ℎ2 ◦ℎ1 )∗ = (ℎ2 )∗ ◦(ℎ1 )∗ . If id𝑋 ∶ 𝑋 → 𝑋 is the identity map, then id𝑋 ◦𝑓 = 𝑓 , and so, (id𝑋 )∗ ([𝑓 ]) = [id𝑋 ◦𝑓 ] = [𝑓 ]. Hence, (id𝑋 )∗ is the identity automorphism of 𝜋1 (𝑋, 𝑥0 )."
       },
       {
         "id": "fundamental_group",
@@ -10453,7 +10478,8 @@
           "isomorphism",
           "quotient_group",
           "normal_subgroup"
-        ]
+        ],
+        "proof": "We first show that 𝜑 is well-defined. Let 𝑥1 and 𝑥2 be two elements in 𝐺. If 𝑥1 ker 𝜑 = 𝑥2 ker 𝜑, we must show that 𝜑(𝑥1 ker 𝜑) = 𝜑(𝑥2 ker 𝜑). In other words, we must show that 𝜑(𝑥1 ) = 𝜑(𝑥2 ). Since 𝑥2 ∈ 𝑥1 ker 𝜑, there is an element 𝑧 in ker 𝜑 such that 𝑥2 = 𝑥1 𝑧. Thus if 𝑒2 is the identity element in 𝐺2 , we have 𝜑(𝑥2 ) = 𝜑(𝑥1 𝑧) = 𝜑(𝑥1 )𝜑(𝑧) = 𝜑(𝑥1 )𝑒2 = 𝜑(𝑥1 ) where we have used the fact that 𝜑 is a homomorphism. Hence, 𝜑 is a well-defined map. We now show that 𝜑 is an isomorphism, where we first show that it is a homomorphism, and then that it is bijective. By definition for 𝑥1 ker 𝜑, 𝑥2 ker 𝜑 ∈ 𝐺∕ ker 𝜑, we have\n\n𝜑((𝑥1 ker 𝜑)(𝑥2 ker 𝜑)) = 𝜑((𝑥1 𝑥2 ) ker 𝜑) = 𝜑(𝑥1 𝑥2 ) = 𝜑(𝑥1 )𝜑(𝑥2 ) = 𝜑(𝑥1 ker 𝜑)𝜑(𝑥2 ker 𝜑).\n\nThus 𝜑 is a homomorphism. Now assume that 𝜑(𝑥1 ker 𝜑) = 𝜑(𝑥2 ker 𝜑). We must show that this implies that 𝑥1 ker 𝜑 = 𝑥2 ker 𝜑. If 𝜑(𝑥1 ker 𝜑) = 𝜑(𝑥2 ker 𝜑), then by definition, we have 𝜑(𝑥1 ) = 𝜑(𝑥2 ). This implies that 𝜑(𝑥2 )−1 𝜑(𝑥1 ) = 𝑒2 . Since 𝜑 is a homomorphism, we have 𝜑(𝑥−1 2 𝑥1 ) = 𝑒2 . Thus 𝑥−1 𝑥1 ∈ ker 𝜑, and −1 so, 𝑥2 𝑥1 ker 𝜑 = ker 𝜑. Hence, 𝑥1 ker 𝜑 = 𝑥2 ker 𝜑. Thus 𝜑 is injective. For any 𝜑(𝑥) ∈ im 𝜑, we have, by definition, that 𝜑(𝑥 ker 𝜑) = 𝜑(𝑥). Hence, 𝜑 is surjective. Thus 𝜑 is bijective, and hence, it is an isomorphism. By definition, we have, for elements 𝑥1 and 𝑥2 in 𝐺1 , that\n\n𝜋(𝑥1 𝑥2 ) = (𝑥1 𝑥2 ) ker 𝜑 = (𝑥1 ker 𝜑)(𝑥2 ker 𝜑).\n\nAppendix B. Elementary algebra 109\n\nHence, 𝜋 is a homomorphism. Furthermore,\n\n(𝜑◦𝜋)(𝑥) = 𝜑(𝜋(𝑥)) = 𝜑(𝑥 ker 𝜑) = 𝜑(𝑥)\n\nfor each 𝑥 ∈ 𝐺1 . This completes the proof."
       },
       {
         "id": "fta",
@@ -10527,6 +10553,11 @@
           "compact_image",
           "heine_borel_theorem",
           "compact_space"
+        ],
+        "proof": "By Theorem 6.37, 𝑓 (𝑋) is compact. We must show that 𝑓 (𝑋) contains its supremum and its infimum. If it does, then by setting 𝑓 (𝑚) = inf 𝑓 (𝑋) and 𝑓 (𝑀) = sup 𝑓 (𝑋) the theorem follows. We prove that 𝑓 (𝑋) contains its supremum. The proof for the infimum is similar. Since 𝑓 (𝑋) is compact, it is closed and bounded by Theorem 6.42. In particular, 𝑓 (𝑋) is bounded above. Hence, the set 𝑓 (𝑋) has a least upper bound; 𝑠 = sup 𝑓 (𝑋). Thus 𝑝 ⩽ 𝑠 for all 𝑝 ∈ 𝑓 (𝑋). We must show that 𝑠 ∈ 𝑓 (𝑋). Assume that 𝑠 ∉ 𝑓 (𝑋). Since 𝑓 (𝑋) is closed, i.e., 𝑓 (𝑋)𝑐 = ℝ⧵𝑓 (𝑋) is open, it follows that there is a real number 𝜖 > 0 such that (𝑠 − 𝜖, 𝑠 + 𝜖) ⊆ 𝑓 (𝑋)𝑐 , and so,\n\n(𝑠 − 𝜖, 𝑠 + 𝜖) ∩ 𝑓 (𝑋) = ∅.\n\nHence, there is a real number 𝑦 such that 𝑦 is an upper bound of 𝑓 (𝑋) and 𝑠 − 𝜖 < 𝑦 < 𝑠. This is a contradiction to the fact that 𝑠 is the least upper bound of 𝑓 (𝑋). Hence, 𝑠 = sup 𝑓 (𝑋) ∈ 𝑓 (𝑋).",
+        "proof_dependencies": [
+          "compact_image",
+          "heine_borel_theorem"
         ]
       },
       {
@@ -10566,7 +10597,8 @@
           "connected_space",
           "connected_image",
           "real_line_connected"
-        ]
+        ],
+        "proof": "Assume that 𝑟 ∉ 𝑓 (𝑋). We will show that this contradicts the assumption that 𝑋 is connected. By the assumption that 𝑟 ∉ 𝑓 (𝑋), i.e., 𝑓 (𝑋) ⊆ ℝ ⧵ {𝑟} = (−∞, 𝑟) ∪ (𝑟, ∞), we have a separation of 𝑋: 𝑈 = 𝑓 −1 ((−∞, 𝑟)) and 𝑉 = 𝑓 −1 ((𝑟, ∞))\n\nare disjoint non-empty open subsets of 𝑋 whose union equals 𝑋. Thus they are a separation of 𝑋. This contradicts the assumption that 𝑋 is connected. Hence, 𝑟 ∈ 𝑓 (𝑋). In other words, there is a 𝑐 ∈ 𝑋 such that 𝑓 (𝑐) = 𝑟."
       },
       {
         "id": "group",
@@ -10686,7 +10718,8 @@
           "open_closed_map",
           "compact_image",
           "compact_subsets_of_hausdorff_are_closed"
-        ]
+        ],
+        "proof": "We will show that (1) is equivalent to (2) and that (2) is equivalent to (3). Since 𝑓 is a bijection, we have ( −1 )−1 𝑓 (𝑈 ) = 𝑓 (𝑈 )\n\nfor any subset 𝑈 of 𝑋. In particular, if 𝑈 is an open subset of 𝑋 and if we assume that 𝑓 is a homeomorphism then 𝑓 (𝑈 ) must be open in 𝑌 as 𝑓 −1 is continuous. Hence, 𝑓 is an open map. Furthermore, if we assume that 𝑓 is open instead of being a homeomorphism then 𝑓 (𝑈 ) is open in 𝑌 for 𝑈 an open subset of 𝑋. Hence, 𝑓 −1 ∶ 𝑌 → 𝑋 is continuous. Thus 𝑓 is a homeomorphism. Hence, (1) is equivalent to (2). Assume that 𝑓 is an open map. Since 𝑓 is a bijection, we have\n\n𝑓 (𝑋 ⧵ 𝑈 ) = 𝑓 (𝑈 𝑐 ) = 𝑓 (𝑈 )𝑐 = 𝑌 ⧵ 𝑓 (𝑈 ).\n\nThus 𝑓 is closed: 𝑋 ⧵ 𝑈 is closed and 𝑌 ⧵ 𝑓 (𝑈 ) is closed. The opposite implication follows by a completely analogous argument. Hence, (2) is equivalent to (3). This completes the proof."
       },
       {
         "id": "homotopy",
@@ -10843,7 +10876,8 @@
           "homotopy_type",
           "pi1_invariant",
           "deformation_retract"
-        ]
+        ],
+        "proof": "Let 𝑔 ∶ 𝑌 → 𝑋 be a homotopy inverse of 𝑓 with 𝑔(𝑦0 ) = 𝑥1 , and let 𝑓 (𝑥1 ) = 𝑦1 . By assumption, we have 𝑔◦𝑓 ≃ id𝑋 and 𝑓 ◦𝑔 ≃ id𝑌 where id𝑋 ∶ 𝑋 → 𝑋 and id𝑌 ∶ 𝑌 → 𝑌 are the identity maps of 𝑋 and 𝑌 , respectively. Thus, by Lemma 7.37, there is a path 𝛼 ∶ 𝐼 → 𝑋 in 𝑋 from 𝑥0 to 𝑥1 and a path 𝛽 ∶ 𝐼 → 𝑌 from 𝑦0 to 𝑦1 such that\n\n(𝑔◦(𝑓𝑥0 ))∗ = 𝑔∗ ◦(𝑓𝑥0 )∗ = 𝛼 ̂◦(id𝑋 )∗ = 𝛼 ̂\n\nand\n\n̂ 𝑌 )∗ = 𝛽̂ ((𝑓𝑥1 )◦𝑔)∗ = (𝑓𝑥1 )∗ ◦𝑔∗ = 𝛽◦(id\n\nwhere we have specified the basepoint for the homomorphisms induced by 𝑓 . In other words, the following two diagrams commute. (id𝑋 )∗ 𝑔∗ 𝜋1 (𝑋, 𝑥0 ) 𝜋1 (𝑋, 𝑥0 ) 𝜋1 (𝑌 , 𝑦0 ) 𝜋1 (𝑋, 𝑥1 ) 𝛼 ̂ (𝑓𝑥1 )∗ 𝑔∗ ◦(𝑓𝑥0 )∗ 𝛽̂ 𝜋1 (𝑋, 𝑥1 ) 𝜋1 (𝑌 , 𝑦1 )\n\nSince 𝛼̂ and 𝛽̂ are both isomorphisms, it follows by commutativity of the diagram on the left that 𝑔∗ is an epimorphism, and by commutativity of the diagram on the right that 𝑔∗ is a monomorphism. Hence, 𝑔∗ is an isomorphism. Since (𝑓𝑥0 )∗ = (𝑔∗ )−1 ◦̂ 𝛼 it follows that (𝑓𝑥0 )∗ is an isomorphism."
       },
       {
         "id": "homotopy_lifting",
@@ -10885,6 +10919,11 @@
           "covering_space",
           "lifting_correspondence",
           "path_homotopy"
+        ],
+        "proof": "We prove the statement about path homotopies. The proof of the first part of the theorem is similar to the proof of Theorem 8.12, where we make use of Lemma 8.10 to break 𝐼 × 𝐼 into smaller squares [𝑠𝑖−1 , 𝑠𝑖 ] × [𝑡𝑖−1 , 𝑡𝑖 ] that are mapped by 𝐻 into open sets of 𝐵 that are evenly covered by 𝑝. See [4, pp. 343–344] for details. Assume that 𝐻 is a path homotopy from the path 𝑓0 ∶ 𝐼 → 𝐵 to the path 𝑓1 ∶ 𝐼 → 𝐵 where 𝑓0 (0) = 𝑓1 (0) = 𝑏0 and 𝑓0 (1) = 𝑓1 (1) = 𝑏1 . Then the map 𝐻0 ∶ 𝐼 → 𝐵 given by\n\n𝐻0 (𝑡) = 𝐻(0, 𝑡) ̃ 0 ∶ 𝐼 → 𝐸 given by is the constant path in 𝐵 at 𝑏0 . Hence, the map 𝐻 ̃ 0 (𝑡) = 𝐻(0, 𝐻 ̃ 𝑡)\n\nis a lift of 𝐻0 where 𝐻 ̃ 0 (0) = ̃ 𝐻(0, 0) = 𝑒0 . Note that the constant path 𝑐𝑒0 ∶ 𝐼 → 𝐸 at 𝑒0 is also a lift of 𝐻0 such that 𝑐𝑒0 (0) = 𝑒0 . Thus by uniqueness 𝐻 ̃ 0 = 𝑐𝑒 . In other words, ̃ 𝐻(0, 𝑡) = 𝑒0 for all 𝑡 ∈ 𝐼. Similarly, let 𝐻1 ∶ 𝐼 → 𝐵 be the map given by\n\n𝐻1 (𝑡) = 𝐻(1, 𝑡). ̃ 0) = 𝑒1 . Then the map 𝐻 Then 𝐻1 is the constant path 𝑐𝑏1 in 𝐵 at 𝑏1 . Let 𝐻(1, ̃ 1 ∶ 𝐼 → 𝐸 given by\n\ñ 1 (𝑡) = ̃ 𝐻 𝐻(1, 𝑡)\n\nis a lift of 𝐻1 where 𝐻 ̃ 1 (0) = 𝐻(1, ̃ 0) = 𝑒1 . As the constant path 𝑐𝑒 ∶ 𝐼 → 𝐸 at 𝑒1 is also a lift of ̃ 1 = 𝑐𝑒 . In other words, 𝐻(1, 𝐻1 such that 𝑐𝑒1 (0) = 𝑒1 , it follows by uniqueness that 𝐻 ̃ 𝑡) = 𝑒1 for all 𝑡 ∈ 𝐼. Thus 𝐻 ̃ is a path homotopy from 𝑓̃0 to 𝑓̃1 .",
+        "proof_dependencies": [
+          "path_lifting",
+          "lebesgue_number"
         ]
       },
       {
@@ -11156,7 +11195,8 @@
         "related": [
           "generated_topology",
           "topological_space"
-        ]
+        ],
+        "proof": "Clearly, ∅ and 𝑋 are in 𝒯1 ∩ 𝒯2 , so T1 is satisfied. Let {𝑈𝜆 }𝜆∈Λ be a collection of sets such that 𝑈𝜆 ∈ 𝒯1 ∩ 𝒯2 for each 𝜆 ∈ Λ where Λ is some ⋃"
       },
       {
         "id": "isomorphism",
@@ -11233,7 +11273,8 @@
           "compact_space",
           "cover",
           "path_lifting"
-        ]
+        ],
+        "proof": "If 𝑋 ∈ 𝒜, then every real number 𝜆 > 0 will be a Lebesgue number for 𝒜. So assume that 𝑋 is not an element of 𝒜. By compactness, there is a finite subcollection, say, {𝑈1 , 𝑈2 , … , 𝑈𝑛 } of 𝒜 that covers 𝑋. For each 𝑖 ∈ {1, 2, … , 𝑛}, let 𝑉𝑖 = 𝑋 ⧵ 𝑈𝑖 . Then each 𝑉𝑖 is non-empty as 𝑈𝑖 ≠ 𝑋 for all 𝑖 ∈ {1, 2, … , 𝑛}. Let ℝ denote the set of real numbers equipped with the standard topology (and the standard Euclidean metric), and let 𝑓 ∶ 𝑋 → ℝ be given by 𝑛 1∑ 𝑓 (𝑥) = dist 𝑉𝑖 (𝑥) 𝑛 𝑖=1\n\nwhere dist 𝑉𝑖 ∶ 𝑋 → ℝ is given by\n\ndist 𝑉𝑖 (𝑥) = inf {𝑑(𝑥, 𝑣) ∣ 𝑣 ∈ 𝑉𝑖 }.\n\nWe claim that dist 𝑉𝑖 is continuous for each 𝑖 ∈ {1, 2, … , 𝑛}. Let 𝑥1 and 𝑥2 be two points in 𝑋. Then by M3, we have dist 𝑉𝑖 (𝑥1 ) ⩽ 𝑑(𝑥1 , 𝑣) ⩽ 𝑑(𝑥1 , 𝑥2 ) + 𝑑(𝑥2 , 𝑣), for all 𝑣 ∈ 𝑉𝑖 , and so, dist 𝑉𝑖 (𝑥1 ) − 𝑑(𝑥1 , 𝑥2 ) ⩽ dist 𝑉𝑖 (𝑥2 ). Similarly, we have dist 𝑉𝑖 (𝑥2 ) − 𝑑(𝑥1 , 𝑥2 ) ⩽ dist 𝑉𝑖 (𝑥1 ). Hence, | dist 𝑉𝑖 (𝑥1 ) − dist 𝑉𝑖 (𝑥2 )| ⩽ 𝑑(𝑥1 , 𝑥2 ). Thus dist 𝑉𝑖 is continuous for each 𝑖 ∈ {1, 2, … , 𝑛}. Hence, 𝑓 is also continuous."
       },
       {
         "id": "coset",
@@ -11468,7 +11509,8 @@
           "topological_space",
           "metric_topology",
           "basis_for_topology"
-        ]
+        ],
+        "proof": "Assume that 𝑈 is open in 𝑋. Then for every 𝑥 ∈ 𝑈 , 𝑈 is a neighborhood of 𝑥 that is contained in 𝑈 . We prove the other implication. Assume that for every 𝑥 ∈ 𝑈 there is a 𝑈𝑥 ∈ 𝒯 such that 𝑥 ∈ 𝑈𝑥 ⊆ 𝑈 , i.e., that 𝑈𝑥 is a neighborhood of 𝑥 such that 𝑈𝑥 ⊆ 𝑈 . To prove that 𝑈 ∈ 𝒯 , we will ⋃ ⋃ prove that 𝑈 = 𝑥∈𝑈 𝑈𝑥 . Assume that 𝑥′ ∈ 𝑈𝑥′ . Then 𝑥′ ∈ 𝑈𝑥′ ⊆ 𝑥∈𝑈 𝑈𝑥 . Furthermore, any ⋃ point in 𝑥∈𝑈 𝑈𝑥 is in 𝑈𝑥 for some 𝑥 ∈ 𝑈 so by assumption, 𝑈𝑥 ⊆ 𝑈 and 𝑥 ∈ 𝑈𝑥 ⊆ 𝑈 . Hence, ⋃ 𝑈 = 𝑥∈𝑈 𝑈𝑥 . As 𝑈 is the union of open sets it must be an open set as well by T2."
       },
       {
         "id": "normal_subgroup",
@@ -11704,7 +11746,8 @@
           "product_of_paths",
           "closed_set",
           "homotopy"
-        ]
+        ],
+        "proof": "We will prove that the preimage of a closed subset of 𝑌 under ℎ is closed in 𝑋. Let 𝐶 be a closed subset of 𝑌 . Then ℎ−1 (𝐶) = 𝑓 −1 (𝐶) ∪ 𝑔 −1 (𝐶). Since 𝑓 is continuous, it follows that 𝑓 −1 (𝐶) is closed in 𝐴, and so, it is closed in 𝑋. Similarly, 𝑔 −1 (𝐶) is closed in 𝐵, and so, it is closed in 𝑋. Hence, ℎ−1 (𝐶) = 𝑓 −1 (𝐶) ∪ 𝑔 −1 (𝐶)\n\nis closed in 𝑋 as it is the union of two closed subsets of 𝑋. Thus ℎ is continuous."
       },
       {
         "id": "path_homotopy",
@@ -11823,7 +11866,8 @@
         "related": [
           "path_connected_space",
           "connected_space"
-        ]
+        ],
+        "proof": "Assume that 𝑋 is path-connected but that 𝑋 is disconnected, i.e., there is a separation of 𝑋. Let 𝑈 and 𝑉 be a separation of 𝑋. Let 𝑓 ∶ [𝑎, 𝑏] → 𝑋 be a path from 𝑥 ∈ 𝑈 to 𝑦 ∈ 𝑉 . Then 𝑓 −1 (𝑈 ) and 𝑓 −1 (𝑉 ) are disjoint non-empty open subsets of [𝑎, 𝑏] whose union is equal to [𝑎, 𝑏]. Thus they are a separation of [𝑎, 𝑏]. This is a contradiction to the fact that [𝑎, 𝑏] is a connected space."
       },
       {
         "id": "product_compact",
@@ -11865,6 +11909,10 @@
           "heine_borel_theorem",
           "product_topology",
           "tychonoff_theorem"
+        ],
+        "proof": "We prove the statement for the product of two compact spaces. The general result then follows by an inductive argument. Let 𝑋 and 𝑌 be compact spaces. Let 𝒜 be an open cover of 𝑋 × 𝑌 . We must show that there is a finite subcover 𝒜′ of 𝒜. For each 𝑥 ∈ 𝑋, {𝑥} × 𝑌 is compact as it is homeomorphic to 𝑌 which is assumed to be compact. Thus there is a finite subcollection 𝒜𝑥 of 𝒜 that covers {𝑥} × 𝑌 . Let ⋃ 𝑈𝑥 = 𝐴𝑥 ∈𝒜𝑥 𝐴𝑥 . Then 𝑈𝑥 is open in 𝑋 × 𝑌 and contains {𝑥} × 𝑌 . Thus by Lemma 6.38 for each 𝑥 ∈ 𝑋 there is a neighborhood 𝑊𝑥 ⊆ 𝑋 such that 𝑥 ∈ 𝑊𝑥 and 𝑊𝑥 × 𝑌 ⊆ 𝑈𝑥 . Furthermore, 𝒜𝑥 covers 𝑊𝑥 × 𝑌 . Now let 𝑥 ∈ 𝑋 vary. The collection {𝑊𝑥 }𝑥∈𝑋 is then an open cover of 𝑋. Since 𝑋 is compact, there must be a finite subcover {𝑊𝑥1 , 𝑊𝑥2 , … , 𝑊𝑥𝑛 } of {𝑊𝑥 }𝑥∈𝑋 . For each 1 ⩽ 𝑖 ⩽ 𝑛 the subspace\n\n𝑊𝑥𝑖 × 𝑌 is covered by the finite subcollection 𝒜𝑥𝑖 of 𝒜. Hence,\n\n𝑛 ⋃ 𝑋×𝑌 = 𝑊𝑥 𝑖 × 𝑌 𝑖=1 ⋃𝑛 is covered by the subcollection 𝒜′ = 𝑖=1 𝒜𝑥𝑖 of 𝒜. Thus 𝑋 × 𝑌 is compact.",
+        "proof_dependencies": [
+          "tube_lemma"
         ]
       },
       {
@@ -11948,7 +11996,8 @@
           "coset",
           "fht",
           "quotient_space"
-        ]
+        ],
+        "proof": "We first show that the binary operation defined on 𝐺∕𝐻 is well-defined. Let 𝑔1′ ∈ 𝑔1 𝐻, and let 𝑔2′ ∈ 𝑔2 𝐻. Then 𝑔1 𝐻 = 𝑔1′ 𝐻 and 𝑔2 𝐻 = 𝑔2′ 𝐻. We must show that (𝑔1 𝐻)(𝑔2 𝐻) = (𝑔1′ 𝐻)(𝑔2′ 𝐻). Choose an element (𝑔1 𝑔2 )ℎ ∈ (𝑔1 𝑔2 )𝐻. Since 𝑔1 ∈ 𝑔1 𝐻 = 𝑔1′ 𝐻 and 𝑔2 ∈ 𝑔2 𝐻 = 𝑔2′ 𝐻, there are elements ℎ1 and ℎ2 in 𝐻 such that 𝑔1 = 𝑔1′ ℎ1 and 𝑔2 = 𝑔2′ ℎ2 . Thus (𝑔1 𝑔2 )ℎ = (𝑔1′ ℎ1 )(𝑔2′ ℎ2 )ℎ = 𝑔1′ ℎ1 𝑔2′ ℎ2 ℎ = 𝑔1′ (𝑔2′ (𝑔2′ )−1 )ℎ1 𝑔2′ ℎ2 ℎ = 𝑔1′ 𝑔2′ ((𝑔2′ )−1 ℎ1 𝑔2′ )ℎ2 ℎ = 𝑔1′ 𝑔2′ ℎ′1 ℎ2 ℎ ∈ (𝑔1′ 𝑔2′ )𝐻\n\nAppendix B. Elementary algebra 105\n\nwhere the last equality follows from the fact 𝐻 is a normal subgroup of 𝐺; there is an ℎ′1 ∈ 𝐻 such that (𝑔2′ )−1 ℎ1 𝑔2 = ℎ′1 . Hence, (𝑔1 𝑔2 )𝐻 ⊆ (𝑔1′ 𝑔2′ )𝐻. A similar argument shows that (𝑔1′ 𝑔2′ )𝐻 ⊆ (𝑔1 𝑔2 )𝐻. Hence, (𝑔1 𝑔2 )𝐻 = (𝑔1′ 𝑔2′ )𝐻. Thus\n\n(𝑔1 𝐻)(𝑔2 𝐻) = (𝑔1 𝑔2 )𝐻 = (𝑔1′ 𝑔2′ )𝐻 = (𝑔1′ 𝐻)(𝑔2′ 𝐻).\n\nWe now show that 𝐺∕𝐻 is a group. Let 𝑔1 𝐻, 𝑔2 𝐻 and 𝑔2 𝐻 be elements in 𝐺∕𝐻. We must show that [(𝑔1 𝐻)(𝑔2 𝐻)](𝑔3 𝐻) = (𝑔1 𝐻)[(𝑔2 𝐻)(𝑔3 𝐻)]. By definition, we have\n\n[(𝑔1 𝐻)(𝑔2 𝐻)](𝑔3 𝐻) = (𝑔1 𝑔2 𝐻)(𝑔3 𝐻) = (𝑔1 𝑔2 )𝑔3 𝐻 = 𝑔1 (𝑔2 𝑔3 )𝐻 = (𝑔1 𝐻)(𝑔2 𝑔3 𝐻) = (𝑔1 𝐻)[(𝑔2 𝐻)(𝑔3 𝐻)].\n\nHence, G1 is satisfied. If 𝑒 is the identity element in 𝐺, then\n\n(𝑔𝐻)(𝑒𝐻) = (𝑔𝑒)𝐻 = 𝑔𝐻 = (𝑒𝑔)𝐻 = (𝑒𝐻)(𝑔𝐻)\n\nfor all 𝑔 ∈ 𝐺. Hence, G2 is satisfied with 𝑒𝐻 = 𝐻 as the identity element in 𝐺∕𝐻. Finally, for each 𝑔 ∈ 𝐺, we have\n\n(𝑔𝐻)(𝑔 −1 𝐻) = (𝑔𝑔 −1 𝐻) = 𝑒𝐻 = (𝑔 −1 𝑔)𝐻 = (𝑔 −1 𝐻)(𝑔𝐻).\n\nHence, G3 is satisfied with (𝑔𝐻)−1 = 𝑔 −1 𝐻. Thus 𝐺∕𝐻 is a group."
       },
       {
         "id": "restriction",
@@ -12221,7 +12270,8 @@
           "connected_space",
           "ivt",
           "path_connected_space"
-        ]
+        ],
+        "proof": "Assume that ℝ is disconnected, i.e., that there is a separation of ℝ. Let 𝑈 and 𝑉 be a separation of ℝ, and choose 𝑎 ∈ 𝑈 and 𝑏 ∈ 𝑉 . We may assume without loss of generality that 𝑎 < 𝑏. Let 𝐴 = [𝑎, 𝑏] ∩ 𝑈 and 𝐵 = [𝑎, 𝑏] ∩ 𝑉 . Then the pair 𝐴 and 𝐵 is a separation of [𝑎, 𝑏], with 𝑎 ∈ 𝐴 and 𝑏 ∈ 𝐵. Also note that 𝐴 is bounded above by 𝑏. Hence, by the least upper bound property 𝐴 has a least upper bound; 𝑐 = sup 𝐴. Thus 𝑎 ⩽ 𝑐 ⩽ 𝑏. We will show that 𝑐 belongs neither to 𝐴 nor to 𝐵 thus contradicting the fact that 𝐴 and 𝐵 is a separation of [𝑎, 𝑏]. Assume that 𝑐 ∈ 𝐵. Since 𝑎 ∉ 𝐵 and 𝐵 is open in [𝑎, 𝑏], it follows that there is a real number 𝑑 such that 𝑎 < 𝑑 < 𝑐 and (𝑑, 𝑐] ⊆ 𝐵. This implies that 𝑑 is an upper bound of 𝐴 and that 𝑑 is less than the least upper bound 𝑐. That is a contradiction, and so, 𝑐 ∉ 𝐵. Now assume that 𝑐 ∈ 𝐴. Since 𝐴 is open in [𝑎, 𝑏] and 𝑏 ∉ 𝐴, there is a real number 𝑑 such that [𝑐, 𝑑) ⊆ 𝐴. For any 𝑒 ∈ (𝑐, 𝑑) it follows that 𝑒 ∈ 𝐴 and 𝑒 > 𝑐. That is a contradiction to the fact that 𝑐 is an upper bound of 𝐴. Thus 𝑐 ∉ 𝐴. Hence, 𝑐 ∉ 𝐴 and 𝑐 ∉ 𝐵. This is a contradiction to the fact that 𝑐 ∈ [𝑎, 𝑏] and that 𝐴 and 𝐵 is a separation of [𝑎, 𝑏]. Thus ℝ must be connected."
       },
       {
         "id": "topological_property",
@@ -12341,7 +12391,8 @@
           "product_compact",
           "compact_space",
           "product_topology"
-        ]
+        ],
+        "proof": "As 𝑈 is open in 𝑋 × 𝑌 and (𝑥, 𝑦) ∈ {𝑥} × 𝑌 ⊆ 𝑈 for all 𝑦 ∈ 𝑌 , there is a basis element 𝑊𝑦 ×𝑉𝑦 ⊆ 𝑈 for the product topology on 𝑋 ×𝑌 such that (𝑥, 𝑦) ∈ 𝑊𝑦 ×𝑉𝑦 . The collection {𝑉𝑦 }𝑦∈𝑌 is an open cover of 𝑌 . Since 𝑌 is compact there must be a finite subcover of {𝑉𝑦 }𝑦∈𝑌 , say, {𝑉𝑦1 , 𝑉𝑦2 , … , 𝑉𝑦𝑛 }. Let 𝑛 ⋂ 𝑊 = 𝑊𝑦𝑖 . 𝑖=1\n\nThen 𝑊 is open in 𝑋, and it must contain 𝑥. Clearly, 𝑛 ( ) ⋃ 𝑊 ×𝑌 ⊆ 𝑊𝑦𝑖 × 𝑉𝑦𝑖 ⊆ 𝑈 . 𝑖=1\n\nThus {𝑥} × 𝑌 ⊆ 𝑊 × 𝑌 and 𝑊 × 𝑌 ⊆ 𝑈 .\n\nThe lemma is not true if we remove the assumption that 𝑌 is compact; the open set\n\n𝑈 = {(𝑥, 𝑦) ∈ ℝ × ℝ ∣ |𝑥𝑦| < 1} ⊆ ℝ × ℝ\n\ndoes contain {0} × ℝ but does not contain any tube 𝑊 × ℝ containing {0} × ℝ. (Here we have assumed that ℝ is given the standard topology, and hence, it is not compact, cf. Example 6.32.)"
       },
       {
         "id": "path_lifting",
@@ -12382,6 +12433,11 @@
           "homotopy_lifting",
           "lebesgue_number",
           "lifting_correspondence"
+        ],
+        "proof": "For each 𝑠 ∈ 𝐼, let 𝑈𝑠 be a neighborhood of 𝑓 (𝑠) that is evenly covered by 𝑝. The collection 𝒜 = {𝑓 −1 (𝑈𝑠 ) ∣ 𝑠 ∈ 𝐼} is then an open cover of 𝐼. Since 𝐼 is a compact metric space, it follows from Lemma 8.10 that there is a Lebesgue number 𝜆 > 0 for 𝒜. Consider a subdivision of 𝐼 consisting of points 0 = 𝑠0 < 𝑠1 < ⋯ < 𝑠𝑛 = 1 such that 𝑠𝑖 − 𝑠𝑖−1 < 2𝜆 for 1 ⩽ 𝑖 ⩽ 𝑛. Then each interval [𝑠𝑖−1 , 𝑠𝑖 ] lies in one of the preimages 𝑓 −1 (𝑈𝑠 ). Thus 𝑓 ([𝑠𝑖−1 , 𝑠𝑖 ]) ⊆ 𝑈𝑠 for some 𝑠 ∈ 𝐼. We must show that there is a lift 𝑓̃ of 𝑓 such that 𝑓̃(0) = 𝑒0 and that this lift is unique. We prove the existence of 𝑓̃ first. Assume that [𝑎, 𝑏] ⊆ 𝐼. Let 𝑈 be a neighborhood of 𝑓 (𝑎) that is evenly covered by 𝑝 such that 𝑓 ([𝑎, 𝑏]) ⊆ 𝑈 , and let ⨆ 𝑝−1 (𝑈 ) = 𝑉𝜔 . 𝜔∈Ω\n\nNote that if 𝑒 ∈ 𝑝−1 (𝑓 (𝑎)) then 𝑒 ∈ 𝑉𝜔′ for a unique 𝜔′ ∈ Ω. Since 𝑝|𝑉𝜔′ ∶ 𝑉𝜔′ → 𝑈 is a homeomorphism, it follows that the map ( )−1 𝑔̃ = 𝑝|𝑉𝜔′ ◦𝑓 |[𝑎,𝑏] ∶ [𝑎, 𝑏] → 𝐸\n\nis continuous, and moreover, 𝑝◦̃𝑔 = 𝑓 |[𝑎,𝑏] and 𝑔̃(𝑎) = 𝑒. From this observation we get that there is a continuous map ( )−1 𝑔̃1 = 𝑝|𝑉𝜔 ◦𝑓 |[𝑠0 ,𝑠1 ] ∶ [𝑠0 , 𝑠1 ] → 𝐸\n\nwhere 𝑝◦̃𝑔1 = 𝑓 |[𝑠0 ,𝑠1 ] and 𝑔̃1 (𝑠0 ) = 𝑒0 . Now let 𝑒1 = 𝑔̃1 (𝑠1 ) and proceed as before. That is, 𝑔̃2 = ( )−1 𝑝|𝑉𝜔 ◦𝑓 |[𝑠1 ,𝑠2 ] ∶ [𝑠1 , 𝑠2 ] → 𝐸 is a continuous map where 𝑝◦̃ 𝑔2 = 𝑓 |[𝑠1 ,𝑠2 ] and 𝑔̃2 (𝑠1 ) = 𝑒1 .\n\nContinuing this process, we get a continuous map ( )−1 𝑔̃𝑖 = 𝑝|𝑉𝜔 ◦𝑓 |[𝑠𝑖−1 ,𝑠𝑖 ] ∶ [𝑠𝑖−1 , 𝑠𝑖 ] → 𝐸 𝑖−1\n\n𝑔𝑖 = 𝑓 |[𝑠𝑖−1 ,𝑠𝑖 ] and and where 𝑝◦̃ 𝑔̃𝑖 (𝑠𝑖−1 ) = 𝑔̃𝑖−1 (𝑠𝑖−1 ) = 𝑒𝑖−1 for 𝑖 ∈ {3, 4, … , 𝑛}. By Lemma 7.3, we can combine 𝑔̃1 , 𝑔̃2 , … , 𝑔̃𝑛 into a continuous map\n\n𝑓̃∶ 𝐼 → 𝐸\n\ngiven by 𝑓̃(𝑠) = 𝑔̃𝑖 (𝑠) for 𝑠 ∈ [𝑠𝑖−1 , 𝑠𝑖 ]. Then 𝑓̃ is a lift of 𝑓 such that 𝑓̃(0) = 𝑒0 . We conclude the proof by showing the uniqueness of 𝑓̃. Assume that there are two continuous maps 𝑓̃1 ∶ 𝐼 → 𝐸 and 𝑓̃2 ∶ 𝐼 → 𝐸 such that 𝑝◦𝑓̃1 = 𝑝◦𝑓̃2 = 𝑓 and 𝑓̃1 (0) = 𝑓̃2 (0) = 𝑒0 . We want to show that 𝑓̃1 = 𝑓̃2 . Let\n\n𝐴 = {𝑠 ∈ 𝐼 ∣ 𝑓̃1 (𝑠) = 𝑓̃2 (𝑠)}\n\nand\n\n𝐷 = {𝑠 ∈ 𝐼 ∣ 𝑓̃1 (𝑠) ≠ 𝑓̃2 (𝑠)}.\n\nThen clearly, 𝐼 = 𝐴 ∪ 𝐷 and 𝐴 ∩ 𝐷 = ∅. If we can show that both 𝐴 are 𝐷 are open, then because 𝐼 is connected we have 𝐴 = 𝐼 and 𝐷 = ∅ as 0 ∈ 𝐴, and hence, 𝑓̃1 = 𝑓̃2 . Let 𝑠 ∈ 𝐴, and let 𝑈 be a neighborhood of 𝑓 (𝑠) that is evenly covered by 𝑝. Assume that 𝑉𝜔 is the subset of 𝑝−1 (𝑈 ) that contains 𝑓̃1 (𝑠) = 𝑓̃2 (𝑠). Let 𝒰 = 𝑓̃1−1 (𝑉𝜔 ) ∩ 𝑓̃2−1 (𝑉𝜔 ). Then 𝒰 is a ̃ ̃ neighborhood ( ) ( both) 𝑓1 and 𝑓2 map all points in 𝒰 to 𝑉𝜔 . Thus for all 𝑡 ∈ 𝒰 , we have of 𝑠 and 𝑝◦𝑓̃1 (𝑡) = 𝑓 (𝑡) = 𝑝◦𝑓̃2 (𝑡) implying that 𝑓̃1 (𝑡) = 𝑓̃2 (𝑡) as 𝑝|𝑉 ∶ 𝑉𝜔 → 𝑈 is a homeomorphism. 𝜔 Hence, 𝑡 ∈ 𝐴 and 𝒰 ⊆ 𝐴. Thus 𝐴 is open. Finally, we need to show that 𝐷 is open. Choose an 𝑠 ∈ 𝐷. Let 𝑈 be a neighborhood of 𝑓 (𝑠) that is evenly covered by 𝑝. Since 𝑓̃1 (𝑠) ≠ 𝑓̃2 (𝑠), there are unique indexes 𝜔1 and 𝜔2 in Ω such that 𝑓̃1 (𝑠) ∈ 𝑉𝜔1 and 𝑓̃2 (𝑠) ∈ 𝑉𝜔2 . Then 𝒰 ′ = 𝑓̃1−1 (𝑉𝜔1 ) ∩ 𝑓̃2−1 (𝑉𝜔2 ) is a neighborhood of 𝑠. Since 𝑉𝜔1 and 𝑉𝜔2 are disjoint, it follows that 𝑓̃1 (𝑡) ≠ 𝑓̃2 (𝑡) for all 𝑡 ∈ 𝒰 ′ . Thus 𝒰 ′ ⊆ 𝐷. Hence, 𝐷 is open. Thus 𝑓̃1 = 𝑓̃2 .",
+        "proof_dependencies": [
+          "lebesgue_number",
+          "pasting_lemma"
         ]
       },
       {
@@ -12419,6 +12475,10 @@
         "diagram_path": "/atlas-assets/diagrams/quotient-universal.svg",
         "related": [
           "quotient_space",
+          "composition_continuous"
+        ],
+        "proof": "We follow the arguments for the proofs of Theorem 5.6 and Theorem 5.13 and adapt them to our current setting. We first prove that the quotient topology 𝒯 𝜋 has the universal property that for every topological space 𝑌 and every map 𝑓 ∶ 𝐴 → 𝑌 , 𝑓 is continuous if and only if 𝑓 ◦𝜋 ∶ 𝑋 → 𝑌 is continuous. Let 𝐴 be given the quotient topology induced by 𝜋, and assume that 𝑓 ∶ 𝐴 → 𝑌 is continuous. By definition of the quotient topology 𝜋 −1 (𝑈 ) is open in 𝑋 if and only if 𝑈 is open in 𝐴. Hence, 𝜋 is continuous. Thus by Theorem 3.16 𝑓 ◦𝜋 ∶ 𝑋 → 𝑌 is continuous. Now assume that 𝑓 ◦𝜋 ∶ 𝑋 → 𝑌 is continuous. Let 𝑉 be an open set in 𝑌 . Since 𝜋 is a quotient map and\n\n(𝑓 ◦𝜋)−1 (𝑉 ) = 𝜋 −1 (𝑓 −1 (𝑉 ))\n\nis open in 𝑋 by assumption of continuity of 𝑓 ◦𝜋, it follows that 𝑓 −1 (𝑉 ) is open in 𝐴. Thus 𝑓 is continuous. Let 𝒯 ′ be a topology on 𝐴 with the universal property that for every topological space 𝑌 and every map 𝑓 ∶ 𝐴 → 𝑌 , 𝑓 is continuous if and only if 𝑓 ◦𝜋 ∶ 𝑋 → 𝑌 is continuous. We must show that 𝒯 ′ = 𝒯 𝜋. Let 𝒯 be the topology on 𝑋, and let 𝐴 be given the topology 𝒯 ′ . First let 𝑌 = 𝐴 with the quotient topology induced by 𝑓 ◦𝜋. Then for 𝑓 = id ∶ (𝐴, 𝒯 ′ ) → (𝐴, 𝒯 𝜋 ), we have\n\nid ◦𝜋 = 𝜋 ∶ (𝑋, 𝒯 ) → (𝐴, 𝒯 𝜋 )\n\nwhich is continuous. Hence, by the universal property id is continuous.",
+        "proof_dependencies": [
           "composition_continuous"
         ]
       },
@@ -12463,6 +12523,10 @@
           "homeomorphism",
           "topological_property",
           "pi1_circle"
+        ],
+        "proof": "We must show that ℎ∗ is bijective. Let 𝑘 ∶ 𝑌 → 𝑋 be the inverse homemorphism of ℎ such that 𝑘(𝑦0 ) = 𝑥0 . Then, by Theorem 7.24, 𝑘∗ ◦ℎ∗ = (𝑘◦ℎ)∗ = (id𝑋 )∗ , and ℎ∗ ◦𝑘∗ = (ℎ◦𝑘)∗ = (id𝑌 )∗ . Hence, 𝑘∗ = (ℎ∗ )−1 .",
+        "proof_dependencies": [
+          "functoriality"
         ]
       },
       {
@@ -12503,7 +12567,8 @@
           "fundamental_group",
           "product_topology",
           "pi1_circle"
-        ]
+        ],
+        "proof": "Let pr 1 ∶ 𝑋 × 𝑌 → 𝑋 and pr 2 ∶ 𝑋 × 𝑌 → 𝑌 be the projection maps onto the first and second factor, respectively. Define the map 𝜑 ∶ 𝜋1 (𝑋 × 𝑌 , (𝑥0 , 𝑦0 )) → 𝜋1 (𝑋, 𝑥0 ) × 𝜋1 (𝑌 , 𝑦0 ) by ( ) ( ) 𝜑([ℎ]) = (pr 1 )∗ ([ℎ]), (pr 2 )∗ ([ℎ]) = [pr 1 ◦ℎ], [pr 2 ◦ℎ] .\n\nNote that 𝜋1 (𝑋, 𝑥0 ) × 𝜋1 (𝑌 , 𝑦𝑜 ) is a group with binary operation given by\n\n([𝑓 ], [𝑔]) ∗ ([𝑓 ′ ], [𝑔 ′ ]) = ([𝑓 ] ∗ [𝑓 ′ ], [𝑔] ∗ [𝑔 ′ ])\n\nfor [𝑓 ], [𝑓 ′ ] ∈ 𝜋1 (𝑋, 𝑥0 ) and [𝑔], [𝑔 ′ ] ∈ 𝜋1 (𝑌 , 𝑦0 ). We will show that 𝜑 is an isomorphism. It is a homomorphism since (pr 1 )∗ and (pr 2 )∗ are homomorphisms: ( ) 𝜑([ℎ] ∗ [𝑘]) = (pr 1 )∗ ([ℎ] ∗ [𝑘]), (pr 2 )∗ ([ℎ] ∗ [𝑘]) ( ) = (pr 1 )∗ ([ℎ]) ∗ (pr 1 )∗ ([𝑘]), (pr 2 )∗ ([ℎ]) ∗ (pr 2 )∗ ([𝑘]) ( ) ( ) = (pr 1 )∗ ([ℎ]), (pr 2 )∗ ([ℎ]) ∗ (pr 1 )∗ ([𝑘]), (pr 2 )∗ ([𝑘]) = 𝜑([ℎ]) ∗ 𝜑([𝑘])\n\nfor [ℎ], [𝑘] ∈ 𝜋1 (𝑋 × 𝑌 , (𝑥0 , 𝑦0 )). Let 𝑓 ∶ 𝐼 → 𝑋 be a loop in 𝑋 based at 𝑥0 , and let 𝑔 ∶ 𝐼 → 𝑌 be a loop in 𝑌 based at 𝑦0 . Define the map ℎ ∶ 𝐼 → 𝑋 × 𝑌 by\n\nℎ(𝑠) = (𝑓 (𝑠), 𝑔(𝑠)) .\n\nThen ℎ is a loop in 𝑋 × 𝑌 based at (𝑥0 , 𝑦0 ), and ( ) ( ) 𝜑([ℎ]) = (pr 1 )∗ ([ℎ]), (pr 2 )∗ ([ℎ]) = [pr 1 ◦ℎ], [pr 2 ◦ℎ] = ([𝑓 ], [𝑔]).\n\nHence, 𝜑 is surjective. To show that 𝜑 is injective, assume that 𝜑([ℎ]) = 𝜑([𝑘]) for [ℎ], [𝑘] ∈ 𝜋1 (𝑋 × 𝑌 , (𝑥0 , 𝑦0 )). Then there is a path homotopy 𝐻1 ∶ 𝐼 ×𝐼 → 𝑋 from pr 1 ◦ℎ to pr 1 ◦𝑘 and a path homotopy 𝐻2 ∶ 𝐼 × 𝐼 → 𝑌 from pr 2 ◦ℎ to pr 2 ◦𝑘. Define the map 𝐻 ∶ 𝐼 × 𝐼 → 𝑋 × 𝑌 by ( ) 𝐻(𝑠, 𝑡) = 𝐻1 (𝑠, 𝑡), 𝐻2 (𝑠, 𝑡) .\n\nThen 𝐻 is a path homotopy from ℎ = (pr 1 ◦ℎ, pr 2 ◦ℎ) to 𝑘 = (pr 1 ◦𝑘, pr 2 ◦𝑘). Hence, [ℎ] = [𝑘], and so, 𝜑 is injective. Thus 𝜑 is an isomorphism."
       },
       {
         "id": "pi1_circle",
@@ -12547,6 +12612,11 @@
           "brouwer_fixed_point_theorem",
           "fta",
           "pi1_product"
+        ],
+        "proof": "Since 𝑆 1 is path-connected, it follows by Theorem 7.19 that we only need to compute 𝜋1 (𝑆 1 , 𝑠0 ) for one basepoint (and hence, all) 𝑠0 ∈ 𝑆 1 . By Theorem 8.6, we know that the map 𝑝 ∶ ℝ → 𝑆 1 given by 𝑝(𝑡) = (cos(2𝜋𝑡), sin(2𝜋𝑡)) is a covering map. Furthermore, since ℝ is simply connected, it follows by Theorem 8.15 that the lifting correspondence\n\nΦ ∶ 𝜋1 (𝑆 1 , 𝑠0 ) → 𝑝−1 (𝑠0 )\n\nis a bijection. Let 𝑒0 = 0 such that 𝑝(𝑒0 ) = 𝑝(0) = (1, 0) = 𝑠0 . Clearly, 𝑝−1 (𝑠0 ) = ℤ. We want to show that Φ is a homomorphism. In other words, if [𝑓 ], [𝑔] ∈ 𝜋1 (𝑆 1 , 𝑠0 ) we want to show that Φ([𝑓 ] ∗ [𝑔]) = Φ([𝑓 ]) + Φ([𝑔]). Assume that 𝑓 ∶ 𝐼 → 𝑆 1 and 𝑔 ∶ 𝐼 → 𝑆 1 are two loops in 𝑆 1 based at 𝑠0 . By Theorem 8.12 there are unique lifts 𝑓̃ and 𝑔̃ of 𝑓 and 𝑔, respectively, such that 𝑓̃(0) = 𝑔̃(0) = 0. Let 𝑓̃(1) = 𝑥 and 𝑔̃(1) = 𝑦 such that, by definition of Φ, we have Φ([𝑓 ]) = 𝑥 and Φ([𝑔]) = 𝑦. We will show that Φ([𝑓 ∗ 𝑔]) = 𝑥 + 𝑦. To compute Φ([𝑓 ∗ 𝑔]) we must lift 𝑓 ∗ 𝑔 to a path 𝑓̃ ∗ 𝑔 in ℝ such that (𝑓̃ ∗ 𝑔)(0) = 0. Let ̃ ℎ ∶ 𝐼 → ℝ be a path in ℝ given by\n\ñ ℎ(𝑠) = 𝑓̃(1) + 𝑔̃(𝑠) = 𝑥 + 𝑔̃(𝑠).\n\nNote that ̃ ℎ is a lift of 𝑔 starting at 𝑥. Let 𝑓̃ ∗ ̃ ℎ ∶ 𝐼 → ℝ be a path in ℝ given by { 𝑓̃(2𝑠) 0 ⩽ 𝑠 ⩽ 1∕2 (𝑓̃ ∗ ̃ ℎ)(𝑠) = ̃ ℎ(2𝑠 − 1) 1∕2 ⩽ 𝑠 ⩽ 1.",
+        "proof_dependencies": [
+          "basepoint_independence",
+          "path_lifting"
         ]
       },
       {
