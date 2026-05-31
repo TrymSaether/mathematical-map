@@ -2341,44 +2341,111 @@
       },
       {
         "id": "interior",
-        "statement": "The interior of A in X is the largest open subset of X contained in A.",
-        "formal_statement": "$$\\operatorname{int}_X(A)=A^\\circ=\\bigcup\\{U\\in\\tau: U\\subseteq A\\}.$$",
-        "definition": "For A⊆X, the interior int_X(A) is the union of all open subsets of X contained in A; equivalently, it is the largest open subset of X contained in A.",
-        "intuition": "The interior consists of points around which A contains an entire open neighborhood.",
-        "notation": "$$A^\\circ$$, $$\\operatorname{int}_X(A)$$",
-        "assumptions": [],
-        "dependencies": {
-          "definitional_dependency": ["open_set"],
-          "logical_dependency": [],
-          "assumption_dependency": [],
-          "construction_dependency": [],
-          "notation_dependency": [],
-          "pedagogical_dependency": [],
-          "historical_dependency": []
-        },
-        "outgoing_relations": ["e_interior_requires_open_set"],
-        "metadata": {
-          "tags": [],
-          "syllabus_priority": "medium",
-          "source": null
-        },
-        "kind": "definition",
-        "introduced_object": "interior",
-        "genus": "operator_on_subsets",
-        "differentia": ["largest_open_set_contained_in_subset"],
-        "examples": [],
-        "non_examples": [],
-        "equivalent_definitions": [
-          "$$x\\in\\operatorname{int}_X(A)$$ iff $$A$$ is a neighborhood of $$x$$"
-        ],
         "label": "interior",
+        "kind": "definition",
         "domain": "spaces_constructions",
         "chapter": "3",
         "ref": "near 3.29",
-        "gloss": "Dual to the closure: it strips $A$ down to the points it surrounds with room to spare. Always $\\mathrm{Int}(A)\\subseteq A\\subseteq\\overline{A}$.",
-        "example": "In $\\mathbb{R}$, $\\mathrm{Int}((a,b])=(a,b)$.",
+        "statement": "For a subset A of a topological space X, the interior of A is the largest open subset of X contained in A.",
+        "formal_statement": "$$\\operatorname{int}_X(A)=A^\\circ=\\bigcup\\{U\\in\\tau_X:U\\subseteq A\\}.$$",
+        "definition": "Let $(X,\\tau_X)$ be a topological space and let $A\\subseteq X$. The interior of $A$ in $X$, denoted $\\operatorname{int}_X(A)$ or $A^\\circ$, is the union of all open subsets of $X$ contained in $A$. Equivalently, it is the largest open subset of $X$ contained in $A$.",
+        "intuition": "The interior keeps exactly the points of $A$ that have room around them: a point $x$ lies in $\\operatorname{int}_X(A)$ precisely when some open neighborhood of $x$ is contained entirely in $A$. Boundary points fail this test because every open neighborhood around them leaks outside $A$.",
+        "notation": "$$\\operatorname{int}_X(A),\\quad A^\\circ$$",
+        "assumptions": [
+          "$(X,\\tau_X)$ is a topological space",
+          "$A\\subseteq X$"
+        ],
+        "dependencies": {
+          "definitional_dependency": [
+            "topological_space",
+            "open_set",
+            "subset"
+          ],
+          "logical_dependency": ["arbitrary_union_of_open_sets_is_open"],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": ["set_builder_notation", "subseteq", "union"],
+          "pedagogical_dependency": ["neighborhood", "boundary", "closure"],
+          "historical_dependency": []
+        },
+        "outgoing_relations": [
+          "e_interior_requires_open_set",
+          "e_interior_dual_to_closure",
+          "e_boundary_excludes_interior_points",
+          "e_interior_uses_arbitrary_union_open",
+          "e_interior_requires_set_builder_notation",
+          "e_interior_requires_subseteq_notation",
+          "e_interior_requires_union_notation"
+        ],
+        "metadata": {
+          "tags": [
+            "topology",
+            "open-set",
+            "interior-operator",
+            "subset-operator"
+          ],
+          "syllabus_priority": "high",
+          "source": null
+        },
+        "introduced_object": "interior",
+        "genus": "operator_on_subsets",
+        "differentia": [
+          "largest_open_subset_contained_in_given_subset",
+          "union_of_all_open_subsets_contained_in_given_subset"
+        ],
+        "examples": [
+          {
+            "space": "$\\mathbb{R}$ with the usual topology",
+            "set": "$(a,b]$",
+            "interior": "$(a,b)$",
+            "reason": "The right endpoint $b$ has no open interval around it contained in $(a,b]$."
+          },
+          {
+            "space": "$\\mathbb{R}$ with the usual topology",
+            "set": "$\\mathbb{Q}$",
+            "interior": "$\\varnothing$",
+            "reason": "Every open interval around a rational number contains irrational numbers."
+          },
+          {
+            "space": "A discrete topological space $X$",
+            "set": "Any subset $A\\subseteq X$",
+            "interior": "$A$",
+            "reason": "Every subset is open in a discrete topology."
+          }
+        ],
+        "non_examples": [
+          {
+            "claim": "The endpoint $b$ is interior to $(a,b]$ in $\\mathbb{R}$ with the usual topology.",
+            "why_false": "Every open interval around $b$ contains points greater than $b$, so it is not contained in $(a,b]$."
+          },
+          {
+            "claim": "$\\operatorname{int}_X(A)$ is always nonempty when $A$ is nonempty.",
+            "why_false": "For example, $\\operatorname{int}_{\\mathbb{R}}(\\mathbb{Q})=\\varnothing$ in the usual topology."
+          }
+        ],
+        "equivalent_definitions": [
+          "$$x\\in\\operatorname{int}_X(A)\\iff \\exists U\\in\\tau_X\\text{ such that }x\\in U\\subseteq A.$$",
+          "$$\\operatorname{int}_X(A)=X\\setminus\\overline{X\\setminus A}.$$"
+        ],
+        "properties": [
+          "$$\\operatorname{int}_X(A)\\subseteq A.$$",
+          "$$\\operatorname{int}_X(A)\\text{ is open in }X.$$",
+          "$$A\\text{ is open in }X\\iff \\operatorname{int}_X(A)=A.$$",
+          "$$A\\subseteq B\\implies \\operatorname{int}_X(A)\\subseteq\\operatorname{int}_X(B).$$",
+          "$$\\operatorname{int}_X(\\operatorname{int}_X(A))=\\operatorname{int}_X(A).$$",
+          "$$\\operatorname{int}_X(A\\cap B)=\\operatorname{int}_X(A)\\cap\\operatorname{int}_X(B).$$"
+        ],
+        "gloss": "Dual to closure: closure expands $A$ by adding unavoidable nearby points, while interior trims $A$ down to the points it surrounds with open room. Always $$\\operatorname{int}_X(A)\\subseteq A\\subseteq\\overline{A}.$$",
+        "example": "In $\\mathbb{R}$ with its usual topology, $$\\operatorname{int}_{\\mathbb{R}}((a,b])=(a,b).$$",
         "diagram_path": "/atlas-assets/diagrams/interior.svg",
-        "related": ["closure", "open_closed_set_metric"]
+        "related": [
+          "closure",
+          "boundary",
+          "exterior",
+          "open_set",
+          "neighborhood",
+          "open_closed_set_metric"
+        ]
       },
       {
         "id": "boundary",
@@ -11005,6 +11072,118 @@
           "fta",
           "pi1_product"
         ]
+      },
+      {
+        "id": "arbitrary_union_of_open_sets_is_open",
+        "label": "arbitrary union of open sets is open",
+        "kind": "axiom",
+        "domain": "spaces_constructions",
+        "statement": "In a topological space, any union of open sets is open.",
+        "formal_statement": "$$\\{U_i\\}_{i\\in I}\\subseteq\\tau_X\\Longrightarrow\\bigcup_{i\\in I}U_i\\in\\tau_X.$$ ",
+        "definition": null,
+        "intuition": "Open sets may be glued together by arbitrary unions without leaving the topology.",
+        "notation": "$$\\bigcup_{i\\in I}U_i$$",
+        "assumptions": [],
+        "dependencies": {
+          "definitional_dependency": [],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": [],
+          "historical_dependency": []
+        },
+        "outgoing_relations": [],
+        "metadata": {
+          "tags": ["topology-axiom", "open-set", "union"],
+          "syllabus_priority": "core",
+          "source": null
+        },
+        "related": []
+      },
+      {
+        "id": "set_builder_notation",
+        "label": "set-builder notation",
+        "kind": "notation",
+        "domain": "foundations",
+        "statement": "Set-builder notation describes a set by specifying the objects satisfying a condition.",
+        "formal_statement": "$$\\{x\\in X:P(x)\\}$$",
+        "definition": "Notation of the form $\\{x\\in X:P(x)\\}$ denotes the subset of elements $x$ of $X$ satisfying the predicate $P(x)$.",
+        "intuition": "A compact way to name a set by the rule for membership.",
+        "notation": "$$\\{x\\in X:P(x)\\}$$",
+        "assumptions": [],
+        "dependencies": {
+          "definitional_dependency": [],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": [],
+          "historical_dependency": []
+        },
+        "outgoing_relations": [],
+        "metadata": {
+          "tags": ["notation", "sets"],
+          "syllabus_priority": "core",
+          "source": null
+        },
+        "related": []
+      },
+      {
+        "id": "subseteq",
+        "label": "subset-or-equal notation",
+        "kind": "notation",
+        "domain": "foundations",
+        "statement": "The symbol $\\subseteq$ denotes inclusion of one set in another.",
+        "formal_statement": "$$A\\subseteq B\\Longleftrightarrow \\forall x\\,(x\\in A\\Rightarrow x\\in B).$$",
+        "definition": "$A\\subseteq B$ means every element of $A$ is also an element of $B$.",
+        "intuition": "$A$ sits inside $B$, possibly equal to it.",
+        "notation": "$$\\subseteq$$",
+        "assumptions": [],
+        "dependencies": {
+          "definitional_dependency": [],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": [],
+          "historical_dependency": []
+        },
+        "outgoing_relations": [],
+        "metadata": {
+          "tags": ["notation", "sets", "inclusion"],
+          "syllabus_priority": "core",
+          "source": null
+        },
+        "related": []
+      },
+      {
+        "id": "union",
+        "label": "union",
+        "kind": "notation",
+        "domain": "foundations",
+        "statement": "The union collects all elements that belong to at least one set in a family.",
+        "formal_statement": "$$x\\in\\bigcup_{i\\in I}A_i\\Longleftrightarrow \\exists i\\in I\\text{ such that }x\\in A_i.$$ ",
+        "definition": "For a family of sets $\\{A_i\\}_{i\\in I}$, the union $\\bigcup_{i\\in I}A_i$ is the set of elements lying in at least one $A_i$.",
+        "intuition": "Union combines sets by keeping anything that appears anywhere in the family.",
+        "notation": "$$A\\cup B,\\quad \\bigcup_{i\\in I}A_i$$",
+        "assumptions": [],
+        "dependencies": {
+          "definitional_dependency": [],
+          "logical_dependency": [],
+          "assumption_dependency": [],
+          "construction_dependency": [],
+          "notation_dependency": [],
+          "pedagogical_dependency": [],
+          "historical_dependency": []
+        },
+        "outgoing_relations": [],
+        "metadata": {
+          "tags": ["notation", "sets", "union"],
+          "syllabus_priority": "core",
+          "source": null
+        },
+        "related": []
       }
     ],
     "edges": [
@@ -17508,6 +17687,50 @@
         "direction": "source_to_target",
         "confidence": "medium",
         "notes": "Promoted from curated dictionary related[] during continued review."
+      },
+      {
+        "id": "e_interior_uses_arbitrary_union_open",
+        "source": "interior",
+        "target": "arbitrary_union_of_open_sets_is_open",
+        "type": "requires",
+        "dependency_class": "logical_dependency",
+        "label": "Interior is open because it is a union of open sets",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": "Used to justify that the union in the definition is itself open."
+      },
+      {
+        "id": "e_interior_requires_set_builder_notation",
+        "source": "interior",
+        "target": "set_builder_notation",
+        "type": "requires",
+        "dependency_class": "notation_dependency",
+        "label": "Interior formula uses set-builder notation",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e_interior_requires_subseteq_notation",
+        "source": "interior",
+        "target": "subseteq",
+        "type": "requires",
+        "dependency_class": "notation_dependency",
+        "label": "Interior formula uses subset inclusion notation",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
+      },
+      {
+        "id": "e_interior_requires_union_notation",
+        "source": "interior",
+        "target": "union",
+        "type": "requires",
+        "dependency_class": "notation_dependency",
+        "label": "Interior formula uses union notation",
+        "direction": "source_to_target",
+        "confidence": "high",
+        "notes": null
       }
     ],
     "field": "topology_field",

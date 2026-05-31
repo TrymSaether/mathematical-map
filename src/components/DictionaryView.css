@@ -258,7 +258,7 @@
    cards stay single column, so there are no empty gutters. */
 .dictionary-view .dict-card--media {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 248px;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
   align-items: start;
   gap: 22px;
 }
@@ -311,12 +311,16 @@
 /* The diagram column (right of the entry). Stays a supporting figure. */
 .dictionary-view .dict-dia {
   width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .dictionary-view .dict-dia .themed-diagram,
 .dictionary-view .dict-dia img {
   display: block;
   width: 100%;
+  max-width: 360px;
   height: auto;
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -325,7 +329,9 @@
 }
 
 .dictionary-view .dict-dia .themed-diagram svg {
-  max-height: 220px;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 @media (max-width: 640px) {
@@ -336,7 +342,8 @@
 
   .dictionary-view .dict-dia {
     order: -1;
-    max-width: 280px;
+    max-width: min(100%, 320px);
+    justify-self: start;
   }
 }
 

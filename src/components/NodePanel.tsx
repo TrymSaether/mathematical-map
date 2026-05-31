@@ -29,7 +29,7 @@ export function NodePanel() {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 16 }}
           transition={{ duration: 0.22, ease: [0.2, 0.7, 0.2, 1] }}
-          className="pointer-events-auto absolute left-3 right-3 top-[68px] bottom-3 z-20 flex flex-col overflow-hidden rounded-[16px] border sm:left-auto sm:w-[min(480px,calc(100vw-24px))]"
+          className="pointer-events-auto absolute left-3 right-3 top-[68px] bottom-3 z-20 flex flex-col overflow-hidden rounded-[16px] border sm:left-auto sm:w-[min(560px,calc(100vw-24px))]"
           style={{ background: "var(--surface)", borderColor: "var(--border)", boxShadow: "var(--shadow-3)" }}
         >
           <PanelContent node={node} map={map} onClose={() => select(null)} />
@@ -166,139 +166,139 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
       </header>
 
       <div ref={scrollRef} className="min-h-0 flex-1 space-y-5 overflow-y-auto px-6 py-5">
-          {diagramPath && (
-            <section id="sec-diagram">
-              <ThemedDiagram
-                src={diagramPath}
-                alt={`Diagram for ${node.title}`}
-                className="w-full rounded-[12px] border p-3"
-              />
-            </section>
-          )}
+        {diagramPath && (
+          <section id="sec-diagram">
+            <ThemedDiagram
+              src={diagramPath}
+              alt={`Diagram for ${node.title}`}
+              className="block w-full rounded-[12px] border p-3"
+            />
+          </section>
+        )}
 
-          {statement && (
-            <section id="sec-statement">
-              <Spine tone={tone} kind={node.kind} label="Statement">
-                <MathProse text={statement} />
-              </Spine>
-            </section>
-          )}
+        {statement && (
+          <section id="sec-statement">
+            <Spine tone={tone} kind={node.kind} label="Statement">
+              <MathProse text={statement} />
+            </Spine>
+          </section>
+        )}
 
-          {formalStatement && (
-            <section id="sec-formal">
-              <Facet label="Formal statement" toneColor={tone.color}>
-                <div
-                  className="block max-w-full overflow-x-auto rounded-[10px] border px-3.5 py-2.5 font-math text-[14px] leading-[1.6]"
-                  style={{ background: "var(--surface-2)", borderColor: "var(--border)", color: "var(--fg-1)" }}
-                >
-                  <MathText text={formalStatement} asBlock />
-                </div>
-              </Facet>
-            </section>
-          )}
-
-          {explanation && (
-            <section id="sec-intuition">
-              <Facet label="Intuition">
-                <MathProse text={explanation} />
-              </Facet>
-            </section>
-          )}
-
-          {solution && (
-            <section id="sec-solution">
-              <Facet label="Solution">
-                <MathProse text={solution} />
-              </Facet>
-            </section>
-          )}
-
-          {showGloss && (
-            <section id="sec-inwords">
-              <Facet label="In words">
-                <MathProse text={gloss} />
-              </Facet>
-            </section>
-          )}
-
-          {example && (
-            <section id="sec-example">
-              <Facet label="Example" muted>
-                <MathProse text={example} />
-              </Facet>
-            </section>
-          )}
-
-          {hasConnections && (
-            <section id="sec-connections" className="space-y-3.5 border-t pt-4" style={{ borderColor: "var(--border-subtle)" }}>
-              {prereqIds.length > 0 && (
-                <ChipGroup label="Depends on" count={prereqIds.length}>
-                  {prereqIds.map((rid) => (
-                    <ConnectionChip key={rid} id={rid} map={map} onClick={() => select(rid)} />
-                  ))}
-                </ChipGroup>
-              )}
-              {usedBy.length > 0 && (
-                <ChipGroup label="Used by" count={usedBy.length}>
-                  {visibleUsed.map((rid) => (
-                    <ConnectionChip key={rid} id={rid} map={map} onClick={() => select(rid)} />
-                  ))}
-                  {hiddenUsedCount > 0 && (
-                    <button
-                      onClick={() => setShowAllUsed(true)}
-                      className="self-center px-1 text-[12px] hover:underline"
-                      style={{ color: "var(--accent)" }}
-                    >
-                      +{hiddenUsedCount} more
-                    </button>
-                  )}
-                </ChipGroup>
-              )}
-              {examples.length > 0 && (
-                <ChipGroup label="Related cases" count={examples.length}>
-                  {examples.map((rid) => (
-                    <ConnectionChip key={rid} id={rid} map={map} onClick={() => select(rid)} />
-                  ))}
-                </ChipGroup>
-              )}
-              {exercises.length > 0 && (
-                <ChipGroup label="Exercises" count={exercises.length}>
-                  {exercises.map((rid) => (
-                    <ConnectionChip key={rid} id={rid} map={map} onClick={() => select(rid)} />
-                  ))}
-                </ChipGroup>
-              )}
-            </section>
-          )}
-
-          <section id="sec-metadata" className="border-t pt-4" style={{ borderColor: "var(--border-subtle)" }}>
-            <Facet label="Metadata">
-              <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-[12px]">
-                <dt style={{ color: "var(--fg-3)" }}>Tags</dt>
-                <dd style={{ color: "var(--fg-2)" }}>
-                  {node.tags.length > 0 ? node.tags.join(", ") : "No tags recorded."}
-                </dd>
-                <dt style={{ color: "var(--fg-3)" }}>Domain</dt>
-                <dd style={{ color: "var(--fg-2)" }}>{domain?.label ?? node.topicCluster}</dd>
-                <dt style={{ color: "var(--fg-3)" }}>Kind</dt>
-                <dd style={{ color: "var(--fg-2)" }}>{KIND_LABEL[node.kind]}</dd>
-                <dt style={{ color: "var(--fg-3)" }}>Source</dt>
-                <dd style={{ color: "var(--fg-2)" }}>
-                  {node.chapter} · {node.section || "unranked"} · #{node.number}
-                </dd>
-                {node.ref && (
-                  <>
-                    <dt style={{ color: "var(--fg-3)" }}>Reference</dt>
-                    <dd style={{ color: "var(--fg-2)" }}>{node.ref}</dd>
-                  </>
-                )}
-                <dt style={{ color: "var(--fg-3)" }}>ID</dt>
-                <dd className="truncate font-mono text-[11px]" style={{ color: "var(--fg-2)" }} title={node.id}>
-                  {node.id}
-                </dd>
-              </dl>
+        {formalStatement && (
+          <section id="sec-formal">
+            <Facet label="Formal statement" toneColor={tone.color}>
+              <div
+                className="block max-w-full overflow-x-auto rounded-[10px] border px-3.5 py-2.5 font-math text-[14px] leading-[1.6]"
+                style={{ background: "var(--surface-2)", borderColor: "var(--border)", color: "var(--fg-1)" }}
+              >
+                <MathText text={formalStatement} asBlock />
+              </div>
             </Facet>
           </section>
+        )}
+
+        {explanation && (
+          <section id="sec-intuition">
+            <Facet label="Intuition">
+              <MathProse text={explanation} />
+            </Facet>
+          </section>
+        )}
+
+        {solution && (
+          <section id="sec-solution">
+            <Facet label="Solution">
+              <MathProse text={solution} />
+            </Facet>
+          </section>
+        )}
+
+        {showGloss && (
+          <section id="sec-inwords">
+            <Facet label="In words">
+              <MathProse text={gloss} />
+            </Facet>
+          </section>
+        )}
+
+        {example && (
+          <section id="sec-example">
+            <Facet label="Example" muted>
+              <MathProse text={example} />
+            </Facet>
+          </section>
+        )}
+
+        {hasConnections && (
+          <section id="sec-connections" className="space-y-3.5 border-t pt-4" style={{ borderColor: "var(--border-subtle)" }}>
+            {prereqIds.length > 0 && (
+              <ChipGroup label="Depends on" count={prereqIds.length}>
+                {prereqIds.map((rid) => (
+                  <ConnectionChip key={rid} id={rid} map={map} onClick={() => select(rid)} />
+                ))}
+              </ChipGroup>
+            )}
+            {usedBy.length > 0 && (
+              <ChipGroup label="Used by" count={usedBy.length}>
+                {visibleUsed.map((rid) => (
+                  <ConnectionChip key={rid} id={rid} map={map} onClick={() => select(rid)} />
+                ))}
+                {hiddenUsedCount > 0 && (
+                  <button
+                    onClick={() => setShowAllUsed(true)}
+                    className="self-center px-1 text-[12px] hover:underline"
+                    style={{ color: "var(--accent)" }}
+                  >
+                    +{hiddenUsedCount} more
+                  </button>
+                )}
+              </ChipGroup>
+            )}
+            {examples.length > 0 && (
+              <ChipGroup label="Related cases" count={examples.length}>
+                {examples.map((rid) => (
+                  <ConnectionChip key={rid} id={rid} map={map} onClick={() => select(rid)} />
+                ))}
+              </ChipGroup>
+            )}
+            {exercises.length > 0 && (
+              <ChipGroup label="Exercises" count={exercises.length}>
+                {exercises.map((rid) => (
+                  <ConnectionChip key={rid} id={rid} map={map} onClick={() => select(rid)} />
+                ))}
+              </ChipGroup>
+            )}
+          </section>
+        )}
+
+        <section id="sec-metadata" className="border-t pt-4" style={{ borderColor: "var(--border-subtle)" }}>
+          <Facet label="Metadata">
+            <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-[12px]">
+              <dt style={{ color: "var(--fg-3)" }}>Tags</dt>
+              <dd style={{ color: "var(--fg-2)" }}>
+                {node.tags.length > 0 ? node.tags.join(", ") : "No tags recorded."}
+              </dd>
+              <dt style={{ color: "var(--fg-3)" }}>Domain</dt>
+              <dd style={{ color: "var(--fg-2)" }}>{domain?.label ?? node.topicCluster}</dd>
+              <dt style={{ color: "var(--fg-3)" }}>Kind</dt>
+              <dd style={{ color: "var(--fg-2)" }}>{KIND_LABEL[node.kind]}</dd>
+              <dt style={{ color: "var(--fg-3)" }}>Source</dt>
+              <dd style={{ color: "var(--fg-2)" }}>
+                {node.chapter} · {node.section || "unranked"} · #{node.number}
+              </dd>
+              {node.ref && (
+                <>
+                  <dt style={{ color: "var(--fg-3)" }}>Reference</dt>
+                  <dd style={{ color: "var(--fg-2)" }}>{node.ref}</dd>
+                </>
+              )}
+              <dt style={{ color: "var(--fg-3)" }}>ID</dt>
+              <dd className="truncate font-mono text-[11px]" style={{ color: "var(--fg-2)" }} title={node.id}>
+                {node.id}
+              </dd>
+            </dl>
+          </Facet>
+        </section>
       </div>
     </>
   );
