@@ -4,13 +4,14 @@ import {
   Circle,
   Diamond,
   FlaskConical,
+  Layers,
   PencilLine,
   type LucideIcon,
 } from "lucide-react";
 
 /**
  * The raw data carries 20+ `kind` values with a long singleton tail. For visual
- * encoding we collapse them into six canonical categories. The precise kind is
+ * encoding we collapse them into seven canonical categories. The precise kind is
  * still kept on the node (badge + side panel); category only drives the glyph,
  * grouping, and the exercise filter.
  *
@@ -19,7 +20,8 @@ import {
  */
 export type NodeCategory =
   | "definition"
-  | "result"
+  | "structure"
+  | "theorem"
   | "example"
   | "construction"
   | "proof"
@@ -28,17 +30,18 @@ export type NodeCategory =
 const KIND_TO_CATEGORY: Record<string, NodeCategory> = {
   // Definitions & primitives — "what things are".
   definition: "definition",
-  structure: "definition",
   object: "definition",
   notation: "definition",
   axiom: "definition",
   assumption: "definition",
-  // Results — "what is true".
-  theorem: "result",
-  lemma: "result",
-  proposition: "result",
-  corollary: "result",
-  conjecture: "result",
+  // Structures — the spaces and algebraic objects of study.
+  structure: "structure",
+  // Theorems — "what is true".
+  theorem: "theorem",
+  lemma: "theorem",
+  proposition: "theorem",
+  corollary: "theorem",
+  conjecture: "theorem",
   // Instances — "what it looks like".
   example: "example",
   counterexample: "example",
@@ -76,11 +79,12 @@ export interface CategoryMeta {
 
 export const CATEGORY_META: Record<NodeCategory, CategoryMeta> = {
   definition: { id: "definition", label: "Definition", icon: Circle, rail: "solid", glyphFilled: false },
-  result: { id: "result", label: "Result", icon: Diamond, rail: "solid", glyphFilled: true },
+  structure:  { id: "structure",  label: "Structure",  icon: Layers,  rail: "solid", glyphFilled: false },
+  theorem:    { id: "theorem",    label: "Theorem",    icon: Diamond, rail: "solid", glyphFilled: true  },
   construction: { id: "construction", label: "Construction", icon: Box, rail: "solid", glyphFilled: false },
-  example: { id: "example", label: "Example", icon: FlaskConical, rail: "dashed", glyphFilled: false },
-  proof: { id: "proof", label: "Proof", icon: Check, rail: "dotted", glyphFilled: false },
-  exercise: { id: "exercise", label: "Exercise", icon: PencilLine, rail: "dotted", glyphFilled: false },
+  example:    { id: "example",    label: "Example",    icon: FlaskConical, rail: "dashed", glyphFilled: false },
+  proof:      { id: "proof",      label: "Proof",      icon: Check,   rail: "dotted", glyphFilled: false },
+  exercise:   { id: "exercise",   label: "Exercise",   icon: PencilLine, rail: "dotted", glyphFilled: false },
 };
 
 /** CSS `background` for the lane rail given its domain color and texture. */
@@ -97,7 +101,8 @@ export function railBackground(color: string, texture: RailTexture): string {
 
 export const CATEGORY_ORDER: NodeCategory[] = [
   "definition",
-  "result",
+  "structure",
+  "theorem",
   "construction",
   "example",
   "proof",
@@ -115,7 +120,8 @@ export function isExerciseKind(kind: string): boolean {
 /** Categories shown on first load — the concept skeleton without proof detail or practice. */
 export const DEFAULT_VISIBLE_CATEGORIES: NodeCategory[] = [
   "definition",
-  "result",
+  "structure",
+  "theorem",
   "construction",
   "example",
 ];
