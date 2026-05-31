@@ -7,8 +7,8 @@ import type { NodeKind, Relation } from "./types";
 export type SearchScope = "all" | "title";
 export type ViewMode = "dependency" | "cluster";
 export type EdgeStyle = "smooth" | "straight" | "bezier";
-/** Which surface is shown: the graph canvas, or the dictionary reading view. */
-export type Surface = "atlas" | "dictionary";
+/** Which surface is shown: the graph canvas, the dictionary reading view, or the flashcard study mode. */
+export type Surface = "atlas" | "dictionary" | "flashcards";
 
 interface State {
   /** Active theme id (see src/lib/themes.ts). */

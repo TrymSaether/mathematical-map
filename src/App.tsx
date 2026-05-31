@@ -5,6 +5,7 @@ import { TopBar } from "./components/TopBar";
 import { GraphCanvas } from "./components/GraphCanvas";
 import { NodePanel } from "./components/NodePanel";
 import { DictionaryView } from "./components/DictionaryView";
+import { FlashcardsView } from "./components/FlashcardsView";
 import { CommandPalette } from "./components/CommandPalette";
 import { useKeyboardNav } from "./hooks/useKeyboardNav";
 import { useStore } from "./store";
@@ -42,6 +43,8 @@ export default function App() {
           {map ? (
             surface === "dictionary" ? (
               <DictionaryView />
+            ) : surface === "flashcards" ? (
+              <FlashcardsView />
             ) : (
               <>
                 <GraphCanvas />

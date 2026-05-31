@@ -15,7 +15,9 @@ export function useKeyboardNav() {
     const onKey = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement | null;
       if (target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable)) return;
-      const { selectedId, select } = useStore.getState();
+      const { selectedId, select, surface } = useStore.getState();
+      // The flashcard surface owns its own keyboard shortcuts (flip / rate / page).
+      if (surface === "flashcards") return;
       if (e.key === "Escape") { select(null); return; }
       if (!["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft", "j", "k"].includes(e.key)) return;
       e.preventDefault();
