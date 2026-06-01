@@ -361,7 +361,7 @@ function DisplayPopover({
           {activeLabel}
         </span>
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-3">
         {THEMES.map((t) => (
           <ThemeSwatch key={t.id} theme={t} active={t.id === theme} onClick={() => setTheme(t.id)} />
         ))}

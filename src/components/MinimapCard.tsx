@@ -5,9 +5,9 @@ import { ATLAS_NODE_HEIGHT, ATLAS_NODE_WIDTH, type DomainBounds } from "../lib/a
 import { getMutedDomainTone } from "../lib/colors";
 import type { GraphNode } from "../types";
 
-const MAX_W = 132;
-const MAX_H = 196;
-const PAD = 5;
+const MAX_W = 148;
+const MAX_H = 204;
+const PAD = 8;
 
 interface MiniPoint {
   id: string;
@@ -95,6 +95,12 @@ export function MinimapCard({
   const { W, H } = layout;
   const topLeft = layout.toMini(-viewportX / zoom, -viewportY / zoom);
   const bottomRight = layout.toMini((-viewportX + paneW) / zoom, (-viewportY + paneH) / zoom);
+  const viewX = Math.max(0, Math.min(W, Math.min(topLeft.x, bottomRight.x)));
+  const viewY = Math.max(0, Math.min(H, Math.min(topLeft.y, bottomRight.y)));
+  const viewRight = Math.max(0, Math.min(W, Math.max(topLeft.x, bottomRight.x)));
+  const viewBottom = Math.max(0, Math.min(H, Math.max(topLeft.y, bottomRight.y)));
+  const viewW = Math.max(0.5, viewRight - viewX);
+  const viewH = Math.max(0.5, viewBottom - viewY);
 
   const handleClick = (event: MouseEvent<SVGSVGElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -106,15 +112,25 @@ export function MinimapCard({
 
   return (
     <div
-      className="atlas-minimap-card map-chrome-soft absolute bottom-4 right-4 z-20 hidden rounded-[18px] p-1.5 md:block"
+      className="atlas-minimap-card absolute bottom-4 right-4 z-20 hidden rounded-[16px] border p-1.5 md:block"
+      style={{
+        background: "color-mix(in srgb, var(--surface) 90%, transparent)",
+        borderColor: "color-mix(in srgb, var(--border) 82%, transparent)",
+        boxShadow: "var(--shadow-2)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+      }}
     >
       <svg
         viewBox={`0 0 ${W} ${H}`}
         width={W}
         height={H}
         onClick={handleClick}
-        className="block cursor-pointer rounded-[13px]"
-        style={{ background: "transparent" }}
+        className="block cursor-pointer rounded-[11px]"
+        style={{
+          background: "color-mix(in srgb, var(--surface-2) 78%, var(--bg))",
+          boxShadow: "inset 0 0 0 1px color-mix(in srgb, var(--border) 68%, transparent)",
+        }}
       >
         {[...regions.entries()].map(([domainId, region]) => {
           const tone = getMutedDomainTone(domainId);
@@ -130,9 +146,8 @@ export function MinimapCard({
                 r={Math.max(Math.abs(b.x - a.x), Math.abs(b.y - a.y)) / 2}
                 fill={tone.tint}
                 stroke={tone.border}
-                strokeDasharray="2 2"
-                strokeWidth={1}
-                opacity={0.56}
+                strokeWidth={0.75}
+                opacity={0.38}
               />
             );
           }
@@ -146,39 +161,43 @@ export function MinimapCard({
               rx={4}
               fill={tone.tint}
               stroke={tone.border}
-              strokeDasharray="2 2"
-              strokeWidth={1}
-              opacity={0.56}
-            />
-          );
-        })}
-        {points.map((point) => {
-          const p = layout.toMini(point.cx, point.cy);
-          const selected = point.id === selectedId;
-          const tone = getMutedDomainTone(point.domainId);
-          return (
-            <circle
-              key={point.id}
-              cx={p.x}
-              cy={p.y}
-              r={selected ? 3.1 : 1.7}
-              fill={tone.color}
-              opacity={selected ? 0.95 : 0.72}
+              strokeWidth={0.75}
+              opacity={0.38}
             />
           );
         })}
         <rect
-          x={Math.min(topLeft.x, bottomRight.x)}
-          y={Math.min(topLeft.y, bottomRight.y)}
-          width={Math.abs(bottomRight.x - topLeft.x)}
-          height={Math.abs(bottomRight.y - topLeft.y)}
-          rx={4}
-          fill="color-mix(in srgb, var(--surface) 16%, transparent)"
-          stroke="var(--accent)"
-          strokeDasharray="3 3"
-          strokeWidth={1}
-          opacity={0.86}
+          x={viewX}
+          y={viewY}
+          width={viewW}
+          height={viewH}
+          rx={5}
+          fill="color-mix(in srgb, var(--accent) 4%, transparent)"
+          stroke="color-mix(in srgb, var(--accent) 72%, var(--surface))"
+          strokeWidth={0.95}
+          opacity={0.84}
         />
+        {points.map((point) => {
+          const p = layout.toMini(point.cx, point.cy);
+          const selected = point.id === selectedId;
+          const tone = getMutedDomainTone(point.domainId);
+          return selected ? (
+            <g key={point.id}>
+              <circle cx={p.x} cy={p.y} r={3.4} fill="var(--surface)" opacity={0.94} />
+              <circle cx={p.x} cy={p.y} r={2.2} fill={tone.color} opacity={0.96} />
+              <circle cx={p.x} cy={p.y} r={4.2} fill="none" stroke={tone.color} strokeWidth={0.8} opacity={0.78} />
+            </g>
+          ) : (
+            <circle
+              key={point.id}
+              cx={p.x}
+              cy={p.y}
+              r={1.35}
+              fill={tone.color}
+              opacity={0.66}
+            />
+          );
+        })}
       </svg>
     </div>
   );
