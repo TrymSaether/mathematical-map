@@ -18,13 +18,12 @@ export function NodePanel() {
   const map = useStore((s) => s.loadedMaps[mapId]);
   const id = useStore((s) => s.selectedId);
   const select = useStore((s) => s.select);
-  const showNodePanel = useStore((s) => s.showNodePanel);
   const node = id && map ? map.nodeById.get(id) ?? null : null;
   const reduceMotion = useReducedMotion();
 
   return (
     <AnimatePresence>
-      {showNodePanel && node && map && (
+      {node && map && (
         <motion.aside
           key={node.id}
           initial={reduceMotion ? false : { opacity: 0, x: -16 }}

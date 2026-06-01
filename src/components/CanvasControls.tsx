@@ -1,30 +1,50 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
+import { createPortal } from "react-dom";
 import {
   Check,
   Crosshair,
   Layers,
   Map,
+  Maximize,
   Minus,
   Network,
-  PanelLeft,
   Plus,
-  SlidersHorizontal,
+  Shapes,
   Waypoints,
+  type LucideIcon,
 } from "lucide-react";
-import { useReactFlow } from "reactflow";
-import { useStore } from "../store";
+import { useReactFlow, useViewport } from "reactflow";
+import { useStore, type EdgeStyle, type ViewMode } from "../store";
 import { cn } from "../lib/utils";
+import { getDomainTone } from "../lib/colors";
+import { CATEGORY_META, kindsByCategory } from "../lib/nodeCategory";
+import { Pill, DockButton } from "./chrome/Pill";
+
+interface PanelPosition {
+  top: number;
+  right: number;
+}
+
+/** Anchor a portal panel to the LEFT of a right-rail dock control. */
+function panelPositionFor(el: HTMLElement): PanelPosition {
+  const rect = el.getBoundingClientRect();
+  return {
+    top: Math.round(rect.top),
+    right: Math.round(window.innerWidth - rect.left + 10),
+  };
+}
 
 /**
- * Floating Apple-Maps-style canvas chrome: one right-side control rail for
- * map modes, navigation tools, overlays, zoom, and visual layers.
+ * Floating Apple-Maps-style canvas chrome: a stack of separate glass pills on the
+ * right rail. The top "Map" pill opens an Apple-Maps "Map Modes"-style card that
+ * consolidates view modes, layers, edge style, and filters.
  */
 export function CanvasControls() {
   const rf = useReactFlow();
-  const [layersOpen, setLayersOpen] = useState(false);
-  const layersRef = useRef<HTMLDivElement>(null);
-  const view = useStore((s) => s.view);
-  const setView = useStore((s) => s.setView);
+  const [mapPanelOpen, setMapPanelOpen] = useState(false);
+  const [panelPosition, setPanelPosition] = useState<PanelPosition | null>(null);
+  const mapButtonRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const focusMode = useStore((s) => s.focusMode);
   const toggleFocusMode = useStore((s) => s.toggleFocusMode);
   const focusDepth = useStore((s) => s.focusDepth);
@@ -33,200 +53,304 @@ export function CanvasControls() {
   const routeFrom = useStore((s) => s.routeFrom);
   const routeTo = useStore((s) => s.routeTo);
   const toggleRouteMode = useStore((s) => s.toggleRouteMode);
-  const showNodePanel = useStore((s) => s.showNodePanel);
-  const toggleNodePanel = useStore((s) => s.toggleNodePanel);
   const showMinimap = useStore((s) => s.showMinimap);
   const toggleMinimap = useStore((s) => s.toggleMinimap);
   const routeActive = routeMode || (routeFrom !== null && routeTo !== null);
 
   useEffect(() => {
-    if (!layersOpen) return;
+    if (!mapPanelOpen) return;
     const onDown = (e: MouseEvent) => {
-      if (layersRef.current && !layersRef.current.contains(e.target as Node)) {
-        setLayersOpen(false);
+      const target = e.target as Node;
+      if (
+        mapButtonRef.current &&
+        !mapButtonRef.current.contains(target) &&
+        panelRef.current &&
+        !panelRef.current.contains(target)
+      ) {
+        setMapPanelOpen(false);
       }
     };
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setLayersOpen(false);
+      if (e.key === "Escape") setMapPanelOpen(false);
+    };
+    const onResize = () => {
+      if (mapButtonRef.current) setPanelPosition(panelPositionFor(mapButtonRef.current));
     };
     document.addEventListener("mousedown", onDown);
     document.addEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
     return () => {
       document.removeEventListener("mousedown", onDown);
       document.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
     };
-  }, [layersOpen]);
+  }, [mapPanelOpen]);
 
   return (
-    <>
+    <div className="pointer-events-none absolute right-3 top-[72px] z-30 flex flex-col items-end gap-2 sm:right-4">
+      {/* Map view — modes, layers, edge style & filters */}
+      <div ref={mapButtonRef}>
+        <Pill orientation="vertical" className="canvas-dock">
+          <DockButton
+            label="Map view"
+            active={mapPanelOpen}
+            onClick={() => {
+              if (mapButtonRef.current) setPanelPosition(panelPositionFor(mapButtonRef.current));
+              setMapPanelOpen((o) => !o);
+            }}
+          >
+            <Layers className="h-[17px] w-[17px]" strokeWidth={2} />
+          </DockButton>
+        </Pill>
+      </div>
 
+      {/* Navigation tools */}
+      <Pill orientation="vertical" className="canvas-dock">
+        <DockButton
+          label={routeActive ? "Cancel route" : "Plan route"}
+          active={routeActive}
+          onClick={toggleRouteMode}
+        >
+          <Waypoints className="h-[17px] w-[17px]" strokeWidth={2} />
+        </DockButton>
+        <DockButton label="Focus neighborhood" active={focusMode} onClick={toggleFocusMode}>
+          <Crosshair className="h-[17px] w-[17px]" strokeWidth={2} />
+        </DockButton>
+        {focusMode && <DepthPicker value={focusDepth} onChange={setFocusDepth} />}
+      </Pill>
 
-      <div className="pointer-events-none absolute right-3 top-[72px] z-30 flex flex-col items-end gap-2.5 sm:right-4">
-        <ToolbarStack label="Map modes">
-          <FloatButton
-            label="Dependency map"
-            active={view === "dependency"}
-            grouped
-            onClick={() => setView("dependency")}
-          >
-            <Network className="h-[18px] w-[18px]" strokeWidth={2} />
-          </FloatButton>
-          <FloatButton
-            label="Region map"
-            active={view === "cluster"}
-            grouped
-            onClick={() => setView("cluster")}
-          >
-            <Layers className="h-[18px] w-[18px]" strokeWidth={2} />
-          </FloatButton>
-        </ToolbarStack>
+      {/* Minimap overlay */}
+      <Pill orientation="vertical" className="canvas-dock">
+        <DockButton
+          label={showMinimap ? "Hide minimap" : "Show minimap"}
+          active={showMinimap}
+          onClick={toggleMinimap}
+        >
+          <Map className="h-[17px] w-[17px]" strokeWidth={2} />
+        </DockButton>
+      </Pill>
 
-        <ToolbarStack label="Navigation tools">
-          <FloatButton
-            label={routeActive ? "Cancel route" : "Plan route"}
-            active={routeActive}
-            grouped
-            onClick={toggleRouteMode}
-          >
-            <Waypoints className="h-[18px] w-[18px]" strokeWidth={2} />
-          </FloatButton>
-          <FloatButton
-            label="Focus neighborhood"
-            active={focusMode}
-            grouped
-            onClick={toggleFocusMode}
-          >
-            <Crosshair className="h-[18px] w-[18px]" strokeWidth={2} />
-          </FloatButton>
-          {focusMode && <DepthPicker value={focusDepth} onChange={setFocusDepth} />}
-        </ToolbarStack>
+      {/* Zoom */}
+      <Pill orientation="vertical" className="canvas-dock">
+        <DockButton label="Zoom in" onClick={() => rf.zoomIn({ duration: 180 })}>
+          <Plus className="h-[17px] w-[17px]" strokeWidth={2} />
+        </DockButton>
+        <ZoomReadout />
+        <DockButton label="Zoom out" onClick={() => rf.zoomOut({ duration: 180 })}>
+          <Minus className="h-[17px] w-[17px]" strokeWidth={2} />
+        </DockButton>
+      </Pill>
 
-        <ToolbarStack label="Overlays">
-          <FloatButton
-            label={showMinimap ? "Hide minimap" : "Show minimap"}
-            active={showMinimap}
-            grouped
-            onClick={toggleMinimap}
-          >
-            <Map className="h-[18px] w-[18px]" strokeWidth={2} />
-          </FloatButton>
-        </ToolbarStack>
-
-        <ToolbarStack label="Zoom">
-          <FloatButton
-            label="Zoom in"
-            grouped
-            onClick={() => rf.zoomIn({ duration: 180 })}
-          >
-            <Plus className="h-[18px] w-[18px]" strokeWidth={2} />
-          </FloatButton>
-          <FloatButton
-            label="Zoom out"
-            grouped
-            onClick={() => rf.zoomOut({ duration: 180 })}
-          >
-            <Minus className="h-[18px] w-[18px]" strokeWidth={2} />
-          </FloatButton>
-        </ToolbarStack>
-
-        <FloatButton
+      {/* Fit view */}
+      <Pill orientation="vertical" className="canvas-dock">
+        <DockButton
           label="Fit view"
           onClick={() => rf.fitView({ padding: 0.18, duration: 420 })}
         >
-          <Compass />
-        </FloatButton>
+          <Maximize className="h-[17px] w-[17px]" strokeWidth={2} />
+        </DockButton>
+      </Pill>
 
-        <div ref={layersRef} className="pointer-events-auto relative">
-          <FloatButton
-            label="Map layers"
-            active={layersOpen}
-            onClick={() => setLayersOpen((o) => !o)}
-          >
-            <SlidersHorizontal className="h-[18px] w-[18px]" strokeWidth={2} />
-          </FloatButton>
-          {layersOpen && <LayersPopover />}
-        </div>
-      </div>
-    </>
+      {mapPanelOpen && panelPosition && (
+        <MapPanel panelRef={panelRef} position={panelPosition} />
+      )}
+    </div>
   );
 }
 
-function ToolbarStack({ label, children }: { label: string; children: ReactNode }) {
+/** Live zoom percentage; click to reset to 100%. */
+function ZoomReadout() {
+  const { zoom } = useViewport();
+  const rf = useReactFlow();
+  return (
+    <button
+      type="button"
+      onClick={() => rf.zoomTo(1, { duration: 180 })}
+      className="zoom-readout pointer-events-auto flex items-center justify-center rounded-[10px] font-semibold tabular-nums transition-colors"
+      aria-label="Reset zoom to 100%"
+      title="Reset zoom to 100%"
+    >
+      {Math.round(zoom * 100)}%
+    </button>
+  );
+}
+
+function DepthPicker({ value, onChange }: { value: number; onChange: (value: number) => void }) {
+  return (
+    <div className="flex flex-col items-center gap-1 py-1" aria-label="Focus depth">
+      {[1, 2, 3].map((depth) => {
+        const active = value === depth;
+        return (
+          <button
+            key={depth}
+            type="button"
+            onClick={() => onChange(depth)}
+            className={cn(
+              "flex h-6 w-6 items-center justify-center rounded-[8px] text-ui-2xs font-semibold tabular-nums transition",
+              active && "is-active",
+            )}
+            style={{
+              background: active ? "var(--chrome-active)" : "transparent",
+              color: active ? "var(--fg-1)" : "var(--fg-2)",
+              boxShadow: active ? "inset 0 0 0 1px color-mix(in srgb, var(--border) 70%, transparent)" : "none",
+            }}
+            aria-label={`Focus depth ${depth}`}
+            aria-pressed={active}
+          >
+            {depth}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ---- Shared controls ----------------------------------------------- */
+
+/** iOS-style switch used for layer toggles. */
+function Switch({ checked, onClick, label }: { checked: boolean; onClick: () => void; label: string }) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={checked}
+      aria-label={label}
+      onClick={onClick}
+      className="relative inline-flex h-[22px] w-[38px] shrink-0 items-center rounded-full transition-colors"
+      style={{
+        background: checked ? "var(--accent)" : "var(--surface-3)",
+        boxShadow: checked ? "none" : "inset 0 0 0 1px var(--border)",
+      }}
+    >
+      <span
+        className="absolute h-[17px] w-[17px] rounded-full transition-transform"
+        style={{
+          left: 2,
+          background: "#fff",
+          transform: checked ? "translateX(16px)" : "translateX(0)",
+          boxShadow: "0 1px 2.5px rgba(0,0,0,0.3)",
+        }}
+      />
+    </button>
+  );
+}
+
+function Segmented<T extends string>({
+  value,
+  options,
+  onChange,
+}: {
+  value: T;
+  options: { value: T; label: string }[];
+  onChange: (v: T) => void;
+}) {
   return (
     <div
-      className="map-chrome-soft pointer-events-auto flex flex-col overflow-hidden rounded-[24px]"
-      role="group"
-      aria-label={label}
+      className="grid w-full gap-0.5 rounded-[12px] p-0.5"
+      style={{
+        gridTemplateColumns: `repeat(${options.length}, 1fr)`,
+        background: "var(--surface-2)",
+        boxShadow: "inset 0 0 0 1px var(--border)",
+      }}
     >
+      {options.map((o) => {
+        const active = o.value === value;
+        return (
+          <button
+            key={o.value}
+            onClick={() => onChange(o.value)}
+            className="rounded-[10px] px-2 py-1.5 text-ui-meta font-semibold transition-colors"
+            style={{
+              background: active ? "var(--accent)" : "transparent",
+              color: active ? "var(--fg-on-color)" : "var(--fg-2)",
+            }}
+            aria-pressed={active}
+          >
+            {o.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ---- Apple-Maps "Map Modes" panel ---------------------------------- */
+
+function PanelSection({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div>
+      <div
+        className="mb-2 text-ui-caption font-semibold uppercase tracking-label-wide"
+        style={{ color: "var(--fg-3)" }}
+      >
+        {title}
+      </div>
       {children}
     </div>
   );
 }
 
-function FloatButton({
-  label,
-  onClick,
+const MODES: { id: ViewMode; label: string; hint: string; icon: LucideIcon }[] = [
+  { id: "dependency", label: "Dependency", hint: "Logical graph", icon: Network },
+  { id: "cluster", label: "Regions", hint: "Domain clusters", icon: Shapes },
+];
+
+function ModeTile({
   active,
-  grouped,
-  children,
+  label,
+  hint,
+  icon: Icon,
+  onClick,
 }: {
+  active: boolean;
   label: string;
+  hint: string;
+  icon: LucideIcon;
   onClick: () => void;
-  active?: boolean;
-  grouped?: boolean;
-  children: ReactNode;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={cn(
-        "pointer-events-auto map-icon-button map-control-button",
-        grouped ? "rounded-none" : "map-chrome-soft rounded-full",
-        active && "is-active",
-      )}
-      aria-label={label}
+      className="group relative flex flex-col gap-2 rounded-[16px] border p-2 text-left transition"
+      style={{
+        borderColor: active ? "var(--accent)" : "var(--border)",
+        background: active ? "var(--accent-soft)" : "var(--surface)",
+        boxShadow: active ? "0 0 0 1px var(--accent)" : "none",
+      }}
       aria-pressed={active}
-      title={label}
     >
-      {children}
+      <span
+        className="flex h-14 w-full items-center justify-center rounded-[11px]"
+        style={{
+          background: active ? "var(--accent)" : "var(--surface-2)",
+          color: active ? "var(--fg-on-color)" : "var(--fg-2)",
+        }}
+        aria-hidden
+      >
+        <Icon className="h-6 w-6" strokeWidth={1.9} />
+      </span>
+      <span className="px-0.5">
+        <span
+          className="block text-ui-control font-semibold leading-tight"
+          style={{ color: active ? "var(--accent)" : "var(--fg-1)" }}
+        >
+          {label}
+        </span>
+        <span className="block text-ui-hint" style={{ color: "var(--fg-3)" }}>
+          {hint}
+        </span>
+      </span>
+      {active && (
+        <span
+          className="absolute right-2 top-2 flex h-4 w-4 items-center justify-center rounded-full"
+          style={{ background: "var(--accent)", color: "var(--fg-on-color)" }}
+          aria-hidden
+        >
+          <Check className="h-2.5 w-2.5" strokeWidth={3.5} />
+        </span>
+      )}
     </button>
-  );
-}
-
-function Divider() {
-  return <span className="map-divider mx-2 h-px shrink-0" />;
-}
-
-function DepthPicker({ value, onChange }: { value: number; onChange: (value: number) => void }) {
-  return (
-    <>
-      <div className="flex flex-col items-center gap-1 px-1.5 py-1.5" aria-label="Focus depth">
-        {[1, 2, 3].map((depth) => {
-          const active = value === depth;
-          return (
-            <button
-              key={depth}
-              type="button"
-              onClick={() => onChange(depth)}
-              className={cn(
-                "flex h-8 w-8 items-center justify-center rounded-full text-ui-xs font-semibold tabular-nums transition",
-                active && "is-active",
-              )}
-              style={{
-                background: active ? "var(--chrome-active)" : "transparent",
-                color: active ? "var(--fg-1)" : "var(--fg-2)",
-                boxShadow: active ? "inset 0 0 0 1px color-mix(in srgb, var(--border) 70%, transparent)" : "none",
-              }}
-              aria-label={`Focus depth ${depth}`}
-              aria-pressed={active}
-            >
-              {depth}
-            </button>
-          );
-        })}
-      </div>
-    </>
   );
 }
 
@@ -236,66 +360,158 @@ const LAYERS: { key: "grid" | "regions" | "soft"; label: string }[] = [
   { key: "soft", label: "Soft dependencies" },
 ];
 
-function LayersPopover() {
+function MapPanel({
+  panelRef,
+  position,
+}: {
+  panelRef: RefObject<HTMLDivElement>;
+  position: PanelPosition;
+}) {
+  const view = useStore((s) => s.view);
+  const setView = useStore((s) => s.setView);
   const showGrid = useStore((s) => s.showGrid);
   const toggleGrid = useStore((s) => s.toggleGrid);
   const showRegions = useStore((s) => s.showRegions);
   const toggleRegions = useStore((s) => s.toggleRegions);
   const showSoftDeps = useStore((s) => s.showSoftDeps);
   const toggleSoftDeps = useStore((s) => s.toggleSoftDeps);
+  const edgeStyle = useStore((s) => s.edgeStyle);
+  const setEdgeStyle = useStore((s) => s.setEdgeStyle);
+  const mapId = useStore((s) => s.mapId);
+  const map = useStore((s) => s.loadedMaps[mapId]);
+  const kinds = useStore((s) => s.kinds);
+  const toggleKind = useStore((s) => s.toggleKind);
+  const topics = useStore((s) => s.topics);
+  const toggleTopic = useStore((s) => s.toggleTopic);
+  const resetTopics = useStore((s) => s.resetTopics);
 
   const checked = { grid: showGrid, regions: showRegions, soft: showSoftDeps };
   const toggle = { grid: toggleGrid, regions: toggleRegions, soft: toggleSoftDeps };
 
-  return (
+  return createPortal(
     <div
-      className="map-popover pointer-events-auto absolute right-[54px] top-0 w-[270px] rounded-[20px] p-2"
+      ref={panelRef}
+      className="map-popover pointer-events-auto fixed z-50 flex w-[min(320px,calc(100vw-24px))] flex-col gap-4 overflow-y-auto rounded-[22px] p-4"
+      style={{
+        top: position.top,
+        right: position.right,
+        maxHeight: `calc(100vh - ${position.top + 16}px)`,
+      }}
+      role="dialog"
+      aria-label="Map view"
     >
-      <div
-        className="px-3 pb-1.5 pt-1.5 text-ui-2xs font-semibold uppercase tracking-label"
-        style={{ color: "var(--fg-3)" }}
-      >
-        Map layers
-      </div>
-      {LAYERS.map(({ key, label }) => (
-        <button
-          key={key}
-          type="button"
-          onClick={toggle[key]}
-          className="map-text-button flex w-full cursor-pointer items-center gap-3 rounded-[14px] px-3 py-2.5 text-left text-ui-control font-medium"
-          style={{ color: checked[key] ? "var(--fg-1)" : "var(--fg-2)" }}
-          aria-pressed={checked[key]}
-        >
-          <span
-            className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border"
-            style={{
-              background: checked[key] ? "var(--accent)" : "var(--surface)",
-              borderColor: checked[key] ? "var(--accent)" : "var(--border)",
-              color: checked[key] ? "var(--fg-on-color)" : "transparent",
-            }}
-            aria-hidden
-          >
-            <Check className="h-3.5 w-3.5" strokeWidth={3} />
-          </span>
-          <span className="flex-1">{label}</span>
-        </button>
-      ))}
-    </div>
-  );
-}
+      <PanelSection title="Map Modes">
+        <div className="grid grid-cols-2 gap-2">
+          {MODES.map((m) => (
+            <ModeTile
+              key={m.id}
+              active={view === m.id}
+              label={m.label}
+              hint={m.hint}
+              icon={m.icon}
+              onClick={() => setView(m.id)}
+            />
+          ))}
+        </div>
+      </PanelSection>
 
-/** Compass rose with a red north needle (themes via currentColor). */
-function Compass() {
-  return (
-    <svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <circle cx="12" cy="12" r="9.2" stroke="currentColor" strokeWidth="1.45" opacity="0.86" />
-      <path d="M12 4 L14 12 L12 11 L10 12 Z" fill="var(--red)" stroke="none" />
-      <path
-        d="M12 20 L10 12 L12 13 L14 12 Z"
-        fill="currentColor"
-        stroke="none"
-        opacity="0.6"
-      />
-    </svg>
+      <div className="h-px" style={{ background: "var(--border)" }} />
+
+      <PanelSection title="Layers">
+        <div className="flex flex-col gap-0.5">
+          {LAYERS.map(({ key, label }) => (
+            <div key={key} className="flex items-center justify-between gap-3 py-1">
+              <span className="text-ui-control font-medium" style={{ color: "var(--fg-1)" }}>
+                {label}
+              </span>
+              <Switch label={label} checked={checked[key]} onClick={toggle[key]} />
+            </div>
+          ))}
+        </div>
+      </PanelSection>
+
+      <div className="h-px" style={{ background: "var(--border)" }} />
+
+      <PanelSection title="Edge style">
+        <Segmented<EdgeStyle>
+          value={edgeStyle}
+          onChange={setEdgeStyle}
+          options={[
+            { value: "smooth", label: "Step" },
+            { value: "bezier", label: "Curve" },
+            { value: "straight", label: "Line" },
+          ]}
+        />
+      </PanelSection>
+
+      {map && (
+        <>
+          <div className="h-px" style={{ background: "var(--border)" }} />
+          <PanelSection title="Domains">
+            <div className="flex flex-wrap gap-1.5">
+              {map.data.domains.map((d) => {
+                const active = topics.size === 0 || topics.has(d.id);
+                const tone = getDomainTone(d.id);
+                return (
+                  <button
+                    key={d.id}
+                    onClick={() => toggleTopic(d.id)}
+                    className="rounded-pill border px-2.5 py-1 text-ui-meta font-medium transition"
+                    style={
+                      active
+                        ? { background: tone.tint, borderColor: tone.border, color: tone.color }
+                        : { background: "var(--surface)", borderColor: "var(--border)", color: "var(--fg-3)" }
+                    }
+                  >
+                    {d.label}
+                  </button>
+                );
+              })}
+            </div>
+            {topics.size > 0 && (
+              <button
+                onClick={resetTopics}
+                className="mt-2 text-ui-hint hover:underline"
+                style={{ color: "var(--accent)" }}
+              >
+                Reset domains
+              </button>
+            )}
+          </PanelSection>
+
+          <div className="h-px" style={{ background: "var(--border)" }} />
+
+          <PanelSection title="Categories">
+            <div className="flex flex-wrap gap-1.5">
+              {kindsByCategory(map.kinds).map(({ category, kinds: groupKinds }) => {
+                const meta = CATEGORY_META[category];
+                const Icon = meta.icon;
+                const active = groupKinds.every((k) => kinds.has(k));
+                return (
+                  <button
+                    key={category}
+                    onClick={() => groupKinds.forEach((k) => kinds.has(k) === active && toggleKind(k))}
+                    className="flex items-center gap-1.5 rounded-pill border px-2.5 py-1 text-ui-meta font-medium transition"
+                    style={
+                      active
+                        ? {
+                          background: "var(--accent-soft)",
+                          borderColor: "var(--accent-border)",
+                          color: "var(--accent)",
+                        }
+                        : { background: "var(--surface)", borderColor: "var(--border)", color: "var(--fg-3)" }
+                    }
+                  >
+                    <Icon className="h-3 w-3" strokeWidth={2.25} aria-hidden />
+                    {meta.label}
+                  </button>
+                );
+              })}
+            </div>
+          </PanelSection>
+        </>
+      )}
+    </div>,
+    document.body,
   );
 }
