@@ -2,7 +2,7 @@ import { memo, useEffect, useRef, type CSSProperties } from "react";
 import { Handle, Position, type NodeProps } from "reactflow";
 import { getDomainTone } from "../lib/colors";
 import { MathText } from "../lib/katex";
-import { CATEGORY_META, categoryOf, railBackground, type NodeCategory } from "../lib/nodeCategory";
+import { CATEGORY_META, categoryOf, kindAbbrev, railBackground, type NodeCategory } from "../lib/nodeCategory";
 import { cn, prefersReducedMotion } from "../lib/utils";
 import { useStore } from "../store";
 import { KIND_LABEL, type TopoNode as TopoNodeT } from "../types";
@@ -22,33 +22,6 @@ interface Data {
   routePulseDelay?: number;
   routeRunKey?: number;
   routeEndpoint?: "from" | "to";
-}
-
-const KIND_ABBREV: Record<string, string> = {
-  definition: "Def",
-  theorem: "Thm",
-  lemma: "Lem",
-  proposition: "Prop",
-  corollary: "Cor",
-  property: "Prop",
-  example: "Ex",
-  non_example: "Ex",
-  counterexample: "C-Ex",
-  proof: "Pf",
-  proof_step: "Pf",
-  proof_method: "Pf",
-  axiom: "Ax",
-  assumption: "Asm",
-  structure: "Str",
-  object: "Obj",
-  construction: "Con",
-  notation: "Not",
-  conjecture: "Conj",
-  application: "App",
-};
-
-function kindAbbrev(kind: string): string {
-  return KIND_ABBREV[kind] ?? kind.slice(0, 3).replace(/^\w/, (char) => char.toUpperCase());
 }
 
 function handleStyle(color?: string): CSSProperties {

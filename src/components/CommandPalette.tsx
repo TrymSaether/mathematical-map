@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useStore } from "../store";
 import { MAPS, type MapId } from "../data";
 import { getDomainTone } from "../lib/colors";
+import { CATEGORY_META, categoryOf } from "../lib/nodeCategory";
 import { KIND_LABEL } from "../types";
 import { MathText } from "../lib/katex";
 
@@ -113,6 +114,7 @@ export function CommandPalette() {
                         >
                           {data.nodes.map((n) => {
                             const tone = getDomainTone(n.domainId);
+                            const CategoryIcon = CATEGORY_META[categoryOf(n.kind)].icon;
                             return (
                               <Item
                                 key={n.id}
@@ -127,6 +129,12 @@ export function CommandPalette() {
                                     className="h-2 w-2 flex-shrink-0 rounded-full"
                                     style={{ background: tone.color }}
                                   />
+                                  <span
+                                    className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full"
+                                    style={{ background: tone.tint, color: tone.color }}
+                                  >
+                                    <CategoryIcon className="h-2.5 w-2.5" strokeWidth={2.4} aria-hidden />
+                                  </span>
                                   <span className="w-[96px] flex-shrink-0 text-ui-caption font-medium uppercase tracking-label-tight text-[color:var(--fg-3)]">
                                     {KIND_LABEL[n.kind]}
                                   </span>

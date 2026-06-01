@@ -17,27 +17,11 @@ import { ChevronRight } from "lucide-react";
 import type { LoadedMap } from "../data";
 import { MathText, MathProse, tidyMathText } from "../lib/katex";
 import { getDomainTone, type DomainTone } from "../lib/colors";
-import { CATEGORY_META, categoryOf, railBackground } from "../lib/nodeCategory";
+import { CATEGORY_META, categoryOf, kindAbbrev, railBackground } from "../lib/nodeCategory";
 import { KIND_LABEL, type GraphNode } from "../types";
 
-const KIND_SHORT_LABEL: Record<string, string> = {
-  definition: "Def",
-  theorem: "Thm",
-  lemma: "Lem",
-  proposition: "Prop",
-  corollary: "Cor",
-  example: "Ex",
-  non_example: "Non-ex",
-  counterexample: "Cex",
-  application: "App",
-  conjecture: "Conj",
-  exercise: "Exr",
-  construction: "Const",
-  structure: "Struct",
-};
-
 export function kindShortLabel(kind: string): string {
-  return KIND_SHORT_LABEL[kind] ?? KIND_LABEL[kind];
+  return kindAbbrev(kind) || KIND_LABEL[kind];
 }
 
 /**

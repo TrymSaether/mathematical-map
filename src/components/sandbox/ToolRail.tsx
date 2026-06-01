@@ -1,41 +1,30 @@
 import type { ReactNode } from "react";
-import { Redo2, Trash2, Undo2 } from "lucide-react";
+import {
+  CircleDot,
+  IterationCw,
+  MousePointer2,
+  Redo2,
+  Ruler,
+  Spline,
+  Star,
+  Trash2,
+  Undo2,
+} from "lucide-react";
 import { cn } from "../../lib/utils";
 import { TOOL_META, type ToolId } from "./types";
 
 /** Glyph for each tool, traced from components-sandbox-rail.html. */
 const GLYPHS: Record<ToolId, ReactNode> = {
-  select: (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M5 3L13 19L15 12L21 10Z" />
-    </svg>
-  ),
-  point: (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="12" r="3.6" fill="currentColor" />
-    </svg>
-  ),
-  basepoint: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--gold)" stroke="var(--gold)" strokeWidth="1" strokeLinejoin="round">
-      <path d="M12 3l2.5 5.5L20 9.2l-4.3 3.9L17 19l-5-3-5 3 1.3-5.9L4 9.2l5.5-.7z" />
-    </svg>
-  ),
+  select: <MousePointer2 className="h-[18px] w-[18px]" strokeWidth={1.8} />,
+  point: <CircleDot className="h-[18px] w-[18px]" strokeWidth={1.8} />,
+  basepoint: <Star className="h-5 w-5" fill="var(--gold)" stroke="var(--gold)" strokeWidth={1.7} />,
   openset: (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="color-mix(in srgb, var(--purple) 18%, transparent)" stroke="var(--purple)" strokeWidth="1.4">
       <circle cx="12" cy="12" r="8" />
     </svg>
   ),
-  path: (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-      <path d="M3 14 Q 7 6, 12 14 T 21 14" />
-    </svg>
-  ),
-  loop: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M5 12a7 7 0 1 1 2.05 4.95" />
-      <path d="M3 14l2.5 2.5L8 14" />
-    </svg>
-  ),
+  path: <Spline className="h-[22px] w-[22px]" strokeWidth={1.7} />,
+  loop: <IterationCw className="h-5 w-5" strokeWidth={1.8} />,
   cover: (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
       <circle cx="12" cy="9" r="5" />
@@ -50,12 +39,7 @@ const GLYPHS: Record<ToolId, ReactNode> = {
       <circle cx="16" cy="16" r="1.4" />
     </svg>
   ),
-  measure: (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-      <circle cx="11" cy="11" r="6.5" />
-      <path d="M15.5 15.5L20 20" />
-    </svg>
-  ),
+  measure: <Ruler className="h-[18px] w-[18px]" strokeWidth={1.8} />,
 };
 
 export function ToolRail({

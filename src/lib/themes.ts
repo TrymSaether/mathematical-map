@@ -49,6 +49,30 @@ export const THEMES: ThemeDef[] = [
     },
   },
   {
+    id: "3b1b-light",
+    label: "3B1B Light",
+    scheme: "light",
+    family: "3b1b",
+    preview: {
+      bg: "#F7F3EA",
+      surface: "#FFFDF7",
+      ink: "#1F2328",
+      accent: "#236B8E",
+    },
+  },
+  {
+    id: "3b1b-dark",
+    label: "3B1B Dark",
+    scheme: "dark",
+    family: "3b1b",
+    preview: {
+      bg: "#101214",
+      surface: "#1C2227",
+      ink: "#F2EFE6",
+      accent: "#58C4DD",
+    },
+  },
+  {
     id: "manuscript",
     label: "Manuscript",
     scheme: "light",

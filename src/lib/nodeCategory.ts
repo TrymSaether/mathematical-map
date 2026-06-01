@@ -1,12 +1,12 @@
 import {
-  Box,
-  Check,
+  BadgeCheck,
   Circle,
   Diamond,
-  FlaskConical,
+  DraftingCompass,
   Layers,
   PencilLine,
-  Tag,
+  ScrollText,
+  TestTubeDiagonal,
   type LucideIcon,
 } from "lucide-react";
 
@@ -106,28 +106,28 @@ export const CATEGORY_META: Record<NodeCategory, CategoryMeta> = {
   property: {
     id: "property",
     label: "Property",
-    icon: Tag,
+    icon: BadgeCheck,
     rail: "solid",
     glyphFilled: false,
   },
   construction: {
     id: "construction",
     label: "Construction",
-    icon: Box,
+    icon: DraftingCompass,
     rail: "solid",
     glyphFilled: false,
   },
   example: {
     id: "example",
     label: "Example",
-    icon: FlaskConical,
+    icon: TestTubeDiagonal,
     rail: "dashed",
     glyphFilled: false,
   },
   proof: {
     id: "proof",
     label: "Proof",
-    icon: Check,
+    icon: ScrollText,
     rail: "dotted",
     glyphFilled: false,
   },
@@ -165,6 +165,34 @@ export const CATEGORY_ORDER: NodeCategory[] = [
 
 export function categoryOf(kind: string): NodeCategory {
   return KIND_TO_CATEGORY[kind] ?? "definition";
+}
+
+export const KIND_ABBREV: Record<string, string> = {
+  definition: "Def",
+  theorem: "Thm",
+  lemma: "Lem",
+  proposition: "Prp",
+  corollary: "Cor",
+  property: "Ppty",
+  example: "Ex",
+  non_example: "Non-ex",
+  counterexample: "C-ex",
+  proof: "Pf",
+  proof_step: "Pf",
+  proof_method: "Pf",
+  axiom: "Ax",
+  assumption: "Asm",
+  structure: "Str",
+  object: "Obj",
+  construction: "Const",
+  notation: "Not",
+  conjecture: "Conj",
+  application: "App",
+  exercise: "Exr",
+};
+
+export function kindAbbrev(kind: string): string {
+  return KIND_ABBREV[kind] ?? kind.slice(0, 3).replace(/^\w/, (char) => char.toUpperCase());
 }
 
 export function isExerciseKind(kind: string): boolean {

@@ -1,19 +1,14 @@
 import type { ReactNode } from "react";
+import { Circle, CircleCheck, Sparkles, Star, type LucideIcon } from "lucide-react";
 import { dist, type SandboxObject } from "./types";
 
-type Status = "user" | "computed" | "recognized" | "pending";
+export type FactStatus = "user" | "computed" | "recognized" | "pending";
 
-const GLYPH: Record<Status, string> = {
-  user: "★",
-  computed: "✓",
-  recognized: "≅",
-  pending: "○",
-};
-const COLOR: Record<Status, string> = {
-  user: "var(--fact-user)",
-  computed: "var(--fact-computed)",
-  recognized: "var(--fact-recognized)",
-  pending: "var(--fact-pending)",
+export const FACT_STATUS_META: Record<FactStatus, { label: string; color: string; icon: LucideIcon }> = {
+  computed: { label: "computed", color: "var(--fact-computed)", icon: CircleCheck },
+  recognized: { label: "recognized", color: "var(--fact-recognized)", icon: Sparkles },
+  user: { label: "user", color: "var(--fact-user)", icon: Star },
+  pending: { label: "pending", color: "var(--fact-pending)", icon: Circle },
 };
 
 export function FactsPanel({ objects }: { objects: SandboxObject[] }) {
@@ -147,7 +142,7 @@ function Section({
   children,
 }: {
   title: string;
-  status: Status;
+  status: FactStatus;
   children: ReactNode;
 }) {
   return (
@@ -157,23 +152,42 @@ function Section({
         style={{ color: "var(--fg-2)" }}
       >
         <span>{title}</span>
-        <span style={{ color: COLOR[status] }} title={status} aria-label={status}>
-          {GLYPH[status]}
-        </span>
+        <FactStatusGlyph status={status} />
       </div>
       {children}
     </div>
   );
 }
 
-function Row({ status, children }: { status: Status; children: ReactNode }) {
+function Row({ status, children }: { status: FactStatus; children: ReactNode }) {
   return (
     <div className="flex items-start justify-between gap-2.5 py-0.5">
       <div className="flex-1">{children}</div>
-      <span className="mt-0.5 text-[11px]" style={{ color: COLOR[status] }}>
-        {GLYPH[status]}
-      </span>
+      <FactStatusGlyph status={status} className="mt-0.5" size={11} />
     </div>
+  );
+}
+
+export function FactStatusGlyph({
+  status,
+  className,
+  size = 12,
+}: {
+  status: FactStatus;
+  className?: string;
+  size?: number;
+}) {
+  const meta = FACT_STATUS_META[status];
+  const Icon = meta.icon;
+  return (
+    <span
+      className={`inline-flex items-center ${className ?? ""}`}
+      style={{ color: meta.color }}
+      title={meta.label}
+      aria-label={meta.label}
+    >
+      <Icon width={size} height={size} strokeWidth={status === "pending" ? 2.1 : 2.4} fill={status === "user" ? "currentColor" : "none"} />
+    </span>
   );
 }
 

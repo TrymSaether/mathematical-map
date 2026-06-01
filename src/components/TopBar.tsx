@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { createPortal } from "react-dom";
-import { Search, ChevronDown, Map, BookOpen, GraduationCap, Compass, Settings2, Sun, Moon, Check } from "lucide-react";
+import { Search, ChevronDown, Network, BookOpen, GraduationCap, Compass, Settings2, Sun, Moon, Check } from "lucide-react";
 import { useReactFlow } from "reactflow";
 import { MAPS, type MapId } from "../data";
 import { useStore } from "../store";
@@ -206,7 +206,7 @@ function AtlasButton() {
       label="Atlas map"
       title="Atlas map"
     >
-      <Map className="h-4 w-4" />
+      <Network className="h-4 w-4" />
     </DockButton>
   );
 }
