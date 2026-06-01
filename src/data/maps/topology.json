@@ -2962,7 +2962,7 @@
       {
         "id": "hausdorff_property",
         "statement": "A topological space is Hausdorff if any two distinct points have disjoint open neighborhoods.",
-        "formal_statement": "$$(X,\\tau)\\text{ is Hausdorff}\\Longleftrightarrow \\forall x,y\\in X,\\ x\\ne y\\Rightarrow \\exists U,V\\in\\tau\\ (x\\in U,\\ y\\in V,\\ U\\cap V=\\varnothing).$$",
+        "formal_statement": "$$(X,\\tau)\\text{ is Hausdorff}\\Longleftrightarrow \\forall x,y\\in X,\\ x\\ne y\\Rightarrow \\exists U,V\\in\\tau\\ \\text{ such that }x\\in U,\\ y\\in V,\\ \\text{and }U\\cap V=\\varnothing.$$",
         "definition": "A topological space X is Hausdorff, or T2, if for every pair of distinct points x,y∈X there are disjoint open sets U and V with x∈U and y∈V.",
         "intuition": "Hausdorffness says distinct points can be topologically pulled apart by nonoverlapping open regions.",
         "notation": "$$T_2$$",

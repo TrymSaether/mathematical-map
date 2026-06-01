@@ -43,20 +43,6 @@
     <!-- "x ≠ y" label -->
     <text x="280" y="178" text-anchor="middle" font-size="12.5" fill="#666" font-style="italic">x ≠ y</text>
 
-    <!-- Formal statement box -->
-    <rect x="48" y="318" width="464" height="46" rx="8" fill="#f0ecea" stroke="#c8bfc5" stroke-width="1.2" />
-    <text x="280" y="337" text-anchor="middle" font-size="12" fill="#444">
-        <tspan font-weight="bold">Definition: </tspan>
-        <tspan font-style="italic">X</tspan> is Hausdorff iff for all
-        <tspan font-style="italic"> x, y ∈ X</tspan> with
-        <tspan font-style="italic"> x ≠ y</tspan>,
-    </text>
-    <text x="280" y="355" text-anchor="middle" font-size="12" fill="#444">
-        ∃ open
-        <tspan font-style="italic"> U ∋ x</tspan>,
-        <tspan font-style="italic"> V ∋ y</tspan> such that
-        <tspan font-style="italic"> U ∩ V = ∅</tspan>
-    </text>
 
     <!-- Open set tick marks (dashed border decoration) to hint "open" -->
     <!-- small arrowhead hint on U border -->
