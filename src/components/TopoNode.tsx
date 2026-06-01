@@ -1,9 +1,9 @@
-import { memo, type CSSProperties } from "react";
+import { memo, useEffect, useRef, type CSSProperties } from "react";
 import { Handle, Position, type NodeProps } from "reactflow";
 import { getDomainTone } from "../lib/colors";
 import { MathText } from "../lib/katex";
 import { CATEGORY_META, categoryOf, railBackground, type NodeCategory } from "../lib/nodeCategory";
-import { cn } from "../lib/utils";
+import { cn, prefersReducedMotion } from "../lib/utils";
 import { useStore } from "../store";
 import { KIND_LABEL, type TopoNode as TopoNodeT } from "../types";
 import type { NodeEmphasis, NodeLOD } from "./GraphCanvas";
@@ -19,6 +19,9 @@ interface Data {
   hasIncoming?: boolean;
   hasOutgoing?: boolean;
   handleColor?: string;
+  routePulseDelay?: number;
+  routeRunKey?: number;
+  routeEndpoint?: "from" | "to";
 }
 
 const KIND_ABBREV: Record<string, string> = {
@@ -63,7 +66,23 @@ function TopoNodeViewComponent({ data }: NodeProps<Data>) {
     handleColor,
   } = data;
   const select = useStore((s) => s.select);
+  const routeMode = useStore((s) => s.routeMode);
+  const pickRoutePoint = useStore((s) => s.pickRoutePoint);
+  const activate = () => (routeMode ? pickRoutePoint(node.id) : select(node.id));
   const tone = getDomainTone(node.domainId);
+
+  // Route traversal: pulse this node as the path's head passes it.
+  const rootRef = useRef<HTMLDivElement>(null);
+  const { routePulseDelay, routeRunKey, routeEndpoint } = data;
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el || routePulseDelay === undefined || prefersReducedMotion()) return;
+    const anim = el.animate(
+      [{ transform: "scale(1)" }, { transform: "scale(1.07)" }, { transform: "scale(1)" }],
+      { duration: 380, delay: routePulseDelay, easing: "cubic-bezier(0.22,0.61,0.36,1)" },
+    );
+    return () => anim.cancel();
+  }, [routePulseDelay, routeRunKey]);
   const accented = isSelected || isRelated;
   const emphasis = data.emphasis ?? "normal";
   const category = data.category ?? categoryOf(node.kind);
@@ -89,11 +108,12 @@ function TopoNodeViewComponent({ data }: NodeProps<Data>) {
 
   return (
     <div
-      onClick={() => select(node.id)}
+      ref={rootRef}
+      onClick={activate}
       onKeyDown={(event) => {
         if (event.key !== "Enter" && event.key !== " ") return;
         event.preventDefault();
-        select(node.id);
+        activate();
       }}
       role="button"
       tabIndex={0}
@@ -107,8 +127,11 @@ function TopoNodeViewComponent({ data }: NodeProps<Data>) {
       )}
       style={{
         background: "var(--surface)",
-        borderColor: accented ? tone.color : isLandmark ? tone.border : "var(--border)",
-        borderWidth: isLandmark || accented ? 1.5 : 1,
+        borderColor: routeEndpoint ? "var(--accent)" : accented ? tone.color : isLandmark ? tone.border : "var(--border)",
+        borderWidth: routeEndpoint || isLandmark || accented ? 1.5 : 1,
+        boxShadow: routeEndpoint
+          ? "0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent)"
+          : undefined,
       }}
     >
       {/* Lane rail — color says which domain, texture says which kind. */}

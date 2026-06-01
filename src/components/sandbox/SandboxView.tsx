@@ -10,6 +10,28 @@ const DEFAULT_R = 2.4; // open-set / loop radius in math units
 let counter = 0;
 const uid = () => `sbx-${++counter}`;
 
+/** Words the command bar accepts as a tool. */
+const TOOL_WORDS: Record<string, ToolId> = {
+  select: "select",
+  cursor: "select",
+  pan: "select",
+  point: "point",
+  pt: "point",
+  basepoint: "basepoint",
+  base: "basepoint",
+  open: "openset",
+  openset: "openset",
+  set: "openset",
+  u: "openset",
+  path: "path",
+  loop: "loop",
+  cover: "cover",
+  quotient: "quotient",
+  measure: "measure",
+  distance: "measure",
+  dist: "measure",
+};
+
 const SUBSCRIPT = "₀₁₂₃₄₅₆₇₈₉";
 const subscript = (n: number) =>
   String(n)
@@ -101,6 +123,44 @@ export function SandboxView() {
     return () => document.removeEventListener("keydown", onKey);
   }, [undo, redo]);
 
+  // Command bar: a lightweight launcher for tools + history actions.
+  const runCommand = useCallback(
+    (raw: string): string => {
+      const words = raw.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      if (!words.length) return "";
+      // Skip a leading verb (define U, draw loop, add point, …).
+      const verbs = new Set(["define", "draw", "add", "new", "make", "place", "show", "check"]);
+      const word = verbs.has(words[0]) && words[1] ? words[1] : words[0];
+
+      if (word === "clear" || word === "reset") {
+        clear();
+        return "Canvas cleared.";
+      }
+      if (word === "undo") {
+        undo();
+        return "Undone.";
+      }
+      if (word === "redo") {
+        redo();
+        return "Redone.";
+      }
+      if (word === "help" || word === "?") {
+        return "Tools: point · basepoint · open · path · loop · cover · quotient · measure. Actions: clear · undo · redo.";
+      }
+      const t = TOOL_WORDS[word];
+      if (t) {
+        setTool(t);
+        return t === "path" || t === "measure"
+          ? `${t}: click two points on the canvas.`
+          : t === "select"
+            ? "Select: drag to pan."
+            : `${t}: click the canvas to place.`;
+      }
+      return `Unknown command "${raw.trim()}". Try "help".`;
+    },
+    [clear, undo, redo],
+  );
+
   return (
     <div className="absolute inset-0 flex flex-col pt-16" style={{ background: "var(--bg)" }}>
       <div className="flex min-h-0 flex-1">
@@ -124,7 +184,7 @@ export function SandboxView() {
             />
             <StatusLegend />
           </div>
-          <CommandBar />
+          <CommandBar onRun={runCommand} />
         </div>
         <FactsPanel objects={objects} />
       </div>

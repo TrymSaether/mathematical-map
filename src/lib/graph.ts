@@ -190,6 +190,41 @@ function cmpComponent(
   return cmpNum(byId.get(a[0])!, byId.get(b[0])!);
 }
 
+/**
+ * Shortest undirected path between two nodes over a neighbor-set adjacency map
+ * (e.g. `LoadedMap.neighborsByNodeId`), or `null` if they are disconnected.
+ * Returns the inclusive ordered list of node ids from `from` to `to`.
+ */
+export function bfsPath(
+  adj: Map<string, Set<string>>,
+  from: string,
+  to: string,
+): string[] | null {
+  if (from === to) return [from];
+  const prev = new Map<string, string>();
+  const visited = new Set<string>([from]);
+  const queue: string[] = [from];
+  while (queue.length) {
+    const cur = queue.shift()!;
+    for (const next of adj.get(cur) ?? []) {
+      if (visited.has(next)) continue;
+      visited.add(next);
+      prev.set(next, cur);
+      if (next === to) {
+        const path = [to];
+        let c = to;
+        while (c !== from) {
+          c = prev.get(c)!;
+          path.push(c);
+        }
+        return path.reverse();
+      }
+      queue.push(next);
+    }
+  }
+  return null;
+}
+
 export function cmpNum(a: TopoNode, b: TopoNode): number {
   const [ac, ai] = splitNum(a.number);
   const [bc, bi] = splitNum(b.number);

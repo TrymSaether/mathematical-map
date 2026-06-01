@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import {
   BaseEdge,
   EdgeLabelRenderer,
@@ -7,15 +8,23 @@ import {
   type EdgeProps,
 } from "reactflow";
 import { getEdgeStyle } from "../lib/relationStyle";
+import { prefersReducedMotion } from "../lib/utils";
 import { useStore } from "../store";
 import type { GraphEdge } from "../types";
 
 const FALLBACK_EDGE = { relation: "relation", dependencyClass: "" };
 
+interface RouteReveal {
+  delay: number;
+  runKey: number;
+  color: string;
+}
+
 interface Data {
   edge?: GraphEdge;
   dim?: boolean;
   highlight?: boolean;
+  routeReveal?: RouteReveal;
 }
 
 /**
@@ -37,6 +46,24 @@ export function TopoEdgeView(props: EdgeProps<Data>) {
   const highlight = Boolean(data?.highlight);
   const dim = Boolean(data?.dim);
   const markerId = `arrow-${props.id}`;
+
+  // Route traversal: reveal this segment with a staggered dash-draw. pathLength=1
+  // normalizes the path so a single dashoffset 1→0 reveals it regardless of length.
+  const route = data?.routeReveal;
+  const revealRef = useRef<SVGPathElement>(null);
+  useEffect(() => {
+    const el = revealRef.current;
+    if (!el || !route) return;
+    if (prefersReducedMotion()) {
+      el.style.strokeDashoffset = "0";
+      return;
+    }
+    const anim = el.animate(
+      [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }],
+      { duration: 300, delay: route.delay, easing: "cubic-bezier(0.22,0.61,0.36,1)", fill: "both" },
+    );
+    return () => anim.cancel();
+  }, [route?.runKey, route?.delay]);
 
   return (
     <>
@@ -82,6 +109,24 @@ export function TopoEdgeView(props: EdgeProps<Data>) {
           fill: "none",
         }}
       />
+      {route && (
+        <path
+          key={route.runKey}
+          ref={revealRef}
+          d={path}
+          fill="none"
+          stroke={route.color}
+          strokeWidth={Math.max(style.width + 1.6, 2.6)}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          pathLength={1}
+          style={{
+            strokeDasharray: "1 1",
+            strokeDashoffset: 1,
+            filter: "drop-shadow(0 0 3px var(--accent))",
+          }}
+        />
+      )}
       {!dim && highlight && (
         <EdgeLabelRenderer>
           <div

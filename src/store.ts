@@ -61,6 +61,19 @@ interface State {
   selectedId: string | null;
   select: (id: string | null) => void;
 
+  /** Route planner: trace a dependency path between two concepts. */
+  routeMode: boolean;
+  routeFrom: string | null;
+  routeTo: string | null;
+  /** Bumped to replay the traversal animation. */
+  routeRunKey: number;
+  /** Enter/cancel route planning (clears any in-progress pick). */
+  toggleRouteMode: () => void;
+  /** Click handler while planning: picks start, then destination. */
+  pickRoutePoint: (id: string) => void;
+  clearRoute: () => void;
+  replayRoute: () => void;
+
   surface: Surface;
   setSurface: (s: Surface) => void;
 
@@ -129,6 +142,9 @@ export const useStore = create<State>((set, get) => ({
       topics: new Set(),
       relations: map ? new Set(map.relations) : new Set(),
       selectedId: null,
+      routeMode: false,
+      routeFrom: null,
+      routeTo: null,
     });
     void get().ensureMapLoaded(mapId);
   },
@@ -170,6 +186,25 @@ export const useStore = create<State>((set, get) => ({
 
   selectedId: null,
   select: (id) => set({ selectedId: id }),
+
+  routeMode: false,
+  routeFrom: null,
+  routeTo: null,
+  routeRunKey: 0,
+  toggleRouteMode: () =>
+    set((s) =>
+      s.routeMode
+        ? { routeMode: false, routeFrom: null, routeTo: null }
+        : { routeMode: true, routeFrom: null, routeTo: null },
+    ),
+  pickRoutePoint: (id) =>
+    set((s) => {
+      if (!s.routeFrom) return { routeFrom: id, routeTo: null };
+      if (id === s.routeFrom) return {};
+      return { routeTo: id, routeMode: false, routeRunKey: s.routeRunKey + 1 };
+    }),
+  clearRoute: () => set({ routeMode: false, routeFrom: null, routeTo: null }),
+  replayRoute: () => set((s) => ({ routeRunKey: s.routeRunKey + 1 })),
 
   surface: "atlas",
   setSurface: (surface) => set({ surface }),
