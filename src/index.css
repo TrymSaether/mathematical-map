@@ -1117,6 +1117,33 @@
   --font-mono: "IBM Plex Mono", "SF Mono", ui-monospace, Menlo, monospace;
   --font-math: "STIX Two Text", "STIX Two Math", "Latin Modern Roman", "Cambria Math", "Georgia", serif;
 
+  --type-edge-label: 9px;
+  --type-ui-tiny: 9.5px;
+  --type-ui-2xs: 10px;
+  --type-ui-caption: 10.5px;
+  --type-ui-hint: 11px;
+  --type-ui-meta: 11.5px;
+  --type-ui-xs: 12px;
+  --type-ui-control: 12.5px;
+  --type-ui-sm: 13px;
+  --type-ui-copy: 13.5px;
+  --type-ui-body: 14px;
+  --type-ui-lead: 15px;
+  --type-atlas-brand: 17px;
+  --type-dict-compact-title: 18px;
+  --type-atlas-card: 20px;
+  --type-dict-term: 24px;
+  --type-node-panel-title: 24px;
+  --type-atlas-panel: 27px;
+  --type-atlas-summary: 28px;
+  --type-atlas-display: 34px;
+
+  --tracking-label: 0.13em;
+  --tracking-label-wide: 0.14em;
+  --tracking-label-tight: 0.08em;
+  --tracking-kicker: 0.22em;
+  --tracking-code: 0.02em;
+
   --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
   --dur-micro: 120ms;
   --dur-std: 220ms;
@@ -1130,7 +1157,7 @@ body,
 
 body {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: var(--type-ui-body);
   line-height: 1.55;
   background: var(--bg);
   color: var(--fg-1);

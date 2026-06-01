@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { X, ChevronUp, ChevronDown, BookOpen } from "lucide-react";
 
 import { useStore } from "../store";
@@ -19,16 +19,17 @@ export function NodePanel() {
   const id = useStore((s) => s.selectedId);
   const select = useStore((s) => s.select);
   const node = id && map ? map.nodeById.get(id) ?? null : null;
+  const reduceMotion = useReducedMotion();
 
   return (
     <AnimatePresence>
       {node && map && (
         <motion.aside
           key={node.id}
-          initial={{ opacity: 0, x: 16 }}
+          initial={reduceMotion ? false : { opacity: 0, x: 16 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 16 }}
-          transition={{ duration: 0.22, ease: [0.2, 0.7, 0.2, 1] }}
+          exit={reduceMotion ? { opacity: 0 } : { opacity: 0, x: 16 }}
+          transition={{ duration: reduceMotion ? 0 : 0.22, ease: [0.2, 0.7, 0.2, 1] }}
           className="pointer-events-auto absolute left-3 right-3 top-[68px] bottom-3 z-20 flex flex-col overflow-hidden rounded-[16px] border sm:left-auto sm:w-[min(560px,calc(100vw-24px))]"
           style={{ background: "var(--surface)", borderColor: "var(--border)", boxShadow: "var(--shadow-3)" }}
         >
@@ -136,7 +137,7 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
               <ChevronDown className="h-4 w-4" />
             </IconButton>
             {peerIdx >= 0 && (
-              <span className="ml-1.5 font-mono text-[10.5px]" style={{ color: "var(--fg-3)" }}>
+              <span className="ml-1.5 font-mono text-ui-meta" style={{ color: "var(--fg-3)" }}>
                 {peerIdx + 1}/{peers.length}
               </span>
             )}
@@ -151,12 +152,12 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
           </div>
         </div>
         <h2
-          className="font-serif text-[27px] leading-[1.06]"
+          className="font-serif text-node-panel-title"
           style={{ color: "var(--fg-1)", fontWeight: 600, letterSpacing: "-0.015em" }}
         >
           <MathText text={node.title} />
         </h2>
-        <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11.5px]">
+        <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-ui-meta">
           <span className="inline-flex items-center gap-1.5 font-medium" style={{ color: tone.color }}>
             <span className="h-2 w-2 rounded-full" style={{ background: tone.color }} />
             {domain?.label ?? node.topicCluster}
@@ -189,7 +190,7 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
           <section id="sec-formal">
             <Facet label="Formal statement" toneColor={tone.color}>
               <div
-                className="block max-w-full overflow-x-auto rounded-[10px] border px-3.5 py-2.5 font-math text-[14px] leading-[1.6]"
+                className="block max-w-full overflow-x-auto rounded-[10px] border px-3.5 py-2.5 font-math text-ui-body leading-[1.6]"
                 style={{ background: "var(--surface-2)", borderColor: "var(--border)", color: "var(--fg-1)" }}
               >
                 <MathText text={formalStatement} asBlock />
@@ -253,7 +254,7 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
                 {hiddenUsedCount > 0 && (
                   <button
                     onClick={() => setShowAllUsed(true)}
-                    className="self-center px-1 text-[12px] hover:underline"
+                    className="self-center px-1 text-ui-xs hover:underline"
                     style={{ color: "var(--accent)" }}
                   >
                     +{hiddenUsedCount} more
@@ -280,7 +281,7 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
 
         <section id="sec-metadata" className="border-t pt-4" style={{ borderColor: "var(--border-subtle)" }}>
           <Facet label="Metadata">
-            <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-[12px]">
+            <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-ui-xs">
               <dt style={{ color: "var(--fg-3)" }}>Tags</dt>
               <dd style={{ color: "var(--fg-2)" }}>
                 {node.tags.length > 0 ? node.tags.join(", ") : "No tags recorded."}
@@ -300,7 +301,7 @@ function PanelContent({ node, map, onClose }: { node: GraphNode; map: LoadedMap;
                 </>
               )}
               <dt style={{ color: "var(--fg-3)" }}>ID</dt>
-              <dd className="truncate font-mono text-[11px]" style={{ color: "var(--fg-2)" }} title={node.id}>
+              <dd className="truncate font-mono text-ui-hint" style={{ color: "var(--fg-2)" }} title={node.id}>
                 {node.id}
               </dd>
             </dl>
@@ -348,10 +349,10 @@ function ChipGroup({
   return (
     <div>
       <div className="mb-2 flex items-center gap-2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.13em]" style={{ color: "var(--fg-3)" }}>
+        <span className="font-mono text-ui-2xs uppercase tracking-label" style={{ color: "var(--fg-3)" }}>
           {label}
         </span>
-        <span className="font-mono text-[10px]" style={{ color: "var(--fg-4)" }}>
+        <span className="font-mono text-ui-2xs" style={{ color: "var(--fg-4)" }}>
           {count}
         </span>
       </div>

@@ -37,7 +37,7 @@ export function Dock() {
                 key={id}
                 onClick={() => setView(id)}
                 className={cn(
-                  "inline-flex h-8 items-center gap-1.5 rounded-pill px-3 text-[12.5px] font-medium transition-colors",
+                  "inline-flex h-8 items-center gap-1.5 rounded-pill px-3 text-ui-control font-medium transition-colors",
                   !active && "hover:bg-[var(--surface-3)]",
                 )}
                 style={{
@@ -59,7 +59,7 @@ export function Dock() {
 
         <button
           onClick={toggleFocusMode}
-          className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-pill border px-3 text-[12.5px] font-medium transition-colors hover:bg-[var(--surface-3)]"
+          className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-pill border px-3 text-ui-control font-medium transition-colors hover:bg-[var(--surface-3)]"
           style={{
             background: focusMode ? "var(--surface-2)" : "transparent",
             color: focusMode ? "var(--fg-1)" : "var(--fg-2)",
@@ -91,7 +91,7 @@ export function Dock() {
               <button
                 key={depth}
                 onClick={() => setFocusDepth(depth)}
-                className="h-7 w-7 rounded-pill border text-[12px] font-semibold tabular-nums transition-all"
+                className="h-7 w-7 rounded-pill border text-ui-xs font-semibold tabular-nums transition-all"
                 style={{
                   background: activeEnabled ? "var(--surface-2)" : "transparent",
                   color: activeEnabled ? "var(--fg-1)" : "var(--fg-2)",
@@ -113,7 +113,7 @@ export function Dock() {
             <ZoomOut className="h-4 w-4" />
           </IconButton>
           <span
-            className="w-11 text-center font-mono text-[11px] font-semibold tabular-nums"
+            className="w-11 text-center font-mono text-ui-hint font-semibold tabular-nums"
             style={{ color: "var(--fg-2)" }}
           >
             {Math.round(zoom * 100)}%

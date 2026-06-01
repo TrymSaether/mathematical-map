@@ -12,7 +12,7 @@
  * one design — change it once, both surfaces follow.
  */
 import { useState, type ReactNode } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import type { LoadedMap } from "../data";
 import { MathText, MathProse, tidyMathText } from "../lib/katex";
@@ -74,7 +74,7 @@ export function Spine({
       />
       {label && (
         <span
-          className="mb-1.5 block font-mono text-[10px] uppercase tracking-[0.13em]"
+          className="mb-1.5 block font-mono text-ui-2xs uppercase tracking-label"
           style={{ color: tone.color }}
         >
           {label}
@@ -108,13 +108,13 @@ export function Facet({
   return (
     <div>
       <span
-        className="mb-1 block font-mono text-[10px] uppercase tracking-[0.13em]"
+        className="mb-1 block font-mono text-ui-2xs uppercase tracking-label"
         style={{ color: toneColor ?? "var(--fg-3)" }}
       >
         {label}
       </span>
       <div
-        className="text-[13.5px] leading-[1.6]"
+        className="text-ui-copy"
         style={{ color: muted ? "var(--fg-2)" : "var(--fg-1)" }}
       >
         {children}
@@ -140,6 +140,7 @@ export function Proof({
   defaultOpen?: boolean;
 }) {
   const [open, setOpen] = useState(defaultOpen);
+  const reduceMotion = useReducedMotion();
   return (
     <div>
       <button
@@ -154,7 +155,7 @@ export function Proof({
           aria-hidden
         />
         <span
-          className="font-mono text-[10px] uppercase tracking-[0.13em]"
+          className="font-mono text-ui-2xs uppercase tracking-label"
           style={{ color: toneColor }}
         >
           Proof
@@ -169,14 +170,14 @@ export function Proof({
         {open && (
           <motion.div
             key="proof-body"
-            initial={{ height: 0, opacity: 0 }}
+            initial={reduceMotion ? false : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.22, ease: [0.2, 0.7, 0.2, 1] }}
+            exit={reduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.22, ease: [0.2, 0.7, 0.2, 1] }}
             className="overflow-hidden"
           >
             <div
-              className="font-math mt-2 pl-3.5 text-[13.5px] leading-[1.7]"
+              className="font-math mt-2 pl-3.5 text-ui-copy leading-[1.7]"
               style={{
                 color: "var(--fg-1)",
                 borderLeft: `1.5px dotted color-mix(in srgb, ${toneColor} 55%, transparent)`,
@@ -185,7 +186,7 @@ export function Proof({
               <MathProse text={tidyMathText(text)} asBlock />
               <span
                 aria-hidden
-                className="mt-1.5 block text-right text-[13px]"
+                className="mt-1.5 block text-right text-ui-sm"
                 style={{ color: toneColor }}
               >
                 ∎
@@ -228,7 +229,7 @@ export function ConnectionChip({
       >
         <Icon className="h-2.5 w-2.5" strokeWidth={2.4} aria-hidden />
       </span>
-      <span className="min-w-0 truncate text-[12.5px] leading-4" style={{ color: "var(--fg-1)" }}>
+      <span className="min-w-0 truncate text-ui-control leading-4" style={{ color: "var(--fg-1)" }}>
         <MathText text={node.title} />
       </span>
     </button>

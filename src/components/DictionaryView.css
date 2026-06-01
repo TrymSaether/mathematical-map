@@ -30,7 +30,7 @@
 .dictionary-view .dict-azrail a,
 .dictionary-view .dict-azrail span {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--type-ui-2xs);
   line-height: 1;
   padding: 2px 5px;
   border-radius: 5px;
@@ -74,8 +74,8 @@
   margin: 0;
   color: var(--accent);
   font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.22em;
+  font-size: var(--type-ui-hint);
+  letter-spacing: var(--tracking-kicker);
   text-transform: uppercase;
 }
 
@@ -88,7 +88,7 @@
 
 .dictionary-view .dict-title {
   margin: 6px 0 0;
-  font-size: 34px;
+  font-size: var(--type-atlas-display);
   font-weight: 400;
   line-height: 1.05;
   letter-spacing: -0.015em;
@@ -99,7 +99,7 @@
   flex-shrink: 0;
   color: var(--fg-3);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--type-ui-hint);
   white-space: nowrap;
 }
 
@@ -107,7 +107,7 @@
   margin: 8px 0 0;
   max-width: 64ch;
   color: var(--fg-2);
-  font-size: 13.5px;
+  font-size: var(--type-ui-copy);
   line-height: 1.5;
 }
 
@@ -129,7 +129,7 @@
   background: var(--surface);
   color: var(--fg-3);
   cursor: pointer;
-  font-size: 12px;
+  font-size: var(--type-ui-xs);
   font-weight: 500;
   padding: 4px 10px 4px 9px;
   transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
@@ -147,7 +147,7 @@
 
 .dictionary-view .dict-facet-n {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--type-ui-2xs);
   opacity: 0.7;
 }
 
@@ -156,7 +156,7 @@
   background: none;
   color: var(--accent);
   cursor: pointer;
-  font-size: 12px;
+  font-size: var(--type-ui-xs);
   padding: 4px 6px;
 }
 
@@ -176,8 +176,8 @@
   margin-right: 2px;
   color: var(--fg-3);
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
+  font-size: var(--type-ui-2xs);
+  letter-spacing: var(--tracking-label-tight);
   text-transform: uppercase;
 }
 
@@ -188,8 +188,8 @@
   background: var(--surface);
   color: var(--fg-2);
   font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.02em;
+  font-size: var(--type-ui-hint);
+  letter-spacing: var(--tracking-code);
   padding: 4px 10px;
   transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
 }
@@ -223,16 +223,16 @@
   border-bottom: 1px solid var(--border);
   color: var(--fg-2);
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: var(--type-ui-xs);
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--tracking-label-tight);
   text-transform: uppercase;
   scroll-margin-top: 78px;
 }
 
 .dictionary-view .dict-letter-n {
   color: var(--fg-4);
-  font-size: 10px;
+  font-size: var(--type-ui-2xs);
   font-weight: 500;
 }
 
@@ -283,6 +283,14 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .dictionary-view .dict-card.dict-flash {
+    animation: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+}
+
 .dictionary-view .dict-cardhead {
   display: flex;
   align-items: baseline;
@@ -293,7 +301,7 @@
 
 .dictionary-view .dict-term {
   margin: 0;
-  font-size: 24px;
+  font-size: var(--type-dict-term);
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.015em;
@@ -303,8 +311,8 @@
 .dictionary-view .dict-ref {
   flex-shrink: 0;
   font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.02em;
+  font-size: var(--type-ui-caption);
+  letter-spacing: var(--tracking-code);
   white-space: nowrap;
 }
 
@@ -367,7 +375,7 @@
 .dictionary-view .dict-related {
   flex: 1 1 60%;
   min-width: 0;
-  font-size: 12.5px;
+  font-size: var(--type-ui-control);
   line-height: 1.5;
   color: var(--fg-3);
 }
@@ -375,8 +383,8 @@
 .dictionary-view .dict-related-lab {
   margin-right: 6px;
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
+  font-size: var(--type-ui-2xs);
+  letter-spacing: var(--tracking-label-tight);
   text-transform: uppercase;
   color: var(--fg-3);
 }
@@ -407,7 +415,7 @@
   color: var(--accent);
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: var(--type-ui-caption);
   padding: 3px 8px;
 }
 
@@ -426,11 +434,11 @@
 }
 
 .dictionary-view .dict-card--compact .dict-term {
-  font-size: 18px;
+  font-size: var(--type-dict-compact-title);
 }
 
 .dictionary-view .dict-compact-gloss {
-  font-size: 13px;
+  font-size: var(--type-ui-sm);
   line-height: 1.5;
   color: var(--fg-2);
 }

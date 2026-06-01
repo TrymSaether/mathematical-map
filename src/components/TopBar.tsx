@@ -11,9 +11,9 @@ import { LogoMark } from "./Logo";
 export function TopBar() {
   return (
     <header className="pointer-events-none absolute inset-x-0 top-0 z-30 px-3 pt-3">
-      <div className="pointer-events-auto flex w-full items-center justify-between gap-3">
+      <div className="pointer-events-auto flex w-full min-w-0 items-center justify-between gap-2 sm:gap-3">
         <BrandSection />
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1 sm:gap-2">
           <SearchBox />
           <DictionaryButton />
           <FlashcardsButton />
@@ -53,7 +53,7 @@ function BrandSection() {
   return (
     <div
       ref={ref}
-      className="relative flex h-10 items-center gap-1 rounded-pill border p-1"
+      className="relative flex h-10 min-w-0 max-w-[calc(100vw-214px)] items-center gap-1 rounded-pill border p-1 sm:max-w-none"
       style={{
         background: "var(--surface)",
         borderColor: "var(--border)",
@@ -61,10 +61,10 @@ function BrandSection() {
         boxShadow: "var(--shadow-1)",
       }}
     >
-      <div className="flex items-center gap-2.5 px-2.5">
+      <div className="flex min-w-0 items-center gap-2.5 pl-2 pr-1 sm:px-2.5">
         <LogoMark size={20} className="text-[color:var(--fg-1)]" />
         <span
-          className="whitespace-nowrap font-serif text-[17px] leading-none"
+          className="hidden whitespace-nowrap font-serif text-atlas-brand sm:inline"
           style={{ color: "var(--fg-1)", letterSpacing: "-0.005em" }}
         >
           Math Atlas
@@ -72,7 +72,7 @@ function BrandSection() {
       </div>
       <button
         onClick={() => setOpen((o) => !o)}
-        className="flex h-8 items-center gap-1.5 rounded-pill px-3 text-[12.5px] font-medium transition-all"
+        className="flex h-8 min-w-0 items-center gap-1.5 rounded-pill px-2.5 text-ui-control font-medium transition-all sm:px-3"
         style={{
           background: open ? "var(--surface-3)" : "var(--surface-2)",
           color: "var(--fg-1)",
@@ -81,9 +81,9 @@ function BrandSection() {
         aria-label="Field selector"
         aria-expanded={open}
       >
-        <span>{currentLabel}</span>
+        <span className="min-w-0 truncate">{currentLabel}</span>
         <ChevronDown
-          className="h-3.5 w-3.5 transition-transform"
+          className="h-3.5 w-3.5 shrink-0 transition-transform"
           style={{
             color: "var(--fg-2)",
             transform: open ? "rotate(180deg)" : "rotate(0deg)",
@@ -92,7 +92,7 @@ function BrandSection() {
       </button>
       {open && (
         <div
-          className="absolute left-0 top-12 w-max rounded-2xl border"
+          className="absolute left-0 top-12 w-[min(280px,calc(100vw-24px))] rounded-2xl border sm:w-max"
           style={{
             background: "var(--surface)",
             borderColor: "var(--border)",
@@ -108,7 +108,7 @@ function BrandSection() {
                   setMap(id);
                   setOpen(false);
                 }}
-                className="block w-full px-3 py-2 text-left text-[12.5px] font-medium transition-colors"
+                className="block w-full px-3 py-2 text-left text-ui-control font-medium transition-colors"
                 style={{
                   background: active ? "var(--surface-3)" : "transparent",
                   color: active ? "var(--fg-1)" : "var(--fg-2)",
@@ -116,7 +116,7 @@ function BrandSection() {
                   borderBottomWidth: id !== "functional_analysis" ? "1px" : "0",
                 }}
               >
-                <span>{MAPS[id].label}</span>
+                <span className="block truncate">{MAPS[id].label}</span>
               </button>
             );
           })}
@@ -131,7 +131,7 @@ function SearchBox() {
   return (
     <button
       onClick={() => setPaletteOpen(true)}
-      className="flex h-9 items-center gap-2 rounded-pill border px-3 text-[12.5px] sm:h-10"
+      className="flex h-9 items-center gap-2 rounded-pill border px-3 text-ui-control sm:h-10"
       style={{
         background: "var(--surface)",
         borderColor: "var(--border)",
@@ -143,7 +143,7 @@ function SearchBox() {
       <Search className="h-3.5 w-3.5" style={{ color: "var(--fg-3)" }} />
       <span className="hidden md:inline">Search the atlas</span>
       <kbd
-        className="hidden h-5 items-center rounded border px-1.5 font-mono text-[10px] md:inline-flex"
+        className="hidden h-5 items-center rounded border px-1.5 font-mono text-ui-2xs md:inline-flex"
         style={{
           background: "var(--surface-3)",
           borderColor: "var(--border)",
@@ -260,7 +260,7 @@ function FilterPopover() {
       }}
     >
       <div
-        className="mb-2 text-[10.5px] font-semibold uppercase tracking-[0.14em]"
+        className="mb-2 text-ui-caption font-semibold uppercase tracking-label-wide"
         style={{ color: "var(--fg-3)" }}
       >
         Domains
@@ -274,7 +274,7 @@ function FilterPopover() {
               key={d.id}
               onClick={() => toggleTopic(d.id)}
               className={cn(
-                "rounded-pill border px-2.5 py-1 text-[11.5px] font-medium transition",
+                "rounded-pill border px-2.5 py-1 text-ui-meta font-medium transition",
               )}
               style={
                 active
@@ -290,14 +290,14 @@ function FilterPopover() {
       {topics.size > 0 && (
         <button
           onClick={resetTopics}
-          className="mb-4 text-[11px] hover:underline"
+          className="mb-4 text-ui-hint hover:underline"
           style={{ color: "var(--accent)" }}
         >
           Reset domains
         </button>
       )}
       <div
-        className="mb-2 text-[10.5px] font-semibold uppercase tracking-[0.14em]"
+        className="mb-2 text-ui-caption font-semibold uppercase tracking-label-wide"
         style={{ color: "var(--fg-3)" }}
       >
         Categories
@@ -311,7 +311,7 @@ function FilterPopover() {
             <button
               key={category}
               onClick={() => groupKinds.forEach((k) => kinds.has(k) === active && toggleKind(k))}
-              className="flex items-center gap-1.5 rounded-pill border px-2.5 py-1 text-[11.5px] font-medium transition"
+              className="flex items-center gap-1.5 rounded-pill border px-2.5 py-1 text-ui-meta font-medium transition"
               style={
                 active
                   ? {
@@ -331,7 +331,7 @@ function FilterPopover() {
 
       <div className="my-3.5 h-px" style={{ background: "var(--border)" }} />
       <div
-        className="mb-1 text-[10.5px] font-semibold uppercase tracking-[0.14em]"
+        className="mb-1 text-ui-caption font-semibold uppercase tracking-label-wide"
         style={{ color: "var(--fg-3)" }}
       >
         Edges
@@ -382,11 +382,11 @@ function SettingRow({ label, hint, children }: { label: string; hint?: string; c
   return (
     <div className="flex items-center justify-between gap-3 py-1.5">
       <div className="min-w-0">
-        <div className="text-[12.5px] font-medium" style={{ color: "var(--fg-1)" }}>
+        <div className="text-ui-control font-medium" style={{ color: "var(--fg-1)" }}>
           {label}
         </div>
         {hint && (
-          <div className="text-[11px]" style={{ color: "var(--fg-3)" }}>
+          <div className="text-ui-hint" style={{ color: "var(--fg-3)" }}>
             {hint}
           </div>
         )}
@@ -416,7 +416,7 @@ function Segmented<T extends string>({
           <button
             key={o.value}
             onClick={() => onChange(o.value)}
-            className="rounded-pill px-2.5 py-1 text-[11.5px] font-medium transition-colors"
+            className="rounded-pill px-2.5 py-1 text-ui-meta font-medium transition-colors"
             style={{
               background: active ? "var(--surface)" : "transparent",
               color: active ? "var(--fg-1)" : "var(--fg-3)",
@@ -486,12 +486,12 @@ function DisplayPopover() {
     >
       <div className="mb-2.5 flex items-baseline justify-between">
         <span
-          className="text-[10.5px] font-semibold uppercase tracking-[0.14em]"
+          className="text-ui-caption font-semibold uppercase tracking-label-wide"
           style={{ color: "var(--fg-3)" }}
         >
           Theme
         </span>
-        <span className="text-[11.5px] font-medium" style={{ color: "var(--fg-2)" }}>
+        <span className="text-ui-meta font-medium" style={{ color: "var(--fg-2)" }}>
           {activeLabel}
         </span>
       </div>

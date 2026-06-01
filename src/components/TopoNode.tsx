@@ -80,11 +80,11 @@ function TopoNodeViewComponent({ data }: NodeProps<Data>) {
   const titleClass =
     lod === "far"
       ? isLandmark
-        ? "text-[20px]"
-        : "text-[17px]"
+        ? "text-atlas-card"
+        : "text-atlas-brand"
       : isLandmark
-        ? "text-[14px]"
-        : "text-[13px]";
+        ? "text-ui-body"
+        : "text-ui-sm";
   const titleLineClamp = lod === "far" ? 3 : 2;
 
   return (
@@ -100,6 +100,7 @@ function TopoNodeViewComponent({ data }: NodeProps<Data>) {
       aria-label={`${KIND_LABEL[node.kind]}: ${node.title}`}
       className={cn(
         "group relative flex min-h-[66px] w-[210px] cursor-pointer flex-col overflow-hidden rounded-[12px] border pl-3 pr-3 py-2 outline-none transition-all duration-150",
+        "focus-visible:ring-2 focus-visible:ring-[color:var(--accent-border)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--bg)]",
         "hover:-translate-y-px",
         dim && "opacity-30",
         isMinor && !accented && !dim && "opacity-[0.82]",
@@ -108,7 +109,6 @@ function TopoNodeViewComponent({ data }: NodeProps<Data>) {
         background: "var(--surface)",
         borderColor: accented ? tone.color : isLandmark ? tone.border : "var(--border)",
         borderWidth: isLandmark || accented ? 1.5 : 1,
-        boxShadow: "none",
       }}
     >
       {/* Lane rail — color says which domain, texture says which kind. */}
@@ -152,7 +152,7 @@ function TopoNodeViewComponent({ data }: NodeProps<Data>) {
             />
           )}
           <span
-            className="inline-flex h-[18px] shrink-0 items-center rounded-[5px] border px-1.5 text-[9.5px] font-bold uppercase tracking-wide"
+            className="inline-flex h-[18px] shrink-0 items-center rounded-[5px] border px-1.5 text-ui-tiny font-bold uppercase tracking-wide"
             style={{
               background: "var(--surface-2)",
               borderColor: "var(--border)",
@@ -163,7 +163,7 @@ function TopoNodeViewComponent({ data }: NodeProps<Data>) {
           </span>
           {node.number && (
             <span
-              className="min-w-0 truncate font-mono text-[10.5px] font-semibold tabular-nums"
+              className="min-w-0 truncate font-mono text-ui-caption font-semibold tabular-nums"
               style={{ color: tone.color }}
               title={node.id}
             >
@@ -198,7 +198,7 @@ function TopoNodeViewComponent({ data }: NodeProps<Data>) {
 
       {showFooter && (
         <div className="mt-auto flex items-center gap-1.5 pt-2">
-          <span className="min-w-0 truncate text-[10.5px] font-medium" style={{ color: "var(--fg-3)" }}>
+          <span className="min-w-0 truncate text-ui-caption font-medium" style={{ color: "var(--fg-3)" }}>
             {node.topicCluster}
           </span>
         </div>
