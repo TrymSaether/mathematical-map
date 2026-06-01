@@ -6,6 +6,7 @@ import {
   FlaskConical,
   Layers,
   PencilLine,
+  Tag,
   type LucideIcon,
 } from "lucide-react";
 
@@ -22,6 +23,7 @@ export type NodeCategory =
   | "definition"
   | "structure"
   | "theorem"
+  | "property"
   | "example"
   | "construction"
   | "proof"
@@ -42,6 +44,8 @@ const KIND_TO_CATEGORY: Record<string, NodeCategory> = {
   proposition: "theorem",
   corollary: "theorem",
   conjecture: "theorem",
+  // Properties — "attributes and characteristics".
+  property: "property",
   // Instances — "what it looks like".
   example: "example",
   counterexample: "example",
@@ -81,6 +85,7 @@ export const CATEGORY_META: Record<NodeCategory, CategoryMeta> = {
   definition: { id: "definition", label: "Definition", icon: Circle, rail: "solid", glyphFilled: false },
   structure:  { id: "structure",  label: "Structure",  icon: Layers,  rail: "solid", glyphFilled: false },
   theorem:    { id: "theorem",    label: "Theorem",    icon: Diamond, rail: "solid", glyphFilled: true  },
+  property:   { id: "property",   label: "Property",   icon: Tag,     rail: "solid", glyphFilled: false },
   construction: { id: "construction", label: "Construction", icon: Box, rail: "solid", glyphFilled: false },
   example:    { id: "example",    label: "Example",    icon: FlaskConical, rail: "dashed", glyphFilled: false },
   proof:      { id: "proof",      label: "Proof",      icon: Check,   rail: "dotted", glyphFilled: false },
@@ -103,6 +108,7 @@ export const CATEGORY_ORDER: NodeCategory[] = [
   "definition",
   "structure",
   "theorem",
+  "property",
   "construction",
   "example",
   "proof",
@@ -122,6 +128,7 @@ export const DEFAULT_VISIBLE_CATEGORIES: NodeCategory[] = [
   "definition",
   "structure",
   "theorem",
+  "property",
   "construction",
   "example",
 ];

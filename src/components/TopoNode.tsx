@@ -30,6 +30,7 @@ const KIND_ABBREV: Record<string, string> = {
   lemma: "Lem",
   proposition: "Prop",
   corollary: "Cor",
+  property: "Prop",
   example: "Ex",
   non_example: "Ex",
   counterexample: "C-Ex",

@@ -11,7 +11,7 @@ import { ThemedDiagram } from "./ThemedDiagram";
 import { Spine, Facet, Proof, ConnectionChip, specimenMeta } from "./Specimen";
 
 const USED_BY_INITIAL = 8;
-const RELATED_CASE_KINDS = new Set(["example", "non_example", "counterexample", "application", "conjecture"]);
+const RELATED_CASE_KINDS = new Set(["example", "non_example", "counterexample"]);
 
 export function NodePanel() {
   const mapId = useStore((s) => s.mapId);
