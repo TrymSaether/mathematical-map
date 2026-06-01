@@ -2688,7 +2688,7 @@
       {
         "id": "compactness",
         "statement": "A topological space is compact if every open cover has a finite subcover.",
-        "formal_statement": "$$\\begin{aligned} (X,\\mathcal T)\\text{ is compact} \\quad\\Longleftrightarrow\\quad &\\forall \\mathcal U\\subseteq \\mathcal T,\\\\ &\\left(X=\\bigcup_{U\\in\\mathcal U}U \\Rightarrow \\exists U_1,\\dots,U_n\\in\\mathcal U\\text{ such that }X=\\bigcup_{k=1}^{n}U_k\\right). \\end{aligned}$$",
+        "formal_statement": "$$ (X,\\mathcal T)\\text{ is compact} \\quad\\Longleftrightarrow \\quad \\forall \\mathcal U\\subseteq \\mathcal T, \\ \\left(X=\\bigcup_{U\\in\\mathcal U}U \\Rightarrow \\exists U_1,\\dots,U_n\\in\\mathcal U\\text{ such that }X=\\bigcup_{k=1}^{n}U_k\\right).$$",
         "definition": "Let $(X,\\mathcal T)$ be a topological space. A collection $\\mathcal U\\subseteq\\mathcal T$ is an open cover of $X$ if $X=\\bigcup_{U\\in\\mathcal U}U$. The space $(X,\\mathcal T)$ is compact if every open cover $\\mathcal U$ of $X$ contains a finite subcover.",
         "intuition": "Compactness says that whenever the whole space is described by possibly infinitely many open pieces, finitely many of those pieces already describe the whole space. It is a topological finiteness condition, not a size condition.",
         "notation": "$$\\begin{aligned} \\mathcal U&=\\text{an open cover of }X,\\\\ \\mathcal U_0&=\\{U_1,\\dots,U_n\\}\\subseteq\\mathcal U=\\text{a finite subcover},\\\\ X&=U_1\\cup\\cdots\\cup U_n. \\end{aligned}$$",
