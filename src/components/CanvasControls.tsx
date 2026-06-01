@@ -59,15 +59,7 @@ export function CanvasControls() {
 
   return (
     <>
-      <div className="pointer-events-none absolute bottom-4 left-3 z-30 sm:left-4">
-        <FloatButton
-          label={showNodePanel ? "Hide concept panel" : "Show concept panel"}
-          active={showNodePanel}
-          onClick={toggleNodePanel}
-        >
-          <PanelLeft className="h-[18px] w-[18px]" strokeWidth={2} />
-        </FloatButton>
-      </div>
+
 
       <div className="pointer-events-none absolute right-3 top-[72px] z-30 flex flex-col items-end gap-2.5 sm:right-4">
         <ToolbarStack label="Map modes">
