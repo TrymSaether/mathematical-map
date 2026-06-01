@@ -106,6 +106,7 @@ export function ThemedDiagram({
       className={cn("themed-diagram", className)}
       role="img"
       aria-label={alt}
+      style={{ width: "100%", height: "auto" }}
       dangerouslySetInnerHTML={{ __html: renderedMarkup }}
     />
   );

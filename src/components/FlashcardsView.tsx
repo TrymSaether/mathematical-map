@@ -8,6 +8,7 @@ import { MathText, MathProse } from "../lib/katex";
 import { getDomainTone } from "../lib/colors";
 import type { GraphNode } from "../types";
 import { Spine, Facet, Proof, specimenMeta } from "./Specimen";
+import { ThemedDiagram } from "./ThemedDiagram";
 
 /** A node carries enough to drill if it has a title and at least one answer-side facet. */
 function answerText(n: GraphNode): string {
@@ -416,9 +417,7 @@ function CardBack({ node, map, onOpen }: { node: GraphNode; map: LoadedMap; onOp
           </Facet>
         )}
         {diagramPath && (
-          <Facet label="Diagram" muted>
-            <img src={diagramPath} alt="Diagram" className="mx-auto max-h-64 object-contain" />
-          </Facet>
+          <ThemedDiagram src={diagramPath} alt={`Diagram for ${node.title}`} />
         )}
         {proof && <Proof text={proof} toneColor={tone.color} />}
       </div>

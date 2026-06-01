@@ -11,6 +11,7 @@ import {
   KIND_ORDER,
   dictionaryEntries,
   entryStatement,
+  entryFormalStatement,
   sectionFacet,
   type DictSortMode,
   type SectionFacet,
@@ -192,6 +193,7 @@ function DictionaryCard({
   const setSurface = useStore((s) => s.setSurface);
   const tone = getDomainTone(entry.domainId);
   const statement = entryStatement(entry);
+  const formalStatement = entryFormalStatement(entry);
   const related = entry.related
     .map((id) => map.nodeById.get(id))
     .filter((n): n is GraphNode => Boolean(n));
@@ -247,6 +249,11 @@ function DictionaryCard({
           <Spine tone={tone} kind={entry.kind} label="Statement" size="dict">
             <MathProse text={statement} asBlock />
           </Spine>
+        )}
+        {formalStatement && formalStatement !== statement && (
+          <Facet label="Formal statement" muted>
+            <MathProse text={formalStatement} asBlock />
+          </Facet>
         )}
         {entry.gloss && (
           <Facet label="In words">
